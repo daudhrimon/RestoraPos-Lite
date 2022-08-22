@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/theme_color">
+
+        <TextView
+            android:id="@+id/addonHeaderTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:text="Add Addon"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/addonCrossBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/selectro_cross_btn"
+            android:clickable="true"
+            android:padding="3dp"
+            android:src="@drawable/ic_close_white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/no_radius_background">
+
+        <EditText
+            android:id="@+id/addonNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:background="@drawable/et_round_bg_outline"
+            android:fontFamily="@font/helvetica_neue"
+            android:hint="Enter Addon Name"
+            android:inputType="textCapWords"
+            android:paddingHorizontal="10dp"
+            android:textSize="13sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/no_radius_background">
+
+        <EditText
+            android:id="@+id/addonPriceEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:background="@drawable/et_round_bg_outline"
+            android:fontFamily="@font/helvetica_neue"
+            android:hint="Default Price 0.00"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="10dp"
+            android:textSize="13sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/addonAddBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_14sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:background="@drawable/selector_plus_oc"
+        android:clickable="true"
+        android:fontFamily="@font/helvetica_nueu_light"
+        android:padding="10dp"
+        android:text="Add"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        tools:ignore="RtlCompat,TouchTargetSizeCheck" />
+
+</LinearLayout>

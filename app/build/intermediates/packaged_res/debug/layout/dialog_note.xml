@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <EditText
+        android:id="@+id/noteEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/no_radius_background"
+        android:fontFamily="@font/helvetica_neue"
+        android:hint="Add a note"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:textColorHint="#D8D5D5"
+        android:textSize="@dimen/_12sdp" />
+
+    <Button
+        android:id="@+id/addNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noteEt"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:backgroundTint="@color/theme_color"
+        android:fontFamily="@font/helvetica_neue"
+        android:text="Add Note"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noteEt"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_toStartOf="@id/addNoteBtn"
+        android:backgroundTint="#C60000"
+        android:fontFamily="@font/helvetica_neue"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</RelativeLayout>
