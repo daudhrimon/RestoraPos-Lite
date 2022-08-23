@@ -124,14 +124,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             dialog.show()
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-            binding.logout.setOnClickListener {
+            /*binding.logout.setOnClickListener {
                 /////////////////////////////////////////////////////
                 //findNavController().navigate(R.id.to_loginFragment)
                 dialog.dismiss()
             }
             binding.closeCounter.setOnClickListener {
                 dialog.dismiss()
-            }
+            }*/
         }
 
         // Calculator BUTTON Click
