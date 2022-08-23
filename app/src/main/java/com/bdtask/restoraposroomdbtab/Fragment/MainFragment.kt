@@ -3,14 +3,12 @@ package com.bdtask.restoraposroomdbtab.Fragment
 import android.Manifest
 import android.app.Dialog
 import android.bluetooth.BluetoothAdapter
-import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.DisplayMetrics
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -70,8 +68,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         mainBinding = FragmentMainBinding.inflate(inflater, container, false)
+        sharedPref.init(requireContext())
 
-        initial()
+        printerInit()
 
         // getting and setting category Recycler
         MainActivity.database.categoryDao().getCategories().observe(requireActivity(), Observer{
@@ -95,9 +94,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
         // setting cart Recycler Adapter
         setCartRecyclerAdapter()
-
-        //view click to hide Keyboard
-        mainBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),mainBinding.root) }
 
         // menu Button Click
         mainBinding.menuBtn.setOnClickListener {
@@ -427,6 +423,11 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
     // show alert Dialog BasedOn Food Item Click
     override fun onFoodClick( foodId: Long?, foodTitle: String?, variantlist: List<Variant>, addonList: List<Addon> ) {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val foodDialogBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
+        dialog.setContentView(foodDialogBinding.root)
+
         foodVariant = ""
         variantPrice = 0.0
         foodQuantity = 1
@@ -435,10 +436,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         homeAddonList.clear()
         var tempCartList = mutableListOf<FoodCart>()
         val newAddonList = mutableListOf<HomeAddon>()
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val foodDialogBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
-        dialog.setContentView(foodDialogBinding.root)
+
+
 
         foodDialogBinding.dcFoodName.text = foodTitle
 
@@ -600,8 +599,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
         dialog.setCancelable(false)
         dialog.show()
+        val width = resources.displayMetrics.widthPixels
         val win = dialog.window
-        win!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        win!!.setLayout((6*width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
         win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
@@ -637,12 +637,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     }
 
 
-    // initial
-    private fun initial() {
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.theme_color)
-
-        sharedPref.init(requireContext())
-
+    // init Printer
+    private fun printerInit() {
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
             SunmiPrintHelper.getInstance().initSunmiPrinterService(requireContext())
             printHelper = SunmiPrintHelper.getInstance()

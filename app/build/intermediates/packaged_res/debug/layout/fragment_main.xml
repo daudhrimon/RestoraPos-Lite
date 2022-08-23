@@ -139,9 +139,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartRecycler"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="@dimen/_135sdp"
             android:layout_marginHorizontal="9dp"
             android:layout_marginTop="2dp"
+            tools:listitem="@layout/vh_cart_item"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

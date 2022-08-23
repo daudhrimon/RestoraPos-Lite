@@ -60,12 +60,12 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_food_clicked.xml"
     },
     {
-        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable-v24_et_round_bg_outline.xml.flat",
-        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable-v24\\et_round_bg_outline.xml"
-    },
-    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_bottom_rounded_bg.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\bottom_rounded_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable-v24_et_round_bg_outline.xml.flat",
+        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable-v24\\et_round_bg_outline.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_selector_food_item.xml.flat",
@@ -196,6 +196,10 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\add_image.png"
     },
     {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_main.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_main.xml"
+    },
+    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_restora.jpg.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\restora.jpg"
     },
@@ -310,10 +314,6 @@
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_single_value_spdate_dlt.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\single_value_spdate_dlt.xml"
-    },
-    {
-        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_food.xml.flat",
-        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_food.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_selected_ongoing.xml.flat",
