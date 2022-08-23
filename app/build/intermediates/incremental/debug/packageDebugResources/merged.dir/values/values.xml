@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="back_btn_tint">#c4c4c4</color>
+    <color name="bg_color">#F0F0F0</color>
+    <color name="black">#FF000000</color>
+    <color name="color_red">#D90407</color>
+    <color name="green">#008711</color>
+    <color name="hintColor">#BCBABA</color>
+    <color name="overlay_dark">#2D2D2D</color>
+    <color name="splash_background">#101010</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="theme_color">#0A5F00</color>
+    <color name="trans">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="address">Mannan Plaza, Khilkhet,\nDhaka-1215.\nMobile: 0123456789\nEmail: bdtask@gmail.com</string>
+    <string name="app_name">RestoraPOS-(RoomDB-TabLay)</string>
+    <string name="bluetooth_per">App is Closing.....\nRestart this App or clear app data and Allow Bluetooth Permission</string>
+    <string name="toast_1">Transaction print,use the AIDL mode!</string>
+    <string name="toast_10">Please set the printer as black label mode!</string>
+    <string name="toast_11">Settings->System->Advanced->InnerPrinter-> set black mark function</string>
+    <string name="toast_12">Please set the printer to label mode!</string>
+    <string name="toast_2">The service has been disconnected!</string>
+    <string name="toast_3">Bluetooth device is unavailable</string>
+    <string name="toast_4">Bluetooth device not detected. Please open Bluetooth!</string>
+    <string name="toast_5">Not Found InnterPrinter!</string>
+    <string name="toast_6">Bluetooth connect failed!</string>
+    <string name="toast_7"> Only a single Qr code is printed for the AIDL mode</string>
+    <string name="toast_8">Now QrCode size must be less than 7!</string>
+    <string name="toast_9">BarCode type or conent error!</string>
+    <style name="TextAppearance.tabText" parent="@style/TextAppearance.AppCompat">
+        <item name="textAllCaps">false</item>
+        <item name="fontFamily">@font/helvetica_nueu_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="Theme.BhojonPOSLocalDB" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+
+        <item name="colorPrimary">@color/theme_color</item>
+        <item name="colorPrimaryVariant">@color/theme_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/theme_color</item>
+        <item name="colorSecondaryVariant">@color/theme_color</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        /////////////////////////////////////////////////////
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@color/trans</item>
+    </style>
+    <style name="spinnerTheme">
+        <item name="background">?android:selectableItemBackground</item>
+        <item name="android:popupBackground">@android:color/transparent</item>
+        <item name="android:dropDownSelector">?android:selectableItemBackground</item>
+        <item name="android:divider">@color/black</item>
+        <item name="android:overlapAnchor" ns1:ignore="NewApi">true</item>
+    </style>
+</resources>
