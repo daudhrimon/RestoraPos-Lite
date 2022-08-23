@@ -32,11 +32,8 @@ class OngoingAdapter(
 
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
-        holder.binding.cusName.text =
-            "Customer : " + orderList[position].orderInfoList[0].customerInfo[0].cusName
-
+        holder.binding.cusName.text = "Customer : " + orderList[position].orderInfoList[0].customerInfo[0].cusName
         holder.binding.orderId.text = "Order Id : " + orderList[position].id.toString()
-
         if (orderList[position].orderInfoList[0].waiter.isNotEmpty()) {
             holder.binding.waiterName.visibility = View.VISIBLE
             holder.binding.waiterName.text =

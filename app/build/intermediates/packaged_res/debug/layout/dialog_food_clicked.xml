@@ -159,7 +159,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/addonsRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_169sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/vh_addons"
