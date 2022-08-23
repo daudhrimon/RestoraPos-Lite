@@ -9,8 +9,9 @@ import com.bdtask.restoraposroomdbtab.Model.OrderInfo
 data class Order(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
-    var date: String,
     var status: String,
+    var date: String,
+    var token: String,
     var cartList: List<FoodCart>,
     var orderInfoList: List<OrderInfo>
     )

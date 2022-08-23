@@ -124,7 +124,8 @@
                     android:popupBackground="@color/white"
                     android:text="Food Title"
                     android:textColor="@color/theme_color"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="HardcodedText" />
 
 
                 <LinearLayout
@@ -145,7 +146,7 @@
                         android:inputType="textCapWords"
                         android:paddingHorizontal="10dp"
                         android:textSize="@dimen/_12sdp"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="HardcodedText,TouchTargetSizeCheck,UnusedAttribute" />
 
                 </LinearLayout>
 

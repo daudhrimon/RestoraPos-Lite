@@ -3660,7 +3660,7 @@ int id clip_horizontal 0x7f0900a4
 int id clip_vertical 0x7f0900a5
 int id clockwise 0x7f0900a6
 int id closeBtn 0x7f0900a7
-int id closeCounter 0x7f0900a8
+int id closeLay 0x7f0900a8
 int id closeTv 0x7f0900a9
 int id closest 0x7f0900aa
 int id collapseActionView 0x7f0900ab
@@ -3874,7 +3874,7 @@ int id listMode 0x7f09017a
 int id list_item 0x7f09017b
 int id loading 0x7f09017c
 int id locale 0x7f09017d
-int id logout 0x7f09017e
+int id logoutLay 0x7f09017e
 int id lottie_layer_name 0x7f09017f
 int id ltr 0x7f090180
 int id lytCameraPick 0x7f090181

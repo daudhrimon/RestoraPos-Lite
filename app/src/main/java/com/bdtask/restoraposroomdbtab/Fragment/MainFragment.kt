@@ -48,6 +48,7 @@ import com.google.gson.Gson
 import com.sunmi.peripheral.printer.SunmiPrinterService
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     private lateinit var mainBinding: FragmentMainBinding
@@ -64,6 +65,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     private var sharedPref = SharedPref
     private lateinit var printHelper: SunmiPrintHelper
     private var orderId: Long? = null
+    private var token = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -202,10 +204,28 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         if (tempCartList.isNotEmpty()) {
             if (orderInfoList.isNotEmpty()){
 
-                GlobalScope.launch {
-                    orderId = MainActivity.database.orderDao().insertOrder(Order(0,Util.getDate().toString(),"Ongoing",tempCartList.toList(),orderInfoList.toList()))
+                // token to SharedPref
+                var lToken: Long = 1
+                if (sharedPref.getSharedToken() != null){
+                    lToken = sharedPref.getSharedToken()!!
+                    sharedPref.setSharedToken(lToken)
+                } else {
+                    sharedPref.setSharedToken(lToken)
                 }
-                Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
+                if (lToken in 1..9){
+                    token = "0$lToken"
+                } else {
+                    token = lToken.toString()
+                }
+
+                try {
+                    GlobalScope.launch {
+                        orderId = MainActivity.database.orderDao().insertOrder(Order(0,"Ongoing",Util.getDate().toString(),token,tempCartList.toList(),orderInfoList.toList()))
+                    }
+                    Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
+                } catch (e:Exception){
+                    Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
+                }
 
                 showTokenPrintDialog()
 
@@ -246,26 +266,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     private fun printToken(printDialog: SweetAlertDialog) {
         var tempCartList = mutableListOf<FoodCart>()
         var orderInfoList = mutableListOf<OrderInfo>()
-        var lToken: Long = 1
-        var token = ""
 
         if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
         }
         if (sharedPref.readSharedOrderInfoList() != null){
             orderInfoList = sharedPref.readSharedOrderInfoList()!!.toMutableList()
-        }
-        // token to SharedPref
-        if (sharedPref.getSharedToken() != null){
-            lToken = sharedPref.getSharedToken()!!
-            sharedPref.setSharedToken(lToken)
-        } else {
-            sharedPref.setSharedToken(lToken)
-        }
-        if (lToken in 1..9){
-            token = "0$lToken"
-        } else {
-            token = lToken.toString()
         }
 
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {

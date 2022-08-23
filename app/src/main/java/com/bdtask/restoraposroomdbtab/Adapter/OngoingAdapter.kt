@@ -1,5 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,8 @@ class OngoingAdapter(
     private val ongoingClickListener: OngoingClickListener): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
     var clickedList = mutableListOf<Int>()
+    var multiSelect = false
+    var index = -1
 
     inner class VHOngoing(binding: VhOngoingBinding): RecyclerView.ViewHolder(binding.root) {
         var binding = binding
@@ -26,6 +29,7 @@ class OngoingAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHOngoing {
         return VHOngoing(VhOngoingBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_ongoing, parent, false)))
     }
+
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
         holder.binding.cusName.text =
@@ -45,25 +49,49 @@ class OngoingAdapter(
         } else {
             holder.binding.tableName.text = orderList[position].orderInfoList[0].customerType
         }
-
         ///////////////////////////////////////
         // setting Selected Background Color //
         ///////////////////////////////////////
-
-       if (clickedList.contains(position)) {
-            holder.binding.table.setImageResource(R.drawable.selected_ongoing)
+        if (multiSelect){
+            if (clickedList.contains(position)) {
+                holder.binding.table.setImageResource(R.drawable.selected_ongoing)
+            } else {
+                holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
+            }
         } else {
-            holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
+            if (index == position){
+                holder.binding.table.setImageResource(R.drawable.selected_ongoing)
+            } else {
+                holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
+            }
+        }
+
+        if (clickedList.isEmpty()){
+            multiSelect = false
+            index = -1
         }
 
         holder.itemView.setOnClickListener {
-            if (clickedList.contains(position)) {
-                clickedList.remove(position)
+            if (multiSelect){
+                if (clickedList.contains(position)) {
+                    clickedList.remove(position)
+                } else {
+                    clickedList.add(position)
+                }
             } else {
-                clickedList.add(position)
+                /*if (index == position) {
+                    index = -1
+                } else {*/
+                    index = position
+                //}
             }
             notifyDataSetChanged()
             Log.wtf("OnGoingClick",clickedList.toString())
+        }
+
+        holder.itemView.setOnLongClickListener {
+            multiSelect = !multiSelect
+            return@setOnLongClickListener true
         }
     }
 

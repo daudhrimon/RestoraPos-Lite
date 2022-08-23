@@ -123,8 +123,7 @@ public final class CustomerDao_Impl implements CustomerDao {
   }
 
   @Override
-  public Object insertCustomer(final Customer customer,
-      final Continuation<? super Unit> continuation) {
+  public Object insertCustomer(final Customer customer, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -137,12 +136,11 @@ public final class CustomerDao_Impl implements CustomerDao {
           __db.endTransaction();
         }
       }
-    }, continuation);
+    }, arg1);
   }
 
   @Override
-  public Object deleteCustomer(final Customer customer,
-      final Continuation<? super Unit> continuation) {
+  public Object deleteCustomer(final Customer customer, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -155,12 +153,11 @@ public final class CustomerDao_Impl implements CustomerDao {
           __db.endTransaction();
         }
       }
-    }, continuation);
+    }, arg1);
   }
 
   @Override
-  public Object updateCustomer(final Customer customer,
-      final Continuation<? super Unit> continuation) {
+  public Object updateCustomer(final Customer customer, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -173,7 +170,7 @@ public final class CustomerDao_Impl implements CustomerDao {
           __db.endTransaction();
         }
       }
-    }, continuation);
+    }, arg1);
   }
 
   @Override

@@ -3661,7 +3661,7 @@ id clip_horizontal
 id clip_vertical
 id clockwise
 id closeBtn
-id closeCounter
+id closeLay
 id closeTv
 id closest
 id collapseActionView
@@ -3875,7 +3875,7 @@ id listMode
 id list_item
 id loading
 id locale
-id logout
+id logoutLay
 id lottie_layer_name
 id ltr
 id lytCameraPick

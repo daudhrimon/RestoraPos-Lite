@@ -111,7 +111,7 @@ id checkBox
 id checkedBox
 id clearOnClick
 id closeBtn
-id closeCounter
+id closeLay
 id closeTv
 id completeBtn
 id crossBtn
@@ -182,7 +182,7 @@ id itemTv
 id layout
 id layout1
 id layoutNoOrder
-id logout
+id logoutLay
 id menuBtn
 id mergeBtn
 id minusBtnC

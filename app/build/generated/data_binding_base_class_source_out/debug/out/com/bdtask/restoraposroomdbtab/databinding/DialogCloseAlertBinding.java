@@ -21,7 +21,7 @@ public final class DialogCloseAlertBinding implements ViewBinding {
   private final CardView rootView;
 
   @NonNull
-  public final NeomorphFrameLayout closeCounter;
+  public final NeomorphFrameLayout closeLay;
 
   @NonNull
   public final ImageView img1;
@@ -30,16 +30,15 @@ public final class DialogCloseAlertBinding implements ViewBinding {
   public final ImageView img2;
 
   @NonNull
-  public final NeomorphFrameLayout logout;
+  public final NeomorphFrameLayout logoutLay;
 
-  private DialogCloseAlertBinding(@NonNull CardView rootView,
-      @NonNull NeomorphFrameLayout closeCounter, @NonNull ImageView img1, @NonNull ImageView img2,
-      @NonNull NeomorphFrameLayout logout) {
+  private DialogCloseAlertBinding(@NonNull CardView rootView, @NonNull NeomorphFrameLayout closeLay,
+      @NonNull ImageView img1, @NonNull ImageView img2, @NonNull NeomorphFrameLayout logoutLay) {
     this.rootView = rootView;
-    this.closeCounter = closeCounter;
+    this.closeLay = closeLay;
     this.img1 = img1;
     this.img2 = img2;
-    this.logout = logout;
+    this.logoutLay = logoutLay;
   }
 
   @Override
@@ -69,9 +68,9 @@ public final class DialogCloseAlertBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.closeCounter;
-      NeomorphFrameLayout closeCounter = ViewBindings.findChildViewById(rootView, id);
-      if (closeCounter == null) {
+      id = R.id.closeLay;
+      NeomorphFrameLayout closeLay = ViewBindings.findChildViewById(rootView, id);
+      if (closeLay == null) {
         break missingId;
       }
 
@@ -87,13 +86,13 @@ public final class DialogCloseAlertBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.logout;
-      NeomorphFrameLayout logout = ViewBindings.findChildViewById(rootView, id);
-      if (logout == null) {
+      id = R.id.logoutLay;
+      NeomorphFrameLayout logoutLay = ViewBindings.findChildViewById(rootView, id);
+      if (logoutLay == null) {
         break missingId;
       }
 
-      return new DialogCloseAlertBinding((CardView) rootView, closeCounter, img1, img2, logout);
+      return new DialogCloseAlertBinding((CardView) rootView, closeLay, img1, img2, logoutLay);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

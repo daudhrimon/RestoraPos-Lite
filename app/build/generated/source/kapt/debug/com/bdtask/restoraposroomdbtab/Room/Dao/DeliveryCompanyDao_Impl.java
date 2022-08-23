@@ -51,7 +51,7 @@ public final class DeliveryCompanyDao_Impl implements DeliveryCompanyDao {
 
   @Override
   public Object insertDeliveryCompany(final DeliveryCompany deliveryCompany,
-      final Continuation<? super Unit> continuation) {
+      final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -64,7 +64,7 @@ public final class DeliveryCompanyDao_Impl implements DeliveryCompanyDao {
           __db.endTransaction();
         }
       }
-    }, continuation);
+    }, arg1);
   }
 
   @Override

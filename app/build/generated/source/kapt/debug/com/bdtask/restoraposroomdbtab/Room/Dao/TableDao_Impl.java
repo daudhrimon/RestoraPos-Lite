@@ -50,7 +50,7 @@ public final class TableDao_Impl implements TableDao {
   }
 
   @Override
-  public Object insertTable(final Table table, final Continuation<? super Unit> continuation) {
+  public Object insertTable(final Table table, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -63,7 +63,7 @@ public final class TableDao_Impl implements TableDao {
           __db.endTransaction();
         }
       }
-    }, continuation);
+    }, arg1);
   }
 
   @Override

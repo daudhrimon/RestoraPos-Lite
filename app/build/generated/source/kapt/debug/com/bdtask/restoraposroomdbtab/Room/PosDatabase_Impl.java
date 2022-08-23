@@ -69,9 +69,9 @@ public final class PosDatabase_Impl extends PosDatabase {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `delivery_company` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `companyName` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `waiter_tbl` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `wName` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `table_tbl` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tName` TEXT NOT NULL)");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `order_tbl` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `status` TEXT NOT NULL, `cartList` TEXT NOT NULL, `orderInfoList` TEXT NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `order_tbl` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `status` TEXT NOT NULL, `date` TEXT NOT NULL, `token` TEXT NOT NULL, `cartList` TEXT NOT NULL, `orderInfoList` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '27c7ac6a01732e93dd49f42add4df96f')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2c73a47003b8e3b5dd68a6fcba1895e5')");
       }
 
       @Override
@@ -201,10 +201,11 @@ public final class PosDatabase_Impl extends PosDatabase {
                   + " Expected:\n" + _infoTableTbl + "\n"
                   + " Found:\n" + _existingTableTbl);
         }
-        final HashMap<String, TableInfo.Column> _columnsOrderTbl = new HashMap<String, TableInfo.Column>(5);
+        final HashMap<String, TableInfo.Column> _columnsOrderTbl = new HashMap<String, TableInfo.Column>(6);
         _columnsOrderTbl.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsOrderTbl.put("date", new TableInfo.Column("date", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrderTbl.put("status", new TableInfo.Column("status", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrderTbl.put("date", new TableInfo.Column("date", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsOrderTbl.put("token", new TableInfo.Column("token", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrderTbl.put("cartList", new TableInfo.Column("cartList", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsOrderTbl.put("orderInfoList", new TableInfo.Column("orderInfoList", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysOrderTbl = new HashSet<TableInfo.ForeignKey>(0);
@@ -218,7 +219,7 @@ public final class PosDatabase_Impl extends PosDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "27c7ac6a01732e93dd49f42add4df96f", "50aac248f2f77032c7073727e5c57ecf");
+    }, "2c73a47003b8e3b5dd68a6fcba1895e5", "ca3d019e8828c5e68ee08fd36b764a40");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
