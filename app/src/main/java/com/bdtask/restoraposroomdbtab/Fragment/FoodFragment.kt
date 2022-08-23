@@ -2,10 +2,14 @@ package com.bdtask.restoraposroomdbtab.Fragment
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -161,14 +165,13 @@ class FoodFragment : Fragment() {
 
     // show dialog for add new category
     private fun addNewCategoryDialog() {
-        val alert = AlertDialog.Builder(requireContext())
+        val dialog = Dialog(requireContext())
         val dbinding = DialogSingleItemetBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_single_itemet,null))
-        alert.setView(dbinding.root)
-        val dialog = alert.create()
+        dialog.setContentView(dbinding.root)
+
         dbinding.itemTv.text = "Add a new Category"
         dbinding.itemEt.hint = "Enter Category"
         dbinding.itemBtn.text = "Add Category"
-        dialog.show()
 
         dbinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dbinding.root) }
 
@@ -195,19 +198,22 @@ class FoodFragment : Fragment() {
             Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
         }
+        dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
 
     private fun variantPlusButtonDialog() {
-        val alert = AlertDialog.Builder(context)
+        val dialog = Dialog(requireContext())
         val dbinding = DialogInsertAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_insert_addon,null))
-        alert.setView(dbinding.root)
-        val dialog = alert.create()
+        dialog.setContentView(dbinding.root)
+
         dbinding.addonHeaderTv.text = "Add Food Variant"
         dbinding.addonNameEt.hint = "Enter Variant"
         dbinding.addonPriceEt.hint = "Enter Price"
-
-        dialog.show()
 
         dbinding.root.setOnClickListener { context?.let { it1 -> Util.hideSoftKeyBoard(it1,dbinding.root) } }
 
@@ -239,15 +245,18 @@ class FoodFragment : Fragment() {
 
             dialog.dismiss()
         }
+        dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     // addonsButton click Handler
     private fun addAddonsButtonClick() {
-        val alert = AlertDialog.Builder(context)
+        val dialog = Dialog(requireContext())
         val dbinding = DialogInsertAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_insert_addon,null))
-        alert.setView(dbinding.root)
-        val dialog = alert.create()
-        dialog.show()
+        dialog.setContentView(dbinding.root)
 
         var addonPrice: Double = 0.0
 
@@ -279,6 +288,11 @@ class FoodFragment : Fragment() {
 
             dialog.dismiss()
         }
+        dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
 

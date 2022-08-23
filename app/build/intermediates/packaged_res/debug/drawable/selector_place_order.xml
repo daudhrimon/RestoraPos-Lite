@@ -9,6 +9,8 @@
         <shape>
             <solid android:color="#6FDBA200" />
             <corners android:radius="6dp" />
+            <stroke android:width="@dimen/_1sdp"
+                android:color="@color/black"/>
         </shape>
     </item>
 </selector>

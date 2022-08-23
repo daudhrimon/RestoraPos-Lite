@@ -28,6 +28,10 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\menu\\nav_menu.xml"
     },
     {
+        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_selector_food.xml.flat",
+        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\selector_food.xml"
+    },
+    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_vh_temp_var_addon.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\vh_temp_var_addon.xml"
     },
@@ -166,10 +170,6 @@
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_vh_cart_item.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\vh_cart_item.xml"
-    },
-    {
-        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_ongoing.xml.flat",
-        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_ongoing.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_dialog_add_new_customer.xml.flat",
@@ -312,6 +312,10 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\single_value_spdate_dlt.xml"
     },
     {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_food.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_food.xml"
+    },
+    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_selected_ongoing.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\selected_ongoing.xml"
     },
@@ -354,6 +358,10 @@
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_dialog_calculator.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_calculator.xml"
+    },
+    {
+        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_dialog_progress.xml.flat",
+        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_progress.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable-v24_ic_plus_button.xml.flat",
@@ -416,11 +424,11 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\font\\helvetica_nueu_thin.ttf"
     },
     {
-        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\font_helvetica_neue.ttf.flat",
-        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\font\\helvetica_neue.ttf"
-    },
-    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_fragment_food.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\fragment_food.xml"
+    },
+    {
+        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\font_helvetica_neue.ttf.flat",
+        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\font\\helvetica_neue.ttf"
     }
 ]

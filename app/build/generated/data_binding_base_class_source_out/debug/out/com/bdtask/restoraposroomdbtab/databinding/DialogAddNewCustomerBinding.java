@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.bdtask.restoraposroomdbtab.R;
@@ -19,7 +20,7 @@ import java.lang.String;
 
 public final class DialogAddNewCustomerBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final LinearLayout addCview;
@@ -63,12 +64,12 @@ public final class DialogAddNewCustomerBinding implements ViewBinding {
   @NonNull
   public final TextView submitBtn;
 
-  private DialogAddNewCustomerBinding(@NonNull LinearLayout rootView,
-      @NonNull LinearLayout addCview, @NonNull TextView addressHeader, @NonNull TextView closeBtn,
-      @NonNull ImageView crossBtn, @NonNull EditText cusAddEt, @NonNull EditText cusEmailEt,
-      @NonNull EditText cusFavAddEt, @NonNull EditText cusMobileEt, @NonNull EditText cusNameEt,
-      @NonNull TextView emailHeader, @NonNull TextView favAddHeader, @NonNull TextView mobileHeader,
-      @NonNull TextView nameHeader, @NonNull TextView submitBtn) {
+  private DialogAddNewCustomerBinding(@NonNull CardView rootView, @NonNull LinearLayout addCview,
+      @NonNull TextView addressHeader, @NonNull TextView closeBtn, @NonNull ImageView crossBtn,
+      @NonNull EditText cusAddEt, @NonNull EditText cusEmailEt, @NonNull EditText cusFavAddEt,
+      @NonNull EditText cusMobileEt, @NonNull EditText cusNameEt, @NonNull TextView emailHeader,
+      @NonNull TextView favAddHeader, @NonNull TextView mobileHeader, @NonNull TextView nameHeader,
+      @NonNull TextView submitBtn) {
     this.rootView = rootView;
     this.addCview = addCview;
     this.addressHeader = addressHeader;
@@ -88,7 +89,7 @@ public final class DialogAddNewCustomerBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -197,9 +198,9 @@ public final class DialogAddNewCustomerBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogAddNewCustomerBinding((LinearLayout) rootView, addCview, addressHeader,
-          closeBtn, crossBtn, cusAddEt, cusEmailEt, cusFavAddEt, cusMobileEt, cusNameEt,
-          emailHeader, favAddHeader, mobileHeader, nameHeader, submitBtn);
+      return new DialogAddNewCustomerBinding((CardView) rootView, addCview, addressHeader, closeBtn,
+          crossBtn, cusAddEt, cusEmailEt, cusFavAddEt, cusMobileEt, cusNameEt, emailHeader,
+          favAddHeader, mobileHeader, nameHeader, submitBtn);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

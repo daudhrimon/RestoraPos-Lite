@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.bdtask.restoraposroomdbtab.R;
@@ -19,7 +19,7 @@ import java.lang.String;
 
 public final class DialogSingleItemetBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final TextView itemBtn;
@@ -33,7 +33,7 @@ public final class DialogSingleItemetBinding implements ViewBinding {
   @NonNull
   public final TextView itemTv;
 
-  private DialogSingleItemetBinding(@NonNull LinearLayout rootView, @NonNull TextView itemBtn,
+  private DialogSingleItemetBinding(@NonNull CardView rootView, @NonNull TextView itemBtn,
       @NonNull ImageView itemCross, @NonNull EditText itemEt, @NonNull TextView itemTv) {
     this.rootView = rootView;
     this.itemBtn = itemBtn;
@@ -44,7 +44,7 @@ public final class DialogSingleItemetBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -93,8 +93,7 @@ public final class DialogSingleItemetBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogSingleItemetBinding((LinearLayout) rootView, itemBtn, itemCross, itemEt,
-          itemTv);
+      return new DialogSingleItemetBinding((CardView) rootView, itemBtn, itemCross, itemEt, itemTv);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

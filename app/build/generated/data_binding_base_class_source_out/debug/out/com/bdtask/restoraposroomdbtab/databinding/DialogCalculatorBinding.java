@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.bdtask.restoraposroomdbtab.R;
@@ -18,7 +18,7 @@ import java.lang.String;
 
 public final class DialogCalculatorBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final TextView bracketsOnClick;
@@ -86,7 +86,7 @@ public final class DialogCalculatorBinding implements ViewBinding {
   @NonNull
   public final TextView zeroOnClick;
 
-  private DialogCalculatorBinding(@NonNull LinearLayout rootView, @NonNull TextView bracketsOnClick,
+  private DialogCalculatorBinding(@NonNull CardView rootView, @NonNull TextView bracketsOnClick,
       @NonNull TextView clearOnClick, @NonNull ImageView closeBtn, @NonNull TextView decimalOnClick,
       @NonNull TextView divisionOnClick, @NonNull TextView eightOnClick,
       @NonNull TextView equalsOnClick, @NonNull TextView fiveOnClick, @NonNull TextView fourOnClick,
@@ -123,7 +123,7 @@ public final class DialogCalculatorBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -280,7 +280,7 @@ public final class DialogCalculatorBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogCalculatorBinding((LinearLayout) rootView, bracketsOnClick, clearOnClick,
+      return new DialogCalculatorBinding((CardView) rootView, bracketsOnClick, clearOnClick,
           closeBtn, decimalOnClick, divisionOnClick, eightOnClick, equalsOnClick, fiveOnClick,
           fourOnClick, minusOnClick, nineOnClick, oneOnClick, plusOnClick, powerOfOnClick,
           resultTextView, sevenOnClick, sixOnClick, threeOnClick, timesOnClick, twoOnClick,

@@ -2,6 +2,8 @@
     <item android:state_pressed="true">
         <shape android:shape="oval">
             <solid android:color="#7AC0C0C0" />
+            <stroke android:width="@dimen/_1sdp"
+                android:color="#C0C0C0"/>
         </shape>
     </item>
 </selector>

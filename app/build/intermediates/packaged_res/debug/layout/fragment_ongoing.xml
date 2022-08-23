@@ -25,7 +25,8 @@
             android:padding="@dimen/_4sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/ongHeader"

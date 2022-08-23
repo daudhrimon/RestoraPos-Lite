@@ -2,11 +2,15 @@
     <item android:state_pressed="false">
         <shape>
             <solid android:color="@color/green" />
+            <corners android:radius="@dimen/_3sdp"/>
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape>
             <solid android:color="#70008711" />
+            <corners android:radius="@dimen/_3sdp"/>
+            <stroke android:width="@dimen/_1sdp"
+                android:color="@color/black"/>
         </shape>
     </item>
 </selector>

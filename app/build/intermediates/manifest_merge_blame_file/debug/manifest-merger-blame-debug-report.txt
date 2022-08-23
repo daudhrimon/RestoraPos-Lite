@@ -6,19 +6,19 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+8-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="32" />
-9-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+9-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.BLUETOOTH" />
-11-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:6:5-67
-11-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:6:22-65
+11-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:6:5-67
+11-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:6:22-65
 12    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-12-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:7:5-73
-12-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:7:22-71
+12-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:7:5-73
+12-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:7:22-71
 13    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-13-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:8:5-75
-13-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:8:22-73
+13-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:8:5-75
+13-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:8:22-73
 14
 15    <queries>
 15-->[com.github.dhaval2404:imagepicker:2.1] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\4e05ab51df07fdbacadd60e231592daa\transformed\jetified-imagepicker-2.1\AndroidManifest.xml:9:5-19:15
@@ -40,38 +40,38 @@
 25    </queries>
 26
 27    <application
-27-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:10:5-26:19
+27-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:10:5-26:19
 28        android:allowBackup="true"
-28-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:11:9-35
+28-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:11:9-35
 29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 29-->[androidx.core:core:1.8.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\5d4e6493cf8188defdeeeb77e5a6d2db\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
 30        android:debuggable="true"
 31        android:icon="@mipmap/ic_launcher"
-31-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:12:9-43
+31-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:12:9-43
 32        android:label="@string/app_name"
-32-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:13:9-41
+32-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:13:9-41
 33        android:roundIcon="@mipmap/ic_launcher_round"
-33-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:14:9-54
+33-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:14:9-54
 34        android:supportsRtl="true"
-34-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:15:9-35
+34-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:15:9-35
 35        android:testOnly="true"
 36        android:theme="@style/Theme.BhojonPOSLocalDB" >
-36-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:16:9-54
+36-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:16:9-54
 37        <activity
-37-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:17:9-25:20
+37-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:17:9-25:20
 38            android:name="com.bdtask.restoraposroomdbtab.MainActivity"
-38-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:18:13-71
+38-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:18:13-71
 39            android:exported="true" >
-39-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:19:13-36
+39-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:19:13-36
 40            <intent-filter>
-40-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:20:13-24:29
+40-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:20:13-24:29
 41                <action android:name="android.intent.action.MAIN" />
-41-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:21:17-69
-41-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:21:25-66
+41-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:21:17-69
+41-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:21:25-66
 42
 43                <category android:name="android.intent.category.LAUNCHER" />
-43-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:23:17-77
-43-->D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:23:27-74
+43-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:23:17-77
+43-->D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:23:27-74
 44            </intent-filter>
 45        </activity>
 46        <activity

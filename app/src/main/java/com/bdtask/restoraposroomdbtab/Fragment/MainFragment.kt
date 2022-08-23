@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -94,6 +96,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         // setting cart Recycler Adapter
         setCartRecyclerAdapter()
 
+        //view click to hide Keyboard
+        mainBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),mainBinding.root) }
+
         // menu Button Click
         mainBinding.menuBtn.setOnClickListener {
             MainActivity.drawerLayout.open()
@@ -121,13 +126,13 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             val binding = DialogCloseAlertBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_close_alert,null))
             dialog.setContentView(binding.root)
             dialog.show()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             binding.logout.setOnClickListener {
                 /////////////////////////////////////////////////////
                 //findNavController().navigate(R.id.to_loginFragment)
                 dialog.dismiss()
             }
-
             binding.closeCounter.setOnClickListener {
                 dialog.dismiss()
             }
@@ -137,12 +142,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         mainBinding.calculatorLay.setOnClickListener {
             val dialog: Dialog = Calculator(requireContext())
             dialog.show()
-            val wm: WindowManager = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            val display: Display = wm.defaultDisplay
-            val metrics = DisplayMetrics()
-            display.getMetrics(metrics)
             val win = dialog.window
             win!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
         // cart Delete Click
@@ -598,17 +600,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
         dialog.setCancelable(false)
         dialog.show()
-
-        val wm: WindowManager =
-            requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val display: Display = wm.getDefaultDisplay()
-        val metrics = DisplayMetrics()
-        display.getMetrics(metrics)
         val win = dialog.window
-        win!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        win!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
 

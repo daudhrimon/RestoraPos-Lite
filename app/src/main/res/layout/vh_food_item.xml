@@ -6,12 +6,16 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:elevation="10dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    android:foreground="@drawable/selector_food"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/foodImage"

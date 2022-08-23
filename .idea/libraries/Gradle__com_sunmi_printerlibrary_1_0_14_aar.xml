@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sunmi:printerlibrary:1.0.14@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1d94a849b5d5c347823a972050cf22f4/transformed/jetified-printerlibrary-1.0.14/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1d94a849b5d5c347823a972050cf22f4/transformed/jetified-printerlibrary-1.0.14/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1d94a849b5d5c347823a972050cf22f4/transformed/jetified-printerlibrary-1.0.14/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

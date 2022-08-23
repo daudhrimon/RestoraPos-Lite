@@ -53,11 +53,11 @@ com.bdtask.restoraposroomdbtab.app-drawerlayout-1.1.1-51 C:\Users\Prinon Bhowmik
 com.bdtask.restoraposroomdbtab.app-jetified-Neomorphic-FrameLayout-Android-1.03-52 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\f240eb5c1a8a845bda541dcc17ff44c9\transformed\jetified-Neomorphic-FrameLayout-Android-1.03\res
 com.bdtask.restoraposroomdbtab.app-navigation-fragment-2.5.1-53 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\f2d439b37ff6e43fda3607339ab78a15\transformed\navigation-fragment-2.5.1\res
 com.bdtask.restoraposroomdbtab.app-transition-1.4.1-54 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\f731abfd23811a2f8de01880a6545dd4\transformed\transition-1.4.1\res
-com.bdtask.restoraposroomdbtab.app-pngs-55 D:\Restora-Pos-RoomDB\app\build\generated\res\pngs\debug
-com.bdtask.restoraposroomdbtab.app-resValues-56 D:\Restora-Pos-RoomDB\app\build\generated\res\resValues\debug
-com.bdtask.restoraposroomdbtab.app-rs-57 D:\Restora-Pos-RoomDB\app\build\generated\res\rs\debug
-com.bdtask.restoraposroomdbtab.app-packageDebugResources-58 D:\Restora-Pos-RoomDB\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.bdtask.restoraposroomdbtab.app-packageDebugResources-59 D:\Restora-Pos-RoomDB\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.bdtask.restoraposroomdbtab.app-merged_res-60 D:\Restora-Pos-RoomDB\app\build\intermediates\merged_res\debug
-com.bdtask.restoraposroomdbtab.app-debug-61 D:\Restora-Pos-RoomDB\app\src\debug\res
-com.bdtask.restoraposroomdbtab.app-main-62 D:\Restora-Pos-RoomDB\app\src\main\res
+com.bdtask.restoraposroomdbtab.app-pngs-55 D:\RestoraPos-Offline\app\build\generated\res\pngs\debug
+com.bdtask.restoraposroomdbtab.app-resValues-56 D:\RestoraPos-Offline\app\build\generated\res\resValues\debug
+com.bdtask.restoraposroomdbtab.app-rs-57 D:\RestoraPos-Offline\app\build\generated\res\rs\debug
+com.bdtask.restoraposroomdbtab.app-packageDebugResources-58 D:\RestoraPos-Offline\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.bdtask.restoraposroomdbtab.app-packageDebugResources-59 D:\RestoraPos-Offline\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.bdtask.restoraposroomdbtab.app-merged_res-60 D:\RestoraPos-Offline\app\build\intermediates\merged_res\debug
+com.bdtask.restoraposroomdbtab.app-debug-61 D:\RestoraPos-Offline\app\src\debug\res
+com.bdtask.restoraposroomdbtab.app-main-62 D:\RestoraPos-Offline\app\src\main\res

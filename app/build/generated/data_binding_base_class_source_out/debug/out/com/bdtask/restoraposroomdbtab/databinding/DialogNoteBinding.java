@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.bdtask.restoraposroomdbtab.R;
@@ -18,7 +18,7 @@ import java.lang.String;
 
 public final class DialogNoteBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final Button addNoteBtn;
@@ -29,7 +29,7 @@ public final class DialogNoteBinding implements ViewBinding {
   @NonNull
   public final EditText noteEt;
 
-  private DialogNoteBinding(@NonNull RelativeLayout rootView, @NonNull Button addNoteBtn,
+  private DialogNoteBinding(@NonNull CardView rootView, @NonNull Button addNoteBtn,
       @NonNull Button cancelBtn, @NonNull EditText noteEt) {
     this.rootView = rootView;
     this.addNoteBtn = addNoteBtn;
@@ -39,7 +39,7 @@ public final class DialogNoteBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -82,7 +82,7 @@ public final class DialogNoteBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogNoteBinding((RelativeLayout) rootView, addNoteBtn, cancelBtn, noteEt);
+      return new DialogNoteBinding((CardView) rootView, addNoteBtn, cancelBtn, noteEt);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

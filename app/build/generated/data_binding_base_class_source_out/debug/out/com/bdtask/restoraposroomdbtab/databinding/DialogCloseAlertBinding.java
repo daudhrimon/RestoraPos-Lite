@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.bdtask.restoraposroomdbtab.R;
@@ -18,7 +18,7 @@ import java.lang.String;
 
 public final class DialogCloseAlertBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final NeomorphFrameLayout closeCounter;
@@ -32,7 +32,7 @@ public final class DialogCloseAlertBinding implements ViewBinding {
   @NonNull
   public final NeomorphFrameLayout logout;
 
-  private DialogCloseAlertBinding(@NonNull RelativeLayout rootView,
+  private DialogCloseAlertBinding(@NonNull CardView rootView,
       @NonNull NeomorphFrameLayout closeCounter, @NonNull ImageView img1, @NonNull ImageView img2,
       @NonNull NeomorphFrameLayout logout) {
     this.rootView = rootView;
@@ -44,7 +44,7 @@ public final class DialogCloseAlertBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -93,8 +93,7 @@ public final class DialogCloseAlertBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogCloseAlertBinding((RelativeLayout) rootView, closeCounter, img1, img2,
-          logout);
+      return new DialogCloseAlertBinding((CardView) rootView, closeCounter, img1, img2, logout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,6 +1,8 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
-import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
@@ -271,10 +273,11 @@ class OrderInfoFragment : Fragment() {
     }
 
     private fun tableAddBtnClick() {
-        val alert = AlertDialog.Builder(requireContext())
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val tBinding = DialogSingleItemetBinding.bind(layoutInflater.inflate(R.layout.dialog_single_itemet,null))
-        alert.setView(tBinding.root)
-        val dialog = alert.create()
+        dialog.setContentView(tBinding.root)
+
         tBinding.itemTv.text = "Add Table"
         tBinding.itemEt.hint = "Enter Table Name"
 
@@ -301,13 +304,18 @@ class OrderInfoFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun waiterAddBtnClick() {
-        val alert = AlertDialog.Builder(requireContext())
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val waBinding = DialogSingleItemetBinding.bind(layoutInflater.inflate(R.layout.dialog_single_itemet,null))
-        alert.setView(waBinding.root)
-        val dialog = alert.create()
+        dialog.setContentView(waBinding.root)
+
         waBinding.itemTv.text = "Add Waiter"
         waBinding.itemEt.hint = "Enter Waiter Name"
 
@@ -334,13 +342,18 @@ class OrderInfoFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun deliveryCompanyAddBtnClick() {
-        val alert = AlertDialog.Builder(requireContext())
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val ctaBinding = DialogSingleItemetBinding.bind(layoutInflater.inflate(R.layout.dialog_single_itemet,null))
-        alert.setView(ctaBinding.root)
-        val dialog = alert.create()
+        dialog.setContentView(ctaBinding.root)
+
         ctaBinding.itemTv.text = "Add Delivery Company"
         ctaBinding.itemEt.hint = "Enter Company Name"
 
@@ -367,13 +380,18 @@ class OrderInfoFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun addNewCustomer() {
-        val alert = AlertDialog.Builder(requireContext())
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val ancBinding = DialogAddNewCustomerBinding.bind(layoutInflater.inflate(R.layout.dialog_add_new_customer,null))
-        alert.setView(ancBinding.root)
-        val dialog = alert.create()
+        dialog.setContentView(ancBinding.root)
+
         ancBinding.root.setOnClickListener {
             Util.hideSoftKeyBoard(requireContext(),ancBinding.root)
         }
@@ -423,5 +441,9 @@ class OrderInfoFragment : Fragment() {
         }
 
         dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }

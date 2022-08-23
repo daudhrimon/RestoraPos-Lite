@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.bdtask.restoraposroomdbtab.R;
@@ -19,7 +19,7 @@ import java.lang.String;
 
 public final class DialogInsertAddonBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final TextView addonAddBtn;
@@ -36,7 +36,7 @@ public final class DialogInsertAddonBinding implements ViewBinding {
   @NonNull
   public final EditText addonPriceEt;
 
-  private DialogInsertAddonBinding(@NonNull LinearLayout rootView, @NonNull TextView addonAddBtn,
+  private DialogInsertAddonBinding(@NonNull CardView rootView, @NonNull TextView addonAddBtn,
       @NonNull ImageView addonCrossBtn, @NonNull TextView addonHeaderTv,
       @NonNull EditText addonNameEt, @NonNull EditText addonPriceEt) {
     this.rootView = rootView;
@@ -49,7 +49,7 @@ public final class DialogInsertAddonBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -104,7 +104,7 @@ public final class DialogInsertAddonBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogInsertAddonBinding((LinearLayout) rootView, addonAddBtn, addonCrossBtn,
+      return new DialogInsertAddonBinding((CardView) rootView, addonAddBtn, addonCrossBtn,
           addonHeaderTv, addonNameEt, addonPriceEt);
     }
     String missingId = rootView.getResources().getResourceName(id);

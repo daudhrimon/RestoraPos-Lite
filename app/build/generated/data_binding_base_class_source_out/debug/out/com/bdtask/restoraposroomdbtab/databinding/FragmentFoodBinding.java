@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -62,7 +62,7 @@ public final class FragmentFoodBinding implements ViewBinding {
   public final LinearLayout secondView;
 
   @NonNull
-  public final CardView toolBar;
+  public final RelativeLayout toolBar;
 
   @NonNull
   public final TextView variantHeader;
@@ -79,7 +79,7 @@ public final class FragmentFoodBinding implements ViewBinding {
       @NonNull RecyclerView addonsRecycler, @NonNull ImageView cateAddBtn,
       @NonNull TextView cateHeader, @NonNull Spinner categorySpinner, @NonNull ImageView foodBack,
       @NonNull TextView foodHeader, @NonNull EditText foodTitleEt, @NonNull LinearLayout secondView,
-      @NonNull CardView toolBar, @NonNull TextView variantHeader,
+      @NonNull RelativeLayout toolBar, @NonNull TextView variantHeader,
       @NonNull FloatingActionButton variantPlusBtn, @NonNull RecyclerView variantRecycler) {
     this.rootView = rootView;
     this.addAddonsBtn = addAddonsBtn;
@@ -200,7 +200,7 @@ public final class FragmentFoodBinding implements ViewBinding {
       }
 
       id = R.id.toolBar;
-      CardView toolBar = ViewBindings.findChildViewById(rootView, id);
+      RelativeLayout toolBar = ViewBindings.findChildViewById(rootView, id);
       if (toolBar == null) {
         break missingId;
       }

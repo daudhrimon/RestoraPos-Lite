@@ -1,10 +1,14 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.MainActivity
@@ -49,14 +53,14 @@ class CategoryBtmAdapter(private val context: Context,
 
     // this method will show a dialog foe edit category
     private fun showEditDialog(position: Int) {
-        val alert = AlertDialog.Builder(context)
+        val dialog = Dialog(context)
         val binding = DialogSingleItemetBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_single_itemet,null))
-        alert.setView(binding.root)
-        val dialog = alert.create()
+        dialog.setContentView(binding.root)
+
         binding.itemTv.text = "Update Category"
         binding.itemEt.setText(list[position].fCategory)
         binding.itemBtn.text = "Update"
-        dialog.show()
+
 
         binding.root.setOnClickListener { Util.hideSoftKeyBoard(context,binding.root) }
 
@@ -87,6 +91,11 @@ class CategoryBtmAdapter(private val context: Context,
             Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
         }
+        dialog.show()
+        val width = context.resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     // this method will asking for delete confirmation

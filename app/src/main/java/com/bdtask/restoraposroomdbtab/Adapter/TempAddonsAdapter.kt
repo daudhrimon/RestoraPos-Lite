@@ -1,9 +1,13 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Model.Addon
@@ -30,10 +34,10 @@ class TempAddonsAdapter(private val context: Context,
         holder.binding.itemPriceTv.text = "Price : " + list[position]?.adnPrice.toString()
 
         holder.binding.itemEditBtn.setOnClickListener {
-            val alert = AlertDialog.Builder(context)
+            val dialog = Dialog(context)
             val binding = DialogInsertAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_insert_addon, null))
-            alert.setView(binding.root)
-            val dialog = alert.create()
+            dialog.setContentView(binding.root)
+
             binding.addonHeaderTv.text = "Update Addon"
             binding.addonNameEt.setText(list[position]?.adnName)
             binding.addonPriceEt.setText(list[position]?.adnPrice.toString())
@@ -72,8 +76,11 @@ class TempAddonsAdapter(private val context: Context,
                 notifyDataSetChanged()
                 dialog.dismiss()
             }
-
             dialog.show()
+            val width = context.resources.displayMetrics.widthPixels
+            val win = dialog.window
+            win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
         holder.binding.itemDltBtn.setOnClickListener {

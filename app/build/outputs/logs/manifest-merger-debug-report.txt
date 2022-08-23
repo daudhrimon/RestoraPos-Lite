@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
 MERGED from [androidx.databinding:viewbinding:7.2.2] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\cd9543ac8909e0cca28e85155010eaf5\transformed\jetified-viewbinding-7.2.2\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.room:room-ktx:2.4.3] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\450d912edc8421e5eedebd0a24ee246d\transformed\jetified-room-ktx-2.4.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-fragment-ktx:2.5.1] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\3a70c7ede019f55902752b5a8af7afd2\transformed\navigation-fragment-ktx-2.5.1\AndroidManifest.xml:17:1-24:12
@@ -77,39 +77,39 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Prinon Bhowmi
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\70a1627a7d9dafbeceb909e3d0548edc\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\acc993ccba72e21acf9494be1f88786e\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\18380ca3686c828971a01a7a443679ac\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:4:5-45
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:4:5-45
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:3:5-51
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:1-27:12
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.BLUETOOTH
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:6:5-67
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:6:5-67
 	android:name
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:6:22-65
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:6:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:7:5-73
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:7:5-73
 	android:name
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:7:22-71
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:7:22-71
 uses-permission#android.permission.BLUETOOTH_CONNECT
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:8:5-75
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:8:5-75
 	android:name
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:8:22-73
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:8:22-73
 application
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:10:5-26:19
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:10:5-26:19
 MERGED from [com.google.android.material:material:1.6.1] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\e6add1ccfc2b467bc007581f931a8303\transformed\material-1.6.1\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.6.1] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\e6add1ccfc2b467bc007581f931a8303\transformed\material-1.6.1\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\640033a8f7a8b63bcee1a85080bf0d4a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -137,37 +137,37 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Prinon Bhowmik\.gr
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.8.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\5d4e6493cf8188defdeeeb77e5a6d2db\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:15:9-35
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:13:9-41
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:13:9-41
 	android:roundIcon
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:14:9-54
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:14:9-54
 	android:icon
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:12:9-43
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:12:9-43
 	android:allowBackup
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:11:9-35
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:11:9-35
 	android:theme
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:16:9-54
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:16:9-54
 activity#com.bdtask.restoraposroomdbtab.MainActivity
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:17:9-25:20
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:17:9-25:20
 	android:exported
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:19:13-36
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:19:13-36
 	android:name
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:18:13-71
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:18:13-71
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:20:13-24:29
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:20:13-24:29
 action#android.intent.action.MAIN
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:21:17-69
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:21:25-66
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:23:17-77
 	android:name
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml:23:27-74
 uses-sdk
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 MERGED from [androidx.databinding:viewbinding:7.2.2] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\cd9543ac8909e0cca28e85155010eaf5\transformed\jetified-viewbinding-7.2.2\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.databinding:viewbinding:7.2.2] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\cd9543ac8909e0cca28e85155010eaf5\transformed\jetified-viewbinding-7.2.2\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.room:room-ktx:2.4.3] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\450d912edc8421e5eedebd0a24ee246d\transformed\jetified-room-ktx-2.4.3\AndroidManifest.xml:20:5-22:41
@@ -314,16 +314,16 @@ MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Prinon Bhowmik\.gra
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\acc993ccba72e21acf9494be1f88786e\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\18380ca3686c828971a01a7a443679ac\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\18380ca3686c828971a01a7a443679ac\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		ADDED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
-		INJECTED from D:\Restora-Pos-RoomDB\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		ADDED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
+		INJECTED from D:\RestoraPos-Offline\app\src\main\AndroidManifest.xml
 queries
 ADDED from [com.github.dhaval2404:imagepicker:2.1] C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\4e05ab51df07fdbacadd60e231592daa\transformed\jetified-imagepicker-2.1\AndroidManifest.xml:9:5-19:15
 intent#action:name:android.media.action.IMAGE_CAPTURE

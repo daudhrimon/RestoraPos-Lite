@@ -2,8 +2,9 @@ package com.bdtask.restoraposroomdbtab.Fragment
 
 import android.Manifest
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -15,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.databinding.FragmentSplashBinding
-import com.bdtask.restoraposroomdbtab.databinding.ProgressDialogBinding
 
 class SplashFragment : Fragment() {
 
@@ -24,8 +24,6 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
-        // setting STATUS_BAR color
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.black)
 
         if (ContextCompat.checkSelfPermission(requireContext().applicationContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -51,8 +49,9 @@ class SplashFragment : Fragment() {
             }, 3000)
         } else {
             val alert = AlertDialog.Builder(context)
-            alert.setView(layoutInflater.inflate(R.layout.progress_dialog,null))
+            alert.setView(layoutInflater.inflate(R.layout.dialog_progress,null))
             val dialog = alert.create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
             Handler(Looper.getMainLooper()).postDelayed({
                 dialog.dismiss()

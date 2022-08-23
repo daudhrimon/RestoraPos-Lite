@@ -55,6 +55,7 @@ drawable selector_calculator_button01
 drawable selector_calculator_button02
 drawable selector_checkbox
 drawable selector_close
+drawable selector_food
 drawable selector_food_item
 drawable selector_ongoing
 drawable selector_place_order
@@ -270,6 +271,7 @@ layout dialog_close_alert
 layout dialog_food_clicked
 layout dialog_insert_addon
 layout dialog_note
+layout dialog_progress
 layout dialog_single_itemet
 layout fragment_food
 layout fragment_main
@@ -278,7 +280,6 @@ layout fragment_order_info
 layout fragment_splash
 layout fragment_today
 layout nav_header
-layout progress_dialog
 layout single_value_spdate_dlt
 layout vh_addons
 layout vh_cart_item

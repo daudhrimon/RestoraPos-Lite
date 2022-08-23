@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-58:/values-night-v8/values-night-v8.xml",
+            "outputFile": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-58:\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\caches\\transforms-3\\2befe120c843a7a13d385fac19ae109e\\transformed\\appcompat-1.5.0\\res\\values-night-v8\\values-night-v8.xml",
@@ -13,30 +13,11 @@
                         "endOffsets": "120,204,288,384,486,588,682,771"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,50",
+                        "startLines": "2,3,4,5,6,7,8,47",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "100,170,254,338,434,536,638,4171",
+                        "startOffsets": "100,170,254,338,434,536,638,4000",
                         "endColumns": "69,83,83,95,101,101,93,88",
-                        "endOffsets": "165,249,333,429,531,633,727,4255"
-                    }
-                },
-                {
-                    "source": "D:\\Restora-Pos-RoomDB\\app\\src\\main\\res\\values-night\\themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "102",
-                        "endLines": "18",
-                        "endColumns": "12",
-                        "endOffsets": "986"
-                    },
-                    "to": {
-                        "startLines": "9",
-                        "startColumns": "4",
-                        "startOffsets": "732",
-                        "endLines": "25",
-                        "endColumns": "12",
-                        "endOffsets": "1512"
+                        "endOffsets": "165,249,333,429,531,633,727,4084"
                     }
                 },
                 {
@@ -49,11 +30,84 @@
                         "endOffsets": "125,236,325,426,533,640,739,842,930,1054,1156,1258,1374,1476,1590,1718,1834,1956,2092,2212,2346,2466,2578,2704,2821,2945,3075,3197,3335,3469,3585,3705"
                     },
                     "to": {
-                        "startLines": "26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,56,57,58",
+                        "startLines": "23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,48,49,50,51,52,53,54,55",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1517,1592,1703,1792,1893,2000,2107,2206,2309,2397,2521,2623,2725,2841,2943,3057,3185,3301,3423,3559,3679,3813,3933,4045,4260,4377,4501,4631,4753,4891,5025,5141",
+                        "startOffsets": "1346,1421,1532,1621,1722,1829,1936,2035,2138,2226,2350,2452,2554,2670,2772,2886,3014,3130,3252,3388,3508,3642,3762,3874,4089,4206,4330,4460,4582,4720,4854,4970",
                         "endColumns": "74,110,88,100,106,106,98,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
-                        "endOffsets": "1587,1698,1787,1888,1995,2102,2201,2304,2392,2516,2618,2720,2836,2938,3052,3180,3296,3418,3554,3674,3808,3928,4040,4166,4372,4496,4626,4748,4886,5020,5136,5256"
+                        "endOffsets": "1416,1527,1616,1717,1824,1931,2030,2133,2221,2345,2447,2549,2665,2767,2881,3009,3125,3247,3383,3503,3637,3757,3869,3995,4201,4325,4455,4577,4715,4849,4965,5085"
+                    }
+                },
+                {
+                    "source": "D:\\RestoraPos-Offline\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "102",
+                        "endLines": "18",
+                        "endColumns": "12",
+                        "endOffsets": "993"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "732",
+                        "endLines": "22",
+                        "endColumns": "12",
+                        "endOffsets": "1341"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-58:/values-night-v8/values-night-v8.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\caches\\transforms-3\\2befe120c843a7a13d385fac19ae109e\\transformed\\appcompat-1.5.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,49",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "100,170,254,338,434,536,638,4181",
+                        "endColumns": "69,83,83,95,101,101,93,88",
+                        "endOffsets": "165,249,333,429,531,633,727,4265"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\caches\\transforms-3\\e6add1ccfc2b467bc007581f931a8303\\transformed\\material-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,50,51,52,53,54,55,56,57",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1527,1602,1713,1802,1903,2010,2117,2216,2319,2407,2531,2633,2735,2851,2953,3067,3195,3311,3433,3569,3689,3823,3943,4055,4270,4387,4511,4641,4763,4901,5035,5151",
+                        "endColumns": "74,110,88,100,106,106,98,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
+                        "endOffsets": "1597,1708,1797,1898,2005,2112,2211,2314,2402,2526,2628,2730,2846,2948,3062,3190,3306,3428,3564,3684,3818,3938,4050,4176,4382,4506,4636,4758,4896,5030,5146,5266"
+                    }
+                },
+                {
+                    "source": "D:\\RestoraPos-Offline\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "102",
+                        "endLines": "17",
+                        "endColumns": "12",
+                        "endOffsets": "995"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "732",
+                        "endLines": "24",
+                        "endColumns": "12",
+                        "endOffsets": "1522"
                     }
                 }
             ]

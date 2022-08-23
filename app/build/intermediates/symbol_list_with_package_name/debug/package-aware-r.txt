@@ -3449,6 +3449,7 @@ drawable selector_calculator_button01
 drawable selector_calculator_button02
 drawable selector_checkbox
 drawable selector_close
+drawable selector_food
 drawable selector_food_item
 drawable selector_ongoing
 drawable selector_place_order
@@ -4366,6 +4367,7 @@ layout dialog_close_alert
 layout dialog_food_clicked
 layout dialog_insert_addon
 layout dialog_note
+layout dialog_progress
 layout dialog_single_itemet
 layout dp_example
 layout fragment_food
@@ -4429,7 +4431,6 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout progress_dialog
 layout sdp_example
 layout searchable_list_dialog
 layout select_dialog_item_material

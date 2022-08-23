@@ -4,15 +4,14 @@ package com.bdtask.restoraposroomdbtab.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -23,13 +22,13 @@ import java.lang.String;
 
 public final class DialogFoodClickedBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final CardView rootView;
 
   @NonNull
-  public final Button addMultiBtn;
+  public final TextView addMultiBtn;
 
   @NonNull
-  public final Button addToCartBtn;
+  public final TextView addToCartBtn;
 
   @NonNull
   public final TextView addonsHeader;
@@ -64,8 +63,8 @@ public final class DialogFoodClickedBinding implements ViewBinding {
   @NonNull
   public final LinearLayout quantitylayout;
 
-  private DialogFoodClickedBinding(@NonNull ScrollView rootView, @NonNull Button addMultiBtn,
-      @NonNull Button addToCartBtn, @NonNull TextView addonsHeader,
+  private DialogFoodClickedBinding(@NonNull CardView rootView, @NonNull TextView addMultiBtn,
+      @NonNull TextView addToCartBtn, @NonNull TextView addonsHeader,
       @NonNull RecyclerView addonsRecycler, @NonNull ImageView dcCrossBtn,
       @NonNull TextView dcFoodName, @NonNull TextView dcFoodPrice, @NonNull ImageView dcMinusBtn,
       @NonNull ImageView dcPlusBtn, @NonNull TextView dcQuantity, @NonNull Spinner dcVariantSpinner,
@@ -88,7 +87,7 @@ public final class DialogFoodClickedBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -114,13 +113,13 @@ public final class DialogFoodClickedBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.addMultiBtn;
-      Button addMultiBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView addMultiBtn = ViewBindings.findChildViewById(rootView, id);
       if (addMultiBtn == null) {
         break missingId;
       }
 
       id = R.id.addToCartBtn;
-      Button addToCartBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView addToCartBtn = ViewBindings.findChildViewById(rootView, id);
       if (addToCartBtn == null) {
         break missingId;
       }
@@ -191,7 +190,7 @@ public final class DialogFoodClickedBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogFoodClickedBinding((ScrollView) rootView, addMultiBtn, addToCartBtn,
+      return new DialogFoodClickedBinding((CardView) rootView, addMultiBtn, addToCartBtn,
           addonsHeader, addonsRecycler, dcCrossBtn, dcFoodName, dcFoodPrice, dcMinusBtn, dcPlusBtn,
           dcQuantity, dcVariantSpinner, layout1, quantitylayout);
     }

@@ -178,7 +178,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/todayTv"
@@ -195,7 +196,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/closeTv"
@@ -213,7 +215,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
+                    android:focusable="true" />
 
             </LinearLayout>
 
@@ -234,7 +237,8 @@
                     android:background="@drawable/selector_plus"
                     android:clickable="true"
                     android:orientation="horizontal"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -363,7 +367,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_today"
                 android:clickable="true"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -388,7 +393,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_close"
                 android:clickable="true"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -414,7 +420,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_ongoing"
                 android:clickable="true"
-                tools:ignore="TouchTargetSizeCheck">
+                tools:ignore="TouchTargetSizeCheck"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -443,7 +450,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_place_order"
                 android:clickable="true"
-                tools:ignore="TouchTargetSizeCheck">
+                tools:ignore="TouchTargetSizeCheck"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
