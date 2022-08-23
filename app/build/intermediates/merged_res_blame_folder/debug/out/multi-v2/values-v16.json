@@ -4,17 +4,7 @@
             "outputFile": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-58:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\caches\\transforms-3\\5d4e6493cf8188defdeeeb77e5a6d2db\\transformed\\core-1.8.0\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\caches\\transforms-3\\2befe120c843a7a13d385fac19ae109e\\transformed\\appcompat-1.5.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\Daud Hoshen Rimon\\.gradle\\caches\\transforms-3\\2befe120c843a7a13d385fac19ae109e\\transformed\\appcompat-1.5.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -30,6 +20,16 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Daud Hoshen Rimon\\.gradle\\caches\\transforms-3\\5d4e6493cf8188defdeeeb77e5a6d2db\\transformed\\core-1.8.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

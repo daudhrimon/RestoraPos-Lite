@@ -55,17 +55,16 @@ class OngoingAdapter(
             } else {
                 holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
             }
+            if (clickedList.isEmpty()){
+                multiSelect = false
+                index = -1
+            }
         } else {
             if (index == position){
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
             } else {
                 holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
             }
-        }
-
-        if (clickedList.isEmpty()){
-            multiSelect = false
-            index = -1
         }
 
         holder.itemView.setOnClickListener {
@@ -76,18 +75,30 @@ class OngoingAdapter(
                     clickedList.add(position)
                 }
             } else {
-                /*if (index == position) {
+                if (index == position) {
                     index = -1
-                } else {*/
+                } else {
                     index = position
-                //}
+                }
             }
             notifyDataSetChanged()
             Log.wtf("OnGoingClick",clickedList.toString())
         }
 
         holder.itemView.setOnLongClickListener {
-            multiSelect = !multiSelect
+            if (clickedList.contains(position)) {
+                clickedList.remove(position)
+            } else {
+                clickedList.add(position)
+            }
+            if (multiSelect){
+                multiSelect = false
+                clickedList.clear()
+            } else {
+                multiSelect = true
+                index = -1
+            }
+            notifyDataSetChanged()
             return@setOnLongClickListener true
         }
     }

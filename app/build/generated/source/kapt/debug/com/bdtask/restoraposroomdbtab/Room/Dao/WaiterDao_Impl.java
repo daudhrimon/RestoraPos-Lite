@@ -50,7 +50,7 @@ public final class WaiterDao_Impl implements WaiterDao {
   }
 
   @Override
-  public Object insertWaiter(final Waiter waiter, final Continuation<? super Unit> arg1) {
+  public Object insertWaiter(final Waiter waiter, final Continuation<? super Unit> continuation) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -63,7 +63,7 @@ public final class WaiterDao_Impl implements WaiterDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, continuation);
   }
 
   @Override

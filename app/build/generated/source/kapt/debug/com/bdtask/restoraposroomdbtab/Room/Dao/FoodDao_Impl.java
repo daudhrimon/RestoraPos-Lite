@@ -132,7 +132,7 @@ public final class FoodDao_Impl implements FoodDao {
   }
 
   @Override
-  public Object insertFood(final Food food, final Continuation<? super Unit> arg1) {
+  public Object insertFood(final Food food, final Continuation<? super Unit> continuation) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -145,11 +145,11 @@ public final class FoodDao_Impl implements FoodDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, continuation);
   }
 
   @Override
-  public Object deleteFood(final Food food, final Continuation<? super Unit> arg1) {
+  public Object deleteFood(final Food food, final Continuation<? super Unit> continuation) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -162,11 +162,11 @@ public final class FoodDao_Impl implements FoodDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, continuation);
   }
 
   @Override
-  public Object updateFood(final Food food, final Continuation<? super Unit> arg1) {
+  public Object updateFood(final Food food, final Continuation<? super Unit> continuation) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       public Unit call() throws Exception {
@@ -179,7 +179,7 @@ public final class FoodDao_Impl implements FoodDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, continuation);
   }
 
   @Override

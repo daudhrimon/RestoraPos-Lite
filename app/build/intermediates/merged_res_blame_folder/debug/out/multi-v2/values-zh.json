@@ -4,7 +4,7 @@
             "outputFile": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-58:/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\caches\\transforms-3\\ea4dd9d712366472ef77d3267812a170\\transformed\\jetified-ucrop-2.2.6\\res\\values-zh\\values-zh.xml",
+                    "source": "C:\\Users\\Daud Hoshen Rimon\\.gradle\\caches\\transforms-3\\ea4dd9d712366472ef77d3267812a170\\transformed\\jetified-ucrop-2.2.6\\res\\values-zh\\values-zh.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
