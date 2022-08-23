@@ -142,7 +142,6 @@
             android:layout_height="@dimen/_135sdp"
             android:layout_marginHorizontal="9dp"
             android:layout_marginTop="2dp"
-            tools:listitem="@layout/vh_cart_item"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
