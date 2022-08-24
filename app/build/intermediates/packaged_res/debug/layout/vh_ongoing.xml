@@ -75,7 +75,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_gravity="bottom"
-            android:background="#0A5F00"
+            android:background="@color/theme_color"
             android:textSize="15dp"
             tools:ignore="RtlCompat" />
 

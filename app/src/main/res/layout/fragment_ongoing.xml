@@ -22,11 +22,11 @@
             android:layout_marginHorizontal="6dp"
             android:background="@drawable/selectro_cross_btn"
             android:clickable="true"
+            android:focusable="true"
             android:padding="@dimen/_4sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-            android:focusable="true" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/ongHeader"
@@ -75,6 +75,23 @@
             android:clickable="true"
             android:padding="@dimen/_9sdp"
             android:src="@drawable/search_icon"
+            app:tint="@color/back_btn_tint"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/crossBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selectro_cross_btn"
+            android:layout_marginEnd="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_done_24"
+            android:padding="@dimen/_7sdp"
+            android:visibility="gone"
+            app:tint="@color/back_btn_tint"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </RelativeLayout>
@@ -83,7 +100,7 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomLayout"
+        android:layout_above="@+id/scrlView"
         android:layout_below="@id/appbar"
         android:orientation="vertical">
 
@@ -112,7 +129,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="6dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2" />
+                app:spanCount="2"
+                tools:listitem="@layout/vh_ongoing" />
 
             <LinearLayout
                 android:id="@+id/layoutNoOrder"
@@ -160,93 +178,114 @@
     </LinearLayout>
 
     <HorizontalScrollView
-        android:id="@+id/bottomLayout"
+        android:id="@+id/scrlView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layoutDirection="rtl"
-        android:visibility="gone">
+        android:background="@color/bg_color"
+        android:scrollbars="horizontal"
+        android:layoutDirection="rtl">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_color"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingHorizontal="5dp"
-            android:paddingVertical="10dp">
+            android:paddingVertical="12dp"
+            android:animateLayoutChanges="true">
 
-            <Button
+            <TextView
                 android:id="@+id/completeBtn"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="@color/theme_color"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_ongoing"
                 android:fontFamily="@font/helvetica_neue"
+                android:gravity="center"
                 android:text="Complete"
-                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/EditBtn"
+            <TextView
+                android:id="@+id/editBtn"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#C45A00"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_place_order"
                 android:fontFamily="@font/helvetica_neue"
+                android:gravity="center"
                 android:text="Edit"
-                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/splitBtn"
+            <TextView
+                android:id="@+id/tokenBtn"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#004AD6"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_today"
                 android:fontFamily="@font/helvetica_neue"
-                android:text="Split"
-                android:textAllCaps="false"
+                android:gravity="center"
+                android:text="Kot"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/mergeBtn"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#1BA392"
-                android:fontFamily="@font/helvetica_neue"
-                android:text="Merge"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <Button
+            <TextView
                 android:id="@+id/dueposBtn"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#1DB20B"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_close"
                 android:fontFamily="@font/helvetica_neue"
+                android:gravity="center"
                 android:text="Due POS"
-                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-            <Button
+            <TextView
+                android:id="@+id/splitBtn"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_place_order"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center"
+                android:text="Split"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mergeBtn"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_ongoing"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center"
+                android:text="Merge"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/cancelBtn"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#C60000"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/selector_close"
                 android:fontFamily="@font/helvetica_neue"
+                android:gravity="center"
                 android:text="Cancel"
-                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 

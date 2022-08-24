@@ -8,7 +8,7 @@ color back_btn_tint
 color bg_color
 color black
 color color_red
-color green
+color disableColor
 color hintColor
 color overlay_dark
 color splash_background
@@ -30,6 +30,7 @@ drawable ic_baseline_attach_money_24
 drawable ic_baseline_check_box_24
 drawable ic_baseline_check_box_outline_blank_24
 drawable ic_baseline_close_24
+drawable ic_baseline_done_24
 drawable ic_baseline_keyboard_backspace_24
 drawable ic_baseline_menu_24
 drawable ic_calculator
@@ -61,6 +62,7 @@ drawable selector_ongoing
 drawable selector_place_order
 drawable selector_plus
 drawable selector_plus_oc
+drawable selector_slide_cross
 drawable selector_tablay
 drawable selector_today
 drawable selectro_cross_btn
@@ -71,7 +73,6 @@ drawable unselected_ongoing
 font helvetica_neue
 font helvetica_nueu_light
 font helvetica_nueu_thin
-id EditBtn
 id addAddonsBtn
 id addCview
 id addFood
@@ -95,7 +96,6 @@ id addonsRecycler
 id addressHeader
 id appbar
 id bottomLay
-id bottomLayout
 id bracketsOnClick
 id btmCrossBtn
 id btmHeader
@@ -143,6 +143,7 @@ id divisionOnClick
 id doneBtn
 id drawerLayout
 id dueposBtn
+id editBtn
 id eightOnClick
 id emailHeader
 id emptyBox
@@ -218,6 +219,7 @@ id quantitylayout
 id quickOrder
 id quickOrderCardView
 id resultTextView
+id scrlView
 id searchBtn
 id searchEt
 id secondView
@@ -240,6 +242,7 @@ id timesOnClick
 id todayFragment
 id todayRecycler
 id todayTv
+id tokenBtn
 id toolBar
 id totalUnitPrice
 id twoOnClick

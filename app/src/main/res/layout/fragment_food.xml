@@ -24,11 +24,11 @@
             android:layout_marginStart="6dp"
             android:background="@drawable/selectro_cross_btn"
             android:clickable="true"
+            android:focusable="true"
             android:padding="7dp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-            android:focusable="true" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -194,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@color/theme_color"
                     android:src="@drawable/add_white"
                     app:elevation="0dp"
                     app:fabCustomSize="@dimen/_34sdp"
@@ -258,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@color/theme_color"
                     android:src="@drawable/add_white"
                     app:elevation="0dp"
                     app:fabCustomSize="@dimen/_34sdp"

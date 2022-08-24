@@ -1,24 +1,27 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.databinding.VhOngoingBinding
-import com.google.gson.Gson
 
 class OngoingAdapter(
     private val context: Context,
     private var orderList: MutableList<Order>,
-    private val ongoingClickListener: OngoingClickListener): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
+    private val ongoingClickListener: OngoingClickListener,
+    private val ongHeader: TextView,
+    private val searchBtn: ImageView,
+    private val crossBtn: ImageView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
-    var clickedList = mutableListOf<Int>()
+    var clickedList = ArrayList<Int>()
     var multiSelect = false
     var index = -1
 
@@ -36,8 +39,7 @@ class OngoingAdapter(
         holder.binding.orderId.text = "Order Id : " + orderList[position].id.toString()
         if (orderList[position].orderInfoList[0].waiter.isNotEmpty()) {
             holder.binding.waiterName.visibility = View.VISIBLE
-            holder.binding.waiterName.text =
-                "Waiter : " + orderList[position].orderInfoList[0].waiter
+            holder.binding.waiterName.text = "Waiter : " + orderList[position].orderInfoList[0].waiter
         } else {
             holder.binding.waiterName.visibility = View.INVISIBLE
         }
@@ -55,10 +57,7 @@ class OngoingAdapter(
             } else {
                 holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
             }
-            if (clickedList.isEmpty()){
-                multiSelect = false
-                index = -1
-            }
+            ongoingClickListener.onGoingItemClick(holder,position,clickedList,true)
         } else {
             if (index == position){
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
@@ -74,9 +73,11 @@ class OngoingAdapter(
                 } else {
                     clickedList.add(position)
                 }
+                ongHeader.text = clickedList.size.toString() + " / " + orderList.size.toString() + " Selected"
             } else {
                 if (index == position) {
                     index = -1
+                    clickedList.clear()
                 } else {
                     index = position
                 }
@@ -91,15 +92,30 @@ class OngoingAdapter(
             } else {
                 clickedList.add(position)
             }
-            if (multiSelect){
-                multiSelect = false
-                clickedList.clear()
-            } else {
+            if (!multiSelect){
+
                 multiSelect = true
                 index = -1
+
+                searchBtn.visibility = View.GONE
+                ongHeader.text = clickedList.size.toString() + " / " + orderList.size.toString() + " Selected"
             }
+
             notifyDataSetChanged()
+
+            crossBtn.visibility = View.VISIBLE
             return@setOnLongClickListener true
+        }
+
+        crossBtn.setOnClickListener {
+            crossBtn.visibility = View.GONE
+            multiSelect = false
+            clickedList.clear()
+
+            ongHeader.text = "Ongoing Order"
+            searchBtn.visibility = View.VISIBLE
+
+            notifyDataSetChanged()
         }
     }
 

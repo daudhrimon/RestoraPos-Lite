@@ -4,7 +4,6 @@ package com.bdtask.restoraposroomdbtab.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -26,22 +25,22 @@ public final class FragmentOngoingBinding implements ViewBinding {
   private final RelativeLayout rootView;
 
   @NonNull
-  public final Button EditBtn;
-
-  @NonNull
   public final RelativeLayout appbar;
 
   @NonNull
-  public final HorizontalScrollView bottomLayout;
+  public final TextView cancelBtn;
 
   @NonNull
-  public final Button cancelBtn;
+  public final TextView completeBtn;
 
   @NonNull
-  public final Button completeBtn;
+  public final ImageView crossBtn;
 
   @NonNull
-  public final Button dueposBtn;
+  public final TextView dueposBtn;
+
+  @NonNull
+  public final TextView editBtn;
 
   @NonNull
   public final LinearLayout layout;
@@ -50,7 +49,7 @@ public final class FragmentOngoingBinding implements ViewBinding {
   public final LinearLayout layoutNoOrder;
 
   @NonNull
-  public final Button mergeBtn;
+  public final TextView mergeBtn;
 
   @NonNull
   public final ImageView ongBack;
@@ -65,28 +64,35 @@ public final class FragmentOngoingBinding implements ViewBinding {
   public final RecyclerView ongoingRecycler;
 
   @NonNull
+  public final HorizontalScrollView scrlView;
+
+  @NonNull
   public final ImageView searchBtn;
 
   @NonNull
   public final EditText searchEt;
 
   @NonNull
-  public final Button splitBtn;
+  public final TextView splitBtn;
 
-  private FragmentOngoingBinding(@NonNull RelativeLayout rootView, @NonNull Button EditBtn,
-      @NonNull RelativeLayout appbar, @NonNull HorizontalScrollView bottomLayout,
-      @NonNull Button cancelBtn, @NonNull Button completeBtn, @NonNull Button dueposBtn,
-      @NonNull LinearLayout layout, @NonNull LinearLayout layoutNoOrder, @NonNull Button mergeBtn,
-      @NonNull ImageView ongBack, @NonNull TextView ongHeader, @NonNull EditText ongSearchEt,
-      @NonNull RecyclerView ongoingRecycler, @NonNull ImageView searchBtn,
-      @NonNull EditText searchEt, @NonNull Button splitBtn) {
+  @NonNull
+  public final TextView tokenBtn;
+
+  private FragmentOngoingBinding(@NonNull RelativeLayout rootView, @NonNull RelativeLayout appbar,
+      @NonNull TextView cancelBtn, @NonNull TextView completeBtn, @NonNull ImageView crossBtn,
+      @NonNull TextView dueposBtn, @NonNull TextView editBtn, @NonNull LinearLayout layout,
+      @NonNull LinearLayout layoutNoOrder, @NonNull TextView mergeBtn, @NonNull ImageView ongBack,
+      @NonNull TextView ongHeader, @NonNull EditText ongSearchEt,
+      @NonNull RecyclerView ongoingRecycler, @NonNull HorizontalScrollView scrlView,
+      @NonNull ImageView searchBtn, @NonNull EditText searchEt, @NonNull TextView splitBtn,
+      @NonNull TextView tokenBtn) {
     this.rootView = rootView;
-    this.EditBtn = EditBtn;
     this.appbar = appbar;
-    this.bottomLayout = bottomLayout;
     this.cancelBtn = cancelBtn;
     this.completeBtn = completeBtn;
+    this.crossBtn = crossBtn;
     this.dueposBtn = dueposBtn;
+    this.editBtn = editBtn;
     this.layout = layout;
     this.layoutNoOrder = layoutNoOrder;
     this.mergeBtn = mergeBtn;
@@ -94,9 +100,11 @@ public final class FragmentOngoingBinding implements ViewBinding {
     this.ongHeader = ongHeader;
     this.ongSearchEt = ongSearchEt;
     this.ongoingRecycler = ongoingRecycler;
+    this.scrlView = scrlView;
     this.searchBtn = searchBtn;
     this.searchEt = searchEt;
     this.splitBtn = splitBtn;
+    this.tokenBtn = tokenBtn;
   }
 
   @Override
@@ -126,39 +134,39 @@ public final class FragmentOngoingBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.EditBtn;
-      Button EditBtn = ViewBindings.findChildViewById(rootView, id);
-      if (EditBtn == null) {
-        break missingId;
-      }
-
       id = R.id.appbar;
       RelativeLayout appbar = ViewBindings.findChildViewById(rootView, id);
       if (appbar == null) {
         break missingId;
       }
 
-      id = R.id.bottomLayout;
-      HorizontalScrollView bottomLayout = ViewBindings.findChildViewById(rootView, id);
-      if (bottomLayout == null) {
-        break missingId;
-      }
-
       id = R.id.cancelBtn;
-      Button cancelBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView cancelBtn = ViewBindings.findChildViewById(rootView, id);
       if (cancelBtn == null) {
         break missingId;
       }
 
       id = R.id.completeBtn;
-      Button completeBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView completeBtn = ViewBindings.findChildViewById(rootView, id);
       if (completeBtn == null) {
         break missingId;
       }
 
+      id = R.id.crossBtn;
+      ImageView crossBtn = ViewBindings.findChildViewById(rootView, id);
+      if (crossBtn == null) {
+        break missingId;
+      }
+
       id = R.id.dueposBtn;
-      Button dueposBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView dueposBtn = ViewBindings.findChildViewById(rootView, id);
       if (dueposBtn == null) {
+        break missingId;
+      }
+
+      id = R.id.editBtn;
+      TextView editBtn = ViewBindings.findChildViewById(rootView, id);
+      if (editBtn == null) {
         break missingId;
       }
 
@@ -175,7 +183,7 @@ public final class FragmentOngoingBinding implements ViewBinding {
       }
 
       id = R.id.mergeBtn;
-      Button mergeBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView mergeBtn = ViewBindings.findChildViewById(rootView, id);
       if (mergeBtn == null) {
         break missingId;
       }
@@ -204,6 +212,12 @@ public final class FragmentOngoingBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.scrlView;
+      HorizontalScrollView scrlView = ViewBindings.findChildViewById(rootView, id);
+      if (scrlView == null) {
+        break missingId;
+      }
+
       id = R.id.searchBtn;
       ImageView searchBtn = ViewBindings.findChildViewById(rootView, id);
       if (searchBtn == null) {
@@ -217,14 +231,20 @@ public final class FragmentOngoingBinding implements ViewBinding {
       }
 
       id = R.id.splitBtn;
-      Button splitBtn = ViewBindings.findChildViewById(rootView, id);
+      TextView splitBtn = ViewBindings.findChildViewById(rootView, id);
       if (splitBtn == null) {
         break missingId;
       }
 
-      return new FragmentOngoingBinding((RelativeLayout) rootView, EditBtn, appbar, bottomLayout,
-          cancelBtn, completeBtn, dueposBtn, layout, layoutNoOrder, mergeBtn, ongBack, ongHeader,
-          ongSearchEt, ongoingRecycler, searchBtn, searchEt, splitBtn);
+      id = R.id.tokenBtn;
+      TextView tokenBtn = ViewBindings.findChildViewById(rootView, id);
+      if (tokenBtn == null) {
+        break missingId;
+      }
+
+      return new FragmentOngoingBinding((RelativeLayout) rootView, appbar, cancelBtn, completeBtn,
+          crossBtn, dueposBtn, editBtn, layout, layoutNoOrder, mergeBtn, ongBack, ongHeader,
+          ongSearchEt, ongoingRecycler, scrlView, searchBtn, searchEt, splitBtn, tokenBtn);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1391,6 +1391,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color disableColor
 color errorColor
 color error_color_material_dark
 color error_color_material_light
@@ -1400,7 +1401,6 @@ color foreground_material_dark
 color foreground_material_light
 color gray_btn_bg_color
 color gray_btn_bg_pressed_color
-color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color hintColor
@@ -3367,6 +3367,7 @@ drawable ic_baseline_attach_money_24
 drawable ic_baseline_check_box_24
 drawable ic_baseline_check_box_outline_blank_24
 drawable ic_baseline_close_24
+drawable ic_baseline_done_24
 drawable ic_baseline_keyboard_backspace_24
 drawable ic_baseline_menu_24
 drawable ic_calculator
@@ -3455,6 +3456,7 @@ drawable selector_ongoing
 drawable selector_place_order
 drawable selector_plus
 drawable selector_plus_oc
+drawable selector_slide_cross
 drawable selector_tablay
 drawable selector_today
 drawable selectro_cross_btn
@@ -3497,7 +3499,6 @@ id ALT
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
-id EditBtn
 id FUNCTION
 id META
 id NO_DEBUG
@@ -3613,7 +3614,6 @@ id bestChoice
 id blocking
 id bottom
 id bottomLay
-id bottomLayout
 id bounce
 id bounceBoth
 id bounceEnd
@@ -3750,6 +3750,7 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id editBtn
 id edit_query
 id edittext_dropdown_editable
 id edittext_dropdown_noneditable
@@ -4043,6 +4044,7 @@ id sawtooth
 id scale
 id scale_scroll_wheel
 id screen
+id scrlView
 id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -4176,6 +4178,7 @@ id todayFragment
 id todayRecycler
 id todayTv
 id toggle
+id tokenBtn
 id toolBar
 id toolbar
 id toolbar_title

@@ -15,6 +15,7 @@ class MainActivity: AppCompatActivity() {
         lateinit var navDrawer: NavigationView
         lateinit var database: PosDatabase
         var foodList = mutableListOf<Food>()
+        var crossBtn: Boolean = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

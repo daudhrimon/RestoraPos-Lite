@@ -70,11 +70,12 @@
                    android:id="@+id/plusBtnC"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:layout_weight="1"
                    android:layout_gravity="center_vertical"
+                   android:layout_weight="1"
                    android:background="@drawable/selector_plus"
                    android:clickable="true"
-                   android:src="@drawable/ic_plus_button" />
+                   android:src="@drawable/ic_plus_button"
+                   tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                <TextView
                    android:id="@+id/foodQuantity"
@@ -93,11 +94,12 @@
                    android:id="@+id/minusBtnC"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:layout_weight="1"
                    android:layout_gravity="center_vertical"
+                   android:layout_weight="1"
                    android:background="@drawable/selector_plus"
                    android:clickable="true"
-                   android:src="@drawable/ic_minus_button" />
+                   android:src="@drawable/ic_minus_button"
+                   tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
            </LinearLayout>
 
@@ -105,15 +107,16 @@
                android:id="@+id/deleteBtnC"
                android:layout_width="@dimen/_26sdp"
                android:layout_height="match_parent"
-               android:layout_marginVertical="5.5dp"
-               android:layout_marginHorizontal="18dp"
-               android:paddingHorizontal="9dp"
-               android:scaleType="fitCenter"
                android:layout_gravity="center"
-               android:src="@drawable/ic_delete_red"
+               android:layout_marginHorizontal="18dp"
+               android:layout_marginVertical="5.5dp"
                android:background="@drawable/selector_plus"
                android:clickable="true"
-               android:textColor="@color/overlay_dark" />
+               android:paddingHorizontal="9dp"
+               android:scaleType="fitCenter"
+               android:src="@drawable/ic_delete_red"
+               android:textColor="@color/overlay_dark"
+               tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
        </LinearLayout>
 
