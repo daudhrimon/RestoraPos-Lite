@@ -61,7 +61,7 @@ class OrderInfoFragment : Fragment() {
                 cusNameList.add(it[i].name)
                 cusInfoList.add(CustomerInfo(it[i].name, it[i].address, it[i].mobile))
             }
-            binding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
+            binding.cusNameSpnr.adapter = context?.let { it1 -> ArrayAdapter(it1, R.layout.custom_spinner_layout,cusNameList) }
         })
 
         // Customer Spinner
