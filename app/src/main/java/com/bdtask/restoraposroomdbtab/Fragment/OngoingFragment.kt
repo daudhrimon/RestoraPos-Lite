@@ -39,16 +39,19 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         MainActivity.database.orderDao().getOngoing(status).observe(requireActivity(), Observer {
             ongList.clear()
             ongList = it.toMutableList()
-            if (ongList.size > 0){
+
+            if (ongList.isNotEmpty()){
                 ongBinding.ongRecycler.adapter = context?.let { OngoingAdapter(it, ongList,
                     this, ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) }
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
+
             ongBinding.scrollView.visibility = View.GONE
             ongBinding.tickBtn.visibility = View.GONE
             ongBinding.ongHeader.text = "Ongoing Order"
             ongBinding.searchBtn.visibility = View.VISIBLE
+
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 
@@ -89,7 +92,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                         ongList[position].date, ongList[position].token,ongList[position].cartList,
                         ongList[position].orderInfoList))
                 }
-                context?.let { it1 -> Toasty.success(it1,"Selected Item Deleted",Toasty.LENGTH_SHORT).show() }
+                Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
                 for (i in clickedList.indices){
                     GlobalScope.launch {
@@ -98,7 +101,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                             ongList[i].orderInfoList))
                     }
                 }
-                context?.let { it1 -> Toasty.success(it1,"Selected Items Deleted",Toasty.LENGTH_SHORT).show() }
+                Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()
             }
             if (multiSelect){
                 multiSelect = false
