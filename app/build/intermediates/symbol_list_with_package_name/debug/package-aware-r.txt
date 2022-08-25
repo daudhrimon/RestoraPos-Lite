@@ -3983,8 +3983,8 @@ id oneOnClick
 id ongBack
 id ongHeader
 id ongSearchEt
+id ong_recycler
 id ongoingFragment
-id ongoingRecycler
 id ongoingTv
 id orderCustomize
 id orderId
@@ -4044,11 +4044,11 @@ id sawtooth
 id scale
 id scale_scroll_wheel
 id screen
-id scrlView
 id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scroll_view
 id scrollable
 id search
 id searchBtn
@@ -4165,6 +4165,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id threeOnClick
+id tick_btn
 id time
 id timesOnClick
 id title

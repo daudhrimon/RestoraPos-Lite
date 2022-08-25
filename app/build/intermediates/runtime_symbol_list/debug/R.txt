@@ -3982,8 +3982,8 @@ int id oneOnClick 0x7f0901e4
 int id ongBack 0x7f0901e5
 int id ongHeader 0x7f0901e6
 int id ongSearchEt 0x7f0901e7
+int id ong_recycler 0x7f0902f2
 int id ongoingFragment 0x7f0901e8
-int id ongoingRecycler 0x7f0901e9
 int id ongoingTv 0x7f0901ea
 int id orderCustomize 0x7f0901eb
 int id orderId 0x7f0901ec
@@ -4043,11 +4043,11 @@ int id sawtooth 0x7f090221
 int id scale 0x7f090222
 int id scale_scroll_wheel 0x7f090223
 int id screen 0x7f090224
-int id scrlView 0x7f090225
 int id scroll 0x7f090226
 int id scrollIndicatorDown 0x7f090227
 int id scrollIndicatorUp 0x7f090228
 int id scrollView 0x7f090229
+int id scroll_view 0x7f0902f3
 int id scrollable 0x7f09022a
 int id search 0x7f09022b
 int id searchBtn 0x7f09022c
@@ -4164,6 +4164,7 @@ int id textinput_placeholder 0x7f09029a
 int id textinput_prefix_text 0x7f09029b
 int id textinput_suffix_text 0x7f09029c
 int id threeOnClick 0x7f09029d
+int id tick_btn 0x7f0902f4
 int id time 0x7f09029e
 int id timesOnClick 0x7f09029f
 int id title 0x7f0902a0

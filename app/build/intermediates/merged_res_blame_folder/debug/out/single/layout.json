@@ -28,16 +28,20 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_close_alert.xml"
     },
     {
-        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\fragment_ongoing.xml",
+        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\fragment_ongoing.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\dialog_note.xml",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_note.xml"
     },
     {
-        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\fragment_ongoing.xml",
-        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\fragment_ongoing.xml"
+        "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_add_new_customer.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_add_new_customer.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\fragment_today.xml",
@@ -58,10 +62,6 @@
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\single_value_spdate_dlt.xml",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\single_value_spdate_dlt.xml"
-    },
-    {
-        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_ongoing.xml",
-        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_ongoing.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\dialog_single_itemet.xml",

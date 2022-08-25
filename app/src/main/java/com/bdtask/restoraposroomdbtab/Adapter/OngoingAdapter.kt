@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
@@ -17,14 +16,14 @@ import com.bdtask.restoraposroomdbtab.databinding.VhOngoingBinding
 
 class OngoingAdapter(
     private val context: Context,
-    private var orderList: MutableList<Order>,
+    private var ongList: MutableList<Order>,
     private val ongoingClickListener: OngoingClickListener,
     private val ongHeader: TextView,
     private val searchBtn: ImageView,
-    private val crossBtn: ImageView,
-    private val scrlView: HorizontalScrollView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
+    private val tickBtn: ImageView,
+    private val scrollView: HorizontalScrollView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
-    var clickedList = ArrayList<Int>()
+    var clickedList = arrayListOf<Int>()
     var multiSelect = false
     var index = -1
 
@@ -38,22 +37,24 @@ class OngoingAdapter(
 
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
-        holder.binding.cusName.text = "Customer : " + orderList[position].orderInfoList[0].customerInfo[0].cusName
-        holder.binding.orderId.text = "Order Id : " + orderList[position].id.toString()
-        if (orderList[position].orderInfoList[0].waiter.isNotEmpty()) {
+        holder.binding.cusName.text = "Customer : " + ongList[position].orderInfoList[0].customerInfo[0].cusName
+        holder.binding.orderId.text = "Order Id : " + ongList[position].id.toString()
+        if (ongList[position].orderInfoList[0].waiter.isNotEmpty()) {
             holder.binding.waiterName.visibility = View.VISIBLE
-            holder.binding.waiterName.text = "Waiter : " + orderList[position].orderInfoList[0].waiter
+            holder.binding.waiterName.text = "Waiter : " + ongList[position].orderInfoList[0].waiter
         } else {
             holder.binding.waiterName.visibility = View.INVISIBLE
         }
-        if (orderList[position].orderInfoList[0].table.isNotEmpty()) {
-            holder.binding.tableName.text = "Table : " + orderList[position].orderInfoList[0].table
+        if (ongList[position].orderInfoList[0].table.isNotEmpty()) {
+            holder.binding.tableName.text = "Table : " + ongList[position].orderInfoList[0].table
         } else {
-            holder.binding.tableName.text = orderList[position].orderInfoList[0].customerType
+            holder.binding.tableName.text = ongList[position].orderInfoList[0].customerType
         }
+
         ///////////////////////////////////////
         // setting Selected Background Color //
         ///////////////////////////////////////
+
         if (multiSelect){
             if (clickedList.contains(position)) {
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
@@ -75,27 +76,27 @@ class OngoingAdapter(
                 } else {
                     clickedList.add(position)
                 }
-                ongHeader.text = clickedList.size.toString() + " / " + orderList.size.toString() + " Selected"
+                ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
 
                 if (clickedList.size > 0){
-                    scrlView.visibility = View.VISIBLE
-                    ongoingClickListener.onGoingItemClick(position,clickedList,clickedList.size)
+                    scrollView.visibility = View.VISIBLE
+                    ongoingClickListener.onGoingItemClick(position, clickedList, clickedList.size)
                 } else {
-                    scrlView.visibility = View.GONE
+                    scrollView.visibility = View.GONE
                 }
             } else {
                 if (index == position) {
                     index = -1
                     clickedList.clear()
-                    scrlView.visibility = View.GONE
+                    scrollView.visibility = View.GONE
                 } else {
                     index = position
-                    scrlView.visibility = View.VISIBLE
+                    scrollView.visibility = View.VISIBLE
                     ongoingClickListener.onGoingItemClick(position, clickedList, 1)
                 }
             }
             notifyDataSetChanged()
-            Log.wtf("OnGoingClick",clickedList.toString())
+            Log.wtf("Abodda adapter a o asi, proman ase hahaha",clickedList.toString())
         }
 
         holder.itemView.setOnLongClickListener {
@@ -110,29 +111,29 @@ class OngoingAdapter(
                 index = -1
 
                 searchBtn.visibility = View.GONE
-                ongHeader.text = clickedList.size.toString() + " / " + orderList.size.toString() + " Selected"
-                crossBtn.visibility = View.VISIBLE
+                ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
+                tickBtn.visibility = View.VISIBLE
             }
-            scrlView.visibility = View.VISIBLE
-            ongoingClickListener.onGoingItemClick(position, clickedList,clickedList.size)
+            scrollView.visibility = View.VISIBLE
+            ongoingClickListener.onGoingItemClick(position, clickedList, clickedList.size)
             notifyDataSetChanged()
             return@setOnLongClickListener true
         }
 
-        crossBtn.setOnClickListener {
-            crossBtn.visibility = View.GONE
+        tickBtn.setOnClickListener {
+            tickBtn.visibility = View.GONE
             multiSelect = false
             clickedList.clear()
 
             ongHeader.text = "Ongoing Order"
             searchBtn.visibility = View.VISIBLE
-            scrlView.visibility = View.GONE
+            scrollView.visibility = View.GONE
 
             notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int {
-        return orderList.size
+        return ongList.size
     }
 }

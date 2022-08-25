@@ -201,8 +201,8 @@ id oneOnClick
 id ongBack
 id ongHeader
 id ongSearchEt
+id ong_recycler
 id ongoingFragment
-id ongoingRecycler
 id ongoingTv
 id orderCustomize
 id orderId
@@ -219,7 +219,7 @@ id quantitylayout
 id quickOrder
 id quickOrderCardView
 id resultTextView
-id scrlView
+id scroll_view
 id searchBtn
 id searchEt
 id secondView
@@ -238,6 +238,7 @@ id tableName
 id tableSpnr
 id tdBack
 id threeOnClick
+id tick_btn
 id timesOnClick
 id todayFragment
 id todayRecycler

@@ -1,12 +1,10 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
-import android.graphics.Path
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,10 +16,15 @@ import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
+import kotlinx.coroutines.*
 
 class OngoingFragment : Fragment(), OngoingClickListener {
     private lateinit var ongBinding: FragmentOngoingBinding
-    companion object { var ongoingList = mutableListOf<Order>() }
+    companion object { var ongList = mutableListOf<Order>() }
+    private var position = -1
+    private var selectedItem = -1
+    var clickedList = arrayListOf<Int>()
+    private val status = "Ongoing"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,21 +32,23 @@ class OngoingFragment : Fragment(), OngoingClickListener {
     ): View? {
         ongBinding = FragmentOngoingBinding.inflate(inflater, container, false)
 
-        MainActivity.database.orderDao().getOngoing("Ongoing").observe(requireActivity(), Observer {
-            ongoingList.clear()
-            ongoingList = it.toMutableList()
-            if (ongoingList.size > 0){
-                ongBinding.ongoingRecycler.adapter = context?.let { OngoingAdapter(it, ongoingList,
-                    this, ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.crossBtn,ongBinding.scrlView) }
+        MainActivity.database.orderDao().getOngoing(status).observe(requireActivity(), Observer {
+            ongList.clear()
+            ongList = it.toMutableList()
+            if (ongList.size > 0){
+                ongBinding.ongRecycler.adapter = context?.let { OngoingAdapter(it, ongList,
+                    this, ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) }
+            } else {
+                ongBinding.ongRecycler.visibility = View.GONE
             }
+            ongBinding.tickBtn.visibility = View.GONE
+            ongBinding.ongHeader.text = "Ongoing Order"
+            ongBinding.searchBtn.visibility = View.VISIBLE
+            ongBinding.scrollView.visibility = View.GONE
+            Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 
         ongBinding.ongBack.setOnClickListener {
-                /*for (i in ongoingList.indices) {
-                     GlobalScope.launch {
-                         MainActivity.database.orderDao().deleteOnGoing(Order(ongoingList[i].id,ongoingList[i].date,ongoingList[i].status,ongoingList[i].cartList,ongoingList[i].orderInfoList))
-                     }
-                 }*/
             findNavController().popBackStack()
         }
 
@@ -65,30 +70,54 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             Util.hideSoftKeyBoard(requireContext(), ongBinding.root)
         }
 
+        ongBinding.cancelBtn.setOnClickListener {
+            if (selectedItem == 1){
+                GlobalScope.launch {
+                    MainActivity.database.orderDao().deleteOnGoing(Order(ongList[position].id,status,
+                        ongList[position].date, ongList[position].token,ongList[position].cartList,
+                        ongList[position].orderInfoList))
+                }
+            } else {
+                for (i in clickedList.indices){
+                    GlobalScope.launch {
+                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[i].id,status,
+                            ongList[i].date, ongList[i].token,ongList[i].cartList,
+                            ongList[i].orderInfoList))
+                    }
+                }
+            }
+        }
         return ongBinding.root
     }
 
+
     // from here we can handle onGoing Frags Buttons Visible or Gone
+
     override fun onGoingItemClick(position: Int, clickedList: ArrayList<Int>, selectedItem: Int) {
+        this.position = position
+        this.clickedList = clickedList
+        this.selectedItem = selectedItem
+
         if (selectedItem == 1) {
-            ongBinding.cancelBtn.visibility = View.VISIBLE
             ongBinding.mergeBtn.visibility = View.GONE
+            ongBinding.cancelBtn.visibility = View.VISIBLE
             ongBinding.splitBtn.visibility = View.VISIBLE
             ongBinding.dueposBtn.visibility = View.VISIBLE
             ongBinding.tokenBtn.visibility = View.VISIBLE
             ongBinding.editBtn.visibility = View.VISIBLE
             ongBinding.completeBtn.visibility = View.VISIBLE
-            ongBinding.scrlView.post {
-                ongBinding.scrlView.fullScroll(ScrollView.FOCUS_RIGHT)
+            ongBinding.scrollView.post {
+                ongBinding.scrollView.fullScroll(ScrollView.FOCUS_RIGHT)
             }
         } else {
-            ongBinding.cancelBtn.visibility = View.VISIBLE
-            ongBinding.mergeBtn.visibility = View.VISIBLE
             ongBinding.splitBtn.visibility = View.GONE
             ongBinding.dueposBtn.visibility = View.GONE
             ongBinding.tokenBtn.visibility = View.GONE
             ongBinding.editBtn.visibility = View.GONE
             ongBinding.completeBtn.visibility = View.GONE
+            ongBinding.cancelBtn.visibility = View.VISIBLE
+            ongBinding.mergeBtn.visibility = View.VISIBLE
         }
+        Log.wtf("Abodda Fragment a Asi", this.clickedList.toString())
     }
 }
