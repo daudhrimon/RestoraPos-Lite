@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
@@ -19,7 +21,8 @@ class OngoingAdapter(
     private val ongoingClickListener: OngoingClickListener,
     private val ongHeader: TextView,
     private val searchBtn: ImageView,
-    private val crossBtn: ImageView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
+    private val crossBtn: ImageView,
+    private val scrlView: HorizontalScrollView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
     var clickedList = ArrayList<Int>()
     var multiSelect = false
@@ -57,7 +60,6 @@ class OngoingAdapter(
             } else {
                 holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
             }
-            ongoingClickListener.onGoingItemClick(holder,position,clickedList,true)
         } else {
             if (index == position){
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
@@ -74,12 +76,22 @@ class OngoingAdapter(
                     clickedList.add(position)
                 }
                 ongHeader.text = clickedList.size.toString() + " / " + orderList.size.toString() + " Selected"
+
+                if (clickedList.size > 0){
+                    scrlView.visibility = View.VISIBLE
+                    ongoingClickListener.onGoingItemClick(position,clickedList,clickedList.size)
+                } else {
+                    scrlView.visibility = View.GONE
+                }
             } else {
                 if (index == position) {
                     index = -1
                     clickedList.clear()
+                    scrlView.visibility = View.GONE
                 } else {
                     index = position
+                    scrlView.visibility = View.VISIBLE
+                    ongoingClickListener.onGoingItemClick(position, clickedList, 1)
                 }
             }
             notifyDataSetChanged()
@@ -99,11 +111,11 @@ class OngoingAdapter(
 
                 searchBtn.visibility = View.GONE
                 ongHeader.text = clickedList.size.toString() + " / " + orderList.size.toString() + " Selected"
+                crossBtn.visibility = View.VISIBLE
             }
-
+            scrlView.visibility = View.VISIBLE
+            ongoingClickListener.onGoingItemClick(position, clickedList,clickedList.size)
             notifyDataSetChanged()
-
-            crossBtn.visibility = View.VISIBLE
             return@setOnLongClickListener true
         }
 
@@ -114,6 +126,7 @@ class OngoingAdapter(
 
             ongHeader.text = "Ongoing Order"
             searchBtn.visibility = View.VISIBLE
+            scrlView.visibility = View.GONE
 
             notifyDataSetChanged()
         }

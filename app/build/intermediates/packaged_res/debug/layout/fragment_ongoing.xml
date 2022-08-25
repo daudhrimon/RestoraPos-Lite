@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/white"
     tools:context=".Fragment.OngoingFragment">
 
@@ -84,12 +85,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/selectro_cross_btn"
             android:layout_marginEnd="6dp"
+            android:background="@drawable/selectro_cross_btn"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_baseline_done_24"
             android:padding="@dimen/_7sdp"
+            android:src="@drawable/ic_baseline_done_24"
             android:visibility="gone"
             app:tint="@color/back_btn_tint"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -184,8 +185,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:background="@color/bg_color"
-        android:scrollbars="horizontal"
-        android:layoutDirection="rtl">
+        android:layoutDirection="rtl"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -193,8 +194,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingHorizontal="5dp"
-            android:paddingVertical="12dp"
-            android:animateLayoutChanges="true">
+            android:paddingVertical="12dp">
 
             <TextView
                 android:id="@+id/completeBtn"
@@ -230,7 +230,7 @@
                 android:background="@drawable/selector_today"
                 android:fontFamily="@font/helvetica_neue"
                 android:gravity="center"
-                android:text="Kot"
+                android:text="Token"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:visibility="gone" />

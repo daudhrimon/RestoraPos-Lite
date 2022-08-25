@@ -1,12 +1,13 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
-import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.graphics.Path
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
+import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,10 +32,9 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         MainActivity.database.orderDao().getOngoing("Ongoing").observe(requireActivity(), Observer {
             ongoingList.clear()
             ongoingList = it.toMutableList()
-            //orderList.asReversed()
             if (ongoingList.size > 0){
                 ongBinding.ongoingRecycler.adapter = context?.let { OngoingAdapter(it, ongoingList,
-                    this, ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.crossBtn) }
+                    this, ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.crossBtn,ongBinding.scrlView) }
             }
         })
 
@@ -68,27 +68,27 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         return ongBinding.root
     }
 
-
     // from here we can handle onGoing Frags Buttons Visible or Gone
-
-    @SuppressLint("NewApi")
-    override fun onGoingItemClick(holder: OngoingAdapter.VHOngoing, position: Int, clickedList: ArrayList<Int>, multiSelect: Boolean) {
-        if (multiSelect){
-            when(clickedList.size){
-                0 -> {
-
-                }
-
-                1 -> {
-
-                }
-
-                else -> {
-
-                }
+    override fun onGoingItemClick(position: Int, clickedList: ArrayList<Int>, selectedItem: Int) {
+        if (selectedItem == 1) {
+            ongBinding.cancelBtn.visibility = View.VISIBLE
+            ongBinding.mergeBtn.visibility = View.GONE
+            ongBinding.splitBtn.visibility = View.VISIBLE
+            ongBinding.dueposBtn.visibility = View.VISIBLE
+            ongBinding.tokenBtn.visibility = View.VISIBLE
+            ongBinding.editBtn.visibility = View.VISIBLE
+            ongBinding.completeBtn.visibility = View.VISIBLE
+            ongBinding.scrlView.post {
+                ongBinding.scrlView.fullScroll(ScrollView.FOCUS_RIGHT)
             }
         } else {
-
+            ongBinding.cancelBtn.visibility = View.VISIBLE
+            ongBinding.mergeBtn.visibility = View.VISIBLE
+            ongBinding.splitBtn.visibility = View.GONE
+            ongBinding.dueposBtn.visibility = View.GONE
+            ongBinding.tokenBtn.visibility = View.GONE
+            ongBinding.editBtn.visibility = View.GONE
+            ongBinding.completeBtn.visibility = View.GONE
         }
     }
 }

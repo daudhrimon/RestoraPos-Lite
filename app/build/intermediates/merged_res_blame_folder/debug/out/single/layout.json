@@ -8,10 +8,6 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_insert_addon.xml"
     },
     {
-        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_cart_item.xml",
-        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_cart_item.xml"
-    },
-    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\dialog_progress.xml",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\dialog_progress.xml"
     },
@@ -62,6 +58,10 @@
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\single_value_spdate_dlt.xml",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\layout\\single_value_spdate_dlt.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_ongoing.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_ongoing.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:\\layout\\dialog_single_itemet.xml",
