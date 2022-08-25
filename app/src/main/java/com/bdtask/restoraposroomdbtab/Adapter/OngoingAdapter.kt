@@ -23,8 +23,10 @@ class OngoingAdapter(
     private val tickBtn: ImageView,
     private val scrollView: HorizontalScrollView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
-    var clickedList = arrayListOf<Int>()
-    var multiSelect = false
+    companion object{
+        var clickedList = arrayListOf<Int>()
+        var multiSelect = false
+    }
     var index = -1
 
     inner class VHOngoing(binding: VhOngoingBinding): RecyclerView.ViewHolder(binding.root) {
@@ -80,7 +82,7 @@ class OngoingAdapter(
 
                 if (clickedList.size > 0){
                     scrollView.visibility = View.VISIBLE
-                    ongoingClickListener.onGoingItemClick(position, clickedList, clickedList.size)
+                    ongoingClickListener.onGoingItemClick(position, clickedList.size)
                 } else {
                     scrollView.visibility = View.GONE
                 }
@@ -92,7 +94,7 @@ class OngoingAdapter(
                 } else {
                     index = position
                     scrollView.visibility = View.VISIBLE
-                    ongoingClickListener.onGoingItemClick(position, clickedList, 1)
+                    ongoingClickListener.onGoingItemClick(position,1)
                 }
             }
             notifyDataSetChanged()
@@ -115,7 +117,7 @@ class OngoingAdapter(
                 tickBtn.visibility = View.VISIBLE
             }
             scrollView.visibility = View.VISIBLE
-            ongoingClickListener.onGoingItemClick(position, clickedList, clickedList.size)
+            ongoingClickListener.onGoingItemClick(position,clickedList.size)
             notifyDataSetChanged()
             return@setOnLongClickListener true
         }
