@@ -192,6 +192,10 @@
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\add_image.png"
     },
     {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_main.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_main.xml"
+    },
+    {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_restora.jpg.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\restora.jpg"
     },
@@ -206,10 +210,6 @@
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\drawable_selector_place_order.xml.flat",
         "source": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-main-62:\\drawable\\selector_place_order.xml"
-    },
-    {
-        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_add_new_customer.xml.flat",
-        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_add_new_customer.xml"
     },
     {
         "merged": "C:\\Users\\Prinon Bhowmik\\.gradle\\daemon\\7.3.3\\com.bdtask.restoraposroomdbtab.app-merged_res-60:\\layout_vh_food_item.xml.flat",

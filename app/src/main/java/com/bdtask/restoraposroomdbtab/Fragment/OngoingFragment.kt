@@ -16,6 +16,7 @@ import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
+import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 
 class OngoingFragment : Fragment(), OngoingClickListener {
@@ -41,10 +42,10 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
+            ongBinding.scrollView.visibility = View.GONE
             ongBinding.tickBtn.visibility = View.GONE
             ongBinding.ongHeader.text = "Ongoing Order"
             ongBinding.searchBtn.visibility = View.VISIBLE
-            ongBinding.scrollView.visibility = View.GONE
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 
@@ -77,6 +78,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                         ongList[position].date, ongList[position].token,ongList[position].cartList,
                         ongList[position].orderInfoList))
                 }
+                context?.let { it1 -> Toasty.success(it1,"Selected Item Deleted",Toasty.LENGTH_SHORT).show() }
             } else {
                 for (i in clickedList.indices){
                     GlobalScope.launch {
@@ -85,13 +87,37 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                             ongList[i].orderInfoList))
                     }
                 }
+                context?.let { it1 -> Toasty.success(it1,"Selected Items Deleted",Toasty.LENGTH_SHORT).show() }
             }
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+        //////////////////////////////////////////////////////////////////////////////////////////
+
         return ongBinding.root
     }
 
 
-    // from here we can handle onGoing Frags Buttons Visible or Gone
+    // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class
 
     override fun onGoingItemClick(position: Int, clickedList: ArrayList<Int>, selectedItem: Int) {
         this.position = position
