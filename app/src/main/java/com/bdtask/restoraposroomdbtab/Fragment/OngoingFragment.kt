@@ -41,8 +41,10 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongList.clear()
             ongList = it
             if (it.isNotEmpty()){
-                ongBinding.ongRecycler.adapter = context?.let { it1 -> OngoingAdapter(it1, it,this,
-                    ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) }
+                try {
+                ongBinding.ongRecycler.adapter = OngoingAdapter(requreContext(),ongList,this,
+                    ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) 
+                } catch (e: Exception){}
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
