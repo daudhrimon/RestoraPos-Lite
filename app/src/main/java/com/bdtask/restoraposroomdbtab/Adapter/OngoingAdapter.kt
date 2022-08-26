@@ -9,6 +9,8 @@ import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.clickedList
+import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.multiSelect
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
@@ -23,10 +25,6 @@ class OngoingAdapter(
     private val tickBtn: ImageView,
     private val scrollView: HorizontalScrollView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
-    companion object{
-        var clickedList = arrayListOf<Int>()
-        var multiSelect = false
-    }
     var index = -1
 
     inner class VHOngoing(binding: VhOngoingBinding): RecyclerView.ViewHolder(binding.root) {

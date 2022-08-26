@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
-import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter.Companion.clickedList
-import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter.Companion.multiSelect
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.R
@@ -22,10 +20,13 @@ import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 
-
 class OngoingFragment : Fragment(), OngoingClickListener {
     private lateinit var ongBinding: FragmentOngoingBinding
-    companion object { var ongList = mutableListOf<Order>() }
+    companion object {
+        var ongList = mutableListOf<Order>()
+        var clickedList = arrayListOf<Int>()
+        var multiSelect = false
+    }
     private var position = -1
     private var selectedItem = -1
     private val status = "Ongoing"
@@ -41,8 +42,8 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongList = it.toMutableList()
 
             if (ongList.isNotEmpty()){
-                ongBinding.ongRecycler.adapter = context?.let { OngoingAdapter(it, ongList,
-                    this, ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) }
+                ongBinding.ongRecycler.adapter = context?.let { OngoingAdapter(it, ongList,this,
+                    ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) }
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
