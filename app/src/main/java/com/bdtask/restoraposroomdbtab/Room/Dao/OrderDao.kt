@@ -16,7 +16,7 @@ interface OrderDao {
     fun getTodayOrder(date: String?, status: String): LiveData<List<Order>>
 
     @Query("SELECT * FROM order_tbl WHERE status LIKE :status")
-    fun getOngoing(status: String): LiveData<List<Order>>
+    fun getOngoing(status: String): LiveData<MutableList<Order>>
 
     @Update
     suspend fun updateOnGoing(order: Order)

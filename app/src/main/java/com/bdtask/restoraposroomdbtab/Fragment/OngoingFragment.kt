@@ -39,15 +39,13 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
         MainActivity.database.orderDao().getOngoing(status).observe(requireActivity(), Observer {
             ongList.clear()
-            ongList = it.toMutableList()
-
-            if (ongList.isNotEmpty()){
-                ongBinding.ongRecycler.adapter = context?.let { OngoingAdapter(it, ongList,this,
+            ongList = it
+            if (it.isNotEmpty()){
+                ongBinding.ongRecycler.adapter = context?.let { it1 -> OngoingAdapter(it1, it,this,
                     ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) }
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
-
             ongBinding.scrollView.visibility = View.GONE
             ongBinding.tickBtn.visibility = View.GONE
             ongBinding.ongHeader.text = "Ongoing Order"
@@ -138,9 +136,9 @@ class OngoingFragment : Fragment(), OngoingClickListener {
     }
 
     private fun disableMultiSelect() {
+        ongBinding.scrollView.visibility = View.GONE
         multiSelect = false
         clickedList.clear()
-        ongBinding.scrollView.visibility = View.GONE
         ongBinding.tickBtn.visibility = View.GONE
         ongBinding.ongHeader.text = "Ongoing Order"
         ongBinding.searchBtn.visibility = View.VISIBLE
