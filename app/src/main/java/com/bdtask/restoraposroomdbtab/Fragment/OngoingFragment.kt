@@ -37,22 +37,22 @@ class OngoingFragment : Fragment(), OngoingClickListener {
     ): View? {
         ongBinding = FragmentOngoingBinding.inflate(inflater, container, false)
 
-        MainActivity.database.orderDao().getOngoing(status).observe(requireActivity(), Observer {
+        MainActivity.database.orderDao().getOngoing(status).observe(viewLifecycleOwner, Observer {
             ongList.clear()
-            ongList = it
-            if (it.isNotEmpty()){
-                try {
-                ongBinding.ongRecycler.adapter = OngoingAdapter(requreContext(),ongList,this,
-                    ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView) 
-                } catch (e: Exception){}
-            } else {
-                ongBinding.ongRecycler.visibility = View.GONE
-            }
+            ongList = it.toMutableList()
+
+            clickedList.clear()
             ongBinding.scrollView.visibility = View.GONE
             ongBinding.tickBtn.visibility = View.GONE
             ongBinding.ongHeader.text = "Ongoing Order"
             ongBinding.searchBtn.visibility = View.VISIBLE
 
+            if (ongList.isNotEmpty()){
+                ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(),ongList,this,
+                    ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView)
+            } else {
+                ongBinding.ongRecycler.visibility = View.GONE
+            }
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 

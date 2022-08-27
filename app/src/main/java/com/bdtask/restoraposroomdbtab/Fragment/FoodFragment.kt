@@ -125,7 +125,7 @@ class FoodFragment : Fragment() {
 
     // getting category from database and setting them to Spinner
     private fun getCategoryLive() {
-        MainActivity.database.categoryDao().getAllCategory().observe(requireActivity(), Observer {
+        MainActivity.database.categoryDao().getAllCategory().observe(viewLifecycleOwner, Observer {
             categoryList.clear()
             fCategoryList.clear()
             categoryList = it.toMutableList()
@@ -135,12 +135,12 @@ class FoodFragment : Fragment() {
             }
 
             // setting Spinner ADAPTER
-            foodBinding.categorySpinner.adapter = context?.let { it1 -> ArrayAdapter(it1,
-                com.google.android.material.R.layout.support_simple_spinner_dropdown_item, fCategoryList) }
+            foodBinding.categorySpinner.adapter = ArrayAdapter(requireContext(),
+                com.google.android.material.R.layout.support_simple_spinner_dropdown_item, fCategoryList)
 
             // setting BottomSheet Recycler
             if (btmBinding != null){
-                btmBinding?.btmRecycler?.adapter = context?.let { CategoryBtmAdapter(it, categoryList) }
+                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), categoryList)
             }
         })
     }
@@ -148,8 +148,8 @@ class FoodFragment : Fragment() {
 
     // bottomSheet for edit or Update Categories
     private fun showCategoryBtmSheet() {
-        val btmSheet = context?.let { BottomSheetDialog(it) }
-        btmBinding = BtmsheetItemEditDeleteBinding.bind(LayoutInflater.from(context).inflate(R.layout.btmsheet_item_edit_delete,null))
+        val btmSheet = BottomSheetDialog(requireContext())
+        btmBinding = BtmsheetItemEditDeleteBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.btmsheet_item_edit_delete,null))
         btmSheet?.setContentView(btmBinding!!.root)
         btmBinding?.btmHeader?.text = "Customize Categories"
         btmSheet?.show()
@@ -159,7 +159,7 @@ class FoodFragment : Fragment() {
             btmSheet?.dismiss()
         }
 
-        btmBinding?.btmRecycler?.adapter = context?.let { CategoryBtmAdapter(it,categoryList) }
+        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),categoryList)
     }
 
 
@@ -215,7 +215,7 @@ class FoodFragment : Fragment() {
         dbinding.addonNameEt.hint = "Enter Variant"
         dbinding.addonPriceEt.hint = "Enter Price"
 
-        dbinding.root.setOnClickListener { context?.let { it1 -> Util.hideSoftKeyBoard(it1,dbinding.root) } }
+        dbinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dbinding.root) }
 
         dbinding.addonCrossBtn.setOnClickListener { dialog.dismiss() }
 
@@ -241,7 +241,7 @@ class FoodFragment : Fragment() {
 
             tempVariantList.add(Variant(dbinding.addonNameEt.text.toString(), dbinding.addonPriceEt.text.toString().toDouble()))
 
-            foodBinding.variantRecycler.adapter = context?.let { it1 -> TempVariantAdapter(it1, tempVariantList) }
+            foodBinding.variantRecycler.adapter = TempVariantAdapter(requireContext(), tempVariantList)
 
             dialog.dismiss()
         }
@@ -255,12 +255,12 @@ class FoodFragment : Fragment() {
     // addonsButton click Handler
     private fun addAddonsButtonClick() {
         val dialog = Dialog(requireContext())
-        val dbinding = DialogInsertAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_insert_addon,null))
+        val dbinding = DialogInsertAddonBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_insert_addon,null))
         dialog.setContentView(dbinding.root)
 
         var addonPrice: Double = 0.0
 
-        dbinding.root.setOnClickListener { context?.let { it1 -> Util.hideSoftKeyBoard(it1,dbinding.root) } }
+        dbinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dbinding.root) }
 
         dbinding.addonCrossBtn.setOnClickListener { dialog.dismiss() }
 
@@ -284,7 +284,7 @@ class FoodFragment : Fragment() {
 
             tempAddonsList.add(Addon(dbinding.addonNameEt.text.toString(),addonPrice))
 
-            foodBinding.addonsRecycler.adapter = context?.let { it1 -> TempAddonsAdapter(it1,tempAddonsList) }
+            foodBinding.addonsRecycler.adapter = TempAddonsAdapter(requireContext(),tempAddonsList)
 
             dialog.dismiss()
         }

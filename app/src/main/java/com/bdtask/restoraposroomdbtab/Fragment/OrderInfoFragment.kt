@@ -55,13 +55,13 @@ class OrderInfoFragment : Fragment() {
         sharedPref.init(requireContext())
 
         // getting  customer name live and setting to spinner live
-        MainActivity.database.customerDao().getAllCustomer().observe(requireActivity(), Observer{
+        MainActivity.database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
             cusNameList.clear()
             for (i in it.indices){
                 cusNameList.add(it[i].name)
                 cusInfoList.add(CustomerInfo(it[i].name, it[i].address, it[i].mobile))
             }
-            binding.cusNameSpnr.adapter = context?.let { it1 -> ArrayAdapter(it1, R.layout.custom_spinner_layout,cusNameList) }
+            binding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
         })
 
         // Customer Spinner
@@ -80,7 +80,7 @@ class OrderInfoFragment : Fragment() {
 
         // Customer Type Spinner Set
         cusTypeList = arrayListOf<String>("Walk In", "Take Way", "Online Customer", "Third Party")
-        binding.cusTypeSpnr.adapter = context?.let { it1 -> ArrayAdapter(it1, com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, cusTypeList)}
+        binding.cusTypeSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, cusTypeList)
 
         // customer Type Spinner select Listener
         binding.cusTypeSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -108,14 +108,14 @@ class OrderInfoFragment : Fragment() {
         }
 
         //getting waiter Live and setting to Waiter spinner Live
-        MainActivity.database.waiterDao().getAllWaiter().observe(requireActivity(), Observer{
+        MainActivity.database.waiterDao().getAllWaiter().observe(viewLifecycleOwner, Observer{
             waiterList.clear()
             waiterSpnrList.clear()
             waiterList = it.toMutableList()
             for (i in waiterList.indices){
                 waiterSpnrList.add(waiterList[i].wName)
             }
-            binding.waiterSpnr.adapter = context?.let { it1 -> ArrayAdapter(it1, com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList) }
+            binding.waiterSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList)
         })
 
         //Waiter Spinner
@@ -128,14 +128,14 @@ class OrderInfoFragment : Fragment() {
         }
 
         // getting and setting Table Spinner
-        MainActivity.database.tableDao().getAllTable().observe(requireActivity(), Observer{
+        MainActivity.database.tableDao().getAllTable().observe(viewLifecycleOwner, Observer{
             tableList.clear()
             tableList = it.toMutableList()
             tableSpnrList.clear()
             for (i in tableList.indices){
                 tableSpnrList.add(tableList[i].tName)
             }
-            binding.tableSpnr.adapter = context?.let { it1 -> ArrayAdapter(it1, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList) }
+            binding.tableSpnr.adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList)
         })
 
         // table spinner selected listener
@@ -147,14 +147,14 @@ class OrderInfoFragment : Fragment() {
         }
 
         //getting delivery Company Live and setting to spinner live
-        MainActivity.database.deliveryCompanyDao().getDeliveryCompany().observe(requireActivity(), Observer{
+        MainActivity.database.deliveryCompanyDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
             deliveryCompanyList.clear()
             deliveryCompanyList.clear()
             deliveryCompanyList = it.toMutableList()
             for (i in deliveryCompanyList.indices){
                 deliveryCompanySpnrList.add(deliveryCompanyList[i].companyName)
             }
-            binding.deliveryCompanySpnr.adapter = context?.let { it1 -> ArrayAdapter(it1, com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList) }
+            binding.deliveryCompanySpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList)
         })
 
         // delivery Company Spinner
@@ -196,7 +196,7 @@ class OrderInfoFragment : Fragment() {
 
     private fun doneButtonClickHandler() {
         orderInfoList.clear()
-        if (cusInfoList.size.equals(0)) {
+        if (cusInfoList.size == 0) {
             Toasty.error(requireContext(),"Customer Name is Empty", Toast.LENGTH_SHORT, true).show()
             return
         }
@@ -320,7 +320,7 @@ class OrderInfoFragment : Fragment() {
         waBinding.itemEt.hint = "Enter Waiter Name"
 
         waBinding.root.setOnClickListener {
-            context?.let { it1 -> Util.hideSoftKeyBoard(it1,waBinding.root) }
+            Util.hideSoftKeyBoard(requireContext(),waBinding.root)
         }
 
         waBinding.itemCross.setOnClickListener {

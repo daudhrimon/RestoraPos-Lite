@@ -37,25 +37,38 @@ class OngoingAdapter(
 
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
-        holder.binding.cusName.text = "Customer : " + ongList[position].orderInfoList[0].customerInfo[0].cusName
-        holder.binding.orderId.text = "Order Id : " + ongList[position].id.toString()
-        if (ongList[position].orderInfoList[0].waiter.isNotEmpty()) {
-            holder.binding.waiterName.visibility = View.VISIBLE
-            holder.binding.waiterName.text = "Waiter : " + ongList[position].orderInfoList[0].waiter
-        } else {
-            holder.binding.waiterName.visibility = View.INVISIBLE
-        }
-        if (ongList[position].orderInfoList[0].table.isNotEmpty()) {
-            holder.binding.tableName.text = "Table : " + ongList[position].orderInfoList[0].table
-        } else {
-            holder.binding.tableName.text = ongList[position].orderInfoList[0].customerType
-        }
+        try {
+            holder.binding.cusName.text = "Customer : " + ongList[position].orderInfoList[0].customerInfo[0].cusName
+        } catch (e: Exception){/**/}
+
+        try {
+            holder.binding.orderId.text = "Order Id : " + ongList[position].id.toString()
+        } catch (e: Exception){/**/}
+
+        try {
+            if (ongList[position].orderInfoList[0].waiter.isNotEmpty()) {
+                holder.binding.waiterName.visibility = View.VISIBLE
+                holder.binding.waiterName.text = "Waiter : " + ongList[position].orderInfoList[0].waiter
+            } else {
+                holder.binding.waiterName.visibility = View.INVISIBLE
+            }
+        } catch (e: Exception){/**/}
+
+        try {
+            if (ongList[position].orderInfoList[0].table.isNotEmpty()) {
+                holder.binding.tableName.text = "Table : " + ongList[position].orderInfoList[0].table
+            } else {
+                if (ongList[position].orderInfoList[0].customerType.isNotEmpty()){
+                    holder.binding.tableName.text = ongList[position].orderInfoList[0].customerType
+                }
+            }
+        } catch (e: Exception){/**/}
 
         ///////////////////////////////////////
         // setting Selected Background Color //
         ///////////////////////////////////////
 
-        if (multiSelect){
+       if (multiSelect){
             if (clickedList.contains(position)) {
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
             } else {
@@ -71,7 +84,7 @@ class OngoingAdapter(
 
         holder.itemView.setOnClickListener {
             if (multiSelect){
-                if (clickedList.contains(position)) {
+                if (clickedList.isNotEmpty() && clickedList.contains(position)) {
                     clickedList.remove(position)
                 } else {
                     clickedList.add(position)

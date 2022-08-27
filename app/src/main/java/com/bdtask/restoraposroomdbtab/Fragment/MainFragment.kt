@@ -75,7 +75,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         printerInit()
 
         // getting and setting category Recycler
-        MainActivity.database.categoryDao().getCategories().observe(requireActivity(), Observer{
+        MainActivity.database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
             categoryList.clear()
             categoryList = it.toMutableList()
 
@@ -87,7 +87,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 mainBinding.tabLayout.tabGravity = TabLayout.GRAVITY_CENTER
             }
 
-            mainBinding.viewPager2.adapter = context?.let { it1 -> CategoryAdapter(it1,categoryList,this) }
+            mainBinding.viewPager2.adapter = CategoryAdapter(requireContext(),categoryList,this)
 
             TabLayoutMediator(mainBinding.tabLayout, mainBinding.viewPager2) {tab,position->
                 tab.text = categoryList[position]
