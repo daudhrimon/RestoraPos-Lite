@@ -1,6 +1,7 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -119,9 +120,18 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             }
         }
 
+        ongBinding.splitBtn.setOnClickListener {
+           splitOrderHandler()
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         return ongBinding.root
+    }
+
+    private fun splitOrderHandler() {
+        val dialog = Dialog(requireContext())
+        //val spBinding =
     }
 
 

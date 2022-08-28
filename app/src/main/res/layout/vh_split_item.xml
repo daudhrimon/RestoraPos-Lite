@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="15dp"
+        android:text="Chicken Putin"
+        android:textAlignment="center"
+        android:id="@+id/splititemnames"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="15dp"
+        android:text="1"
+        android:id="@+id/splititemnumber"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+</LinearLayout>

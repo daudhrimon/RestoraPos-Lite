@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/selector_add_food_image"
-    android:layout_margin="2.5dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2.5dp"
+    android:background="@drawable/selector_add_food_image">
 
     <LinearLayout
         android:id="@+id/updelLay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/itemEditBtn"
@@ -48,16 +48,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
         android:layout_toStartOf="@id/updelLay"
-        android:orientation="vertical"
-        android:layout_margin="5dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/itemNameTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="2dp"
             android:fontFamily="@font/helvetica_nueu_light"
+            android:paddingHorizontal="2dp"
             android:text="Name"
             android:textSize="15sp" />
 
@@ -65,8 +65,8 @@
             android:id="@+id/itemPriceTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="2dp"
             android:fontFamily="@font/helvetica_nueu_light"
+            android:paddingHorizontal="2dp"
             android:text="Price"
             android:textSize="15sp" />
 
