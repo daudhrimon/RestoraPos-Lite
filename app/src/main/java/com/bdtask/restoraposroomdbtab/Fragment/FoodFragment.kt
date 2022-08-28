@@ -351,7 +351,6 @@ class FoodFragment : Fragment() {
                 val fileUri = data?.data!!
                 foodImage = fileUri.toString()
                 foodBinding.addImageBtn.setImageURI(fileUri)
-
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toasty.error(requireContext(),ImagePicker.getError(data), Toast.LENGTH_SHORT, true).show()
             } else {
