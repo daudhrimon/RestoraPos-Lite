@@ -40,8 +40,10 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/selector_plus"
                         android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:orientation="horizontal"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                        android:focusable="true">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -171,6 +173,7 @@
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_ongoing"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
@@ -189,6 +192,7 @@
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_today"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
@@ -208,6 +212,7 @@
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_close"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
@@ -235,6 +240,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/selector_plus"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:orientation="horizontal"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
@@ -366,6 +372,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_today"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
                 android:focusable="true">
@@ -392,6 +399,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_close"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                 android:focusable="true">
@@ -419,6 +427,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_ongoing"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 tools:ignore="TouchTargetSizeCheck"
                 android:focusable="true">
@@ -449,6 +458,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_place_order"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 tools:ignore="TouchTargetSizeCheck"
                 android:focusable="true">

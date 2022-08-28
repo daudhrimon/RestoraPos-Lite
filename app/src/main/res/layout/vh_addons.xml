@@ -18,7 +18,8 @@
         android:clickable="true"
         android:padding="7dp"
         android:gravity="center"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/checkedBox"
@@ -79,7 +80,8 @@
             android:background="@drawable/selector_plus"
             android:clickable="true"
             android:src="@drawable/ic_plus_button"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/addonQuantity"
@@ -101,7 +103,8 @@
             android:background="@drawable/selector_plus"
             android:clickable="true"
             android:src="@drawable/ic_minus_button"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+            android:focusable="true" />
 
     </LinearLayout>
 

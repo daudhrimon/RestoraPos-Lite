@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:background="@color/white"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="7dp">
 
     <LinearLayout

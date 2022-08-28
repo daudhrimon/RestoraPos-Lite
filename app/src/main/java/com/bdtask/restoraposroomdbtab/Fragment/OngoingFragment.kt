@@ -48,8 +48,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongBinding.searchBtn.visibility = View.VISIBLE
 
             if (ongList.isNotEmpty()){
-                ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(),ongList,this,
-                    ongBinding.ongHeader,ongBinding.searchBtn,ongBinding.tickBtn,ongBinding.scrollView)
+                ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(),ongList,this)
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
@@ -85,6 +84,12 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             }
             false
         })
+
+        ongBinding.tickBtn.setOnClickListener {
+            disableMultiSelect()
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         ongBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
@@ -138,6 +143,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         this.selectedItem = selectedItem
 
         if (selectedItem == 1) {
+            ongBinding.scrollView.visibility = View.VISIBLE
             ongBinding.mergeBtn.visibility = View.GONE
             ongBinding.cancelBtn.visibility = View.VISIBLE
             ongBinding.splitBtn.visibility = View.VISIBLE
@@ -148,7 +154,10 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongBinding.scrollView.post {
                 ongBinding.scrollView.fullScroll(ScrollView.FOCUS_RIGHT)
             }
+        } else if (selectedItem == 0) {
+            ongBinding.scrollView.visibility = View.GONE
         } else {
+            ongBinding.scrollView.visibility = View.VISIBLE
             ongBinding.splitBtn.visibility = View.GONE
             ongBinding.dueposBtn.visibility = View.GONE
             ongBinding.tokenBtn.visibility = View.GONE
@@ -158,9 +167,16 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongBinding.mergeBtn.visibility = View.VISIBLE
         }
         if (multiSelect){
+            ongBinding.searchBtn.visibility = View.GONE
+            ongBinding.tickBtn.visibility = View.VISIBLE
+            ongBinding.ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
             ongBinding.root.isFocusableInTouchMode = true
             ongBinding.root.requestFocus()
         } else {
+            ongBinding.tickBtn.visibility = View.GONE
+            ongBinding.ongHeader.text = "Ongoing Order"
+            ongBinding.searchBtn.visibility = View.VISIBLE
+            ongBinding.scrollView.visibility = View.GONE
             ongBinding.root.isFocusableInTouchMode = false
             ongBinding.root.clearFocus()
         }

@@ -19,11 +19,7 @@ import com.bdtask.restoraposroomdbtab.databinding.VhOngoingBinding
 class OngoingAdapter(
     private val context: Context,
     private var ongList: MutableList<Order>,
-    private val ongoingClickListener: OngoingClickListener,
-    private val ongHeader: TextView,
-    private val searchBtn: ImageView,
-    private val tickBtn: ImageView,
-    private val scrollView: HorizontalScrollView ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
+    private val ongoingClickListener: OngoingClickListener ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
     var index = -1
 
@@ -89,22 +85,15 @@ class OngoingAdapter(
                 } else {
                     clickedList.add(position)
                 }
-                ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
 
-                if (clickedList.size > 0){
-                    scrollView.visibility = View.VISIBLE
-                    ongoingClickListener.onGoingItemClick(position, clickedList.size)
-                } else {
-                    scrollView.visibility = View.GONE
-                }
+                ongoingClickListener.onGoingItemClick(position, clickedList.size)
             } else {
                 if (index == position) {
                     index = -1
                     clickedList.clear()
-                    scrollView.visibility = View.GONE
+                    ongoingClickListener.onGoingItemClick(position,0)
                 } else {
                     index = position
-                    scrollView.visibility = View.VISIBLE
                     ongoingClickListener.onGoingItemClick(position,1)
                 }
             }
@@ -119,30 +108,13 @@ class OngoingAdapter(
                 clickedList.add(position)
             }
             if (!multiSelect){
-
                 multiSelect = true
                 index = -1
-
-                searchBtn.visibility = View.GONE
-                ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
-                tickBtn.visibility = View.VISIBLE
             }
-            scrollView.visibility = View.VISIBLE
+
             ongoingClickListener.onGoingItemClick(position,clickedList.size)
             notifyDataSetChanged()
             return@setOnLongClickListener true
-        }
-
-        tickBtn.setOnClickListener {
-            tickBtn.visibility = View.GONE
-            multiSelect = false
-            clickedList.clear()
-
-            ongHeader.text = "Ongoing Order"
-            searchBtn.visibility = View.VISIBLE
-            scrollView.visibility = View.GONE
-
-            notifyDataSetChanged()
         }
     }
 
