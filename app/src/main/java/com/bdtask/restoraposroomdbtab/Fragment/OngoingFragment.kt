@@ -96,10 +96,11 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                 Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
                 for (i in clickedList.indices){
+                    val pos = clickedList[i]
                     GlobalScope.launch {
-                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[i].id,status,
-                            ongList[i].date, ongList[i].token,ongList[i].cartList,
-                            ongList[i].orderInfoList))
+                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,status,
+                            ongList[pos].date, ongList[pos].token,ongList[pos].cartList,
+                            ongList[pos].orderInfoList))
                     }
                 }
                 Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()
