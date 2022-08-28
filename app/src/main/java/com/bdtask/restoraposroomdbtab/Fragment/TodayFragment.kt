@@ -20,7 +20,6 @@ class TodayFragment : Fragment() {
         binding.tdBack.setOnClickListener {
             findNavController().popBackStack()
         }
-
         return binding.root
     }
 }
