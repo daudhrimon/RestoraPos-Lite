@@ -1,5 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -48,7 +49,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongBinding.searchBtn.visibility = View.VISIBLE
 
             if (ongList.isNotEmpty()){
-                ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(),ongList,this)
+                ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), ongList,this)
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
             }
@@ -118,11 +119,61 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             }
         }
 
-        //////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         return ongBinding.root
     }
 
+
+    // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGoingItemClick(position: Int, selectedItem: Int) {
+        this.position = position
+        this.selectedItem = selectedItem
+
+        if (multiSelect){
+            ongBinding.searchBtn.visibility = View.GONE
+            ongBinding.tickBtn.visibility = View.VISIBLE
+            ongBinding.ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
+            ongBinding.root.isFocusableInTouchMode = true
+            ongBinding.root.requestFocus()
+        }
+
+        when (selectedItem) {
+            0 -> {
+                ongBinding.scrollView.visibility = View.GONE
+            }
+
+            1 -> {
+                ongBinding.scrollView.visibility = View.VISIBLE
+                ongBinding.mergeBtn.visibility = View.GONE
+                ongBinding.cancelBtn.visibility = View.VISIBLE
+                ongBinding.splitBtn.visibility = View.VISIBLE
+                ongBinding.dueposBtn.visibility = View.VISIBLE
+                ongBinding.tokenBtn.visibility = View.VISIBLE
+                ongBinding.editBtn.visibility = View.VISIBLE
+                ongBinding.completeBtn.visibility = View.VISIBLE
+                ongBinding.scrollView.post {
+                    ongBinding.scrollView.fullScroll(ScrollView.FOCUS_RIGHT)
+                }
+            }
+
+            else -> {
+                ongBinding.scrollView.visibility = View.VISIBLE
+                ongBinding.splitBtn.visibility = View.GONE
+                ongBinding.dueposBtn.visibility = View.GONE
+                ongBinding.tokenBtn.visibility = View.GONE
+                ongBinding.editBtn.visibility = View.GONE
+                ongBinding.completeBtn.visibility = View.GONE
+                ongBinding.cancelBtn.visibility = View.VISIBLE
+                ongBinding.mergeBtn.visibility = View.VISIBLE
+            }
+        }
+        ongBinding.ongRecycler.adapter?.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     private fun disableMultiSelect() {
         ongBinding.scrollView.visibility = View.GONE
         multiSelect = false
@@ -133,53 +184,5 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         ongBinding.ongRecycler.adapter?.notifyDataSetChanged()
         ongBinding.root.isFocusableInTouchMode = false
         ongBinding.root.clearFocus()
-    }
-
-
-    // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class
-
-    override fun onGoingItemClick(position: Int, selectedItem: Int) {
-        this.position = position
-        this.selectedItem = selectedItem
-
-        if (selectedItem == 1) {
-            ongBinding.scrollView.visibility = View.VISIBLE
-            ongBinding.mergeBtn.visibility = View.GONE
-            ongBinding.cancelBtn.visibility = View.VISIBLE
-            ongBinding.splitBtn.visibility = View.VISIBLE
-            ongBinding.dueposBtn.visibility = View.VISIBLE
-            ongBinding.tokenBtn.visibility = View.VISIBLE
-            ongBinding.editBtn.visibility = View.VISIBLE
-            ongBinding.completeBtn.visibility = View.VISIBLE
-            ongBinding.scrollView.post {
-                ongBinding.scrollView.fullScroll(ScrollView.FOCUS_RIGHT)
-            }
-        } else if (selectedItem == 0) {
-            ongBinding.scrollView.visibility = View.GONE
-        } else {
-            ongBinding.scrollView.visibility = View.VISIBLE
-            ongBinding.splitBtn.visibility = View.GONE
-            ongBinding.dueposBtn.visibility = View.GONE
-            ongBinding.tokenBtn.visibility = View.GONE
-            ongBinding.editBtn.visibility = View.GONE
-            ongBinding.completeBtn.visibility = View.GONE
-            ongBinding.cancelBtn.visibility = View.VISIBLE
-            ongBinding.mergeBtn.visibility = View.VISIBLE
-        }
-        if (multiSelect){
-            ongBinding.searchBtn.visibility = View.GONE
-            ongBinding.tickBtn.visibility = View.VISIBLE
-            ongBinding.ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
-            ongBinding.root.isFocusableInTouchMode = true
-            ongBinding.root.requestFocus()
-        } else {
-            ongBinding.tickBtn.visibility = View.GONE
-            ongBinding.ongHeader.text = "Ongoing Order"
-            ongBinding.searchBtn.visibility = View.VISIBLE
-            ongBinding.scrollView.visibility = View.GONE
-            ongBinding.root.isFocusableInTouchMode = false
-            ongBinding.root.clearFocus()
-        }
-        Log.wtf("Abodda Fragment a Asi", clickedList.toString())
     }
 }

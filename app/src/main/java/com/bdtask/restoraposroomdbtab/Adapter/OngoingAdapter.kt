@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.clickedList
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.multiSelect
@@ -85,19 +83,20 @@ class OngoingAdapter(
                 } else {
                     clickedList.add(position)
                 }
-
                 ongoingClickListener.onGoingItemClick(position, clickedList.size)
             } else {
+                // just single click
+                var count = 0
                 if (index == position) {
                     index = -1
-                    clickedList.clear()
-                    ongoingClickListener.onGoingItemClick(position,0)
+                    count = 0
                 } else {
                     index = position
-                    ongoingClickListener.onGoingItemClick(position,1)
+                    count = 1
                 }
+                clickedList.clear()
+                ongoingClickListener.onGoingItemClick(position,count)
             }
-            notifyDataSetChanged()
             Log.wtf("Abodda adapter a o asi, proman ase hahaha",clickedList.toString())
         }
 
@@ -111,9 +110,7 @@ class OngoingAdapter(
                 multiSelect = true
                 index = -1
             }
-
             ongoingClickListener.onGoingItemClick(position,clickedList.size)
-            notifyDataSetChanged()
             return@setOnLongClickListener true
         }
     }
