@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_cart_item.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_cart_item.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_today.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_today.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/activity_main.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_splash.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_splash.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_main.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_main.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/btmsheet_item_edit_delete.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/btmsheet_item_edit_delete.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/single_value_spdate_dlt.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/single_value_spdate_dlt.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_edit_delete.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_edit_delete.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_calculator.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_calculator.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_add_new_customer.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_add_new_customer.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_temp_var_addon.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_temp_var_addon.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_single_itemet.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_single_itemet.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_note.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_note.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_progress.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_progress.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/custom_spinner_layout.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/custom_spinner_layout.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_addons.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_addons.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/nav_header.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/nav_header.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_order_info.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_order_info.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_ongoing.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_close_alert.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_close_alert.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_food_clicked.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_food_clicked.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_ongoing.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/fragment_food.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_food.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/dialog_insert_addon.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_insert_addon.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_food_item.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_food_item.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-mergeDebugResources-59:/layout/vh_food_recycler.xml",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_food_recycler.xml"
+    }
+]

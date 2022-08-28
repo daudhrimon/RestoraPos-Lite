@@ -1,0 +1,63 @@
+com.bdtask.restoraposroomdbtab.app-jetified-emoji2-1.2.0-0 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\004f740aace9b2eadee26603b796751e\transformed\jetified-emoji2-1.2.0\res
+com.bdtask.restoraposroomdbtab.app-recyclerview-1.1.0-1 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\044611c4da111d83da74a128f7fa147a\transformed\recyclerview-1.1.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-savedstate-ktx-1.2.0-2 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\1014afedc953a195440f301ea819671e\transformed\jetified-savedstate-ktx-1.2.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-annotation-experimental-1.1.0-3 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\18380ca3686c828971a01a7a443679ac\transformed\jetified-annotation-experimental-1.1.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-sdp-android-1.1.0-4 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\1d2da1c81b12aadc139db8e589e1c325\transformed\jetified-sdp-android-1.1.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-printerlibrary-1.0.14-5 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\1d94a849b5d5c347823a972050cf22f4\transformed\jetified-printerlibrary-1.0.14\res
+com.bdtask.restoraposroomdbtab.app-jetified-fragment-ktx-1.5.2-6 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\247cfecb350dbd31280037badf21dcde\transformed\jetified-fragment-ktx-1.5.2\res
+com.bdtask.restoraposroomdbtab.app-jetified-viewpager2-1.0.0-7 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\25ab929cb76fadb1e6924b31c89dc69a\transformed\jetified-viewpager2-1.0.0\res
+com.bdtask.restoraposroomdbtab.app-navigation-common-ktx-2.5.1-8 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\2a6b45d0d90ad417a9ab2c5caf9cb0ac\transformed\navigation-common-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-appcompat-1.5.0-9 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\2befe120c843a7a13d385fac19ae109e\transformed\appcompat-1.5.0\res
+com.bdtask.restoraposroomdbtab.app-room-runtime-2.4.3-10 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\2bf45bd68197923c1f488f300d3b152f\transformed\room-runtime-2.4.3\res
+com.bdtask.restoraposroomdbtab.app-cardview-1.0.0-11 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\2c7d96a20772d3b5c6da1ba48eef4fe9\transformed\cardview-1.0.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-sweetalert-1.5.4-12 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\2ea7c9019bd142f710cd904e2272b0e9\transformed\jetified-sweetalert-1.5.4\res
+com.bdtask.restoraposroomdbtab.app-jetified-lifecycle-livedata-core-ktx-2.5.1-13 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\2f2110e7c787d2ff565344c1faad7ea2\transformed\jetified-lifecycle-livedata-core-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-fragment-1.5.2-14 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\33c298f777180591e3cbe35b64822006\transformed\fragment-1.5.2\res
+com.bdtask.restoraposroomdbtab.app-jetified-lifecycle-runtime-ktx-2.5.1-15 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\38a0b424caea71b0024fcb894dfe083f\transformed\jetified-lifecycle-runtime-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-navigation-fragment-ktx-2.5.1-16 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\3a70c7ede019f55902752b5a8af7afd2\transformed\navigation-fragment-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-room-ktx-2.4.3-17 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\450d912edc8421e5eedebd0a24ee246d\transformed\jetified-room-ktx-2.4.3\res
+com.bdtask.restoraposroomdbtab.app-slidingpanelayout-1.2.0-18 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\459339cb0571b6840d38957eb9fff55f\transformed\slidingpanelayout-1.2.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-activity-1.5.1-19 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\4916dcbaf63b58ca72e1ab1ee217e99c\transformed\jetified-activity-1.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-imagepicker-2.1-20 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\4e05ab51df07fdbacadd60e231592daa\transformed\jetified-imagepicker-2.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-lifecycle-process-2.4.1-21 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\521d7f758f57eb19565409ab2dc5272b\transformed\jetified-lifecycle-process-2.4.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-window-1.0.0-22 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\5a41be77f59392228b1518eff8d94e34\transformed\jetified-window-1.0.0\res
+com.bdtask.restoraposroomdbtab.app-lifecycle-viewmodel-2.5.1-23 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\5d23334db3d21f682e3e25c857c59667\transformed\lifecycle-viewmodel-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-core-1.8.0-24 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\5d4e6493cf8188defdeeeb77e5a6d2db\transformed\core-1.8.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-core-ktx-1.8.0-25 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\5d603fb1f19f6d9566e383da9c9260fc\transformed\jetified-core-ktx-1.8.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-materialish-progress-1.7-26 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\6138c7aa541812fe8ba71c2db3391dfe\transformed\jetified-materialish-progress-1.7\res
+com.bdtask.restoraposroomdbtab.app-constraintlayout-2.1.4-27 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\640033a8f7a8b63bcee1a85080bf0d4a\transformed\constraintlayout-2.1.4\res
+com.bdtask.restoraposroomdbtab.app-jetified-Toasty-1.5.2-28 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\6979146370d981f495df9fbfe9755caa\transformed\jetified-Toasty-1.5.2\res
+com.bdtask.restoraposroomdbtab.app-jetified-startup-runtime-1.1.1-29 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\6ce851c698f5a30901b25d78fb42c720\transformed\jetified-startup-runtime-1.1.1\res
+com.bdtask.restoraposroomdbtab.app-navigation-runtime-2.5.1-30 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\6ea8d7c912005dab4c4264f0b8574c2b\transformed\navigation-runtime-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-lifecycle-livedata-core-2.5.1-31 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\70a1627a7d9dafbeceb909e3d0548edc\transformed\lifecycle-livedata-core-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-lottie-5.2.0-32 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\8262eefb95d852e2c4ac15f78b11ba67\transformed\jetified-lottie-5.2.0\res
+com.bdtask.restoraposroomdbtab.app-coordinatorlayout-1.1.0-33 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\858dd02fce0673777ab64d084a41891b\transformed\coordinatorlayout-1.1.0\res
+com.bdtask.restoraposroomdbtab.app-sqlite-framework-2.2.0-34 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\94f9fea47b4c813f0648aa7d5f17f237\transformed\sqlite-framework-2.2.0\res
+com.bdtask.restoraposroomdbtab.app-navigation-ui-2.5.1-35 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\998a0329c9b51126fc6defa1bd48cfdd\transformed\navigation-ui-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-appcompat-resources-1.5.0-36 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\9dcf3a8b6cbd92476b97c2eaf19d907f\transformed\jetified-appcompat-resources-1.5.0\res
+com.bdtask.restoraposroomdbtab.app-navigation-ui-ktx-2.5.1-37 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\a39efa8eb1bbc5afdb4df247ba596f03\transformed\navigation-ui-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-lifecycle-runtime-2.5.1-38 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\a5c683e8c1903a9eeed73660ad748a12\transformed\lifecycle-runtime-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-navigation-common-2.5.1-39 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\a751bd4e879ec32d7e5e44bb2cdff3b7\transformed\navigation-common-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-lifecycle-viewmodel-savedstate-2.5.1-40 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\a8d52cbce628c064931d76238a171ae6\transformed\jetified-lifecycle-viewmodel-savedstate-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-activity-ktx-1.5.1-41 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\ad0ca3abbbd70146452482951a9fc9b0\transformed\jetified-activity-ktx-1.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-emoji2-views-helper-1.2.0-42 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\af683b1df189df81059531bb36b85ac6\transformed\jetified-emoji2-views-helper-1.2.0\res
+com.bdtask.restoraposroomdbtab.app-navigation-runtime-ktx-2.5.1-43 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\b13ce14b599a01afb43f06dd434ca030\transformed\navigation-runtime-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-sqlite-2.2.0-44 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\b32dfb01bf24828433567ba469007e87\transformed\sqlite-2.2.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-lifecycle-viewmodel-ktx-2.5.1-45 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\b5b587e409bb4d903820cd5484b4347b\transformed\jetified-lifecycle-viewmodel-ktx-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-savedstate-1.2.0-46 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\c8a99f8c8fcfc63808635324ebcf64a2\transformed\jetified-savedstate-1.2.0\res
+com.bdtask.restoraposroomdbtab.app-jetified-ESCPOS-ThermalPrinter-Android-3.0.1-47 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\d0e7951d3fd202c49eed0fc24dd93795\transformed\jetified-ESCPOS-ThermalPrinter-Android-3.0.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-searchablespinnerlibrary-1.3.1-48 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\dbf8a04dda79403cbc63fa9727d6fcd6\transformed\jetified-searchablespinnerlibrary-1.3.1\res
+com.bdtask.restoraposroomdbtab.app-material-1.6.1-49 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\e6add1ccfc2b467bc007581f931a8303\transformed\material-1.6.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-ucrop-2.2.6-50 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\ea4dd9d712366472ef77d3267812a170\transformed\jetified-ucrop-2.2.6\res
+com.bdtask.restoraposroomdbtab.app-drawerlayout-1.1.1-51 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\ee46625f0e746d94440d03dde3baf066\transformed\drawerlayout-1.1.1\res
+com.bdtask.restoraposroomdbtab.app-jetified-Neomorphic-FrameLayout-Android-1.03-52 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\f240eb5c1a8a845bda541dcc17ff44c9\transformed\jetified-Neomorphic-FrameLayout-Android-1.03\res
+com.bdtask.restoraposroomdbtab.app-navigation-fragment-2.5.1-53 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\f2d439b37ff6e43fda3607339ab78a15\transformed\navigation-fragment-2.5.1\res
+com.bdtask.restoraposroomdbtab.app-transition-1.4.1-54 C:\Users\Prinon Bhowmik\.gradle\caches\transforms-3\f731abfd23811a2f8de01880a6545dd4\transformed\transition-1.4.1\res
+com.bdtask.restoraposroomdbtab.app-pngs-55 D:\RestoraPos-Offline\app\build\generated\res\pngs\debug
+com.bdtask.restoraposroomdbtab.app-resValues-56 D:\RestoraPos-Offline\app\build\generated\res\resValues\debug
+com.bdtask.restoraposroomdbtab.app-rs-57 D:\RestoraPos-Offline\app\build\generated\res\rs\debug
+com.bdtask.restoraposroomdbtab.app-packageDebugResources-58 D:\RestoraPos-Offline\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.bdtask.restoraposroomdbtab.app-packageDebugResources-59 D:\RestoraPos-Offline\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.bdtask.restoraposroomdbtab.app-merged_res-60 D:\RestoraPos-Offline\app\build\intermediates\merged_res\debug
+com.bdtask.restoraposroomdbtab.app-debug-61 D:\RestoraPos-Offline\app\src\debug\res
+com.bdtask.restoraposroomdbtab.app-main-62 D:\RestoraPos-Offline\app\src\main\res

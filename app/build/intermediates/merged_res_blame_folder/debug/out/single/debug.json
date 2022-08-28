@@ -1,0 +1,434 @@
+[
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_calculator.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_calculator.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_delete.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_delete.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_baseline_check_box_outline_blank_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_baseline_check_box_outline_blank_24.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_slide_cross.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_slide_cross.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_plus_button.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_plus_button.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selected_ongoing.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selected_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_selector_close.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/selector_close.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_note.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_note.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_minus_button.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_minus_button.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_checkbox.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_checkbox.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_single_itemet.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_single_itemet.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_progress.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_progress.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_order_info.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_order_info.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/raw_shake_box.json.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/raw/shake_box.json"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_activity_main.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_tablay.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_tablay.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_shape_tabindecator_bg.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/shape_tabindecator_bg.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/anim_exit.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/anim/exit.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_baseline_close_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_baseline_close_24.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_food_item.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_food_item.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_baseline_attach_money_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_baseline_attach_money_24.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_edit_delete.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_edit_delete.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_plus_oc.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_plus_oc.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_selector_calculator_button02.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/selector_calculator_button02.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/raw_empty_box.json.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/raw/empty_box.json"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/raw_focus.json.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/raw/focus.json"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ongoing_card_background.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ongoing_card_background.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_close_white.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_close_white.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/anim_pop_enter.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/anim/pop_enter.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_temp_var_addon.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_temp_var_addon.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_logout.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_logout.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_ongoing.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_custom_spinner_layout.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/custom_spinner_layout.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_plus.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_plus.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_baseline_done_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_baseline_done_24.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_btmsheet_item_edit_delete.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/btmsheet_item_edit_delete.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_restora.jpg.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/restora.jpg"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_main.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_main.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_calculator.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_calculator.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_food.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_food.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/font_helvetica_neue.ttf.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/font/helvetica_neue.ttf"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_delete_red.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_delete_red.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_remove_shopping_cart_black_24dp.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_remove_shopping_cart_black_24dp.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_add_new_customer.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_add_new_customer.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_poslogo.png.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/poslogo.png"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_splash_img.png.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/splash_img.png"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_ongoing.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/menu_nav_menu.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/menu/nav_menu.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_bordr_bg_home_et.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/bordr_bg_home_et.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_place_order.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_place_order.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_texticon.png.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/texticon.png"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_food_clicked.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_food_clicked.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_nav_header.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/nav_header.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/font_helvetica_nueu_thin.ttf.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/font/helvetica_nueu_thin.ttf"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_no_radius_background.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/no_radius_background.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_add_food.png.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_add_food.png"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_add_image.png.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/add_image.png"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_bottom_rounded_bg.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/bottom_rounded_bg.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_single_value_spdate_dlt.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/single_value_spdate_dlt.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selector_add_food_image.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selector_add_food_image.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_food.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_food.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_border_black.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/border_black.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_selector_calculator_button01.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/selector_calculator_button01.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_baseline_check_box_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_baseline_check_box_24.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_cart_item.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_cart_item.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_splash.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_splash.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_menu.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_menu.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_fragment_today.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/fragment_today.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_border_et_bg.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/border_et_bg.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_search_icon.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/search_icon.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_et_round_bg_outline.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/et_round_bg_outline.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_pencil.png.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/pencil.png"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_addons.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_addons.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_selectro_cross_btn.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/selectro_cross_btn.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_minus_button.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_minus_button.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_food_item.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_food_item.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_close_alert.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_close_alert.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_baseline_keyboard_backspace_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_baseline_keyboard_backspace_24.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/navigation_nav_graph.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_vh_food_recycler.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/vh_food_recycler.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_unselected_ongoing.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/unselected_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_add_white.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/add_white.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/anim_pop_exit.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/anim/pop_exit.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/anim_enter.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/anim/enter.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/raw_loading.json.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/raw/loading.json"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/font_helvetica_nueu_light.ttf.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/font/helvetica_nueu_light.ttf"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_plus_button.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_plus_button.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_selector_today.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/selector_today.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/xml_backup_rules.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-pngs-55:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_ic_add.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/ic_add.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/layout_dialog_insert_addon.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/layout/dialog_insert_addon.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable-v24_selector_ongoing.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable-v24/selector_ongoing.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/xml_data_extraction_rules.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.bdtask.restoraposroomdbtab.app-merged_res-60:/drawable_ic_baseline_menu_24.xml.flat",
+        "source": "com.bdtask.restoraposroomdbtab.app-main-62:/drawable/ic_baseline_menu_24.xml"
+    }
+]
