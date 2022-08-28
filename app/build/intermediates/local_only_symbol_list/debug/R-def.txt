@@ -10,6 +10,7 @@ color black
 color color_red
 color disableColor
 color hintColor
+color ic_launcher_background
 color overlay_dark
 color splash_background
 color teal_200
@@ -48,7 +49,6 @@ drawable no_radius_background
 drawable ongoing_card_background
 drawable pencil
 drawable poslogo
-drawable restora
 drawable search_icon
 drawable selected_ongoing
 drawable selector_add_food_image

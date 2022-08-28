@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/no_radius_background.xml" value="0.1795" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/selector_close.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/selector_ongoing.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/selector_today.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/bottom_rounded_bg.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.1765" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1795" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_menu.xml" value="0.1795" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ongoing_card_background.xml" value="0.1795" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selector_add_food_image.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selector_food.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selector_place_order.xml" value="0.2275" />
@@ -44,6 +48,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_food_recycler.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_ongoing.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_temp_var_addon.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1795" />
       </map>
     </option>
   </component>

@@ -1403,6 +1403,7 @@ int color gray_btn_bg_pressed_color 0x7f05006c
 int color highlighted_text_material_dark 0x7f05006d
 int color highlighted_text_material_light 0x7f05006e
 int color hintColor 0x7f05006f
+int color ic_launcher_background 0x7f0502aa
 int color infoColor 0x7f050070
 int color m3_appbar_overlay_color 0x7f050071
 int color m3_assist_chip_icon_tint_color 0x7f050072
@@ -3441,7 +3442,6 @@ int drawable ongoing_card_background 0x7f0700c0
 int drawable pencil 0x7f0700c1
 int drawable poslogo 0x7f0700c2
 int drawable red_button_background 0x7f0700c3
-int drawable restora 0x7f0700c4
 int drawable search_icon 0x7f0700c5
 int drawable selected_ongoing 0x7f0700c6
 int drawable selector_add_food_image 0x7f0700c7

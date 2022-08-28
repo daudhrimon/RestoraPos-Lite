@@ -1404,6 +1404,7 @@ color gray_btn_bg_pressed_color
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color hintColor
+color ic_launcher_background
 color infoColor
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
@@ -3442,7 +3443,6 @@ drawable ongoing_card_background
 drawable pencil
 drawable poslogo
 drawable red_button_background
-drawable restora
 drawable search_icon
 drawable selected_ongoing
 drawable selector_add_food_image
