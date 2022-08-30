@@ -190,14 +190,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     // place order ClickHandler
     private fun placeOrderClickHandler() {
         var tempCartList = mutableListOf<FoodCart>()
-
-        //if (sharedPref.readSharedCartList() != null){
+        var orderInfo = OrderInfo(CustomerInfo("","",""),"","","","","")
+        if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
-        //}
+        }
 
-        //if (sharedPref.readSharedOrderInfoList() != null){
-        val orderInfo: OrderInfo = sharedPref.readSharedOrderInfoList()!!
-        //}
+        if (sharedPref.readSharedOrderInfoList() != null){
+            orderInfo = sharedPref.readSharedOrderInfoList()!!
+        }
 
         if (tempCartList.isNotEmpty()) {
             if (orderInfo.customerInfo.cusName.isNotEmpty() &&
@@ -211,10 +211,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 } else {
                     sharedPref.setSharedToken(lToken)
                 }
-                if (lToken in 1..9){
-                    token = "0$lToken"
+                token = if (lToken in 1..9){
+                    "0$lToken"
                 } else {
-                    token = lToken.toString()
+                    lToken.toString()
                 }
 
                 try {
@@ -265,7 +265,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     // print Token
     private fun printToken(printDialog: SweetAlertDialog) {
         var tempCartList = mutableListOf<FoodCart>()
-        lateinit var orderInfo: OrderInfo
+        var orderInfo = OrderInfo(CustomerInfo("","",""),"","","","","")
 
         if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
