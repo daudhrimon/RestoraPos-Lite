@@ -1,13 +1,13 @@
 package com.bdtask.restoraposroomdbtab.Model
 
 data class FoodCart (
-    val foodTitle: String,
-    val foodVariant: String,
-    val variantPrice: Double,
-    val foodQuantity: Int,
-    val foodPrice: Double,
-    val totalUnitPrice: Double,
-    val addonsPrice: Double,
-    val addonList: List<HomeAddon>,
-    val note: String
+    var foodTitle: String,
+    var foodVariant: String,
+    var variantPrice: Double,
+    var foodQuantity: Int,
+    var foodPrice: Double,
+    var totalUnitPrice: Double,
+    var addonsPrice: Double,
+    var addonList: List<HomeAddon>,
+    var note: String
 )

@@ -1,10 +1,7 @@
 package com.bdtask.restoraposroomdbtab.Room
 
 import androidx.room.TypeConverter
-import com.bdtask.restoraposroomdbtab.Model.Addon
-import com.bdtask.restoraposroomdbtab.Model.FoodCart
-import com.bdtask.restoraposroomdbtab.Model.OrderInfo
-import com.bdtask.restoraposroomdbtab.Model.Variant
+import com.bdtask.restoraposroomdbtab.Model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -43,13 +40,24 @@ class Converters {
     }
 
     @TypeConverter
-    fun orderInfoToJson(list: OrderInfo): String?{
-        return Gson().toJson(list)
+    fun orderInfoToJson(model: OrderInfo): String?{
+        return Gson().toJson(model)
     }
 
     @TypeConverter
     fun jsonToOrderInfo(json: String): OrderInfo?{
         val type = object : TypeToken<OrderInfo?>() {}.type
+        return Gson().fromJson(json, type)
+    }
+
+    @TypeConverter
+    fun customerInfoToJson(model: CustomerInfo): String?{
+        return Gson().toJson(model)
+    }
+
+    @TypeConverter
+    fun jsonToCustomerInfo(json: String): CustomerInfo?{
+        val type = object : TypeToken<CustomerInfo?>() {}.type
         return Gson().fromJson(json, type)
     }
 }

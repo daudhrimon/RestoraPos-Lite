@@ -21,10 +21,8 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
 
-class SplitOrder(
-    context: Context,
-    private val ongList: Order,
-    private val foodCount: Int ): Dialog(context),SplitFoodClickListener {
+class SplitOrder(context: Context, private val ongList: Order,
+                 private val foodCount: Int ): Dialog(context),SplitFoodClickListener {
 
     private lateinit var binding: DialogSplitOrderBinding
     private lateinit var dialog :Dialog
@@ -71,6 +69,7 @@ class SplitOrder(
             //idList.add(ongList.id.toString() + " ( $id )")
             //splitterList.add(Order(ongList.id.toString() + " ( $id )",ongList.status,ongList.date,ongList.token, emptyList(), emptyList()))
         }
+
         binding.spSplitterRv.adapter = SplitterAdapter(context,splitterList)
     }
 
