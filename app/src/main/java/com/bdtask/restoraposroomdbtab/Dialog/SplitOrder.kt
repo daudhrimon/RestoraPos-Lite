@@ -1,5 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Dialog
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
@@ -14,10 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bdtask.restoraposroomdbtab.Adapter.SplitFoodAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.SplitterAdapter
 import com.bdtask.restoraposroomdbtab.Interface.SplitFoodClickListener
-import com.bdtask.restoraposroomdbtab.Model.FoodCart
-import com.bdtask.restoraposroomdbtab.Model.OrderInfo
+import com.bdtask.restoraposroomdbtab.Model.CustomerInfo
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
 
@@ -29,8 +30,7 @@ class SplitOrder(context: Context, private val ongList: Order,
     private lateinit var spiBind: DialogSplitItemBinding
     private var spinnerList = arrayListOf<Int>()
     private var splitterCount = 0
-    private var splitterList = mutableListOf<Order>()
-    private var idList = arrayListOf<String>()
+    private var splitterList = mutableListOf<Split>()
     private var splitterIndex = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,12 +62,10 @@ class SplitOrder(context: Context, private val ongList: Order,
 
     private fun setSplitterRecycler() {
         splitterList.clear()
-        idList.clear()
         var id = 0
         for (i in 1..splitterCount){
             id += 1
-            //idList.add(ongList.id.toString() + " ( $id )")
-            //splitterList.add(Order(ongList.id.toString() + " ( $id )",ongList.status,ongList.date,ongList.token, emptyList(), emptyList()))
+            splitterList.add(Split(ongList.id.toString() + " ( $id )",ongList.id,0, CustomerInfo("","",""), emptyList()))
         }
 
         binding.spSplitterRv.adapter = SplitterAdapter(context,splitterList)

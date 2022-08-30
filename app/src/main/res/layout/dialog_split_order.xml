@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dialog.SplitOrder"
-    app:cardCornerRadius="@dimen/_10sdp">
+    app:cardCornerRadius="@dimen/_10sdp"
+    tools:context=".Dialog.SplitOrder">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +107,6 @@
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:foreground="?attr/selectableItemBackground"
-                        android:gravity="center"
                         android:popupBackground="@color/white"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -126,19 +125,11 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/spSplitterRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F5F5F5"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/spSplitterRv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        </LinearLayout>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 

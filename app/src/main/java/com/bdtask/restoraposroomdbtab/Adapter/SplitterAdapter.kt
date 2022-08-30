@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.R
-import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitterBinding
 
 class SplitterAdapter(
     private val context: Context,
-    private val splitterList: MutableList<Order> ): RecyclerView.Adapter<SplitterAdapter.VHSplitter>() {
+    private val splitterList: MutableList<Split> ): RecyclerView.Adapter<SplitterAdapter.VHSplitter>() {
 
     inner class VHSplitter(binding: VhSplitterBinding): RecyclerView.ViewHolder(binding.root) {
         val binding = binding

@@ -123,7 +123,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels
             val win = dialog.window
-            win!!.setLayout((19 * width)/20,(19 * height)/20)
+            win!!.setLayout((19 * width)/20,WindowManager.LayoutParams.MATCH_PARENT)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
