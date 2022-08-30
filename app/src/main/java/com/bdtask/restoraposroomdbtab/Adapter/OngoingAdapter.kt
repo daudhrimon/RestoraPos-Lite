@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.clickedList
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.multiSelect
@@ -32,7 +31,7 @@ class OngoingAdapter(
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
         try {
-            holder.binding.cusName.text = "Customer : " + ongList[position].orderInfoList[0].customerInfo[0].cusName
+            holder.binding.cusName.text = "Customer : " + ongList[position].orderInfo.customerInfo.cusName
         } catch (e: Exception){/**/}
 
         try {
@@ -40,20 +39,20 @@ class OngoingAdapter(
         } catch (e: Exception){/**/}
 
         try {
-            if (ongList[position].orderInfoList[0].waiter.isNotEmpty()) {
+            if (ongList[position].orderInfo.waiter.isNotEmpty()) {
                 holder.binding.waiterName.visibility = View.VISIBLE
-                holder.binding.waiterName.text = "Waiter : " + ongList[position].orderInfoList[0].waiter
+                holder.binding.waiterName.text = "Waiter : " + ongList[position].orderInfo.waiter
             } else {
                 holder.binding.waiterName.visibility = View.INVISIBLE
             }
         } catch (e: Exception){/**/}
 
         try {
-            if (ongList[position].orderInfoList[0].table.isNotEmpty()) {
-                holder.binding.tableName.text = "Table : " + ongList[position].orderInfoList[0].table
+            if (ongList[position].orderInfo.table.isNotEmpty()) {
+                holder.binding.tableName.text = "Table : " + ongList[position].orderInfo.table
             } else {
-                if (ongList[position].orderInfoList[0].customerType.isNotEmpty()){
-                    holder.binding.tableName.text = ongList[position].orderInfoList[0].customerType
+                if (ongList[position].orderInfo.customerType.isNotEmpty()){
+                    holder.binding.tableName.text = ongList[position].orderInfo.customerType
                 }
             }
         } catch (e: Exception){/**/}

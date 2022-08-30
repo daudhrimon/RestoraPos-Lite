@@ -1,25 +1,22 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
-import android.Manifest
 import android.app.Dialog
 import android.bluetooth.BluetoothAdapter
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.bdtask.restoraposroomdbtab.Util.Calculator
+import com.bdtask.restoraposroomdbtab.Dialog.Calculator
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
@@ -140,8 +137,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         mainBinding.calculatorLay.setOnClickListener {
             val dialog: Dialog = Calculator(requireContext())
             dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
             val win = dialog.window
-            win!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+            win!!.setLayout((6 * width)/7, (6 * height)/7)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
@@ -191,18 +190,18 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     // place order ClickHandler
     private fun placeOrderClickHandler() {
         var tempCartList = mutableListOf<FoodCart>()
-        var orderInfoList = mutableListOf<OrderInfo>()
 
-       //if (sharedPref.readSharedCartList() != null){
+        //if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
         //}
 
         //if (sharedPref.readSharedOrderInfoList() != null){
-            orderInfoList = sharedPref.readSharedOrderInfoList()!!.toMutableList()
+        val orderInfo: OrderInfo = sharedPref.readSharedOrderInfoList()!!
         //}
 
         if (tempCartList.isNotEmpty()) {
-            if (orderInfoList.isNotEmpty()){
+            if (orderInfo.customerInfo.cusName.isNotEmpty() &&
+                    orderInfo.customerType.isNotEmpty()){
 
                 // token to SharedPref
                 var lToken: Long = 1
@@ -219,8 +218,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 }
 
                 try {
+                    Log.wtf("CART",tempCartList.toString())
                     GlobalScope.launch {
-                        orderId = MainActivity.database.orderDao().insertOrder(Order(0,"Ongoing",Util.getDate().toString(),token,tempCartList.toList(),orderInfoList.toList()))
+                        orderId = MainActivity.database.orderDao().insertOrder(Order(0,0,0,0,Util.getDate().toString(),token,orderInfo,tempCartList.toList()))
                     }
                     Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
                 } catch (e:Exception){
@@ -265,17 +265,19 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     // print Token
     private fun printToken(printDialog: SweetAlertDialog) {
         var tempCartList = mutableListOf<FoodCart>()
-        var orderInfoList = mutableListOf<OrderInfo>()
+        lateinit var orderInfo: OrderInfo
 
         if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
         }
         if (sharedPref.readSharedOrderInfoList() != null){
-            orderInfoList = sharedPref.readSharedOrderInfoList()!!.toMutableList()
+            orderInfo = sharedPref.readSharedOrderInfoList()!!
         }
 
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
             val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
+
+            //Sunmi Printer
 
             val txt = arrayOf("Daud", "Hoshen")
             val width = intArrayOf(1, 1)
@@ -285,8 +287,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
             sunmiPrinterService.printText("\n", null)
 
-            txt[0] = orderInfoList[0].customerInfo[0].cusName
-            txt[1] = orderInfoList[0].waiter
+            txt[0] = orderInfo.customerInfo.cusName
+            txt[1] = orderInfo.waiter
             sunmiPrinterService.printColumnsString(
                 txt,
                 width, align, null
@@ -340,9 +342,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             }
             sunmiPrinterService.printTextWithFont("\n", null, 28f, null)
             sunmiPrinterService.sendRAWData(boldOn(), null)
-            if (orderInfoList[0].table.isNotEmpty()) {
+            if (orderInfo.table.isNotEmpty()) {
                 items[0] = "Order:$orderId"
-                items[1] = "Table:" + orderInfoList[0].table
+                items[1] = "Table:" + orderInfo.table
                 sunmiPrinterService.printColumnsString(
                     items,
                     width, align, null
@@ -358,41 +360,39 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             sunmiPrinterService.printText("\n", null)
 
             SunmiPrintHelper.getInstance().feedPaper()
-        } else {
-            // Print By Bluetooth
-            if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.BLUETOOTH), 1)
 
-            } else {
-                var printer: EscPosPrinter? = null
-                try {
-                    printer = EscPosPrinter(
-                        BluetoothPrintersConnections.selectFirstPaired(),
-                        180, 78f, 45, EscPosCharsetEncoding("windows-1252", 16)
-                    )
-                } catch (e: EscPosConnectionException) {
-                    e.printStackTrace()
-                }
-                try {
-                    printer!!.printFormattedTextAndCut(
-                        "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
-                                + "[C]" + orderInfoList[0].customerInfo[0].cusName
-                                + "[L]\n" +
-                                "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
-                                "[L]\n" +
-                                tokenLoopData(tempCartList) +
-                                "[L]\n" +
-                                "[L]Order No: " + orderId + "[R] " + orderInfoList[0].table + "\n"
-                    )
-                } catch (e: EscPosConnectionException) {
-                    e.printStackTrace()
-                } catch (e: EscPosParserException) {
-                    e.printStackTrace()
-                } catch (e: EscPosEncodingException) {
-                    e.printStackTrace()
-                } catch (e: EscPosBarcodeException) {
-                    e.printStackTrace()
-                }
+        } else {
+
+            //ESCPOS-ThermalPrinter
+
+            var printer: EscPosPrinter? = null
+            try {
+                printer = EscPosPrinter(
+                    BluetoothPrintersConnections.selectFirstPaired(),
+                    180, 78f, 45, EscPosCharsetEncoding("windows-1252", 16)
+                )
+            } catch (e: EscPosConnectionException) {
+                e.printStackTrace()
+            }
+            try {
+                printer!!.printFormattedTextAndCut(
+                    "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
+                            + "[C]" + orderInfo.customerInfo.cusName
+                            + "[L]\n" +
+                            "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
+                            "[L]\n" +
+                            tokenLoopData(tempCartList) +
+                            "[L]\n" +
+                            "[L]Order No: " + orderId + "[R] " + orderInfo.table + "\n"
+                )
+            } catch (e: EscPosConnectionException) {
+                e.printStackTrace()
+            } catch (e: EscPosParserException) {
+                e.printStackTrace()
+            } catch (e: EscPosEncodingException) {
+                e.printStackTrace()
+            } catch (e: EscPosBarcodeException) {
+                e.printStackTrace()
             }
         }
         sharedPref.writeSharedCartList(emptyList())

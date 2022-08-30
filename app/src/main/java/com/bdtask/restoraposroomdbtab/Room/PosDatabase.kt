@@ -5,7 +5,7 @@ import androidx.room.*
 import com.bdtask.restoraposroomdbtab.Room.Dao.*
 import com.bdtask.restoraposroomdbtab.Room.Entity.*
 
-@Database(entities = [Category::class, Food::class, Customer::class, DeliveryCompany::class, Waiter::class, Table::class, Order::class], version = 1)
+@Database(entities = [Category::class, Food::class, Customer::class, Company::class, Waiter::class, Table::class, Order::class, Split::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class PosDatabase: RoomDatabase() {
 
@@ -15,7 +15,7 @@ abstract class PosDatabase: RoomDatabase() {
 
     abstract fun customerDao(): CustomerDao
 
-    abstract fun deliveryCompanyDao(): DeliveryCompanyDao
+    abstract fun deliveryCompanyDao(): CompanyDao
 
     abstract fun waiterDao(): WaiterDao
 

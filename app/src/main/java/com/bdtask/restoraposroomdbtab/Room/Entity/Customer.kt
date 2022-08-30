@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "customer_tbl")
 data class Customer(
     @PrimaryKey(autoGenerate = true)
-    var id: Long,
-    var name: String,
-    var email: String,
-    var mobile: String,
-    var address: String,
-    var favAddress: String
+    val id: Long,
+    val name: String,
+    val email: String,
+    val mobile: String,
+    val address: String,
+    val favAddress: String
     )

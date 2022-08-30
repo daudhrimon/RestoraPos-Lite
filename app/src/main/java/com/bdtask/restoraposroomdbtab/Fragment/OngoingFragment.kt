@@ -1,18 +1,17 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
 import android.annotation.SuppressLint
-import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
+import com.bdtask.restoraposroomdbtab.Dialog.SplitOrder
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.R
@@ -24,14 +23,14 @@ import kotlinx.coroutines.*
 
 class OngoingFragment : Fragment(), OngoingClickListener {
     private lateinit var ongBinding: FragmentOngoingBinding
+    private var ongPos = -1
+    private var ongList = mutableListOf<Order>()
+    private var selectedItem = -1
+    private var foodCount = 0
     companion object {
-        var ongList = mutableListOf<Order>()
         var clickedList = arrayListOf<Int>()
         var multiSelect = false
     }
-    private var position = -1
-    private var selectedItem = -1
-    private val status = "Ongoing"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +38,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
     ): View? {
         ongBinding = FragmentOngoingBinding.inflate(inflater, container, false)
 
-        MainActivity.database.orderDao().getOngoing(status).observe(viewLifecycleOwner, Observer {
+        MainActivity.database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
             ongList.clear()
             ongList = it.toMutableList()
 
@@ -96,18 +95,16 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         ongBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
-                    MainActivity.database.orderDao().deleteOnGoing(Order(ongList[position].id,status,
-                        ongList[position].date, ongList[position].token,ongList[position].cartList,
-                        ongList[position].orderInfoList))
+                    MainActivity.database.orderDao().deleteOnGoing(Order(ongList[ongPos].id,0,0,0,
+                        ongList[ongPos].date, ongList[ongPos].token,ongList[ongPos].orderInfo,ongList[ongPos].cartList))
                 }
                 Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
                 for (i in clickedList.indices){
                     val pos = clickedList[i]
                     GlobalScope.launch {
-                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,status,
-                            ongList[pos].date, ongList[pos].token,ongList[pos].cartList,
-                            ongList[pos].orderInfoList))
+                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,0,0,0,
+                            ongList[pos].date, ongList[pos].token,ongList[pos].orderInfo,ongList[pos].cartList))
                     }
                 }
                 Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()
@@ -121,7 +118,13 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         }
 
         ongBinding.splitBtn.setOnClickListener {
-           splitOrderHandler()
+            val dialog = SplitOrder(requireContext(),ongList[ongPos],foodCount)
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
+            val win = dialog.window
+            win!!.setLayout((19 * width)/20,(19 * height)/20)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,19 +132,24 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         return ongBinding.root
     }
 
-    private fun splitOrderHandler() {
-        val dialog = Dialog(requireContext())
-        //val spBinding =
-    }
-
-
     // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onGoingItemClick(position: Int, selectedItem: Int) {
-        this.position = position
         this.selectedItem = selectedItem
+        foodCount = 0
+        ongPos = position
 
+        //////////////////////////
+        if (selectedItem == 1) {
+            for (i in ongList[position].cartList.indices) {
+                foodCount += ongList[position].cartList[i].foodQuantity
+            }
+        } else {
+            ongBinding.splitBtn.visibility = View.GONE
+        }
+
+        //////////////////////////
         if (multiSelect){
             ongBinding.searchBtn.visibility = View.GONE
             ongBinding.tickBtn.visibility = View.VISIBLE
@@ -150,16 +158,21 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             ongBinding.root.requestFocus()
         }
 
+        //////////////////////////
         when (selectedItem) {
             0 -> {
                 ongBinding.scrollView.visibility = View.GONE
             }
 
             1 -> {
+                if (foodCount > 1) {
+                    ongBinding.splitBtn.visibility = View.VISIBLE
+                } else {
+                    ongBinding.splitBtn.visibility = View.GONE
+                }
                 ongBinding.scrollView.visibility = View.VISIBLE
                 ongBinding.mergeBtn.visibility = View.GONE
                 ongBinding.cancelBtn.visibility = View.VISIBLE
-                ongBinding.splitBtn.visibility = View.VISIBLE
                 ongBinding.dueposBtn.visibility = View.VISIBLE
                 ongBinding.tokenBtn.visibility = View.VISIBLE
                 ongBinding.editBtn.visibility = View.VISIBLE
@@ -171,7 +184,6 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
             else -> {
                 ongBinding.scrollView.visibility = View.VISIBLE
-                ongBinding.splitBtn.visibility = View.GONE
                 ongBinding.dueposBtn.visibility = View.GONE
                 ongBinding.tokenBtn.visibility = View.GONE
                 ongBinding.editBtn.visibility = View.GONE

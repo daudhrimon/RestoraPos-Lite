@@ -3,9 +3,9 @@ package com.bdtask.restoraposroomdbtab.Room.Entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "waiter_tbl")
-data class Waiter(
+@Entity(tableName = "company")
+data class Company(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val wName: String
+    val companyName: String
 )

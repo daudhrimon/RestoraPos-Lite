@@ -30,15 +30,15 @@ object SharedPref {
         return Gson().fromJson(mSharedPref!!.getString("cartList", emptyList<FoodCart>().toString()), type)
     }
 
-    fun writeSharedOrderInfoList(orderInfoList: List<OrderInfo>) {
+    fun writeSharedOrderInfoList(orderInfo: OrderInfo) {
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("orderInfoList", Gson().toJson(orderInfoList))
+        prefsEditor.putString("orderInfo", Gson().toJson(orderInfo))
         prefsEditor.apply()
     }
 
-    fun readSharedOrderInfoList() : List<OrderInfo>? {
-        val type = object : TypeToken<List<OrderInfo?>?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("orderInfoList", emptyList<OrderInfo>().toString()), type)
+    fun readSharedOrderInfoList(): OrderInfo? {
+        val type = object : TypeToken<OrderInfo?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("orderInfo", ""), type)
     }
 
     fun setSharedToken(token: Long) {

@@ -16,7 +16,7 @@ import com.bdtask.restoraposroomdbtab.Model.CustomerInfo
 import com.bdtask.restoraposroomdbtab.Model.OrderInfo
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Customer
-import com.bdtask.restoraposroomdbtab.Room.Entity.DeliveryCompany
+import com.bdtask.restoraposroomdbtab.Room.Entity.Company
 import com.bdtask.restoraposroomdbtab.Room.Entity.Table
 import com.bdtask.restoraposroomdbtab.Room.Entity.Waiter
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
@@ -32,19 +32,19 @@ class OrderInfoFragment : Fragment() {
     private lateinit var binding: FragmentOrderInfoBinding
     private var cusNameList = mutableListOf<String>()
     private var cusInfoList = mutableListOf<CustomerInfo>()
-    private var deliveryCompanyList = mutableListOf<DeliveryCompany>()
+    private var deliveryCompanyList = mutableListOf<Company>()
     private var deliveryCompanySpnrList = mutableListOf<String>()
     private var cusTypeList = arrayListOf<String>()
     private var waiterList = mutableListOf<Waiter>()
     private var waiterSpnrList = mutableListOf<String>()
     private var tableList = mutableListOf<Table>()
     private var tableSpnrList = mutableListOf<String>()
-    private val selectedCustomerInfoList = mutableListOf<CustomerInfo>()
+    private lateinit var selectedCustomerInfo: CustomerInfo
     private var selectedCustomerType = ""
     private var selectedWaiter = ""
     private var selectedTable = ""
     private var selectedDeliveryCompany = ""
-    private var orderInfoList = mutableListOf<OrderInfo>()
+    private lateinit var orderInfo: OrderInfo
     private var sharedPref = SharedPref
 
     override fun onCreateView(
@@ -68,10 +68,10 @@ class OrderInfoFragment : Fragment() {
         binding.cusNameSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
                 val selectedItem =  binding.cusNameSpnr.selectedItem.toString()
-                selectedCustomerInfoList.clear()
+
                 for (i in cusInfoList.indices){
                     if (cusInfoList[i].cusName == selectedItem && cusNameList[spnrPos] == cusInfoList[spnrPos].cusName){
-                        selectedCustomerInfoList.add(CustomerInfo(cusInfoList[i].cusName, cusInfoList[i].cusAddress, cusInfoList[i].mobile))
+                        selectedCustomerInfo = CustomerInfo(cusInfoList[i].cusName, cusInfoList[i].cusAddress, cusInfoList[i].mobile)
                     }
                 }
             }
@@ -195,7 +195,6 @@ class OrderInfoFragment : Fragment() {
     }
 
     private fun doneButtonClickHandler() {
-        orderInfoList.clear()
         if (cusInfoList.size == 0) {
             Toasty.error(requireContext(),"Customer Name is Empty", Toast.LENGTH_SHORT, true).show()
             return
@@ -217,32 +216,28 @@ class OrderInfoFragment : Fragment() {
                 return
             }
 
-            orderInfoList.add(
-                OrderInfo(
-                    selectedCustomerInfoList,
+            orderInfo = OrderInfo(
+                    selectedCustomerInfo,
                     selectedCustomerType,
                     selectedWaiter,
                     selectedTable,
                     "",
                     ""
                 )
-            )
         } else if (selectedCustomerType.equals("Online Customer") || selectedCustomerType.equals("Take Way")) {
             if (selectedWaiter.isEmpty()) {
                 Toasty.error(requireContext(),"Waiter is Empty", Toast.LENGTH_SHORT, true).show()
                 return
             }
 
-            orderInfoList.add(
-                OrderInfo(
-                    selectedCustomerInfoList,
+            orderInfo = OrderInfo(
+                    selectedCustomerInfo,
                     selectedCustomerType,
                     selectedWaiter,
                     "",
                     "",
                     ""
                 )
-            )
         } else {
             if (selectedDeliveryCompany.isEmpty()) {
                 Toasty.error(requireContext(),"Delivery Company is Empty", Toast.LENGTH_SHORT, true).show()
@@ -254,21 +249,19 @@ class OrderInfoFragment : Fragment() {
                 binding.orderIdEt.requestFocus()
                 return
             }
-            orderInfoList.add(
-                OrderInfo(
-                    selectedCustomerInfoList,
+            orderInfo = OrderInfo(
+                    selectedCustomerInfo,
                     selectedCustomerType,
                     "",
                     "",
                     selectedDeliveryCompany,
                     binding.orderIdEt.text.toString().trim()
                 )
-            )
             binding.orderIdEt.setText("")
         }
 
-        sharedPref.writeSharedOrderInfoList(orderInfoList.toList())
-        println(orderInfoList.toList())
+        sharedPref.writeSharedOrderInfoList(orderInfo)
+
         findNavController().popBackStack()
     }
 
@@ -373,7 +366,7 @@ class OrderInfoFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.deliveryCompanyDao().insertDeliveryCompany(DeliveryCompany(0,ctaBinding.itemEt.text.toString()))
+                MainActivity.database.deliveryCompanyDao().insertDeliveryCompany(Company(0,ctaBinding.itemEt.text.toString()))
             }
 
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()

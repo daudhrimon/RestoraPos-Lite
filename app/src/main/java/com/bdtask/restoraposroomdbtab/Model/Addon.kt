@@ -1,6 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Model
 
 data class Addon(
-    var adnName: String,
-    var adnPrice: Double
+    val adnName: String,
+    val adnPrice: Double
 )

@@ -8,10 +8,10 @@ import com.bdtask.restoraposroomdbtab.Model.Variant
 @Entity(tableName = "food_tbl")
 data class Food(
     @PrimaryKey(autoGenerate = true)
-    var id: Long,
-    var fCategory: String,
-    var fTitle: String,
-    var fVariant: List<Variant>,
-    var fImage: String,
-    var fAddons: List<Addon>
+    val id: Long,
+    val fCategory: String,
+    val fTitle: String,
+    val fVariant: List<Variant>,
+    val fImage: String,
+    val fAddons: List<Addon>
 )

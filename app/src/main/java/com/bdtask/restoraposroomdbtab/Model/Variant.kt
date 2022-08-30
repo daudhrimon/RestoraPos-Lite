@@ -1,6 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Model
 
 data class Variant(
-    var variant: String,
-    var fPrice: Double
+    val variant: String,
+    val fPrice: Double
 )

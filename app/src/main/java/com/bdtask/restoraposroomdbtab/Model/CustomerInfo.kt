@@ -1,7 +1,7 @@
 package com.bdtask.restoraposroomdbtab.Model
 
 data class CustomerInfo(
-    var cusName: String,
-    var cusAddress: String,
-    var mobile: String
+    val cusName: String,
+    val cusAddress: String,
+    val mobile: String
 )

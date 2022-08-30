@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/selectro_cross_btn"
+            android:background="@drawable/selector_cross_btn"
             android:padding="@dimen/_4sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"

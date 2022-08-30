@@ -8,10 +8,12 @@ import com.bdtask.restoraposroomdbtab.Model.OrderInfo
 @Entity(tableName = "order_tbl")
 data class Order(
     @PrimaryKey(autoGenerate = true)
-    var id: Long,
-    var status: String,
-    var date: String,
-    var token: String,
-    var cartList: List<FoodCart>,
-    var orderInfoList: List<OrderInfo>
+    val id: Long,
+    val status: Int,
+    val split: Int,
+    val merge: Int,
+    val date: String,
+    val token: String,
+    val orderInfo: OrderInfo,
+    val cartList: List<FoodCart>
     )

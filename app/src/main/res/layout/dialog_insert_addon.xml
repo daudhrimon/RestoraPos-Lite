@@ -35,7 +35,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/selectro_cross_btn"
+                android:background="@drawable/selector_cross_btn"
                 android:clickable="true"
                 android:padding="3dp"
                 android:src="@drawable/ic_close_white"

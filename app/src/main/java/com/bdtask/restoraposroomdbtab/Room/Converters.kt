@@ -43,13 +43,13 @@ class Converters {
     }
 
     @TypeConverter
-    fun orderInfoListToJson(list: List<OrderInfo>): String?{
+    fun orderInfoToJson(list: OrderInfo): String?{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun jsonToOrderInfoList(json: String): List<OrderInfo>?{
-        val type = object : TypeToken<List<OrderInfo?>?>() {}.type
+    fun jsonToOrderInfo(json: String): OrderInfo?{
+        val type = object : TypeToken<OrderInfo?>() {}.type
         return Gson().fromJson(json, type)
     }
 }

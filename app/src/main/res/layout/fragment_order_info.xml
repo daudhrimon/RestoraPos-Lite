@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="6dp"
-            android:background="@drawable/selectro_cross_btn"
+            android:background="@drawable/selector_cross_btn"
             android:padding="7dp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
