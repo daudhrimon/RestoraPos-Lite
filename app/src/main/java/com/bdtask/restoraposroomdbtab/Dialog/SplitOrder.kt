@@ -24,10 +24,10 @@ import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
 
 class SplitOrder(context: Context,
-                 sharedPref: SharedPref,
+                 private val sharedPref: SharedPref,
                  private val foodCount: Int): Dialog(context),SplitFoodClickListener {
 
-    private val tmpOngItem = sharedPref.readSharedSplit()!!
+    private var tmpOngItem = sharedPref.readSharedSplit()!!
     private lateinit var binding: DialogSplitOrderBinding
     private lateinit var dialog :Dialog
     private lateinit var spiBind: DialogSplitItemBinding
@@ -42,7 +42,9 @@ class SplitOrder(context: Context,
         binding = DialogSplitOrderBinding.bind(layoutInflater.inflate(R.layout.dialog_split_order,null))
         setContentView(binding.root)
 
-        getInit()
+        getCartAndSetPlusFood()
+
+        setSpinnerAdapter()
 
         binding.spItemPlus.setOnClickListener {
             dialog.show()
@@ -64,17 +66,16 @@ class SplitOrder(context: Context,
                     splitterList.add(Split(tmpOngItem.id.toString() + " ( $id )",tmpOngItem.id,0, CsInf("","",""), emptyList<Cart>().toMutableList()))
                 }
 
+                getCartAndSetPlusFood()
+
                 setSplitterRecycler()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
     }
 
-    private fun setSplitterRecycler() {
-        binding.spSplitterRv.adapter = SplitterAdapter(context,splitterList)
-    }
-
-    private fun getInit() {
+    private fun getCartAndSetPlusFood() {
+        tmpOngItem = sharedPref.readSharedSplit()!!
         dialog = Dialog(context)
         spiBind = DialogSplitItemBinding.bind(layoutInflater.inflate(R.layout.dialog_split_item,null))
         dialog.setContentView(spiBind.root)
@@ -84,7 +85,18 @@ class SplitOrder(context: Context,
         val width = context.resources.displayMetrics.widthPixels
         dialog.window?.setLayout((2 * width)/3, WindowManager.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
 
+    private fun setSplitterRecycler() {
+        binding.spSplitterRv.adapter = SplitterAdapter(context,splitterList)
+    }
+
+    private fun setSpinnerAdapter() {
+        var price = 0.0
+        for (i in tmpOngItem.cart.indices){
+            price += tmpOngItem.cart[i].tUPrc
+        }
+        Log.wtf("PRICE",price.toString())
 
         // this will count Total food
         for (i in 2..foodCount){
@@ -92,7 +104,6 @@ class SplitOrder(context: Context,
         }
 
         // this will count total addon price
-        Log.wtf("tmpOngItem",tmpOngItem.cart.toString())
         for (i in tmpOngItem.cart.indices){
             if (tmpOngItem.cart[i].fQnty > 1){
                 val perAdn = tmpOngItem.cart[i].adnPrc / tmpOngItem.cart[i].fQnty
@@ -100,66 +111,72 @@ class SplitOrder(context: Context,
             } else {
                 perAddonPriceList.add(tmpOngItem.cart[i].adnPrc)
             }
-            Log.wtf("tmpOngItem.cart[i]",tmpOngItem.cart[i].toString())
-            Log.wtf("perAddonPriceList",perAddonPriceList.toString())
         }
+        Log.wtf("perAddonPriceList",perAddonPriceList.toString())
 
         // setting food count to spinner
         binding.splitItemSpnr.adapter = ArrayAdapter(context,androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,spinnerList)
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onSplitFoodClick(position: Int) {
+
         if (splitterList[splitterIndex].cart.isEmpty()){
-            val qnt = 1
-            val prc = tmpOngItem.cart[position].varPrc * qnt
-            val adnPrice = perAddonPriceList[position] * qnt
+
+            val prc = tmpOngItem.cart[position].varPrc
+            val adnPrice = perAddonPriceList[position]
             val tUPrc = prc + adnPrice
+
             splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
                 tmpOngItem.cart[position].vari, tmpOngItem.cart[position].varPrc,
-                qnt, prc, tUPrc, perAddonPriceList[position], emptyList<Adns>().toMutableList(),""))
+                1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(),""))
+
+            Log.wtf("EmptyInsert","iam here")
+
         } else {
+
             var checker = true
             var insert = true
+
             for (i in splitterList[splitterIndex].cart.indices) {
 
-                //if (checker) {
+                if (checker) {
 
                     if (splitterList[splitterIndex].cart[i].title == tmpOngItem.cart[position].title
                         && splitterList[splitterIndex].cart[i].vari == tmpOngItem.cart[position].vari) {
 
-                        val qnt = splitterList[splitterIndex].cart[i].fQnty + 1
-                        val prc = splitterList[splitterIndex].cart[i].varPrc * qnt
-                        val adnPrice = perAddonPriceList[position] * qnt
-                        val tUPrc = prc + adnPrice
+                        val varPrc = splitterList[splitterIndex].cart[i].varPrc
+                        splitterList[splitterIndex].cart[i].fQnty += 1
+                        splitterList[splitterIndex].cart[i].fPrc += varPrc
+                        splitterList[splitterIndex].cart[i].adnPrc += perAddonPriceList[position]
+                        val fPrc = splitterList[splitterIndex].cart[i].fPrc
+                        val adnPrc = splitterList[splitterIndex].cart[i].adnPrc
+                        splitterList[splitterIndex].cart[i].tUPrc = fPrc + adnPrc
 
-                        splitterList[splitterIndex].cart[i].fQnty = qnt
-                        splitterList[splitterIndex].cart[i].fPrc = prc
-                        splitterList[splitterIndex].cart[i].adnPrc = adnPrice
-                        splitterList[splitterIndex].cart[i].tUPrc = tUPrc
-                        //checker = false
+                        checker = false
                         insert = false
+
+                        Log.wtf("Name and var matching","iam here")
+
                     } else {
                         insert = true
                     }
-                //}
+                }
             }
 
             if (insert){
-                val qnt = 1
-                val prc = splitterList[splitterIndex].cart[position].varPrc * qnt
-                val adnPrice = perAddonPriceList[position] * qnt
+
+                val prc = tmpOngItem.cart[position].varPrc
+                val adnPrice = perAddonPriceList[position]
                 val tUPrc = prc + adnPrice
 
                 splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
                     tmpOngItem.cart[position].vari,tmpOngItem.cart[position].varPrc,
-                    qnt, prc, tUPrc, perAddonPriceList[position], emptyList<Adns>().toMutableList(),""))
+                    1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(),""))
+
+                Log.wtf("Another Insert","iam here")
             }
         }
-        Log.wtf("ABCD",splitterList.toString())
-        Log.wtf("ABCWWWW",perAddonPriceList[position].toString())
         binding.spSplitterRv.adapter?.notifyDataSetChanged()
     }
 }
