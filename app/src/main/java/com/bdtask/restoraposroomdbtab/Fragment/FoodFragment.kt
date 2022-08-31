@@ -1,7 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -21,8 +20,8 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.foodList
 import com.bdtask.restoraposroomdbtab.Adapter.*
-import com.bdtask.restoraposroomdbtab.Room.Entity.Category
-import com.bdtask.restoraposroomdbtab.Model.Addon
+import com.bdtask.restoraposroomdbtab.Room.Entity.Catgry
+import com.bdtask.restoraposroomdbtab.Model.Adn
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Model.Variant
 import com.bdtask.restoraposroomdbtab.Room.Entity.Food
@@ -37,10 +36,10 @@ import kotlinx.coroutines.launch
 class FoodFragment : Fragment() {
     private lateinit var foodBinding: FragmentFoodBinding
     private var btmBinding: BtmsheetItemEditDeleteBinding? = null
-    private var categoryList = mutableListOf<Category>()
+    private var catgryList = mutableListOf<Catgry>()
     private var fCategoryList = mutableListOf<String>()
     private var tempVariantList = mutableListOf<Variant>()
-    private var tempAddonsList = mutableListOf<Addon>()
+    private var tempAddonsList = mutableListOf<Adn>()
     private var spinnerCategory = ""
     private var foodImage = ""
 
@@ -126,12 +125,12 @@ class FoodFragment : Fragment() {
     // getting category from database and setting them to Spinner
     private fun getCategoryLive() {
         MainActivity.database.categoryDao().getAllCategory().observe(viewLifecycleOwner, Observer {
-            categoryList.clear()
+            catgryList.clear()
             fCategoryList.clear()
-            categoryList = it.toMutableList()
+            catgryList = it.toMutableList()
 
-            for (i in categoryList.indices){
-                fCategoryList.add(categoryList[i].fCategory)
+            for (i in catgryList.indices){
+                fCategoryList.add(catgryList[i].fCat)
             }
 
             // setting Spinner ADAPTER
@@ -140,7 +139,7 @@ class FoodFragment : Fragment() {
 
             // setting BottomSheet Recycler
             if (btmBinding != null){
-                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), categoryList)
+                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), catgryList)
             }
         })
     }
@@ -159,7 +158,7 @@ class FoodFragment : Fragment() {
             btmSheet?.dismiss()
         }
 
-        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),categoryList)
+        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),catgryList)
     }
 
 
@@ -192,7 +191,7 @@ class FoodFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.categoryDao().insertCategory(Category(0,dbinding.itemEt.text.toString().trim()))
+                MainActivity.database.categoryDao().insertCategory(Catgry(0,dbinding.itemEt.text.toString().trim()))
             }
 
             Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
@@ -208,38 +207,38 @@ class FoodFragment : Fragment() {
 
     private fun variantPlusButtonDialog() {
         val dialog = Dialog(requireContext())
-        val dbinding = DialogInsertAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_insert_addon,null))
-        dialog.setContentView(dbinding.root)
+        val dBinding = DialogInsertAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_insert_addon,null))
+        dialog.setContentView(dBinding.root)
 
-        dbinding.addonHeaderTv.text = "Add Food Variant"
-        dbinding.addonNameEt.hint = "Enter Variant"
-        dbinding.addonPriceEt.hint = "Enter Price"
+        dBinding.addonHeaderTv.text = "Add Food Variant"
+        dBinding.addonNameEt.hint = "Enter Variant"
+        dBinding.addonPriceEt.hint = "Enter Price"
 
-        dbinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dbinding.root) }
+        dBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dBinding.root) }
 
-        dbinding.addonCrossBtn.setOnClickListener { dialog.dismiss() }
+        dBinding.addonCrossBtn.setOnClickListener { dialog.dismiss() }
 
-        dbinding.addonAddBtn.setOnClickListener {
-            if (dbinding.addonNameEt.text.toString().isEmpty()){
-                dbinding.addonNameEt.setError("Enter Variant")
-                dbinding.addonNameEt.requestFocus()
+        dBinding.addonAddBtn.setOnClickListener {
+            if (dBinding.addonNameEt.text.toString().isEmpty()){
+                dBinding.addonNameEt.setError("Enter Variant")
+                dBinding.addonNameEt.requestFocus()
                 return@setOnClickListener
             }
 
             for (i in tempVariantList.indices){
-                if (tempVariantList[i].variant == dbinding.addonNameEt.text.toString()){
+                if (tempVariantList[i].vari == dBinding.addonNameEt.text.toString()){
                     Toasty.error(requireContext(),"Already Available",Toast.LENGTH_SHORT,true).show()
                     return@setOnClickListener
                 }
             }
 
-            if (dbinding.addonPriceEt.text.toString().isEmpty()){
-                dbinding.addonPriceEt.setError("Enter Price")
-                dbinding.addonPriceEt.requestFocus()
+            if (dBinding.addonPriceEt.text.toString().isEmpty()){
+                dBinding.addonPriceEt.setError("Enter Price")
+                dBinding.addonPriceEt.requestFocus()
                 return@setOnClickListener
             }
 
-            tempVariantList.add(Variant(dbinding.addonNameEt.text.toString(), dbinding.addonPriceEt.text.toString().toDouble()))
+            tempVariantList.add(Variant(dBinding.addonNameEt.text.toString(), dBinding.addonPriceEt.text.toString().toDouble()))
 
             foodBinding.variantRecycler.adapter = TempVariantAdapter(requireContext(), tempVariantList)
 
@@ -255,34 +254,34 @@ class FoodFragment : Fragment() {
     // addonsButton click Handler
     private fun addAddonsButtonClick() {
         val dialog = Dialog(requireContext())
-        val dbinding = DialogInsertAddonBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_insert_addon,null))
-        dialog.setContentView(dbinding.root)
+        val dBinding = DialogInsertAddonBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_insert_addon,null))
+        dialog.setContentView(dBinding.root)
 
         var addonPrice: Double = 0.0
 
-        dbinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dbinding.root) }
+        dBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dBinding.root) }
 
-        dbinding.addonCrossBtn.setOnClickListener { dialog.dismiss() }
+        dBinding.addonCrossBtn.setOnClickListener { dialog.dismiss() }
 
-        dbinding.addonAddBtn.setOnClickListener {
-            if (dbinding.addonNameEt.text.toString().isEmpty()){
-                dbinding.addonNameEt.setError("Enter Addon")
-                dbinding.addonNameEt.requestFocus()
+        dBinding.addonAddBtn.setOnClickListener {
+            if (dBinding.addonNameEt.text.toString().isEmpty()){
+                dBinding.addonNameEt.setError("Enter Addon")
+                dBinding.addonNameEt.requestFocus()
                 return@setOnClickListener
             }
 
             for (i in tempAddonsList.indices){
-                if (tempAddonsList[i].adnName == dbinding.addonNameEt.text.toString()){
+                if (tempAddonsList[i].adnNm == dBinding.addonNameEt.text.toString()){
                     Toasty.error(requireContext(),"Already Available",Toast.LENGTH_SHORT,true).show()
                     return@setOnClickListener
                 }
             }
 
-            if (dbinding.addonPriceEt.text.toString().isNotEmpty()){
-                addonPrice = dbinding.addonPriceEt.text.toString().toDouble()
+            if (dBinding.addonPriceEt.text.toString().isNotEmpty()){
+                addonPrice = dBinding.addonPriceEt.text.toString().toDouble()
             }
 
-            tempAddonsList.add(Addon(dbinding.addonNameEt.text.toString(),addonPrice))
+            tempAddonsList.add(Adn(dBinding.addonNameEt.text.toString(),addonPrice))
 
             foodBinding.addonsRecycler.adapter = TempAddonsAdapter(requireContext(),tempAddonsList)
 
@@ -319,7 +318,7 @@ class FoodFragment : Fragment() {
         }
 
         for (i in foodList.indices){
-            if (foodList[i].fCategory == spinnerCategory && foodList[i].fTitle == foodBinding.foodTitleEt.text.toString()){
+            if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == foodBinding.foodTitleEt.text.toString()){
                 Toasty.error(requireContext(),"This Food already Available", Toast.LENGTH_SHORT, true).show()
                 return
             }
@@ -327,7 +326,7 @@ class FoodFragment : Fragment() {
 
         GlobalScope.launch {
             MainActivity.database.foodDao().insertFood(
-                Food(0, spinnerCategory, foodBinding.foodTitleEt.text.toString(), tempVariantList.toList(), foodImage, tempAddonsList.toList())
+                Food(0, spinnerCategory, foodBinding.foodTitleEt.text.toString(), tempVariantList, foodImage, tempAddonsList.toList())
             )
         }
         Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
@@ -346,15 +345,21 @@ class FoodFragment : Fragment() {
             val resultCode = result.resultCode
             val data = result.data
 
-            if (resultCode == Activity.RESULT_OK) {
-                //Image Uri will not be null for RESULT_OK
-                val fileUri = data?.data!!
-                foodImage = fileUri.toString()
-                foodBinding.addImageBtn.setImageURI(fileUri)
-            } else if (resultCode == ImagePicker.RESULT_ERROR) {
-                Toasty.error(requireContext(),ImagePicker.getError(data), Toast.LENGTH_SHORT, true).show()
-            } else {
-                Toasty.error(requireContext(),"Cancelled", Toast.LENGTH_SHORT, true).show()
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data!!
+                    foodImage = fileUri.toString()
+                    foodBinding.addImageBtn.setImageURI(fileUri)
+                }
+
+                ImagePicker.RESULT_ERROR -> {
+                    Toasty.error(requireContext(),ImagePicker.getError(data), Toast.LENGTH_SHORT, true).show()
+                }
+
+                else -> {
+                    Toasty.error(requireContext(),"Cancelled", Toast.LENGTH_SHORT, true).show()
+                }
             }
         }
 }

@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.MainActivity
-import com.bdtask.restoraposroomdbtab.Model.CustomerInfo
-import com.bdtask.restoraposroomdbtab.Model.OrderInfo
+import com.bdtask.restoraposroomdbtab.Model.CsInf
+import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.bdtask.restoraposroomdbtab.R
-import com.bdtask.restoraposroomdbtab.Room.Entity.Customer
-import com.bdtask.restoraposroomdbtab.Room.Entity.Company
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cmpny
 import com.bdtask.restoraposroomdbtab.Room.Entity.Table
 import com.bdtask.restoraposroomdbtab.Room.Entity.Waiter
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
@@ -31,20 +31,20 @@ import kotlinx.coroutines.launch
 class OrderInfoFragment : Fragment() {
     private lateinit var binding: FragmentOrderInfoBinding
     private var cusNameList = mutableListOf<String>()
-    private var cusInfoList = mutableListOf<CustomerInfo>()
-    private var deliveryCompanyList = mutableListOf<Company>()
+    private var cusInfoList = mutableListOf<CsInf>()
+    private var deliveryCmpnyList = mutableListOf<Cmpny>()
     private var deliveryCompanySpnrList = mutableListOf<String>()
     private var cusTypeList = arrayListOf<String>()
     private var waiterList = mutableListOf<Waiter>()
     private var waiterSpnrList = mutableListOf<String>()
     private var tableList = mutableListOf<Table>()
     private var tableSpnrList = mutableListOf<String>()
-    private lateinit var selectedCustomerInfo: CustomerInfo
+    private lateinit var selectedCsInf: CsInf
     private var selectedCustomerType = ""
     private var selectedWaiter = ""
     private var selectedTable = ""
     private var selectedDeliveryCompany = ""
-    private lateinit var orderInfo: OrderInfo
+    private lateinit var odrInf: OdrInf
     private var sharedPref = SharedPref
 
     override fun onCreateView(
@@ -58,8 +58,8 @@ class OrderInfoFragment : Fragment() {
         MainActivity.database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
             cusNameList.clear()
             for (i in it.indices){
-                cusNameList.add(it[i].name)
-                cusInfoList.add(CustomerInfo(it[i].name, it[i].address, it[i].mobile))
+                cusNameList.add(it[i].nm)
+                cusInfoList.add(CsInf(it[i].nm, it[i].adrs, it[i].mbl))
             }
             binding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
         })
@@ -70,8 +70,8 @@ class OrderInfoFragment : Fragment() {
                 val selectedItem =  binding.cusNameSpnr.selectedItem.toString()
 
                 for (i in cusInfoList.indices){
-                    if (cusInfoList[i].cusName == selectedItem && cusNameList[spnrPos] == cusInfoList[spnrPos].cusName){
-                        selectedCustomerInfo = CustomerInfo(cusInfoList[i].cusName, cusInfoList[i].cusAddress, cusInfoList[i].mobile)
+                    if (cusInfoList[i].csNm == selectedItem && cusNameList[spnrPos] == cusInfoList[spnrPos].csNm){
+                        selectedCsInf = CsInf(cusInfoList[i].csNm, cusInfoList[i].csAdrs, cusInfoList[i].mbl)
                     }
                 }
             }
@@ -113,7 +113,7 @@ class OrderInfoFragment : Fragment() {
             waiterSpnrList.clear()
             waiterList = it.toMutableList()
             for (i in waiterList.indices){
-                waiterSpnrList.add(waiterList[i].wName)
+                waiterSpnrList.add(waiterList[i].wNm)
             }
             binding.waiterSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList)
         })
@@ -133,7 +133,7 @@ class OrderInfoFragment : Fragment() {
             tableList = it.toMutableList()
             tableSpnrList.clear()
             for (i in tableList.indices){
-                tableSpnrList.add(tableList[i].tName)
+                tableSpnrList.add(tableList[i].tNm)
             }
             binding.tableSpnr.adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList)
         })
@@ -148,11 +148,11 @@ class OrderInfoFragment : Fragment() {
 
         //getting delivery Company Live and setting to spinner live
         MainActivity.database.deliveryCompanyDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
-            deliveryCompanyList.clear()
-            deliveryCompanyList.clear()
-            deliveryCompanyList = it.toMutableList()
-            for (i in deliveryCompanyList.indices){
-                deliveryCompanySpnrList.add(deliveryCompanyList[i].companyName)
+            deliveryCmpnyList.clear()
+            deliveryCmpnyList.clear()
+            deliveryCmpnyList = it.toMutableList()
+            for (i in deliveryCmpnyList.indices){
+                deliveryCompanySpnrList.add(deliveryCmpnyList[i].cNm)
             }
             binding.deliveryCompanySpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList)
         })
@@ -216,8 +216,8 @@ class OrderInfoFragment : Fragment() {
                 return
             }
 
-            orderInfo = OrderInfo(
-                    selectedCustomerInfo,
+            odrInf = OdrInf(
+                    selectedCsInf,
                     selectedCustomerType,
                     selectedWaiter,
                     selectedTable,
@@ -230,8 +230,8 @@ class OrderInfoFragment : Fragment() {
                 return
             }
 
-            orderInfo = OrderInfo(
-                    selectedCustomerInfo,
+            odrInf = OdrInf(
+                    selectedCsInf,
                     selectedCustomerType,
                     selectedWaiter,
                     "",
@@ -249,8 +249,8 @@ class OrderInfoFragment : Fragment() {
                 binding.orderIdEt.requestFocus()
                 return
             }
-            orderInfo = OrderInfo(
-                    selectedCustomerInfo,
+            odrInf = OdrInf(
+                    selectedCsInf,
                     selectedCustomerType,
                     "",
                     "",
@@ -260,7 +260,7 @@ class OrderInfoFragment : Fragment() {
             binding.orderIdEt.setText("")
         }
 
-        sharedPref.writeSharedOrderInfoList(orderInfo)
+        sharedPref.writeSharedOrderInfoList(odrInf)
 
         findNavController().popBackStack()
     }
@@ -366,7 +366,7 @@ class OrderInfoFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.deliveryCompanyDao().insertDeliveryCompany(Company(0,ctaBinding.itemEt.text.toString()))
+                MainActivity.database.deliveryCompanyDao().insertDeliveryCompany(Cmpny(0,ctaBinding.itemEt.text.toString()))
             }
 
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
@@ -426,7 +426,7 @@ class OrderInfoFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.customerDao().insertCustomer(Customer(0,ancBinding.cusNameEt.text.toString(),ancBinding.cusEmailEt.text.toString(),
+                MainActivity.database.customerDao().insertCustomer(Cstmr(0,ancBinding.cusNameEt.text.toString(),ancBinding.cusEmailEt.text.toString(),
                     ancBinding.cusMobileEt.text.toString(),ancBinding.cusAddEt.text.toString(),ancBinding.cusNameEt.text.toString()))
             }
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()

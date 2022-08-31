@@ -96,7 +96,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
                     MainActivity.database.orderDao().deleteOnGoing(Order(ongList[ongPos].id,0,0,0,
-                        ongList[ongPos].date, ongList[ongPos].token,ongList[ongPos].orderInfo,ongList[ongPos].cartList))
+                        ongList[ongPos].dat, ongList[ongPos].tkn,0.0,0.0,ongList[ongPos].odrInf,ongList[ongPos].cart))
                 }
                 Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
@@ -104,7 +104,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                     val pos = clickedList[i]
                     GlobalScope.launch {
                         MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,0,0,0,
-                            ongList[pos].date, ongList[pos].token,ongList[pos].orderInfo,ongList[pos].cartList))
+                            ongList[pos].dat, ongList[pos].tkn,0.0,0.0,ongList[pos].odrInf,ongList[pos].cart))
                     }
                 }
                 Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()
@@ -123,7 +123,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels
             val win = dialog.window
-            win!!.setLayout((19 * width)/20,WindowManager.LayoutParams.MATCH_PARENT)
+            win!!.setLayout((18 * width)/19,WindowManager.LayoutParams.MATCH_PARENT)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
@@ -142,8 +142,8 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
         //////////////////////////
         if (selectedItem == 1) {
-            for (i in ongList[position].cartList.indices) {
-                foodCount += ongList[position].cartList[i].foodQuantity
+            for (i in ongList[position].cart.indices) {
+                foodCount += ongList[position].cart[i].fQnty
             }
         } else {
             ongBinding.splitBtn.visibility = View.GONE

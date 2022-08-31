@@ -6,7 +6,7 @@ import android.util.DisplayMetrics
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
-import com.bdtask.restoraposroomdbtab.Model.FoodCart
+import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
@@ -14,7 +14,7 @@ import com.bdtask.restoraposroomdbtab.databinding.DialogNoteBinding
 import com.bdtask.restoraposroomdbtab.databinding.VhCartItemBinding
 
 class CartAdapter(private val context: Context,
-                  private var cartList: MutableList<FoodCart>,
+                  private var cartList: MutableList<Cart>,
                   private val cartClickListener: CartClickListener): RecyclerView.Adapter<CartAdapter.CartVH>() {
 
     var grandTotal = 0.0
@@ -28,17 +28,17 @@ class CartAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: CartVH, position: Int) {
-        holder.binding.foodItem.text = cartList[position].foodTitle
-        holder.binding.foodVariant.text = cartList[position].foodVariant
-        holder.binding.foodQuantity.text = cartList[position].foodQuantity.toString()
-        holder.binding.totalUnitPrice.text = cartList[position].totalUnitPrice.toString()
+        holder.binding.foodItem.text = cartList[position].title
+        holder.binding.foodVariant.text = cartList[position].vari
+        holder.binding.foodQuantity.text = cartList[position].fQnty.toString()
+        holder.binding.totalUnitPrice.text = cartList[position].tUPrc.toString()
 
-        if (cartList[position].note.isNotEmpty()){
+        if (cartList[position].nt.isNotEmpty()){
             holder.binding.noteTv.visibility = View.VISIBLE
         } else {
             holder.binding.noteTv.visibility = View.GONE
         }
-        holder.binding.noteTv.text = cartList[position].note
+        holder.binding.noteTv.text = cartList[position].nt
 
         holder.binding.plusBtnC.setOnClickListener {
             var currentTotalUnitPrice = holder.binding.totalUnitPrice.text.toString().toDouble()
@@ -48,14 +48,14 @@ class CartAdapter(private val context: Context,
                 currentQuantity += 1
                 holder.binding.foodQuantity.text = currentQuantity.toString()
 
-                currentTotalUnitPrice += cartList[position].variantPrice
+                currentTotalUnitPrice += cartList[position].varPrc
                 holder.binding.totalUnitPrice.text = currentTotalUnitPrice.toString()
 
-                cartList[position].foodQuantity = currentQuantity
-                cartList[position].totalUnitPrice = currentTotalUnitPrice
+                cartList[position].fQnty = currentQuantity
+                cartList[position].tUPrc = currentTotalUnitPrice
 
                 SharedPref.init(context)
-                SharedPref.writeSharedCartList(cartList.toList())
+                SharedPref.writeSharedCartList(cartList)
 
                 cartClickListener.onCartReload()
             }
@@ -69,14 +69,14 @@ class CartAdapter(private val context: Context,
                 currentQuantity -= 1
                 holder.binding.foodQuantity.text = currentQuantity.toString()
 
-                currentTotalUnitPrice -= cartList[position].variantPrice
+                currentTotalUnitPrice -= cartList[position].varPrc
                 holder.binding.totalUnitPrice.text = currentTotalUnitPrice.toString()
 
-                cartList[position].foodQuantity = currentQuantity
-                cartList[position].totalUnitPrice = currentTotalUnitPrice
+                cartList[position].fQnty = currentQuantity
+                cartList[position].tUPrc = currentTotalUnitPrice
 
                 SharedPref.init(context)
-                SharedPref.writeSharedCartList(cartList.toList())
+                SharedPref.writeSharedCartList(cartList)
 
                 cartClickListener.onCartReload()
             }
@@ -85,7 +85,7 @@ class CartAdapter(private val context: Context,
         holder.binding.deleteBtnC.setOnClickListener {
             cartList.removeAt(position)
             SharedPref.init(context)
-            SharedPref.writeSharedCartList(cartList.toList())
+            SharedPref.writeSharedCartList(cartList)
 
             cartClickListener.onCartReload()
         }
@@ -96,9 +96,9 @@ class CartAdapter(private val context: Context,
             val ndBinding = DialogNoteBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_note,null))
             dialog.setContentView(ndBinding.root)
 
-            if ( cartList[position].note.isNotEmpty()){
+            if ( cartList[position].nt.isNotEmpty()){
                 ndBinding.addNoteBtn.setText("Update Note")
-                ndBinding.noteEt.setText(cartList[position].note)
+                ndBinding.noteEt.setText(cartList[position].nt)
             }
 
             ndBinding.root.setOnClickListener { Util.hideSoftKeyBoard(context, ndBinding.root) }
@@ -109,13 +109,13 @@ class CartAdapter(private val context: Context,
                if (ndBinding.noteEt.text.toString().isEmpty()){
                     /*ndBinding.noteEt.setError("Empty Note Forbidden")
                     ndBinding.noteEt.requestFocus()*/
-                   cartList[position].note = ""
+                   cartList[position].nt = ""
                 } else {
-                   cartList[position].note = ndBinding.noteEt.text.toString()
+                   cartList[position].nt = ndBinding.noteEt.text.toString()
                 }
 
                 SharedPref.init(context)
-                SharedPref.writeSharedCartList(cartList.toList())
+                SharedPref.writeSharedCartList(cartList)
 
                 notifyDataSetChanged()
 

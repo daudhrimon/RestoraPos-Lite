@@ -31,7 +31,7 @@ class OngoingAdapter(
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
         try {
-            holder.binding.cusName.text = "Customer : " + ongList[position].orderInfo.customerInfo.cusName
+            holder.binding.cusName.text = "Customer : " + ongList[position].odrInf.csInf.csNm
         } catch (e: Exception){/**/}
 
         try {
@@ -39,20 +39,20 @@ class OngoingAdapter(
         } catch (e: Exception){/**/}
 
         try {
-            if (ongList[position].orderInfo.waiter.isNotEmpty()) {
+            if (ongList[position].odrInf.wtr.isNotEmpty()) {
                 holder.binding.waiterName.visibility = View.VISIBLE
-                holder.binding.waiterName.text = "Waiter : " + ongList[position].orderInfo.waiter
+                holder.binding.waiterName.text = "Waiter : " + ongList[position].odrInf.wtr
             } else {
                 holder.binding.waiterName.visibility = View.INVISIBLE
             }
         } catch (e: Exception){/**/}
 
         try {
-            if (ongList[position].orderInfo.table.isNotEmpty()) {
-                holder.binding.tableName.text = "Table : " + ongList[position].orderInfo.table
+            if (ongList[position].odrInf.tbl.isNotEmpty()) {
+                holder.binding.tableName.text = "Table : " + ongList[position].odrInf.tbl
             } else {
-                if (ongList[position].orderInfo.customerType.isNotEmpty()){
-                    holder.binding.tableName.text = ongList[position].orderInfo.customerType
+                if (ongList[position].odrInf.csTyp.isNotEmpty()){
+                    holder.binding.tableName.text = ongList[position].odrInf.csTyp
                 }
             }
         } catch (e: Exception){/**/}

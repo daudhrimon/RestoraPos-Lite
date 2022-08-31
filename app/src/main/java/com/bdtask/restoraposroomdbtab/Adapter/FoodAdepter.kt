@@ -24,16 +24,16 @@ class FoodAdepter(private val context: Context,
 
     override fun onBindViewHolder(holder: FoodVHH, position: Int) {
 
-        holder.binding.foodImage.setImageURI(foodList[position].fImage.toUri())
+        holder.binding.foodImage.setImageURI(foodList[position].fImg.toUri())
 
         holder.binding.foodTile.text = foodList[position].fTitle
 
-        holder.binding.foodVariant.text = foodList[position].fVariant[0].variant
+        holder.binding.foodVariant.text = foodList[position].fVar[0].vari
 
-        holder.binding.foodPrice.text = foodList[position].fVariant[0].fPrice.toString()
+        holder.binding.foodPrice.text = foodList[position].fVar[0].fPrc.toString()
 
         holder.itemView.setOnClickListener {
-            foodClickListener.onFoodClick( foodList[position].id, foodList[position].fTitle, foodList[position].fVariant, foodList[position].fAddons )
+            foodClickListener.onFoodClick( foodList[position].id, foodList[position].fTitle, foodList[position].fVar, foodList[position].fAdns )
         }
     }
 

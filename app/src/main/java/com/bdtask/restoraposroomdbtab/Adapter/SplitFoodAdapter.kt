@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.SplitFoodClickListener
-import com.bdtask.restoraposroomdbtab.Model.FoodCart
+import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitItemBinding
 
 class SplitFoodAdapter(private val context: Context,
-                       private val cartList: List<FoodCart>,
+                       private val cartList: List<Cart>,
                        private val splitFoodClickListener: SplitFoodClickListener): RecyclerView.Adapter<SplitFoodAdapter.VHSplitFood>() {
 
     inner class VHSplitFood(binding: VhSplitItemBinding): RecyclerView.ViewHolder(binding.root) {
@@ -22,15 +22,17 @@ class SplitFoodAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: VHSplitFood, position: Int) {
-        holder.binding.spiTitle.text = cartList[position].foodTitle
-        holder.binding.spiQnty.text = cartList[position].foodQuantity.toString()
+        holder.binding.spiTitle.text = cartList[position].title
+        holder.binding.spiQnty.text = cartList[position].fQnty.toString()
 
         holder.itemView.setOnClickListener {
-            if (cartList[position].foodQuantity > 0){
-                var quantity = cartList[position].foodQuantity
+            if (cartList[position].fQnty > 0){
+                var quantity = cartList[position].fQnty
                 quantity -= 1
-                holder.binding.spiQnty.text = quantity.toString()
+                cartList[position].fQnty = quantity
+                //holder.binding.spiQnty.text = quantity.toString()
                 splitFoodClickListener.onSplitFoodClick(position)
+                notifyDataSetChanged()
             }
         }
     }

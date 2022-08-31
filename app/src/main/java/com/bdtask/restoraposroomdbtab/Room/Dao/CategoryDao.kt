@@ -2,23 +2,23 @@ package com.bdtask.restoraposroomdbtab.Room.Dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.bdtask.restoraposroomdbtab.Room.Entity.Category
+import com.bdtask.restoraposroomdbtab.Room.Entity.Catgry
 
 @Dao
 interface CategoryDao {
 
     @Insert
-    suspend fun insertCategory(category: Category)
+    suspend fun insertCategory(catgry: Catgry)
 
     @Query("SELECT * FROM category_tbl")
-    fun getAllCategory(): LiveData<List<Category>>
+    fun getAllCategory(): LiveData<List<Catgry>>
 
     @Update
-    suspend fun updateCategory(category: Category)
+    suspend fun updateCategory(catgry: Catgry)
 
     @Delete
-    suspend fun deleteCategory(category: Category)
+    suspend fun deleteCategory(catgry: Catgry)
 
-    @Query("SELECT fCategory FROM category_tbl")
+    @Query("SELECT fCat FROM category_tbl")
     fun getCategories(): LiveData<List<String>>
 }

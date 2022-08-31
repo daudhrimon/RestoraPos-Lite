@@ -57,8 +57,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     private var foodQuantity = 1
     private var foodPrice = 0.0
     private var totalUnitPrice = 0.0
-    private var homeAddonList = mutableListOf<HomeAddon>()
-    private var cartList = mutableListOf<FoodCart>()
+    private var adnsList = mutableListOf<Adns>()
+    private var cartList = mutableListOf<Cart>()
     private var sharedPref = SharedPref
     private lateinit var printHelper: SunmiPrintHelper
     private var orderId: Long? = null
@@ -149,7 +149,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             if (sharedPref.readSharedCartList() == null || sharedPref.readSharedCartList()!!.isEmpty()){
                 Toasty.info(requireContext(), "Nothing To Delete !", Toast.LENGTH_SHORT, true).show()
             } else {
-                sharedPref.writeSharedCartList(emptyList<FoodCart>())
+                sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
                 setCartRecyclerAdapter()
                 Toasty.success(requireContext(),"Delete Successful",Toast.LENGTH_SHORT,true).show()
             }
@@ -189,19 +189,19 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
     // place order ClickHandler
     private fun placeOrderClickHandler() {
-        var tempCartList = mutableListOf<FoodCart>()
-        var orderInfo = OrderInfo(CustomerInfo("","",""),"","","","","")
+        var tempCartList = mutableListOf<Cart>()
+        var odrInf = OdrInf(CsInf("","",""),"","","","","")
         if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
         }
 
         if (sharedPref.readSharedOrderInfoList() != null){
-            orderInfo = sharedPref.readSharedOrderInfoList()!!
+            odrInf = sharedPref.readSharedOrderInfoList()!!
         }
 
         if (tempCartList.isNotEmpty()) {
-            if (orderInfo.customerInfo.cusName.isNotEmpty() &&
-                    orderInfo.customerType.isNotEmpty()){
+            if (odrInf.csInf.csNm.isNotEmpty() &&
+                    odrInf.csTyp.isNotEmpty()){
 
                 // token to SharedPref
                 var lToken: Long = 1
@@ -220,7 +220,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 try {
                     Log.wtf("CART",tempCartList.toString())
                     GlobalScope.launch {
-                        orderId = MainActivity.database.orderDao().insertOrder(Order(0,0,0,0,Util.getDate().toString(),token,orderInfo,tempCartList.toList()))
+                        orderId = MainActivity.database.orderDao().insertOrder(Order(0,0,0,0,
+                            Util.getDate().toString(),token,0.0,0.0,odrInf,tempCartList))
                     }
                     Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
                 } catch (e:Exception){
@@ -251,7 +252,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         printDialog.cancelText = "No"
 
         printDialog.setCancelClickListener {
-            sharedPref.writeSharedCartList(emptyList<FoodCart>())
+            sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
             it.dismissWithAnimation()
             setCartRecyclerAdapter()
         }.setConfirmClickListener {
@@ -264,14 +265,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
     // print Token
     private fun printToken(printDialog: SweetAlertDialog) {
-        var tempCartList = mutableListOf<FoodCart>()
-        var orderInfo = OrderInfo(CustomerInfo("","",""),"","","","","")
+        var tempCartList = mutableListOf<Cart>()
+        var odrInf = OdrInf(CsInf("","",""),"","","","","")
 
         if (sharedPref.readSharedCartList() != null){
             tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
         }
         if (sharedPref.readSharedOrderInfoList() != null){
-            orderInfo = sharedPref.readSharedOrderInfoList()!!
+            odrInf = sharedPref.readSharedOrderInfoList()!!
         }
 
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
@@ -287,8 +288,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
             sunmiPrinterService.printText("\n", null)
 
-            txt[0] = orderInfo.customerInfo.cusName
-            txt[1] = orderInfo.waiter
+            txt[0] = odrInf.csInf.csNm
+            txt[1] = odrInf.wtr
             sunmiPrinterService.printColumnsString(
                 txt,
                 width, align, null
@@ -309,42 +310,42 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 sunmiPrinterService.sendRAWData(boldOn(), null)
 
                 sunmiPrinterService!!.printTextWithFont(
-                    tempCartList[i].foodTitle + "\n",
+                    tempCartList[i].title + "\n",
                     null,
                     28f,
                     null
                 )
                 sunmiPrinterService.setFontSize(26f,null)
                 sunmiPrinterService.sendRAWData(boldOff(), null)
-                val items = arrayOf("x"+tempCartList[i].foodQuantity,tempCartList[i].foodVariant )
+                val items = arrayOf("x"+tempCartList[i].fQnty,tempCartList[i].vari )
                 sunmiPrinterService.printColumnsString(
                     items,
                     width, align, null
                 )
 
-                if (tempCartList[i].addonList.size > 0) {
-                    val addonsList = tempCartList[i].addonList
+                if (tempCartList[i].adns.size > 0) {
+                    val addonsList = tempCartList[i].adns
 
                     for (k in addonsList.indices) {
-                        val addonItem = arrayOf(addonsList[k].adnName,""+addonsList[k].adnQuantity)
+                        val addonItem = arrayOf(addonsList[k].adnNm,""+addonsList[k].adnQnty)
                         sunmiPrinterService.printColumnsString(
                             addonItem,
                             width, align, null)
                     }
                 }
 
-                if (tempCartList[i].note.isNotEmpty()){
+                if (tempCartList[i].nt.isNotEmpty()){
                     sunmiPrinterService.printTextWithFont(
-                        tempCartList[i].note+"\n" , null, 28f, null
+                        tempCartList[i].nt+"\n" , null, 28f, null
                     )
                 }
 
             }
             sunmiPrinterService.printTextWithFont("\n", null, 28f, null)
             sunmiPrinterService.sendRAWData(boldOn(), null)
-            if (orderInfo.table.isNotEmpty()) {
+            if (odrInf.tbl.isNotEmpty()) {
                 items[0] = "Order:$orderId"
-                items[1] = "Table:" + orderInfo.table
+                items[1] = "Table:" + odrInf.tbl
                 sunmiPrinterService.printColumnsString(
                     items,
                     width, align, null
@@ -377,13 +378,13 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             try {
                 printer!!.printFormattedTextAndCut(
                     "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
-                            + "[C]" + orderInfo.customerInfo.cusName
+                            + "[C]" + odrInf.csInf.csNm
                             + "[L]\n" +
                             "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
                             "[L]\n" +
                             tokenLoopData(tempCartList) +
                             "[L]\n" +
-                            "[L]Order No: " + orderId + "[R] " + orderInfo.table + "\n"
+                            "[L]Order No: " + orderId + "[R] " + odrInf.tbl + "\n"
                 )
             } catch (e: EscPosConnectionException) {
                 e.printStackTrace()
@@ -395,7 +396,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 e.printStackTrace()
             }
         }
-        sharedPref.writeSharedCartList(emptyList())
+        sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
         printDialog.dismissWithAnimation()
         orderId = null
         setCartRecyclerAdapter()
@@ -403,23 +404,23 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
 
     // token loop Data
-    private fun tokenLoopData(list: MutableList<FoodCart>): String {
+    private fun tokenLoopData(list: MutableList<Cart>): String {
         var items = ""
         var adOnPrice = 0.0
         for (i in list.indices) {
-            items = "" + items + "[L]<b>" + list[i].foodTitle + "</b>\n" +
-                    "[L]"+"x" + list[i].foodQuantity + "[R]<b>" +  list[i].foodVariant +  "</b>\n"
+            items = "" + items + "[L]<b>" + list[i].title + "</b>\n" +
+                    "[L]"+"x" + list[i].fQnty + "[R]<b>" +  list[i].vari +  "</b>\n"
 
-            if (list[i].addonList.size > 0) {
-                val addonsList = list[i].addonList
+            if (list[i].adns.size > 0) {
+                val addonsList = list[i].adns
                 for (k in addonsList.indices) {
-                    adOnPrice = addonsList[k].adnPrice.toDouble() * addonsList[k].adnQuantity
-                    items = "" + items + "" + "[L]" + addonsList[k].adnName + "x" + addonsList[k].adnQuantity +"\n"
+                    adOnPrice = addonsList[k].adnPrc.toDouble() * addonsList[k].adnQnty
+                    items = "" + items + "" + "[L]" + addonsList[k].adnNm + "x" + addonsList[k].adnQnty +"\n"
                 }
             }
 
-            if  (list[i].note != ""){
-                items = items+ "[L]<b>" + list[i].foodTitle + "</b>\n"
+            if  (list[i].nt != ""){
+                items = items+ "[L]<b>" + list[i].title + "</b>\n"
             }
         }
         return items
@@ -428,7 +429,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
 
     // show alert Dialog BasedOn Food Item Click
-    override fun onFoodClick( foodId: Long?, foodTitle: String?, variantlist: List<Variant>, addonList: List<Addon> ) {
+    override fun onFoodClick(foodId: Long?, foodTitle: String?, variantlist: List<Variant>, adnList: List<Adn> ) {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val foodDialogBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
@@ -439,9 +440,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         foodQuantity = 1
         foodPrice = 0.0
         totalUnitPrice = 0.0
-        homeAddonList.clear()
-        var tempCartList = mutableListOf<FoodCart>()
-        val newAddonList = mutableListOf<HomeAddon>()
+        adnsList.clear()
+        var tempCartList = mutableListOf<Cart>()
+        val newAddonList = mutableListOf<Adns>()
 
 
 
@@ -449,7 +450,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
         variantNameList.clear()
         for (i in variantlist.indices){
-            variantNameList.add(variantlist[i].variant)
+            variantNameList.add(variantlist[i].vari)
         }
 
         foodDialogBinding.dcVariantSpinner.adapter = context?.let { ArrayAdapter(it, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, variantNameList) }
@@ -460,9 +461,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 foodVariant = foodDialogBinding.dcVariantSpinner.selectedItem.toString()
 
                 for (i in variantlist.indices){
-                    if (variantlist[i].variant == foodVariant){
+                    if (variantlist[i].vari == foodVariant){
 
-                        variantPrice = variantlist[i].fPrice
+                        variantPrice = variantlist[i].fPrc
 
                         foodQuantity = 1
                         foodDialogBinding.dcQuantity.text = foodQuantity.toString()
@@ -471,7 +472,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
                         totalUnitPrice = variantPrice
                         foodDialogBinding.dcFoodPrice.text = totalUnitPrice.toString()
-                        homeAddonList.clear()
+                        adnsList.clear()
                         foodDialogBinding.addonsRecycler.adapter?.notifyDataSetChanged()
                     }
                 }
@@ -479,9 +480,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
-        if (addonList.isNotEmpty()){
+        if (adnList.isNotEmpty()){
             foodDialogBinding.addonsRecycler.visibility = View.VISIBLE
-            foodDialogBinding.addonsRecycler.adapter = AddonsAdapter(requireContext(), addonList, foodDialogBinding, homeAddonList)
+            foodDialogBinding.addonsRecycler.adapter = AddonsAdapter(requireContext(), adnList, foodDialogBinding, adnsList)
         }
 
         foodDialogBinding.dcCrossBtn.setOnClickListener {
@@ -531,28 +532,28 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             if (sharedPref.readSharedCartList() != null){
                 tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
             }
-            if (homeAddonList.size > 0){
+            if (adnsList.size > 0){
                 addonChecker = 1
             }
             if (tempCartList.size > 0) {
                 for (i in tempCartList.indices) {
-                    if (tempCartList[i].foodTitle == foodTitle &&
-                        tempCartList[i].foodVariant == foodVariant) {
+                    if (tempCartList[i].title == foodTitle &&
+                        tempCartList[i].vari == foodVariant) {
                         if (addonChecker == 1) {
-                            if (Gson().toJson(tempCartList[i].addonList).contains(Gson().toJson(homeAddonList))) {
-                                for (h in homeAddonList.indices) {
-                                    addonsPrice += homeAddonList[h].adnPrice
+                            if (Gson().toJson(tempCartList[i].adns).contains(Gson().toJson(adnsList))) {
+                                for (h in adnsList.indices) {
+                                    addonsPrice += adnsList[h].adnPrc
                                 }
-                                tempCartList[i].foodQuantity += foodQuantity
-                                tempCartList[i].foodPrice += foodPrice
-                                tempCartList[i].totalUnitPrice += totalUnitPrice
-                                tempCartList[i].addonsPrice += addonsPrice
+                                tempCartList[i].fQnty += foodQuantity
+                                tempCartList[i].fPrc += foodPrice
+                                tempCartList[i].tUPrc += totalUnitPrice
+                                tempCartList[i].adnPrc += addonsPrice
                                 //marge Addons by Name
-                                val addonListByName = homeAddonList.associateBy { it.adnName}
-                                tempCartList[i].addonList.forEach { tempAdn ->
-                                    addonListByName[tempAdn.adnName]?.let { homeAdn ->
-                                        tempAdn.adnPrice += homeAdn.adnPrice
-                                        tempAdn.adnQuantity += homeAdn.adnQuantity
+                                val addonListByName = adnsList.associateBy { it.adnNm}
+                                tempCartList[i].adns.forEach { tempAdn ->
+                                    addonListByName[tempAdn.adnNm]?.let { homeAdn ->
+                                        tempAdn.adnPrc += homeAdn.adnPrc
+                                        tempAdn.adnQnty += homeAdn.adnQnty
                                     }
                                 }
                                 haveToInsert = false
@@ -560,9 +561,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                                 haveToInsert = true
                             }
                         } else {
-                            tempCartList[i].foodQuantity += foodQuantity
-                            tempCartList[i].foodPrice += foodPrice
-                            tempCartList[i].totalUnitPrice += totalUnitPrice
+                            tempCartList[i].fQnty += foodQuantity
+                            tempCartList[i].fPrc += foodPrice
+                            tempCartList[i].tUPrc += totalUnitPrice
                             haveToInsert = false
                         }
                         break
@@ -572,9 +573,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 }
             }
             if (haveToInsert){
-                tempCartList.add(FoodCart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, homeAddonList,""))
+                tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, adnsList,""))
             }
-            sharedPref.writeSharedCartList(tempCartList.toList())
+            sharedPref.writeSharedCartList(tempCartList)
             setCartRecyclerAdapter()
             dialog.dismiss()
         }
@@ -593,13 +594,13 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
             }
             //val tempAddonList = mutableListOf<String>()
-            if (homeAddonList.size > 0){
-                for (i in homeAddonList.indices){
-                    addonsPrice += homeAddonList[i].adnPrice
+            if (adnsList.size > 0){
+                for (i in adnsList.indices){
+                    addonsPrice += adnsList[i].adnPrc
                 }
             }
-            tempCartList.add(FoodCart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, homeAddonList,""))
-            sharedPref.writeSharedCartList(tempCartList.toList())
+            tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, adnsList,""))
+            sharedPref.writeSharedCartList(tempCartList)
             setCartRecyclerAdapter()
         }
 
@@ -625,7 +626,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
                 grandTotal = 0.0
                 for (i in cartList.indices){
-                    grandTotal += cartList[i].totalUnitPrice
+                    grandTotal += cartList[i].tUPrc
                 }
                 mainBinding.grandTotalTv.text = grandTotal.toString()
 

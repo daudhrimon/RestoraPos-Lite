@@ -2,8 +2,8 @@ package com.bdtask.restoraposroomdbtab.Util
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.bdtask.restoraposroomdbtab.Model.FoodCart
-import com.bdtask.restoraposroomdbtab.Model.OrderInfo
+import com.bdtask.restoraposroomdbtab.Model.Cart
+import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -19,25 +19,25 @@ object SharedPref {
                 context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
     }
 
-    fun writeSharedCartList(cartList: List<FoodCart>) {
+    fun writeSharedCartList(cartList: MutableList<Cart>) {
         val prefsEditor = mSharedPref!!.edit()
         prefsEditor.putString("cartList", Gson().toJson(cartList))
         prefsEditor.apply()
     }
 
-    fun readSharedCartList() : List<FoodCart>? {
-        val type = object : TypeToken<List<FoodCart?>?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("cartList", emptyList<FoodCart>().toString()), type)
+    fun readSharedCartList() : MutableList<Cart>? {
+        val type = object : TypeToken<MutableList<Cart?>?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("cartList", emptyList<Cart>().toString()), type)
     }
 
-    fun writeSharedOrderInfoList(orderInfo: OrderInfo) {
+    fun writeSharedOrderInfoList(odrInf: OdrInf) {
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("orderInfo", Gson().toJson(orderInfo))
+        prefsEditor.putString("orderInfo", Gson().toJson(odrInf))
         prefsEditor.apply()
     }
 
-    fun readSharedOrderInfoList(): OrderInfo? {
-        val type = object : TypeToken<OrderInfo?>() {}.type
+    fun readSharedOrderInfoList(): OdrInf? {
+        val type = object : TypeToken<OdrInf?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("orderInfo", ""), type)
     }
 
@@ -51,45 +51,4 @@ object SharedPref {
     fun getSharedToken(): Long?{
         return mSharedPref!!.getLong("token",1)
     }
-
-    /*fun writeSharedCustomerInfo(customerInfo: MutableList<CustomerInfo>) {
-        val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("customerInfo", Gson().toJson(customerInfo))
-        prefsEditor.apply()
-    }
-
-    fun readSharedCustomerInfo(): MutableList<CustomerInfo>?{
-        val type = object : TypeToken<MutableList<CustomerInfo?>?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("customerInfo", ""), type)
-    }
-
-    fun writeSharedCustomerType(customerType: String){
-        val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("customerType", customerType)
-        prefsEditor.apply()
-    }
-
-    fun readSharedCustomerType(): String?{
-        return mSharedPref!!.getString("customerType", "")
-    }
-
-    fun writeSharedWaiter(waiter: String){
-        val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("waiter", waiter)
-        prefsEditor.apply()
-    }
-
-    fun readSharedWaiter(): String?{
-        return mSharedPref!!.getString("waiter", "")
-    }
-
-    fun writeSharedTable(table: String){
-        val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("table", table)
-        prefsEditor.apply()
-    }
-
-    fun readSharedTable(): String?{
-        return mSharedPref!!.getString("table", "")
-    }*/
 }

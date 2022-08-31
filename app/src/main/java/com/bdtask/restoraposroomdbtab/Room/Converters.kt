@@ -7,57 +7,57 @@ import com.google.gson.reflect.TypeToken
 
 class Converters {
     @TypeConverter
-    fun addonListToJson(list: List<Addon>): String?{
+    fun addonListToJson(list: MutableList<Adn>): String?{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun jsonToAddonList(json: String): List<Addon>?{
-        val type = object : TypeToken<List<Addon>>(){}.type
+    fun jsonToAddonList(json: String): MutableList<Adn>?{
+        val type = object : TypeToken<MutableList<Adn>>(){}.type
         return Gson().fromJson(json, type)
     }
 
     @TypeConverter
-    fun variantListToJson(list: List<Variant>): String?{
+    fun variantListToJson(list: MutableList<Variant>): String?{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun jsonToVariantList(json: String): List<Variant>?{
-        val type = object : TypeToken<List<Variant?>?>(){}.type
+    fun jsonToVariantList(json: String): MutableList<Variant>?{
+        val type = object : TypeToken<MutableList<Variant?>?>(){}.type
         return Gson().fromJson(json, type)
     }
 
     @TypeConverter
-    fun foodCartListToJson(list: List<FoodCart>): String?{
+    fun foodCartListToJson(list: MutableList<Cart>): String?{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun jsonToFoodCartList(json: String): List<FoodCart>?{
-        val type = object : TypeToken<List<FoodCart?>?>() {}.type
+    fun jsonToFoodCartList(json: String): MutableList<Cart>?{
+        val type = object : TypeToken<MutableList<Cart?>?>() {}.type
         return Gson().fromJson(json, type)
     }
 
     @TypeConverter
-    fun orderInfoToJson(model: OrderInfo): String?{
+    fun orderInfoToJson(model: OdrInf): String?{
         return Gson().toJson(model)
     }
 
     @TypeConverter
-    fun jsonToOrderInfo(json: String): OrderInfo?{
-        val type = object : TypeToken<OrderInfo?>() {}.type
+    fun jsonToOrderInfo(json: String): OdrInf?{
+        val type = object : TypeToken<OdrInf?>() {}.type
         return Gson().fromJson(json, type)
     }
 
     @TypeConverter
-    fun customerInfoToJson(model: CustomerInfo): String?{
+    fun customerInfoToJson(model: CsInf): String?{
         return Gson().toJson(model)
     }
 
     @TypeConverter
-    fun jsonToCustomerInfo(json: String): CustomerInfo?{
-        val type = object : TypeToken<CustomerInfo?>() {}.type
+    fun jsonToCustomerInfo(json: String): CsInf?{
+        val type = object : TypeToken<CsInf?>() {}.type
         return Gson().fromJson(json, type)
     }
 }

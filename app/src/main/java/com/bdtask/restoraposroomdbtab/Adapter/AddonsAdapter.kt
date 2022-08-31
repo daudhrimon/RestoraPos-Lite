@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.R
-import com.bdtask.restoraposroomdbtab.Model.Addon
-import com.bdtask.restoraposroomdbtab.Model.HomeAddon
+import com.bdtask.restoraposroomdbtab.Model.Adn
+import com.bdtask.restoraposroomdbtab.Model.Adns
 import com.bdtask.restoraposroomdbtab.databinding.DialogFoodClickedBinding
 import com.bdtask.restoraposroomdbtab.databinding.VhAddonsBinding
 
 class AddonsAdapter(private val context: Context,
-                    private var addonsList: List<Addon>,
+                    private var addonsList: List<Adn>,
                     private val foodDialogBinding: DialogFoodClickedBinding,
-                    private var homeAddonList: MutableList<HomeAddon>): RecyclerView.Adapter<AddonsAdapter.VHFoodAddons>() {
+                    private var adnsList: MutableList<Adns>): RecyclerView.Adapter<AddonsAdapter.VHFoodAddons>() {
 
     inner class VHFoodAddons(binding: VhAddonsBinding): RecyclerView.ViewHolder(binding.root) {
         var binding = binding
@@ -27,9 +27,9 @@ class AddonsAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: VHFoodAddons, position: Int) {
 
-        holder.binding.addonName.text = addonsList[position].adnName
+        holder.binding.addonName.text = addonsList[position].adnNm
         holder.binding.addonQuantity.text = "1"
-        holder.binding.addonPrice.text = addonsList[position].adnPrice.toString()
+        holder.binding.addonPrice.text = addonsList[position].adnPrc.toString()
 
         holder.binding.checkedBox.visibility = View.GONE
         holder.binding.unCheckedBox.visibility = View.VISIBLE
@@ -43,25 +43,25 @@ class AddonsAdapter(private val context: Context,
                 addonQuantity += 1
                 holder.binding.addonQuantity.text = addonQuantity.toString()
 
-                addonnPrice += addonsList[position].adnPrice
+                addonnPrice += addonsList[position].adnPrc
                 holder.binding.addonPrice.text = addonnPrice.toString()
 
                 if (holder.binding.checkedBox.isVisible) {
 
                     var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
 
-                    foodPrice += addonsList[position].adnPrice
+                    foodPrice += addonsList[position].adnPrc
                     foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
 
                     // adding and updating Addons Info at homeAddonsList
-                    for (i in homeAddonList.indices) {
-                        if (homeAddonList[i].adnName == addonsList[position].adnName) {
-                            homeAddonList.removeAt(i)
-                            homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                    for (i in adnsList.indices) {
+                        if (adnsList[i].adnNm == addonsList[position].adnNm) {
+                            adnsList.removeAt(i)
+                            adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                             return@setOnClickListener
                         }
                     }
-                    homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                    adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                     return@setOnClickListener
                 }
             }
@@ -76,25 +76,25 @@ class AddonsAdapter(private val context: Context,
                 addonQuantity -= 1
                 holder.binding.addonQuantity.text = addonQuantity.toString()
 
-                addonnPrice -= addonsList[position].adnPrice
+                addonnPrice -= addonsList[position].adnPrc
                 holder.binding.addonPrice.text = addonnPrice.toString()
 
                 if (holder.binding.checkedBox.isVisible) {
 
                     var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
 
-                    foodPrice -= addonsList[position].adnPrice
+                    foodPrice -= addonsList[position].adnPrc
                     foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
 
                     // adding and updating Addons Info at homeAddonsList
-                    for (i in homeAddonList.indices) {
-                        if (homeAddonList[i].adnName == addonsList[position].adnName) {
-                            homeAddonList.removeAt(i)
-                            homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                    for (i in adnsList.indices) {
+                        if (adnsList[i].adnNm == addonsList[position].adnNm) {
+                            adnsList.removeAt(i)
+                            adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                             return@setOnClickListener
                         }
                     }
-                    homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                    adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                     return@setOnClickListener
                 }
             }
@@ -115,17 +115,17 @@ class AddonsAdapter(private val context: Context,
                 foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
 
                 // adding and updating Addons Info at homeAddonsList
-                if (homeAddonList.size == 0) {
-                    homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                if (adnsList.size == 0) {
+                    adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                 } else {
-                    for (i in homeAddonList.indices) {
-                        if (homeAddonList[i].adnName == addonsList[position].adnName) {
-                            homeAddonList.removeAt(i)
-                            homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                    for (i in adnsList.indices) {
+                        if (adnsList[i].adnNm == addonsList[position].adnNm) {
+                            adnsList.removeAt(i)
+                            adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                             return@setOnClickListener
                         }
                     }
-                    homeAddonList.add(HomeAddon(addonsList[position].adnName, addonQuantity, addonnPrice))
+                    adnsList.add(Adns(addonsList[position].adnNm, addonQuantity, addonnPrice))
                     return@setOnClickListener
                 }
 
@@ -143,10 +143,10 @@ class AddonsAdapter(private val context: Context,
                 foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
 
                 // adding and updating Addons Info at homeAddonsList
-                if (homeAddonList.size > 0) {
-                    for (i in homeAddonList.indices) {
-                        if (homeAddonList[i].adnName == addonsList[position].adnName) {
-                            homeAddonList.removeAt(i)
+                if (adnsList.size > 0) {
+                    for (i in adnsList.indices) {
+                        if (adnsList[i].adnNm == addonsList[position].adnNm) {
+                            adnsList.removeAt(i)
                             return@setOnClickListener
                         }
                     }

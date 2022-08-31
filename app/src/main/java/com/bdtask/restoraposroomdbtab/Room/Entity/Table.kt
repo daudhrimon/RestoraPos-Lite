@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Table(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val tName: String
+    val tNm: String
 )

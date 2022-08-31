@@ -12,16 +12,16 @@ interface OrderDao {
     @Query("SELECT * FROM order_tbl")
     fun getTodayOrder(): LiveData<List<Order>>
 
-    @Query("SELECT * FROM order_tbl WHERE date LIKE :date AND status LIKE :status")
+    @Query("SELECT * FROM order_tbl WHERE dat LIKE :date AND sts LIKE :status")
     fun getTodayOrder(date: String?, status: String): LiveData<List<Order>>
 
-    @Query("SELECT * FROM order_tbl WHERE status LIKE :status")
+    @Query("SELECT * FROM order_tbl WHERE sts LIKE :status")
     fun getOngoing(status: Int): LiveData<List<Order>>
 
     @Update
     suspend fun updateOnGoing(order: Order)
 
-    @Query("UPDATE order_tbl SET split=:status WHERE id = :id")
+    @Query("UPDATE order_tbl SET spl=:status WHERE id = :id")
     suspend fun updateSplitStatus(status: Int, id: Long)
 
     @Delete

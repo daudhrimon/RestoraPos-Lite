@@ -4,13 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bdtask.restoraposroomdbtab.Model.FoodCart
+import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.R
-import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitterDetailsBinding
 
 class SplitterDetailsAdapter(private val context: Context,
-                             private val cartList: List<FoodCart>
+                             private val cartList: List<Cart>
 ): RecyclerView.Adapter<SplitterDetailsAdapter.VHSplitterDetails>() {
 
     inner class VHSplitterDetails(binding: VhSplitterDetailsBinding): RecyclerView.ViewHolder(binding.root) {

@@ -12,7 +12,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.MainActivity
-import com.bdtask.restoraposroomdbtab.Room.Entity.Category
+import com.bdtask.restoraposroomdbtab.Room.Entity.Catgry
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogSingleItemetBinding
@@ -22,7 +22,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class CategoryBtmAdapter(private val context: Context,
-                         private var list: MutableList<Category>): RecyclerView.Adapter<CategoryBtmAdapter.CategoryBtmVH>() {
+                         private var list: MutableList<Catgry>): RecyclerView.Adapter<CategoryBtmAdapter.CategoryBtmVH>() {
 
     inner class CategoryBtmVH(binding: VhEditDeleteBinding): RecyclerView.ViewHolder(binding.root) {
         var binding = binding
@@ -33,7 +33,7 @@ class CategoryBtmAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: CategoryBtmVH, position: Int) {
-        holder.binding.itemTv.setText(list[position].fCategory)
+        holder.binding.itemTv.setText(list[position].fCat)
 
         holder.binding.itemEditBtn.setOnClickListener {
 
@@ -58,7 +58,7 @@ class CategoryBtmAdapter(private val context: Context,
         dialog.setContentView(binding.root)
 
         binding.itemTv.text = "Update Category"
-        binding.itemEt.setText(list[position].fCategory)
+        binding.itemEt.setText(list[position].fCat)
         binding.itemBtn.text = "Update"
 
 
@@ -73,20 +73,20 @@ class CategoryBtmAdapter(private val context: Context,
                 return@setOnClickListener
             }
 
-            if (binding.itemEt.text.toString() == list[position].fCategory){
+            if (binding.itemEt.text.toString() == list[position].fCat){
                 Toast.makeText(context,"Same as Old",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             for (i in list.indices){
-                if (list[i].fCategory == binding.itemEt.text.toString()){
+                if (list[i].fCat == binding.itemEt.text.toString()){
                     Toast.makeText(context,"Already Available",Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
             }
 
             GlobalScope.launch {
-                MainActivity.database.categoryDao().updateCategory(Category(list[position].id, binding.itemEt.text.toString()))
+                MainActivity.database.categoryDao().updateCategory(Catgry(list[position].id, binding.itemEt.text.toString()))
             }
             Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
@@ -110,7 +110,7 @@ class CategoryBtmAdapter(private val context: Context,
 
         alert.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
             GlobalScope.launch {
-                MainActivity.database.categoryDao().deleteCategory(Category(list[position].id,list[position].fCategory))
+                MainActivity.database.categoryDao().deleteCategory(Catgry(list[position].id,list[position].fCat))
             }
             Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
         })

@@ -1,6 +1,5 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
@@ -29,8 +28,8 @@ class TempVariantAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: VHtempVA, position: Int) {
-        holder.binding.itemNameTv.text = "Variant : " + list[position]?.variant
-        holder.binding.itemPriceTv.text = "Price : " + list[position]?.fPrice.toString()
+        holder.binding.itemNameTv.text = "Variant : " + list[position]?.vari
+        holder.binding.itemPriceTv.text = "Price : " + list[position]?.fPrc.toString()
 
         holder.binding.itemEditBtn.setOnClickListener {
             val dialog = Dialog(context)
@@ -39,9 +38,9 @@ class TempVariantAdapter(private val context: Context,
 
             binding.addonHeaderTv.text = "Update Variant"
             binding.addonNameEt.hint = "Enter Variant"
-            binding.addonNameEt.setText(list[position]?.variant)
+            binding.addonNameEt.setText(list[position]?.vari)
             binding.addonPriceEt.hint = "Enter Price"
-            binding.addonPriceEt.setText(list[position]?.fPrice.toString())
+            binding.addonPriceEt.setText(list[position]?.fPrc.toString())
             binding.addonAddBtn.text = "Update"
 
             binding.root.setOnClickListener { Util.hideSoftKeyBoard(context, binding.root) }
@@ -61,14 +60,14 @@ class TempVariantAdapter(private val context: Context,
                     return@setOnClickListener
                 }
 
-                if (binding.addonNameEt.text.toString() == list[position]?.variant &&
-                    binding.addonPriceEt.text.toString().toDouble() == list[position]?.fPrice) {
+                if (binding.addonNameEt.text.toString() == list[position]?.vari &&
+                    binding.addonPriceEt.text.toString().toDouble() == list[position]?.fPrc) {
                     Toasty.error(context,"Same as Old",Toast.LENGTH_SHORT,true).show()
                     return@setOnClickListener
                 }
 
                 for (i in list.indices) {
-                    if (list[i]?.variant == binding.addonNameEt.text.toString() && list[i]?.variant != list[position]?.variant) {
+                    if (list[i]?.vari == binding.addonNameEt.text.toString() && list[i]?.vari != list[position]?.vari) {
                         Toasty.error(context,"Already Available",Toast.LENGTH_SHORT,true).show()
                         return@setOnClickListener
                     }

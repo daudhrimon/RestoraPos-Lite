@@ -23,7 +23,7 @@ class SplitterAdapter(
     override fun onBindViewHolder(holder: VHSplitter, position: Int) {
         holder.binding.orderId.text = "Order Id : " + splitterList[position].id
 
-        holder.binding.splitterDetRv.adapter = SplitterDetailsAdapter(context, splitterList[position].cartList)
+        holder.binding.splitterDetRv.adapter = SplitterDetailsAdapter(context, splitterList[position].cart)
     }
 
     override fun getItemCount(): Int {

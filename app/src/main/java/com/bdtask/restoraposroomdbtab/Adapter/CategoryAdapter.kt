@@ -37,7 +37,7 @@ class CategoryAdapter(private val context: Context,
         } else {
             val tempFoodList = mutableListOf<Food>()
             for (i in MainActivity.foodList.indices){
-                if (MainActivity.foodList[i].fCategory == cateList[position]){
+                if (MainActivity.foodList[i].fCate == cateList[position]){
                     tempFoodList.add(MainActivity.foodList[i])
                 }
             }
