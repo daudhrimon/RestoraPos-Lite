@@ -20,30 +20,29 @@ public final class VhSplitterDetailsBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final TextView splititemDetalilTotalprice;
+  public final TextView spDetName;
 
   @NonNull
-  public final TextView splititemDetalilprice;
+  public final TextView spDetPrice;
 
   @NonNull
-  public final TextView splititemDetalilsQuantity;
+  public final TextView spDetQuantity;
 
   @NonNull
-  public final TextView splititemDetalilsname;
+  public final TextView spDetTotalPrice;
 
   @NonNull
-  public final TextView splititemDetalilsveriant;
+  public final TextView spDetVariant;
 
-  private VhSplitterDetailsBinding(@NonNull LinearLayout rootView,
-      @NonNull TextView splititemDetalilTotalprice, @NonNull TextView splititemDetalilprice,
-      @NonNull TextView splititemDetalilsQuantity, @NonNull TextView splititemDetalilsname,
-      @NonNull TextView splititemDetalilsveriant) {
+  private VhSplitterDetailsBinding(@NonNull LinearLayout rootView, @NonNull TextView spDetName,
+      @NonNull TextView spDetPrice, @NonNull TextView spDetQuantity,
+      @NonNull TextView spDetTotalPrice, @NonNull TextView spDetVariant) {
     this.rootView = rootView;
-    this.splititemDetalilTotalprice = splititemDetalilTotalprice;
-    this.splititemDetalilprice = splititemDetalilprice;
-    this.splititemDetalilsQuantity = splititemDetalilsQuantity;
-    this.splititemDetalilsname = splititemDetalilsname;
-    this.splititemDetalilsveriant = splititemDetalilsveriant;
+    this.spDetName = spDetName;
+    this.spDetPrice = spDetPrice;
+    this.spDetQuantity = spDetQuantity;
+    this.spDetTotalPrice = spDetTotalPrice;
+    this.spDetVariant = spDetVariant;
   }
 
   @Override
@@ -73,39 +72,38 @@ public final class VhSplitterDetailsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.splititemDetalilTotalprice;
-      TextView splititemDetalilTotalprice = ViewBindings.findChildViewById(rootView, id);
-      if (splititemDetalilTotalprice == null) {
+      id = R.id.spDetName;
+      TextView spDetName = ViewBindings.findChildViewById(rootView, id);
+      if (spDetName == null) {
         break missingId;
       }
 
-      id = R.id.splititemDetalilprice;
-      TextView splititemDetalilprice = ViewBindings.findChildViewById(rootView, id);
-      if (splititemDetalilprice == null) {
+      id = R.id.spDetPrice;
+      TextView spDetPrice = ViewBindings.findChildViewById(rootView, id);
+      if (spDetPrice == null) {
         break missingId;
       }
 
-      id = R.id.splititemDetalilsQuantity;
-      TextView splititemDetalilsQuantity = ViewBindings.findChildViewById(rootView, id);
-      if (splititemDetalilsQuantity == null) {
+      id = R.id.spDetQuantity;
+      TextView spDetQuantity = ViewBindings.findChildViewById(rootView, id);
+      if (spDetQuantity == null) {
         break missingId;
       }
 
-      id = R.id.splititemDetalilsname;
-      TextView splititemDetalilsname = ViewBindings.findChildViewById(rootView, id);
-      if (splititemDetalilsname == null) {
+      id = R.id.spDetTotalPrice;
+      TextView spDetTotalPrice = ViewBindings.findChildViewById(rootView, id);
+      if (spDetTotalPrice == null) {
         break missingId;
       }
 
-      id = R.id.splititemDetalilsveriant;
-      TextView splititemDetalilsveriant = ViewBindings.findChildViewById(rootView, id);
-      if (splititemDetalilsveriant == null) {
+      id = R.id.spDetVariant;
+      TextView spDetVariant = ViewBindings.findChildViewById(rootView, id);
+      if (spDetVariant == null) {
         break missingId;
       }
 
-      return new VhSplitterDetailsBinding((LinearLayout) rootView, splititemDetalilTotalprice,
-          splititemDetalilprice, splititemDetalilsQuantity, splititemDetalilsname,
-          splititemDetalilsveriant);
+      return new VhSplitterDetailsBinding((LinearLayout) rootView, spDetName, spDetPrice,
+          spDetQuantity, spDetTotalPrice, spDetVariant);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

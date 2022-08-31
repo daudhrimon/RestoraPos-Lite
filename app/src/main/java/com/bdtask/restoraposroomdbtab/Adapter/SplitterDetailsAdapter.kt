@@ -9,7 +9,7 @@ import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitterDetailsBinding
 
 class SplitterDetailsAdapter(private val context: Context,
-                             private val cartList: List<Cart>
+                             private val cartList: MutableList<Cart>
 ): RecyclerView.Adapter<SplitterDetailsAdapter.VHSplitterDetails>() {
 
     inner class VHSplitterDetails(binding: VhSplitterDetailsBinding): RecyclerView.ViewHolder(binding.root) {
@@ -21,7 +21,11 @@ class SplitterDetailsAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: VHSplitterDetails, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.spDetName.text = cartList[position].title
+        holder.binding.spDetVariant.text = cartList[position].vari
+        holder.binding.spDetPrice.text = cartList[position].varPrc.toString()
+        holder.binding.spDetQuantity.text = cartList[position].fQnty.toString()
+        holder.binding.spDetTotalPrice.text = cartList[position].tUPrc.toString()
     }
 
     override fun getItemCount(): Int {

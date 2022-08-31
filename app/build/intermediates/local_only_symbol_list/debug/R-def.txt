@@ -234,6 +234,11 @@ id serviceSplit
 id sevenOnClick
 id sixOnClick
 id spClose
+id spDetName
+id spDetPrice
+id spDetQuantity
+id spDetTotalPrice
+id spDetVariant
 id spItemPlus
 id spSplitterRv
 id spfItemRv
@@ -244,11 +249,6 @@ id splashFrag2homeFrag
 id splashFragment
 id splitBtn
 id splitItemSpnr
-id splititemDetalilTotalprice
-id splititemDetalilprice
-id splititemDetalilsQuantity
-id splititemDetalilsname
-id splititemDetalilsveriant
 id splitterDetRv
 id submitBtn
 id tabLayout

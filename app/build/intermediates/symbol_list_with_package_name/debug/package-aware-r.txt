@@ -4096,6 +4096,11 @@ id snapMargins
 id software
 id south
 id spClose
+id spDetName
+id spDetPrice
+id spDetQuantity
+id spDetTotalPrice
+id spDetVariant
 id spItemPlus
 id spSplitterRv
 id spacer
@@ -4110,11 +4115,6 @@ id spline
 id splitBtn
 id splitItemSpnr
 id split_action_bar
-id splititemDetalilTotalprice
-id splititemDetalilprice
-id splititemDetalilsQuantity
-id splititemDetalilsname
-id splititemDetalilsveriant
 id splitterDetRv
 id spread
 id spread_inside

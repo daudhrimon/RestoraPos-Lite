@@ -16,6 +16,7 @@ import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
 import es.dmoral.toasty.Toasty
@@ -118,7 +119,10 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         }
 
         ongBinding.splitBtn.setOnClickListener {
-            val dialog = SplitOrder(requireContext(),ongList[ongPos],foodCount)
+            val sharedPref = SharedPref
+            sharedPref.init(requireContext())
+            sharedPref.writeSharedSplit(ongList[ongPos])
+            val dialog = SplitOrder(requireContext(), sharedPref, foodCount)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels

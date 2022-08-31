@@ -31,7 +31,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/splititemDetalilsname"
+                    android:id="@+id/spDetName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -63,7 +63,7 @@
 
 
             <TextView
-                android:id="@+id/splititemDetalilsveriant"
+                android:id="@+id/spDetVariant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -94,7 +94,7 @@
 
 
             <TextView
-                android:id="@+id/splititemDetalilprice"
+                android:id="@+id/spDetPrice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -125,7 +125,7 @@
 
 
             <TextView
-                android:id="@+id/splititemDetalilsQuantity"
+                android:id="@+id/spDetQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -155,7 +155,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/splititemDetalilTotalprice"
+                android:id="@+id/spDetTotalPrice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

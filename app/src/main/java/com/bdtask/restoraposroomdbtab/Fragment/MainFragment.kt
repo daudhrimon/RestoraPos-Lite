@@ -534,20 +534,26 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             }
             if (adnsList.size > 0){
                 addonChecker = 1
+                for (h in adnsList.indices) {
+                    addonsPrice += adnsList[h].adnPrc
+                }
             }
+
             if (tempCartList.size > 0) {
+
                 for (i in tempCartList.indices) {
+
                     if (tempCartList[i].title == foodTitle &&
                         tempCartList[i].vari == foodVariant) {
+
                         if (addonChecker == 1) {
+
                             if (Gson().toJson(tempCartList[i].adns).contains(Gson().toJson(adnsList))) {
-                                for (h in adnsList.indices) {
-                                    addonsPrice += adnsList[h].adnPrc
-                                }
                                 tempCartList[i].fQnty += foodQuantity
                                 tempCartList[i].fPrc += foodPrice
                                 tempCartList[i].tUPrc += totalUnitPrice
                                 tempCartList[i].adnPrc += addonsPrice
+
                                 //marge Addons by Name
                                 val addonListByName = adnsList.associateBy { it.adnNm}
                                 tempCartList[i].adns.forEach { tempAdn ->

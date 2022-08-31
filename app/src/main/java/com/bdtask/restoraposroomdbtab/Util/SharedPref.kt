@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
+import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -50,5 +51,16 @@ object SharedPref {
 
     fun getSharedToken(): Long?{
         return mSharedPref!!.getLong("token",1)
+    }
+
+    fun writeSharedSplit(order: Order) {
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("split", Gson().toJson(order))
+        prefsEditor.apply()
+    }
+
+    fun readSharedSplit() : Order? {
+        val type = object : TypeToken<Order?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("split", ""), type)
     }
 }

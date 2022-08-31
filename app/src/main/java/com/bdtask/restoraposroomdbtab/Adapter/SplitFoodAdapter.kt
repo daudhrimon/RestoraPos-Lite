@@ -10,7 +10,7 @@ import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitItemBinding
 
 class SplitFoodAdapter(private val context: Context,
-                       private val cartList: List<Cart>,
+                       private val cartList: MutableList<Cart>,
                        private val splitFoodClickListener: SplitFoodClickListener): RecyclerView.Adapter<SplitFoodAdapter.VHSplitFood>() {
 
     inner class VHSplitFood(binding: VhSplitItemBinding): RecyclerView.ViewHolder(binding.root) {
