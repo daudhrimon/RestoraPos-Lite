@@ -64,14 +64,18 @@ class OngoingAdapter(
        if (multiSelect){
             if (clickedList.contains(position)) {
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
+                holder.binding.layout.setBackgroundResource(R.drawable.shape_splitter_selected)
             } else {
                 holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
+                holder.binding.layout.setBackgroundResource(R.drawable.ongoing_card_background)
             }
         } else {
             if (index == position){
                 holder.binding.table.setImageResource(R.drawable.selected_ongoing)
+                holder.binding.layout.setBackgroundResource(R.drawable.shape_splitter_selected)
             } else {
                 holder.binding.table.setImageResource(R.drawable.unselected_ongoing)
+                holder.binding.layout.setBackgroundResource(R.drawable.ongoing_card_background)
             }
         }
 

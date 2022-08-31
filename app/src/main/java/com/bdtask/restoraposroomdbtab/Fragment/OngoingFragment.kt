@@ -138,7 +138,6 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
     // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onGoingItemClick(position: Int, selectedItem: Int) {
         this.selectedItem = selectedItem
         foodCount = 0

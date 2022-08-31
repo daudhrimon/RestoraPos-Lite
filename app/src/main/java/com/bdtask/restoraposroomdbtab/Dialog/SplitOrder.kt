@@ -11,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.bdtask.restoraposroomdbtab.Adapter.SplitFoodAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.SplitterAdapter
 import com.bdtask.restoraposroomdbtab.Interface.SplitFoodClickListener
@@ -22,6 +23,7 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
+import es.dmoral.toasty.Toasty
 
 class SplitOrder(context: Context,
                  private val sharedPref: SharedPref,
@@ -34,8 +36,8 @@ class SplitOrder(context: Context,
     private var spinnerList = arrayListOf<Int>()
     private var splitterCount = 0
     private var splitterList = mutableListOf<Split>()
-    private var splitterIndex = 0
     private var perAddonPriceList = arrayListOf<Double>()
+    companion object { var splitterIndex = -1 }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +90,7 @@ class SplitOrder(context: Context,
     }
 
     private fun setSplitterRecycler() {
-        binding.spSplitterRv.adapter = SplitterAdapter(context,splitterList)
+        binding.spSplitterRv.adapter = SplitterAdapter(context, splitterList)
     }
 
     private fun setSpinnerAdapter() {
@@ -121,62 +123,74 @@ class SplitOrder(context: Context,
     @SuppressLint("NotifyDataSetChanged")
     override fun onSplitFoodClick(position: Int) {
 
-        if (splitterList[splitterIndex].cart.isEmpty()){
+        if (splitterIndex == -1) {
 
-            val prc = tmpOngItem.cart[position].varPrc
-            val adnPrice = perAddonPriceList[position]
-            val tUPrc = prc + adnPrice
+            Toasty.info(context,"Please Select a Item First",Toasty.LENGTH_SHORT).show()
 
-            splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
-                tmpOngItem.cart[position].vari, tmpOngItem.cart[position].varPrc,
-                1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(),""))
+        }else{
 
-            Log.wtf("EmptyInsert","iam here")
+            if (tmpOngItem.cart[position].fQnty > 0) {
+                tmpOngItem.cart[position].fQnty -= 1
 
-        } else {
+                if (splitterList[splitterIndex].cart.isEmpty()) {
 
-            var checker = true
-            var insert = true
+                    val prc = tmpOngItem.cart[position].varPrc
+                    val adnPrice = perAddonPriceList[position]
+                    val tUPrc = prc + adnPrice
 
-            for (i in splitterList[splitterIndex].cart.indices) {
+                    splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
+                        tmpOngItem.cart[position].vari, tmpOngItem.cart[position].varPrc,
+                        1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(), ""
+                    ))
 
-                if (checker) {
+                    Log.wtf("EmptyInsert", "iam here")
 
-                    if (splitterList[splitterIndex].cart[i].title == tmpOngItem.cart[position].title
-                        && splitterList[splitterIndex].cart[i].vari == tmpOngItem.cart[position].vari) {
+                } else {
 
-                        val varPrc = splitterList[splitterIndex].cart[i].varPrc
-                        splitterList[splitterIndex].cart[i].fQnty += 1
-                        splitterList[splitterIndex].cart[i].fPrc += varPrc
-                        splitterList[splitterIndex].cart[i].adnPrc += perAddonPriceList[position]
-                        val fPrc = splitterList[splitterIndex].cart[i].fPrc
-                        val adnPrc = splitterList[splitterIndex].cart[i].adnPrc
-                        splitterList[splitterIndex].cart[i].tUPrc = fPrc + adnPrc
+                    var checker = true
+                    var insert = true
 
-                        checker = false
-                        insert = false
+                    for (i in splitterList[splitterIndex].cart.indices) {
 
-                        Log.wtf("Name and var matching","iam here")
+                        if (checker) {
 
-                    } else {
-                        insert = true
+                            if (splitterList[splitterIndex].cart[i].title == tmpOngItem.cart[position].title
+                            && splitterList[splitterIndex].cart[i].vari == tmpOngItem.cart[position].vari) {
+
+                                val varPrc = splitterList[splitterIndex].cart[i].varPrc
+                                splitterList[splitterIndex].cart[i].fQnty += 1
+                                splitterList[splitterIndex].cart[i].fPrc += varPrc
+                                splitterList[splitterIndex].cart[i].adnPrc += perAddonPriceList[position]
+                                val fPrc = splitterList[splitterIndex].cart[i].fPrc
+                                val adnPrc = splitterList[splitterIndex].cart[i].adnPrc
+                                splitterList[splitterIndex].cart[i].tUPrc = fPrc + adnPrc
+
+                                checker = false
+                                insert = false
+
+                                Log.wtf("Name and var matching", "iam here")
+
+                            } else {
+                                insert = true
+                            }
+                        }
+                    }
+
+                    if (insert) {
+
+                        val prc = tmpOngItem.cart[position].varPrc
+                        val adnPrice = perAddonPriceList[position]
+                        val tUPrc = prc + adnPrice
+
+                        splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
+                            tmpOngItem.cart[position].vari, tmpOngItem.cart[position].varPrc,
+                            1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(), ""))
+
+                        Log.wtf("Another Insert", "iam here")
                     }
                 }
-            }
-
-            if (insert){
-
-                val prc = tmpOngItem.cart[position].varPrc
-                val adnPrice = perAddonPriceList[position]
-                val tUPrc = prc + adnPrice
-
-                splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
-                    tmpOngItem.cart[position].vari,tmpOngItem.cart[position].varPrc,
-                    1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(),""))
-
-                Log.wtf("Another Insert","iam here")
+                binding.spSplitterRv.adapter?.notifyDataSetChanged()
             }
         }
-        binding.spSplitterRv.adapter?.notifyDataSetChanged()
     }
 }

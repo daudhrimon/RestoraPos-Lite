@@ -1,5 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,14 +27,10 @@ class SplitFoodAdapter(private val context: Context,
         holder.binding.spiQnty.text = cartList[position].fQnty.toString()
 
         holder.itemView.setOnClickListener {
-            if (cartList[position].fQnty > 0){
-                var quantity = cartList[position].fQnty
-                quantity -= 1
-                cartList[position].fQnty = quantity
-                //holder.binding.spiQnty.text = quantity.toString()
-                splitFoodClickListener.onSplitFoodClick(position)
-                notifyDataSetChanged()
-            }
+
+            splitFoodClickListener.onSplitFoodClick(position)
+
+            notifyDataSetChanged()
         }
     }
 
