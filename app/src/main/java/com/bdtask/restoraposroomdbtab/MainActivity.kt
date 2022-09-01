@@ -1,14 +1,9 @@
 package com.bdtask.restoraposroomdbtab
 
-import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -16,13 +11,7 @@ import androidx.navigation.findNavController
 import com.bdtask.restoraposroomdbtab.Dialog.AddPayment
 import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Room.PosDatabase
-import com.bdtask.restoraposroomdbtab.Util.SharedPref
-import com.bdtask.restoraposroomdbtab.Util.Util
-import com.bdtask.restoraposroomdbtab.databinding.DialogAddPaymentBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.gson.Gson
-import es.dmoral.toasty.Toasty
-
 
 class MainActivity: AppCompatActivity() {
     companion object{
