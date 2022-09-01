@@ -12,11 +12,9 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.bdtask.restoraposroomdbtab.Adapter.SplitFoodAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.SplitterAdapter
 import com.bdtask.restoraposroomdbtab.Interface.SplitFoodClickListener
-import com.bdtask.restoraposroomdbtab.Model.Adns
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.R
@@ -24,7 +22,6 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
-import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
 
 class SplitOrder( context: Context,
@@ -79,7 +76,7 @@ class SplitOrder( context: Context,
         }
 
 
-        binding.cusPlus.setOnClickListener {
+        binding.custmrPlus.setOnClickListener {
             val dialog = AddCustomer(context)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
@@ -139,7 +136,7 @@ class SplitOrder( context: Context,
 
         if (splitterIndex == -1) {
 
-            Toasty.info(context,"Please Select a Item First",Toasty.LENGTH_SHORT).show()
+            Toasty.warning(context,"Please Select an Order First",Toasty.LENGTH_SHORT).show()
 
         }else{
 

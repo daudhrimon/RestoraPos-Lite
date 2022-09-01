@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
+import com.bdtask.restoraposroomdbtab.Dialog.Payment
 import com.bdtask.restoraposroomdbtab.Dialog.SplitOrder
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
@@ -97,6 +98,21 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+
+        ongBinding.completeBtn.setOnClickListener {
+            val dialog = Payment(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
+            val win = dialog.window
+            win!!.setLayout((9 * width)/10,(14 * height)/15)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+
+
+
+
         ongBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
@@ -121,6 +137,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
                 ongBinding.root.clearFocus()
             }
         }
+
 
         ongBinding.splitBtn.setOnClickListener {
             val sharedPref = SharedPref

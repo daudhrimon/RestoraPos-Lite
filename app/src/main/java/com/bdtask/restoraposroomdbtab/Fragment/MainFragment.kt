@@ -165,19 +165,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             placeOrderClickHandler()
         }
 
-        // Nav Drawer Controller
-        MainActivity.navDrawer.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.addFood -> findNavController().navigate(R.id.homeFrag2foodFrag)
-            }
-            MainActivity.drawerLayout.close()
-            return@setNavigationItemSelectedListener true
-        }
-
         // return View
         return mainBinding.root
     }
-
 
 
     private fun quickOrderClickHandler() {

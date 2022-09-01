@@ -115,7 +115,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cusPlus"
+                android:id="@+id/custmr_plus"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"

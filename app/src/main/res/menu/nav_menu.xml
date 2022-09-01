@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_add_food"
         android:title="Add Food"/>
 
+    <item
+        android:id="@+id/addPay"
+        android:icon="@drawable/ic_add_food"
+        android:title="Add Payment Method"/>
+
 </menu>

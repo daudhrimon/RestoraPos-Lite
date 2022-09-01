@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/closepaymentitemIV"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="3dp"
+            android:background="@drawable/selector_close"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:clickable="true"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:text="Delete "
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            tools:ignore="TextContrastCheck"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/methodHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:text="Payment Method "
+            android:textColor="@color/theme_color"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@id/methodHeader"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/no_radius_background">
+
+            <Spinner
+                android:id="@+id/spinnerpaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:popupBackground="@color/white"
+                android:theme="@style/spinnerTheme"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_drop" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/custometrHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:text="Customer Payment "
+            android:textColor="@color/theme_color"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/customerpaymentET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/custometrHeader"
+            android:background="@drawable/no_radius_background"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:hint="Customer name"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:textSize="15sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/cardterminalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="visible"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card Terminal"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:textColor="@color/theme_color" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/no_radius_background"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+
+                <Spinner
+                    android:id="@+id/spinnercardterminall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:popupBackground="@color/white"
+                    android:theme="@style/spinnerTheme"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_drop" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Bank"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:textColor="@color/theme_color" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/no_radius_background"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+
+                <Spinner
+                    android:id="@+id/spinnerselectbankk"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:popupBackground="@color/white"
+                    android:theme="@style/spinnerTheme"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_drop" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
