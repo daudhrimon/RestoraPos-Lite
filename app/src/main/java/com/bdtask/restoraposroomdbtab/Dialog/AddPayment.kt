@@ -60,37 +60,32 @@ class AddPayment(context: Context): Dialog(context) {
         binding.addBtn.setOnClickListener {
             hideKeyboard(binding)
             if (pos == 0 && binding.name.text.toString().isEmpty()) {
-                Toasty.warning(context, "Empty Value Forbidden", Toasty.LENGTH_SHORT).show()
+                showToasty(0,"Empty Value Forbidden")
                 return@setOnClickListener
             }
 
             if (pos == 1 && binding.terminal.text.toString().isEmpty() && binding.name.text.toString().isEmpty()) {
-                Toasty.warning(context, "Empty Value Forbidden", Toasty.LENGTH_SHORT).show()
+                showToasty(0,"Empty Value Forbidden")
                 return@setOnClickListener
             }
 
-            var payList = mutableListOf<String>()
-
             when (pos){
                 0 -> {
-                    if (sharedPref.readPayList() != null){
-                        payList.clear()
+                    var payList = mutableListOf<String>()
+                    if (sharedPref.readPayList() != null) {
                         payList = sharedPref.readPayList()!!
                         if (!Gson().toJson(payList).contains(Gson().toJson(binding.name.text.toString()))){
                             payList.add(binding.name.text.toString())
                             sharedPref.writePayList(payList)
-                            Toasty.success(context,"Add New Payment Successfully", Toasty.LENGTH_SHORT).show()
+                            showToasty(1,"Added New Payment Successfully")
                         } else {
-                            Toasty.warning(context,"This Payment is Already In", Toasty.LENGTH_SHORT).show()
+                            showToasty(0,"This Payment is Already In")
                         }
                     } else {
-                        payList.clear()
                         payList.add(binding.name.text.toString())
                         sharedPref.writePayList(payList)
-                        Toasty.success(context,"Add New Payment Successfully", Toasty.LENGTH_SHORT).show()
+                        showToasty(1,"Added New Payment Successfully")
                     }
-
-
 
                     binding.name.setText("")
                     binding.name.hint = " Enter Payment Name"
@@ -101,40 +96,42 @@ class AddPayment(context: Context): Dialog(context) {
                 }
 
                 1 -> {
-                    var terList = mutableListOf<String>()
-
-                    if (sharedPref.readTerminalList() != null){
-                        terList.clear()
-                        terList = sharedPref.readTerminalList()!!
-                        if (!Gson().toJson(terList).contains(Gson().toJson(binding.terminal.text.toString()))){
-                            payList.add(binding.terminal.text.toString())
-                            sharedPref.writeTerminalList(terList)
-                            Toasty.success(context,"Add New Terminal Successfully", Toasty.LENGTH_SHORT).show()
+                    if (binding.terminal.text.toString().isNotEmpty()) {
+                        var terList = mutableListOf<String>()
+                        if (sharedPref.readTerminalList() != null){
+                            terList.clear()
+                            terList = sharedPref.readTerminalList()!!
+                            if (!Gson().toJson(terList).contains(Gson().toJson(binding.terminal.text.toString()))){
+                                terList.add(binding.terminal.text.toString())
+                                sharedPref.writeTerminalList(terList)
+                                showToasty(1,"Added New Terminal Successfully")
+                            } else {
+                                showToasty(0,"This Terminal is Already In")
+                            }
                         } else {
-                            Toasty.warning(context,"This Terminal is Already In", Toasty.LENGTH_SHORT).show()
+                            terList.add(binding.terminal.text.toString())
+                            sharedPref.writeTerminalList(terList)
+                            showToasty(1,"Added New Terminal Successfully")
                         }
-                    } else {
-                        terList.clear()
-                        terList.add(binding.terminal.text.toString())
-                        sharedPref.writeTerminalList(terList)
-                        Toasty.success(context,"Add New Terminal Successfully", Toasty.LENGTH_SHORT).show()
                     }
 
-                    if (sharedPref.readBankList() != null){
-                        payList.clear()
-                        payList = sharedPref.readBankList()!!
-                        if (!Gson().toJson(payList).contains(Gson().toJson(binding.name.text.toString()))){
-                            payList.add(binding.name.text.toString())
-                            sharedPref.writeBankList(payList)
-                            Toasty.success(context,"Add New Bank Successfully", Toasty.LENGTH_SHORT).show()
+                    if (binding.name.text.toString().isNotEmpty()){
+                        if (sharedPref.readBankList() != null){
+                            var bankList = mutableListOf<String>()
+                            bankList = sharedPref.readBankList()!!
+                            if (!Gson().toJson(bankList).contains(Gson().toJson(binding.name.text.toString()))){
+                                bankList.add(binding.name.text.toString())
+                                sharedPref.writeBankList(bankList)
+                                showToasty(1,"Added New Bank Successfully")
+                            } else {
+                                showToasty(0,"This Bank is Already In")
+                            }
                         } else {
-                            Toasty.warning(context,"This Bank is Already In", Toasty.LENGTH_SHORT).show()
+                            val bankList = mutableListOf<String>()
+                            bankList.add(binding.name.text.toString())
+                            sharedPref.writeBankList(bankList)
+                            showToasty(1,"Added New Bank Successfully")
                         }
-                    } else {
-                        payList.clear()
-                        payList.add(binding.name.text.toString())
-                        sharedPref.writeBankList(payList)
-                        Toasty.success(context,"Add New Bank Successfully", Toasty.LENGTH_SHORT).show()
                     }
 
                     binding.terminal.setText("")
@@ -152,5 +149,13 @@ class AddPayment(context: Context): Dialog(context) {
 
     private fun hideKeyboard(binding: DialogAddPaymentBinding) {
         Util.hideSoftKeyBoard(context,binding.root)
+    }
+
+    private fun showToasty (status: Int, toast: String) {
+        if (status == 1){
+            Toasty.success(context,toast, Toasty.LENGTH_SHORT).show()
+        } else {
+            Toasty.warning(context,toast, Toasty.LENGTH_SHORT).show()
+        }
     }
 }
