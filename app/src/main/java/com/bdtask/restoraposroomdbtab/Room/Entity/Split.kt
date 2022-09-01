@@ -12,5 +12,6 @@ data class Split(
     val ref: Long,
     val sts: Int,
     var csInf: CsInf,
+    val dis: Double,
     val cart: MutableList<Cart>
 )

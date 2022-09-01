@@ -58,6 +58,7 @@ class SplitOrder( context: Context,
             onBackPressed()
         }
 
+
         binding.splitItemSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 splitterCount = binding.splitItemSpnr.selectedItem.toString().toInt()
@@ -67,7 +68,7 @@ class SplitOrder( context: Context,
                 var id = 0
                 for (i in 1..splitterCount){
                     id += 1
-                    splitterList.add(Split(tmpOngItem.id.toString() + " ( $id )",tmpOngItem.id,0, CsInf("","",""), emptyList<Cart>().toMutableList()))
+                    splitterList.add(Split(tmpOngItem.id.toString() + " ( $id )",tmpOngItem.id,0, CsInf("","",""),0.0,emptyList<Cart>().toMutableList()))
                 }
 
                 getCartAndSetPlusFood()

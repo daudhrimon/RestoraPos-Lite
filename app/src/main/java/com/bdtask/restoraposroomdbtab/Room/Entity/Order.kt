@@ -14,6 +14,7 @@ data class Order(
     val mrg: Int,
     val dat: String,
     val tkn: String,
+    val dis: Double,
     val vat: Double,
     val crg: Double,
     val odrInf: OdrInf,
