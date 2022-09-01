@@ -33,12 +33,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:clickable="true"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/selector_cross_btn"
+                android:clickable="true"
+                android:focusable="true"
                 android:padding="5dp"
                 android:src="@drawable/ic_close_white"
-                android:focusable="true" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </RelativeLayout>
 
@@ -122,7 +123,7 @@
                     android:layout_below="@+id/custometrHeader"
                     android:background="@drawable/no_radius_background"
                     android:fontFamily="@font/helvetica_nueu_light"
-                    android:hint="Enter Card Terminal"
+                    android:hint=" Enter Card Terminal"
                     android:padding="10dp"
                     android:textColor="#000"
                     android:textSize="15sp"
@@ -137,8 +138,7 @@
                     android:layout_below="@+id/custometrHeader"
                     android:background="@drawable/no_radius_background"
                     android:fontFamily="@font/helvetica_nueu_light"
-                    android:hint="Enter Payment Name"
-                    android:inputType="number"
+                    android:hint=" Enter Payment Name"
                     android:padding="10dp"
                     android:textColor="#000"
                     android:textSize="15sp"
@@ -151,15 +151,16 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/selector_ongoing"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_light"
                     android:foreground="?attr/selectableItemBackground"
-                    android:clickable="true"
                     android:gravity="center"
                     android:text="Add"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:focusable="true" />
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 

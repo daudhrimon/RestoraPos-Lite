@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
+import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -62,5 +63,38 @@ object SharedPref {
     fun readSharedSplit() : Order? {
         val type = object : TypeToken<Order?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("split", ""), type)
+    }
+
+    fun writeBankList(bank: MutableList<String>?){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("bank", Gson().toJson(bank))
+        prefsEditor.apply()
+    }
+
+    fun readBankList(): MutableList<String>? {
+        val type = object : TypeToken<MutableList<String>?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("bank", ""), type)
+    }
+
+    fun writeTerminalList(bank: MutableList<String>?){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("terminal", Gson().toJson(bank))
+        prefsEditor.apply()
+    }
+
+    fun readTerminalList(): MutableList<String>? {
+        val type = object : TypeToken<MutableList<String>?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("terminal", ""), type)
+    }
+
+    fun writePayList(bank: MutableList<String>?){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("pay", Gson().toJson(bank))
+        prefsEditor.apply()
+    }
+
+    fun readPayList(): MutableList<String>? {
+        val type = object : TypeToken<MutableList<String>?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("pay", ""), type)
     }
 }

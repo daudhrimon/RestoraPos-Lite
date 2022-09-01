@@ -31,6 +31,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/btmsheet_item_edit_delete.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/custom_spinner_layout.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_add_new_customer.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_add_payment.xml" value="0.37083333333333335" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_calculator.xml" value="0.36205128205128206" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_close_alert.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_food_clicked.xml" value="0.25" />
@@ -64,6 +65,9 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_temp_var_addon.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/menu/nav_menu.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1795" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/activity_main.xml" value="0.22962962962962963" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_add_payment.xml" value="0.259375" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_payment.xml" value="0.264" />
       </map>
     </option>
   </component>
