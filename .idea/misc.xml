@@ -7,6 +7,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/selector_close.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/selector_ongoing.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/selector_today.xml" value="0.2275" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable-v24/shape_splliter.xml" value="0.2035" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/bottom_rounded_bg.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_add_green.xml" value="0.2035" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.1765" />
@@ -22,6 +23,8 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selector_slide_cross.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selectro_cross_btn.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_one_side.xml" value="0.2035" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_splitter_selected.xml" value="0.2035" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_splitter_unselect.xml" value="0.2035" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/slictor_slide_cross.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/unselected_ongoing.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/activity_main.xml" value="0.371875" />

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.bdtask.restoraposroomdbtab.Dialog.AddCustomer
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
@@ -54,6 +55,10 @@ class OrderInfoFragment : Fragment() {
         binding = FragmentOrderInfoBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
 
+
+        // getCustomer Info
+
+
         // getting  customer name live and setting to spinner live
         MainActivity.database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
             cusNameList.clear()
@@ -64,9 +69,11 @@ class OrderInfoFragment : Fragment() {
             binding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
         })
 
+
         // Customer Spinner
         binding.cusNameSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
+
                 val selectedItem =  binding.cusNameSpnr.selectedItem.toString()
 
                 for (i in cusInfoList.indices){
@@ -78,9 +85,15 @@ class OrderInfoFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
+
+
+
         // Customer Type Spinner Set
         cusTypeList = arrayListOf<String>("Walk In", "Take Way", "Online Customer", "Third Party")
         binding.cusTypeSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, cusTypeList)
+
+
+
 
         // customer Type Spinner select Listener
         binding.cusTypeSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -107,6 +120,10 @@ class OrderInfoFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
+
+
+
+
         //getting waiter Live and setting to Waiter spinner Live
         MainActivity.database.waiterDao().getAllWaiter().observe(viewLifecycleOwner, Observer{
             waiterList.clear()
@@ -118,6 +135,10 @@ class OrderInfoFragment : Fragment() {
             binding.waiterSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList)
         })
 
+
+
+
+
         //Waiter Spinner
         binding.waiterSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
@@ -126,6 +147,9 @@ class OrderInfoFragment : Fragment() {
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
+
+
+
 
         // getting and setting Table Spinner
         MainActivity.database.tableDao().getAllTable().observe(viewLifecycleOwner, Observer{
@@ -138,6 +162,9 @@ class OrderInfoFragment : Fragment() {
             binding.tableSpnr.adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList)
         })
 
+
+
+
         // table spinner selected listener
         binding.tableSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
@@ -145,6 +172,9 @@ class OrderInfoFragment : Fragment() {
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
+
+
+
 
         //getting delivery Company Live and setting to spinner live
         MainActivity.database.deliveryCompanyDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
@@ -157,6 +187,9 @@ class OrderInfoFragment : Fragment() {
             binding.deliveryCompanySpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList)
         })
 
+
+
+
         // delivery Company Spinner
         binding.deliveryCompanySpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -165,13 +198,22 @@ class OrderInfoFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
+
+
+
         // back button click handler
         binding.ocfBack.setOnClickListener{ findNavController().popBackStack() }
 
         binding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(), binding.root) }
 
         binding.cusAddBtn.setOnClickListener {
-            addNewCustomer()
+            val dialog = AddCustomer(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val win = dialog.window
+            win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
         binding.deliveryCmpnyAddBtn.setOnClickListener {
@@ -372,67 +414,6 @@ class OrderInfoFragment : Fragment() {
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
         }
-        dialog.show()
-        val width = resources.displayMetrics.widthPixels
-        val win = dialog.window
-        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
-        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-    private fun addNewCustomer() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val ancBinding = DialogAddNewCustomerBinding.bind(layoutInflater.inflate(R.layout.dialog_add_new_customer,null))
-        dialog.setContentView(ancBinding.root)
-
-        ancBinding.root.setOnClickListener {
-            Util.hideSoftKeyBoard(requireContext(),ancBinding.root)
-        }
-        ancBinding.addCview.setOnClickListener{
-            Util.hideSoftKeyBoard(requireContext(),ancBinding.addCview)
-        }
-        ancBinding.crossBtn.setOnClickListener {
-            dialog.dismiss()
-        }
-        ancBinding.closeBtn.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        ancBinding.submitBtn.setOnClickListener {
-            if (ancBinding.cusNameEt.text.toString().isEmpty()){
-                ancBinding.cusNameEt.setError("Name is Empty")
-                ancBinding.cusNameEt.requestFocus()
-                return@setOnClickListener
-            }
-            if (ancBinding.cusEmailEt.text.toString().isEmpty()){
-                ancBinding.cusEmailEt.setError("Email is Empty")
-                ancBinding.cusEmailEt.requestFocus()
-                return@setOnClickListener
-            }
-            if (ancBinding.cusMobileEt.text.toString().isEmpty()){
-                ancBinding.cusMobileEt.setError("Mobile is Empty")
-                ancBinding.cusMobileEt.requestFocus()
-                return@setOnClickListener
-            }
-            if (ancBinding.cusAddEt.text.toString().isEmpty()){
-                ancBinding.cusAddEt.setError("Address is Empty")
-                ancBinding.cusAddEt.requestFocus()
-                return@setOnClickListener
-            }
-            if (ancBinding.cusNameEt.text.toString().isEmpty()){
-                ancBinding.cusNameEt.setError("Favourite Address is Empty")
-                ancBinding.cusNameEt.requestFocus()
-                return@setOnClickListener
-            }
-
-            GlobalScope.launch {
-                MainActivity.database.customerDao().insertCustomer(Cstmr(0,ancBinding.cusNameEt.text.toString(),ancBinding.cusEmailEt.text.toString(),
-                    ancBinding.cusMobileEt.text.toString(),ancBinding.cusAddEt.text.toString(),ancBinding.cusNameEt.text.toString()))
-            }
-            Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
-            dialog.dismiss()
-        }
-
         dialog.show()
         val width = resources.displayMetrics.widthPixels
         val win = dialog.window

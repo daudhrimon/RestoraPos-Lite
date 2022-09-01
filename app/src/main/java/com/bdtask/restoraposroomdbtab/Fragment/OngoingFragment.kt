@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,6 +15,7 @@ import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
 import com.bdtask.restoraposroomdbtab.Dialog.SplitOrder
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
@@ -31,6 +33,8 @@ class OngoingFragment : Fragment(), OngoingClickListener {
     companion object {
         var clickedList = arrayListOf<Int>()
         var multiSelect = false
+        var cusInfoList = mutableListOf<CsInf>()
+        var cusNameList = mutableListOf<String>()
     }
 
     override fun onCreateView(
@@ -132,6 +136,16 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////
+
+        // getting  customer name live and setting to spinner live
+        MainActivity.database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
+            cusNameList.clear()
+            for (i in it.indices){
+                cusNameList.add(it[i].nm)
+                cusInfoList.add(CsInf(it[i].nm, it[i].adrs, it[i].mbl))
+            }
+        })
+
 
         return ongBinding.root
     }

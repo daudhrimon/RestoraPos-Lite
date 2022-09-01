@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -23,11 +24,12 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
+import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
 
-class SplitOrder(context: Context,
-                 private val sharedPref: SharedPref,
-                 private val foodCount: Int): Dialog(context),SplitFoodClickListener {
+class SplitOrder( context: Context,
+                  private val sharedPref: SharedPref,
+                  private val foodCount: Int ): Dialog(context),SplitFoodClickListener {
 
     private var tmpOngItem = sharedPref.readSharedSplit()!!
     private lateinit var binding: DialogSplitOrderBinding
@@ -74,6 +76,17 @@ class SplitOrder(context: Context,
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
+
+
+        binding.cusPlus.setOnClickListener {
+            val dialog = AddCustomer(context)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.show()
+            val width = context.resources.displayMetrics.widthPixels
+            val win = dialog.window
+            win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
     }
 
     private fun getCartAndSetPlusFood() {
@@ -82,10 +95,10 @@ class SplitOrder(context: Context,
         spiBind = DialogSplitItemBinding.bind(layoutInflater.inflate(R.layout.dialog_split_item,null))
         dialog.setContentView(spiBind.root)
 
-        spiBind.spfItemRv.adapter = SplitFoodAdapter(context,tmpOngItem.cart,this)
+        spiBind.spfItemRv.adapter = SplitFoodAdapter(context, tmpOngItem.cart,this)
 
         val width = context.resources.displayMetrics.widthPixels
-        dialog.window?.setLayout((2 * width)/3, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout((3 * width)/4, WindowManager.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
@@ -140,7 +153,7 @@ class SplitOrder(context: Context,
 
                     splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
                         tmpOngItem.cart[position].vari, tmpOngItem.cart[position].varPrc,
-                        1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(), ""
+                        1, prc, tUPrc, adnPrice, tmpOngItem.cart[position].adns, ""
                     ))
 
                     Log.wtf("EmptyInsert", "iam here")
@@ -155,7 +168,8 @@ class SplitOrder(context: Context,
                         if (checker) {
 
                             if (splitterList[splitterIndex].cart[i].title == tmpOngItem.cart[position].title
-                            && splitterList[splitterIndex].cart[i].vari == tmpOngItem.cart[position].vari) {
+                            && splitterList[splitterIndex].cart[i].vari == tmpOngItem.cart[position].vari
+                                && splitterList[splitterIndex].cart[i].adns == tmpOngItem.cart[position].adns) {
 
                                 val varPrc = splitterList[splitterIndex].cart[i].varPrc
                                 splitterList[splitterIndex].cart[i].fQnty += 1
@@ -184,7 +198,7 @@ class SplitOrder(context: Context,
 
                         splitterList[splitterIndex].cart.add(Cart(tmpOngItem.cart[position].title,
                             tmpOngItem.cart[position].vari, tmpOngItem.cart[position].varPrc,
-                            1, prc, tUPrc, adnPrice, emptyList<Adns>().toMutableList(), ""))
+                            1, prc, tUPrc, adnPrice, tmpOngItem.cart[position].adns, ""))
 
                         Log.wtf("Another Insert", "iam here")
                     }

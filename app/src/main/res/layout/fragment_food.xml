@@ -90,6 +90,7 @@
                         android:layout_centerVertical="true"
                         android:layout_weight="4.3"
                         android:background="@android:color/transparent"
+                        android:foreground="?attr/selectableItemBackground"
                         android:paddingStart="5dp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -97,7 +98,6 @@
                         android:id="@+id/cateAddBtn"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_32sdp"
-                        android:layout_marginStart="5dp"
                         android:layout_weight="0.7"
                         android:background="@drawable/selector_plus_oc"
                         android:foreground="?attr/selectableItemBackground"

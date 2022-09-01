@@ -97,9 +97,9 @@
                         android:id="@+id/cusAddBtn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="0.7"
                         android:background="@drawable/selector_plus_oc"
+                        android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:padding="10dp"
                         android:src="@drawable/add_white"
@@ -127,43 +127,18 @@
                     android:textSize="@dimen/_12sdp" />
 
 
-                <LinearLayout
+                <Spinner
+                    android:id="@+id/cusTypeSpnr"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_below="@+id/typeHeader"
-                    android:layout_centerVertical="true"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/no_radius_background"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <Spinner
-                        android:id="@+id/cusTypeSpnr"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_32sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_weight="4.3"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:paddingStart="5dp"
-                        android:theme="@style/spinnerTheme"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-                    <ImageView
-                        android:id="@+id/cusTypeAddBtn"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="0.7"
-                        android:background="@drawable/selector_plus_oc"
-                        android:clickable="true"
-                        android:padding="10dp"
-                        android:src="@drawable/add_white"
-                        android:visibility="gone"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-                </LinearLayout>
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingStart="5dp"
+                    android:theme="@style/spinnerTheme"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             </RelativeLayout>
 
@@ -203,6 +178,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="4.3"
                         android:background="@android:color/transparent"
+                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:paddingStart="5dp"
                         android:theme="@style/spinnerTheme"
@@ -212,9 +188,9 @@
                         android:id="@+id/waiterAddBtn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="0.7"
                         android:background="@drawable/selector_plus_oc"
+                        android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:padding="10dp"
                         android:src="@drawable/add_white"
@@ -261,6 +237,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="4.3"
                         android:background="@android:color/transparent"
+                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:paddingStart="5dp"
                         android:theme="@style/spinnerTheme"
@@ -270,9 +247,9 @@
                         android:id="@+id/tableAddBtn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="0.7"
                         android:background="@drawable/selector_plus_oc"
+                        android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:padding="10dp"
                         android:src="@drawable/add_white"
@@ -392,6 +369,7 @@
                 android:layout_marginHorizontal="@dimen/_18sdp"
                 android:layout_marginVertical="@dimen/_44sdp"
                 android:background="@drawable/selector_ongoing"
+                android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:padding="@dimen/_8sdp"
