@@ -40,6 +40,17 @@ class Converters {
     }
 
     @TypeConverter
+    fun payListToJson(list: MutableList<Pay>): String?{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun jsonToPayList(json: String): MutableList<Pay>?{
+        val type = object : TypeToken<MutableList<Pay?>?>() {}.type
+        return Gson().fromJson(json, type)
+    }
+
+    @TypeConverter
     fun orderInfoToJson(model: OdrInf): String?{
         return Gson().toJson(model)
     }
@@ -57,6 +68,17 @@ class Converters {
 
     @TypeConverter
     fun jsonToCustomerInfo(json: String): CsInf?{
+        val type = object : TypeToken<CsInf?>() {}.type
+        return Gson().fromJson(json, type)
+    }
+
+    @TypeConverter
+    fun mrgRefListToJson(list: MutableList<Long>): String?{
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun jsonToMrgRefList(json: String): MutableList<Long>?{
         val type = object : TypeToken<CsInf?>() {}.type
         return Gson().fromJson(json, type)
     }

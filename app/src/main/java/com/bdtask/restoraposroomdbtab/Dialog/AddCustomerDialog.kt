@@ -14,7 +14,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AddCustomer(context: Context): Dialog(context) {
+class AddCustomerDialog(context: Context): Dialog(context) {
     private lateinit var binding: DialogAddNewCustomerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -15,18 +15,22 @@ import android.widget.ArrayAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.SplitFoodAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.SplitterAdapter
 import com.bdtask.restoraposroomdbtab.Interface.SplitFoodClickListener
+import com.bdtask.restoraposroomdbtab.Interface.SplitterClickListener
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
+import com.bdtask.restoraposroomdbtab.Model.OdrInf
+import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitItemBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSplitOrderBinding
 import es.dmoral.toasty.Toasty
 
-class SplitOrder( context: Context,
-                  private val sharedPref: SharedPref,
-                  private val foodCount: Int ): Dialog(context),SplitFoodClickListener {
+class SplitOrderDialog(context: Context,
+                       private val sharedPref: SharedPref,
+                       private val foodCount: Int ): Dialog(context), SplitFoodClickListener, SplitterClickListener {
 
     private var tmpOngItem = sharedPref.readSharedSplit()!!
     private lateinit var binding: DialogSplitOrderBinding
@@ -65,7 +69,9 @@ class SplitOrder( context: Context,
                 var id = 0
                 for (i in 1..splitterCount){
                     id += 1
-                    splitterList.add(Split(tmpOngItem.id.toString() + " ( $id )",tmpOngItem.id,0, CsInf("","",""),0.0,emptyList<Cart>().toMutableList()))
+                    splitterList.add(Split(tmpOngItem.id.toString() + " ( $id )",tmpOngItem.id,0,
+                        CsInf("","",""),0.0,0.0, 0.0,
+                        emptyList<Cart>().toMutableList(),emptyList<Pay>().toMutableList()))
                 }
 
                 getCartAndSetPlusFood()
@@ -77,7 +83,7 @@ class SplitOrder( context: Context,
 
 
         binding.custmrPlus.setOnClickListener {
-            val dialog = AddCustomer(context)
+            val dialog = AddCustomerDialog(context)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = context.resources.displayMetrics.widthPixels
@@ -101,7 +107,7 @@ class SplitOrder( context: Context,
     }
 
     private fun setSplitterRecycler() {
-        binding.spSplitterRv.adapter = SplitterAdapter(context, splitterList)
+        binding.spSplitterRv.adapter = SplitterAdapter(context, splitterList, this)
     }
 
     private fun setSpinnerAdapter() {
@@ -175,7 +181,8 @@ class SplitOrder( context: Context,
                                 splitterList[splitterIndex].cart[i].adnPrc += perAddonPriceList[position]
                                 val fPrc = splitterList[splitterIndex].cart[i].fPrc
                                 val adnPrc = splitterList[splitterIndex].cart[i].adnPrc
-                                splitterList[splitterIndex].cart[i].tUPrc = fPrc + adnPrc
+                                val tUPrc = fPrc + adnPrc
+                                splitterList[splitterIndex].cart[i].tUPrc = tUPrc
 
                                 checker = false
                                 insert = false
@@ -203,6 +210,42 @@ class SplitOrder( context: Context,
                 }
                 binding.spSplitterRv.adapter?.notifyDataSetChanged()
             }
+        }
+    }
+
+    override fun onPayNowClickListener() {
+        var spCount = this.splitterCount
+        var spFoodCount = 0
+        for (s in splitterList.indices){
+            if (splitterList[s].cart.isNotEmpty()){
+                spCount--
+            }
+        }
+        for (i in tmpOngItem.cart.indices){
+            spFoodCount += tmpOngItem.cart[i].fQnty
+        }
+        if (spCount == 0){
+
+            if (spFoodCount == 0){
+
+                val dialog = PaymentDialog(context,1,
+                    Order(0,0,0,0,"","",0.0,0.0,0.0,
+                        OdrInf(CsInf("","",""),"","","","",""),
+                    emptyList<Cart>().toMutableList(), emptyList<Pay>().toMutableList()),splitterList[splitterIndex])
+
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.show()
+                val width = context.resources.displayMetrics.widthPixels
+                val height = context.resources.displayMetrics.heightPixels
+                val win = dialog.window
+                win!!.setLayout((9 * width)/10,(14 * height)/15)
+                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            } else {
+                Toasty.warning(context,"You Have $spFoodCount Food Left to Split, Please Split Them First",Toasty.LENGTH_LONG).show()
+            }
+        } else {
+            Toasty.warning(context, "You Have $spCount incomplete Split Left, Please Complete Them First",Toasty.LENGTH_LONG).show()
         }
     }
 }

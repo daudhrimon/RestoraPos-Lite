@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,15 +19,16 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="3dp"
             android:background="@drawable/selector_close"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/helvetica_nueu_light"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
-            android:clickable="true"
-            android:fontFamily="@font/helvetica_nueu_light"
             android:text="Delete "
             android:textColor="@color/white"
             android:textSize="11sp"
-            tools:ignore="TextContrastCheck"
-            android:focusable="true" />
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/methodHeader"
@@ -46,7 +48,7 @@
             android:background="@drawable/no_radius_background">
 
             <Spinner
-                android:id="@+id/spinnerpaymentType"
+                android:id="@+id/spinPayments"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
@@ -85,15 +87,15 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/customerpaymentET"
+            android:id="@+id/payAmountEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/custometrHeader"
             android:background="@drawable/no_radius_background"
             android:fontFamily="@font/helvetica_nueu_light"
-            android:hint="Customer name"
             android:inputType="number"
             android:padding="10dp"
+            android:text="0.0"
             android:textColor="#000"
             android:textSize="15sp"
             tools:ignore="TouchTargetSizeCheck" />
@@ -101,11 +103,11 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/cardterminalLayout"
+        android:id="@+id/cardLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:weightSum="2">
 
         <LinearLayout
@@ -130,7 +132,7 @@
                 android:layout_marginTop="7dp">
 
                 <Spinner
-                    android:id="@+id/spinnercardterminall"
+                    android:id="@+id/spinTerminal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
@@ -175,7 +177,7 @@
                 android:layout_marginTop="7dp">
 
                 <Spinner
-                    android:id="@+id/spinnerselectbankk"
+                    android:id="@+id/spinBank"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"

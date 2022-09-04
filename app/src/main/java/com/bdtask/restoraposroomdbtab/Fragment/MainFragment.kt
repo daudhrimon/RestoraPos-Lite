@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.bdtask.restoraposroomdbtab.Dialog.Calculator
+import com.bdtask.restoraposroomdbtab.Dialog.CalculatorDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
@@ -80,7 +80,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 categoryList.add(0,"All Category")
                 mainBinding.tabLayout.tabGravity = TabLayout.GRAVITY_FILL
             } else {
-                categoryList.add(0,"There is No Category Found")
+                categoryList.add(0,"There is No Food Category Found")
                 mainBinding.tabLayout.tabGravity = TabLayout.GRAVITY_CENTER
             }
 
@@ -135,7 +135,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
         // Calculator BUTTON Click
         mainBinding.calculatorLay.setOnClickListener {
-            val dialog: Dialog = Calculator(requireContext())
+            val dialog: Dialog = CalculatorDialog(requireContext())
             dialog.show()
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels
@@ -210,8 +210,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 try {
                     Log.wtf("CART",tempCartList.toString())
                     GlobalScope.launch {
-                        orderId = MainActivity.database.orderDao().insertOrder(Order(0,0,0,0,
-                            Util.getDate().toString(),token,0.0,0.0,0.0,odrInf,tempCartList))
+                        orderId = MainActivity.database.orderDao().insertOrder(
+                            Order(0, 0,0,0, Util.getDate().toString(),token, 0.0,
+                                0.0, 0.0, odrInf,tempCartList, emptyList<Pay>().toMutableList())
+                        )
                     }
                     Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
                 } catch (e:Exception){

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardCornerRadius="@dimen/_10sdp"
-    tools:context=".Dialog.SplitOrder">
+    tools:context=".Dialog.SplitOrderDialog">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -146,7 +146,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/vh_splitter"/>
+            tools:listitem="@layout/vh_splitter" />
 
     </LinearLayout>
 

@@ -11,7 +11,7 @@ import javax.script.ScriptEngine
 import javax.script.ScriptEngineManager
 import javax.script.ScriptException
 
-class Calculator(context: Context) : Dialog(context) {
+class CalculatorDialog(context: Context) : Dialog(context) {
     private lateinit var workingsTV: TextView
     private lateinit var resultsTV: TextView
     private lateinit var equalsOnClick: TextView

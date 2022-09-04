@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.bdtask.restoraposroomdbtab.Dialog.AddPayment
+import com.bdtask.restoraposroomdbtab.Dialog.AddPaymentDialog
 import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Room.PosDatabase
 import com.google.android.material.navigation.NavigationView
@@ -44,7 +44,7 @@ class MainActivity: AppCompatActivity() {
                 R.id.addFood -> findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
 
                 R.id.addPay -> {
-                    val dialog = AddPayment(this)
+                    val dialog = AddPaymentDialog(this)
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
                     val win = dialog.window

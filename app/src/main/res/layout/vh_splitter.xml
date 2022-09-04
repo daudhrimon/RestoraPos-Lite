@@ -47,7 +47,7 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/totalAmountSplit"
+                        android:id="@+id/totalAmountTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -59,10 +59,10 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/totalAmountTv"
+                        android:id="@+id/totalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/totalAmountSplit"
+                        android:layout_below="@+id/totalAmountTv"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/helvetica_nueu_light"
@@ -89,7 +89,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/vatTv"
+                        android:id="@+id/vat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/vatSplit"
@@ -127,7 +127,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/scTv"
+                        android:id="@+id/serviceCharge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/serviceSplit"
@@ -157,7 +157,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/grandTotalTv"
+                        android:id="@+id/grandTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/grandTotalSplit"
@@ -436,7 +436,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/payNowSplitId"
+        android:id="@+id/splitPayNow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_34sdp"
         android:layout_margin="10dp"

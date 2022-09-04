@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.Cart
+import com.bdtask.restoraposroomdbtab.Model.Pay
 
 @Entity(tableName = "split_tbl")
 data class Split(
@@ -13,5 +14,10 @@ data class Split(
     val sts: Int,
     var csInf: CsInf,
     val dis: Double,
-    val cart: MutableList<Cart>
+    val vat: Double,
+    val crg: Double,
+    //var tPrc: Double,
+    //var gtPrc: Double,
+    val cart: MutableList<Cart>,
+    val pay: MutableList<Pay>
 )

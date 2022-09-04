@@ -14,9 +14,9 @@ import com.bdtask.restoraposroomdbtab.databinding.DialogAddPaymentBinding
 import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
 
-class AddPayment(context: Context): Dialog(context) {
+class AddPaymentDialog(context: Context): Dialog(context) {
     private lateinit var binding: DialogAddPaymentBinding
-    private val paymentType = arrayOf("Simple Payment","Card Payment")
+    private val payType = arrayOf("Simple Payment","Card Payment")
     private var pos = 0
     private val sharedPref = SharedPref
 
@@ -27,7 +27,7 @@ class AddPayment(context: Context): Dialog(context) {
 
         sharedPref.init(context)
 
-        binding.typeSpinner.adapter = ArrayAdapter(context,androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,paymentType)
+        binding.typeSpinner.adapter = ArrayAdapter(context,androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,payType)
 
         binding.payCross.setOnClickListener {
             onBackPressed()
@@ -38,6 +38,7 @@ class AddPayment(context: Context): Dialog(context) {
             binding.terminal.clearFocus()
             binding.name.clearFocus()
         }
+
 
         binding.typeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
@@ -82,9 +83,15 @@ class AddPayment(context: Context): Dialog(context) {
                             showToasty(0,"This Payment is Already In")
                         }
                     } else {
-                        payList.add(binding.name.text.toString())
-                        sharedPref.writePayList(payList)
-                        showToasty(1,"Added New Payment Successfully")
+                        payList.add("Cash Payment")
+                        payList.add("Card Payment")
+                        if (!Gson().toJson(payList).contains(Gson().toJson(binding.name.text.toString()))){
+                            payList.add(binding.name.text.toString())
+                            sharedPref.writePayList(payList)
+                        } else {
+                            sharedPref.writePayList(payList)
+                            showToasty(0,"Cash Payment & Card Payment is Already in By Default")
+                        }
                     }
 
                     binding.name.setText("")

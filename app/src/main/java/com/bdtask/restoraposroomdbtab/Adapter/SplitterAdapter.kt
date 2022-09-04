@@ -1,22 +1,31 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bdtask.restoraposroomdbtab.Dialog.SplitOrder.Companion.splitterIndex
+import com.bdtask.restoraposroomdbtab.Dialog.PaymentDialog
+import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
+import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog.Companion.splitterIndex
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.cusInfoList
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.cusNameList
+import com.bdtask.restoraposroomdbtab.Interface.SplitterClickListener
+import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitterBinding
+import es.dmoral.toasty.Toasty
 
 class SplitterAdapter( private val context: Context,
-                       private val splitterList: MutableList<Split> ): RecyclerView.Adapter<SplitterAdapter.VHSplitter>() {
+                       private val splitterList: MutableList<Split>,
+                       private val splitterClickListener: SplitterClickListener ): RecyclerView.Adapter<SplitterAdapter.VHSplitter>() {
 
     inner class VHSplitter(binding: VhSplitterBinding): RecyclerView.ViewHolder(binding.root) {
         val binding = binding
@@ -27,15 +36,33 @@ class SplitterAdapter( private val context: Context,
     }
 
     override fun onBindViewHolder(holder: VHSplitter, position: Int) {
-        val pos = position
+        val pos: Int = position
 
         holder.binding.orderId.text = "Order Id : " + splitterList[position].id
 
         if (splitterIndex == position){
             holder.binding.splitter.setBackgroundResource(R.drawable.shape_splitter_selected)
+
+            var tPrc = 0.0
+
+            for (i in splitterList[splitterIndex].cart.indices){
+                tPrc += splitterList[splitterIndex].cart[i].tUPrc
+            }
+
+            val vat = splitterList[splitterIndex].vat
+            val crg = splitterList[splitterIndex].crg
+            val gTotal = tPrc + vat + crg
+
+            holder.binding.totalAmount.text = tPrc.toString()
+            holder.binding.vat.text = vat.toString()
+            holder.binding.serviceCharge.text = crg.toString()
+            holder.binding.grandTotal.text = gTotal.toString()
+
         } else {
             holder.binding.splitter.setBackgroundResource(R.drawable.shape_splitter_unselect)
         }
+
+        //holder.binding.grandTotal.text = splitterList[splitterIndex].cart[position].tUPrc + serviceCharge + vat
 
         // itemView onClick
         holder.binding.splitter.setOnClickListener {
@@ -69,6 +96,10 @@ class SplitterAdapter( private val context: Context,
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
+        }
+
+        holder.binding.splitPayNow.setOnClickListener {
+            splitterClickListener.onPayNowClickListener()
         }
     }
 

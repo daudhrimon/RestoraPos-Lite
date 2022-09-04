@@ -193,7 +193,7 @@
                                     android:textSize="15dp" />
 
                                 <TextView
-                                    android:id="@+id/totalAmountTv"
+                                    android:id="@+id/totalAmount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/totalAmountHeader"
@@ -288,7 +288,7 @@
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/helvetica_nueu_light"
-                                    android:text="Total Due"
+                                    android:text="Returnable"
                                     android:textColor="#888888"
                                     android:textSize="15dp" />
 
@@ -328,7 +328,7 @@
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/addDis"
+                            android:id="@+id/addDisBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_36sdp"
                             android:layout_margin="10dp"
@@ -380,15 +380,15 @@
 
                                 <RelativeLayout
                                     android:layout_width="wrap_content"
-                                    android:layout_height="40dp"
+                                    android:layout_height="@dimen/_33sdp"
                                     android:layout_below="@id/typeHeader"
                                     android:layout_marginRight="3dp"
                                     android:background="@drawable/no_radius_background">
 
                                     <Spinner
-                                        android:id="@+id/spinnerdiscountType"
+                                        android:id="@+id/spinDisType"
                                         android:layout_width="match_parent"
-                                        android:layout_height="40dp"
+                                        android:layout_height="match_parent"
                                         android:layout_centerVertical="true"
                                         android:layout_gravity="center"
                                         android:background="@android:color/transparent"
@@ -429,7 +429,7 @@
                                 <EditText
                                     android:id="@+id/discountEt"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_31sdp"
+                                    android:layout_height="@dimen/_33sdp"
                                     android:layout_below="@+id/discountHeader"
                                     android:background="@drawable/no_radius_background"
                                     android:digits="0123456789."
@@ -446,7 +446,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/payment"
+                            android:id="@+id/paymentBtn"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_34sdp"
                             android:layout_marginHorizontal="10dp"
@@ -465,12 +465,11 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/paymentOptionsRV"
+                    android:id="@+id/paymentRV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/vh_payment" />
 
@@ -501,18 +500,21 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/payNowTv"
+                android:id="@+id/payPrintBtn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_34sdp"
                 android:layout_margin="10dp"
                 android:background="@drawable/selector_today"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:gravity="center"
                 android:text="Pay &amp; Print"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:focusable="true"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

@@ -6,19 +6,21 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
-import com.bdtask.restoraposroomdbtab.Dialog.Payment
-import com.bdtask.restoraposroomdbtab.Dialog.SplitOrder
+import com.bdtask.restoraposroomdbtab.Dialog.PaymentDialog
+import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
+import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
@@ -98,9 +100,10 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
-
         ongBinding.completeBtn.setOnClickListener {
-            val dialog = Payment(requireContext())
+            val dialog = PaymentDialog(requireContext(),0,ongList[ongPos],
+                Split("",0,0,CsInf("","",""),0.0,0.0,0.0,
+                    emptyList<Cart>().toMutableList(), emptyList<Pay>().toMutableList()))
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -112,20 +115,23 @@ class OngoingFragment : Fragment(), OngoingClickListener {
 
 
 
-
         ongBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
-                    MainActivity.database.orderDao().deleteOnGoing(Order(ongList[ongPos].id,0,0,0,
-                        ongList[ongPos].dat, ongList[ongPos].tkn,0.0,0.0,0.0,ongList[ongPos].odrInf,ongList[ongPos].cart))
+                    MainActivity.database.orderDao().deleteOnGoing(
+                        Order(ongList[ongPos].id,0,0,0, ongList[ongPos].dat, ongList[ongPos].tkn,0.0,
+                            0.0,0.0, ongList[ongPos].odrInf, ongList[ongPos].cart, emptyList<Pay>().toMutableList())
+                    )
                 }
                 Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
                 for (i in clickedList.indices){
                     val pos = clickedList[i]
                     GlobalScope.launch {
-                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,0,0,0,
-                            ongList[pos].dat, ongList[pos].tkn,0.0,0.0,0.0,ongList[pos].odrInf,ongList[pos].cart))
+                        MainActivity.database.orderDao().deleteOnGoing(
+                            Order(ongList[pos].id,0,0,0, ongList[pos].dat, ongList[pos].tkn,0.0,
+                                0.0,0.0, ongList[pos].odrInf, ongList[pos].cart,emptyList<Pay>().toMutableList())
+                        )
                     }
                 }
                 Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()
@@ -143,7 +149,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             val sharedPref = SharedPref
             sharedPref.init(requireContext())
             sharedPref.writeSharedSplit(ongList[ongPos])
-            val dialog = SplitOrder(requireContext(), sharedPref, foodCount)
+            val dialog = SplitOrderDialog(requireContext(), sharedPref, foodCount)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels

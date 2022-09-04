@@ -11,18 +11,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.bdtask.restoraposroomdbtab.Dialog.AddCustomer
+import com.bdtask.restoraposroomdbtab.Dialog.AddCustomerDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.bdtask.restoraposroomdbtab.R
-import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
 import com.bdtask.restoraposroomdbtab.Room.Entity.Cmpny
 import com.bdtask.restoraposroomdbtab.Room.Entity.Table
 import com.bdtask.restoraposroomdbtab.Room.Entity.Waiter
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
-import com.bdtask.restoraposroomdbtab.databinding.DialogAddNewCustomerBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposroomdbtab.databinding.FragmentOrderInfoBinding
 import es.dmoral.toasty.Toasty
@@ -207,7 +205,7 @@ class OrderInfoFragment : Fragment() {
         binding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(), binding.root) }
 
         binding.cusAddBtn.setOnClickListener {
-            val dialog = AddCustomer(requireContext())
+            val dialog = AddCustomerDialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
