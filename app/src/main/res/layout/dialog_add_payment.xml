@@ -20,12 +20,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/helvetica_nueu_light"
                 android:text="Add New payment Method"
-                android:textSize="@dimen/_15sdp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/helvetica_neue"/>
+                android:textSize="@dimen/_15sdp" />
 
             <ImageView
                 android:id="@+id/payCross"

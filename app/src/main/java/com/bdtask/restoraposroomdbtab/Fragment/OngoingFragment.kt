@@ -11,16 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
-import com.bdtask.restoraposroomdbtab.Dialog.PaymentDialog
+import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
 import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
-import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
-import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
@@ -101,9 +99,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ongBinding.completeBtn.setOnClickListener {
-            val dialog = PaymentDialog(requireContext(),0,ongList[ongPos],
-                Split("",0,0,CsInf("","",""),0.0,0.0,0.0,
-                    emptyList<Cart>().toMutableList(), emptyList<Pay>().toMutableList()))
+            val dialog = CPaymentDialog(requireContext(),ongList[ongPos])
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels

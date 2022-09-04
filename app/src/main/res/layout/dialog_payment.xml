@@ -26,7 +26,7 @@
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:text="Select Payment Method"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/_15sdp"/>
 
             <ImageView
                 android:id="@+id/closeBtn"
@@ -54,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <LinearLayout
                     android:id="@+id/mergeLayout"
@@ -224,7 +225,7 @@
                                     android:textSize="15dp" />
 
                                 <TextView
-                                    android:id="@+id/totalDueTv"
+                                    android:id="@+id/totalDue"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/totalDueHeader"
@@ -263,7 +264,7 @@
                                     android:textSize="15dp" />
 
                                 <TextView
-                                    android:id="@+id/payableAmountTv"
+                                    android:id="@+id/payableAmount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/payableHeader"
@@ -293,7 +294,7 @@
                                     android:textSize="15dp" />
 
                                 <TextView
-                                    android:id="@+id/changeAmountTv"
+                                    android:id="@+id/returnable"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/changeHeader"
@@ -450,7 +451,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_34sdp"
                             android:layout_marginHorizontal="10dp"
-                            android:layout_marginVertical="5dp"
+                            android:layout_marginVertical="10dp"
                             android:background="@drawable/selector_ongoing"
                             android:fontFamily="@font/helvetica_nueu_light"
                             android:foreground="?attr/selectableItemBackground"
@@ -468,10 +469,26 @@
                     android:id="@+id/paymentRV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginHorizontal="5dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/vh_payment" />
+
+                <TextView
+                    android:id="@+id/addAnotherPay"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_34sdp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/selector_ongoing"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:gravity="center"
+                    android:text="Add Another Payment"
+                    android:textColor="#fff"
+                    android:textSize="17sp"
+                    android:visibility="gone"
+                    android:focusable="true" />
 
             </LinearLayout>
 
@@ -485,25 +502,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/addNewPaymentTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#17973E"
-                android:fontFamily="@font/helvetica_nueu_light"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Add New Payment"
-                android:textAlignment="center"
-                android:textColor="#fff"
-                android:textSize="18sp"
-                android:visibility="gone" />
-
-            <TextView
                 android:id="@+id/payPrintBtn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_34sdp"
-                android:layout_margin="10dp"
+                android:layout_margin="12dp"
                 android:background="@drawable/selector_today"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:foreground="?attr/selectableItemBackground"

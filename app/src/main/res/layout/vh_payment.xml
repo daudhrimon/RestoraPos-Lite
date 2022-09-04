@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    android:orientation="vertical"
-    android:animateLayoutChanges="true">
+    app:cardBackgroundColor="#F5F5F5"
+    app:cardCornerRadius="@dimen/_7sdp"
+    app:cardElevation="0dp"
+    android:layout_margin="5dp">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
         <TextView
-            android:id="@+id/closepaymentitemIV"
+            android:id="@+id/dltPayBtn"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
             android:layout_marginEnd="3dp"
             android:background="@drawable/selector_close"
             android:clickable="true"
@@ -30,15 +40,15 @@
             tools:ignore="TextContrastCheck,TouchTargetSizeCheck"
             android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/methodHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/helvetica_nueu_light"
-            android:text="Payment Method "
-            android:textColor="@color/theme_color"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/methodHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:text="Payment Method "
+                android:textColor="@color/theme_color"
+                android:textSize="15sp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -200,7 +210,8 @@
 
         </LinearLayout>
 
+    </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

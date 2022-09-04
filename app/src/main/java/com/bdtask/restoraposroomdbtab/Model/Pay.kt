@@ -1,9 +1,9 @@
 package com.bdtask.restoraposroomdbtab.Model
 
 data class Pay(
-    val typ: Int,
+    var typ: Int,
     val pay: String,
-    val ter: String,
-    val bnk: String,
-    val amo: Double
+    var ter: String,
+    var bnk: String,
+    var amo: Double
 )
