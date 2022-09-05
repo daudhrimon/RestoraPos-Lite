@@ -114,20 +114,18 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         ongBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
-                    MainActivity.database.orderDao().deleteOnGoing(
-                        Order(ongList[ongPos].id,0,0,0, ongList[ongPos].dat, ongList[ongPos].tkn,0.0,
-                            0.0,0.0, ongList[ongPos].odrInf, ongList[ongPos].cart, emptyList<Pay>().toMutableList())
-                    )
+                    MainActivity.database.orderDao().deleteOnGoing( Order(ongList[ongPos].id,0,0,0,
+                        ongList[ongPos].dat, ongList[ongPos].tkn,0,0.0, 0.0,0.0,0.0,
+                            ongList[ongPos].odrInf, ongList[ongPos].cart, emptyList<Pay>().toMutableList()))
                 }
                 Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
                 for (i in clickedList.indices){
                     val pos = clickedList[i]
                     GlobalScope.launch {
-                        MainActivity.database.orderDao().deleteOnGoing(
-                            Order(ongList[pos].id,0,0,0, ongList[pos].dat, ongList[pos].tkn,0.0,
-                                0.0,0.0, ongList[pos].odrInf, ongList[pos].cart,emptyList<Pay>().toMutableList())
-                        )
+                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,0,0,0,
+                            ongList[pos].dat, ongList[pos].tkn,0,0.0, 0.0,0.0, 0.0,
+                            ongList[pos].odrInf, ongList[pos].cart,emptyList<Pay>().toMutableList()))
                     }
                 }
                 Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()

@@ -8,19 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.PayAmountTextChangedListener
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.VhPaymentBinding
-import com.google.android.material.navigation.NavigationBarView
 
 class PaymentAdapter( private val context: Context,
                       private val payList: MutableList<Pay>,
                       private val Payments: MutableList<String>,
                       private val terminals: MutableList<String>,
                       private val banks: MutableList<String>,
-                      private val payAmountTextChangeListener: PayAmountTextChangedListener ): RecyclerView.Adapter<PaymentAdapter.VHPay>() {
+                      private val dTotalDue: TextView,
+                      private val dPayableAmount: TextView,
+                      private val dChangeDue: TextView,
+                      private val dAnotherPay: TextView ): RecyclerView.Adapter<PaymentAdapter.VHPay>() {
 
     inner class VHPay(binding: VhPaymentBinding): RecyclerView.ViewHolder(binding.root){
         val binding = binding
@@ -50,8 +54,8 @@ class PaymentAdapter( private val context: Context,
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
                 if (holder.binding.spinPayments.selectedItem.toString() == "Card Payment"){
                     holder.binding.cardLay.visibility = View.VISIBLE
-                    setCardLayAdapter(holder)
                     payList[adapterPos].typ = 1
+                    setCardLayAdapter(holder, adapterPos)
                 } else {
                     holder.binding.cardLay.visibility = View.GONE
                     payList[adapterPos].typ = 0
@@ -59,6 +63,55 @@ class PaymentAdapter( private val context: Context,
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
+
+        holder.binding.payAmountEt.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {/**/}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if (p0.toString().isNotEmpty()){
+                    payList[adapterPos].amo = p0.toString().toDouble()
+                } else {
+                    payList[adapterPos].amo = 0.0
+                }
+
+                val payableAmount: Double
+                var changeDue = 0.0
+                val totalDue = dTotalDue.text.toString().toDouble()
+
+                var adAmount = 0.0
+                for (i in payList.indices) {
+                    adAmount += payList[i].amo
+                }
+
+                if (adAmount > totalDue) {
+                    payableAmount = 0.0
+                    changeDue = adAmount - totalDue
+                } else {
+                    payableAmount = totalDue - adAmount
+                }
+
+                dPayableAmount.text = payableAmount.toString()
+                dChangeDue.text = changeDue.toString()
+
+                if (payableAmount > 0) {
+                    dAnotherPay.visibility = View.VISIBLE
+                } else {
+                    dAnotherPay.visibility = View.GONE
+                    Util.hideSoftKeyBoard(context,holder.binding.root)
+                }
+            }
+            override fun afterTextChanged(p0: Editable?) {/**/}
+        })
+
+        holder.binding.dltPayBtn.setOnClickListener {
+            payList.removeAt(position)
+            notifyDataSetChanged()
+        }
+    }
+
+    private fun setCardLayAdapter(holder: VHPay, adapterPos: Int) {
+        holder.binding.spinTerminal.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item, terminals)
+        holder.binding.spinBank.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item, banks)
 
         holder.binding.spinTerminal.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
@@ -73,29 +126,6 @@ class PaymentAdapter( private val context: Context,
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
-
-        holder.binding.payAmountEt.addTextChangedListener( object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {/**/}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0.toString().isNotEmpty()){
-                    payList[adapterPos].amo = p0.toString().toDouble()
-                } else {
-                    payList[adapterPos].amo = 0.0
-                }
-                payAmountTextChangeListener.onPayAmountTextChange()
-            }
-            override fun afterTextChanged(p0: Editable?) {/**/}
-        })
-
-        holder.binding.dltPayBtn.setOnClickListener {
-            payList.removeAt(position)
-            notifyDataSetChanged()
-        }
-    }
-
-    private fun setCardLayAdapter(holder: VHPay) {
-        holder.binding.spinTerminal.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item, terminals)
-        holder.binding.spinBank.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item, banks)
     }
 
     override fun getItemCount(): Int {

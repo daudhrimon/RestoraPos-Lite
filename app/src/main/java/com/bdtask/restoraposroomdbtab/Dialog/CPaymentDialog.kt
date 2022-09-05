@@ -19,11 +19,10 @@ import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
 import kotlin.properties.Delegates
 
 class CPaymentDialog ( context: Context,
-                       private val order: Order ): Dialog(context), PayAmountTextChangedListener {
+                       private val order: Order ): Dialog(context)/*, PayAmountTextChangedListener*/ {
 
-    private lateinit var binding: DialogPaymentBinding
+    private lateinit var dBinding: DialogPaymentBinding
     private val disTypes = arrayOf("Amount", "Percentage (%)")
-    private var payList = mutableListOf<Pay>()
     private var disType by Delegates.notNull<Int>()
     private val sharedPref = SharedPref
     private var payments = mutableListOf<String>()
@@ -32,35 +31,35 @@ class CPaymentDialog ( context: Context,
     private var totalAmount = 0.0
     private var totalDue = 0.0
     private var payableAmount = 0.0
-    private var returnable = 0.0
+    private var changeDue = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DialogPaymentBinding.bind(layoutInflater.inflate(R.layout.dialog_payment,null))
-        setContentView(binding.root)
+        dBinding = DialogPaymentBinding.bind(layoutInflater.inflate(R.layout.dialog_payment,null))
+        setContentView(dBinding.root)
         sharedPref.init(context)
 
         setPaymentHeaders()
 
-        binding.spinDisType.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,disTypes)
+        dBinding.spinDisType.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,disTypes)
 
-        binding.spinDisType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        dBinding.spinDisType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
                 disType = sPos
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
-        binding.closeBtn.setOnClickListener {
+        dBinding.closeBtn.setOnClickListener {
             onBackPressed()
         }
 
-        binding.addDisBtn.setOnClickListener {
-            binding.addDisBtn.visibility = View.GONE
-            binding.distLay.visibility = View.VISIBLE
+        dBinding.addDisBtn.setOnClickListener {
+            dBinding.addDisBtn.visibility = View.GONE
+            dBinding.distLay.visibility = View.VISIBLE
         }
 
-        binding.discountEt.addTextChangedListener(object : TextWatcher{
+        dBinding.discountEt.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {/**/}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0.toString().isNotEmpty()){
@@ -73,23 +72,23 @@ class CPaymentDialog ( context: Context,
             override fun afterTextChanged(p0: Editable?) {/**/}
         })
 
-        binding.paymentBtn.setOnClickListener {
-            binding.addDisBtn.visibility = View.GONE
-            binding.distLay.visibility = View.GONE
-            binding.paymentBtn.visibility = View.GONE
-            binding.payPrintBtn.visibility = View.VISIBLE
-            payList.add(Pay(0,"","","",0.0))
+        dBinding.paymentBtn.setOnClickListener {
+            dBinding.addDisBtn.visibility = View.GONE
+            dBinding.distLay.visibility = View.GONE
+            dBinding.paymentBtn.visibility = View.GONE
+            dBinding.payPrintBtn.visibility = View.VISIBLE
+            order.pay.add(Pay(0,"","","",0.0))
             setPaymentAdapter()
-            Util.hideSoftKeyBoard(context,binding.root)
+            Util.hideSoftKeyBoard(context,dBinding.root)
         }
 
-        binding.addAnotherPay.setOnClickListener {
-            payList.add(Pay(0,"","","",0.0))
+        dBinding.addAnotherPay.setOnClickListener {
+            order.pay.add(Pay(0,"","","",0.0))
             setPaymentAdapter()
-            Util.hideSoftKeyBoard(context,binding.root)
+            Util.hideSoftKeyBoard(context,dBinding.root)
         }
 
-        binding.payPrintBtn.setOnClickListener {
+        dBinding.payPrintBtn.setOnClickListener {
 
         }
 
@@ -99,19 +98,21 @@ class CPaymentDialog ( context: Context,
         totalAmount = 0.0
         totalDue = 0.0
         payableAmount = 0.0
-        returnable = 0.0
+        changeDue = 0.0
 
         order.crg = 0.0
         for (i in order.cart.indices) {
             totalAmount += order.cart[i].tUPrc
         }
         order.vat = 0.0
+        order.tPrc = totalAmount
+
         totalAmount += order.crg + order.vat
         totalDue = totalAmount - order.dis
 
-        binding.totalAmount.text = totalAmount.toString()
-        binding.totalDue.text = totalDue.toString()
-        binding.payableAmount.text = totalDue.toString()
+        dBinding.totalAmount.text = totalAmount.toString()
+        dBinding.totalDue.text = totalDue.toString()
+        dBinding.payableAmount.text = totalDue.toString()
     }
 
     private fun setPaymentAdapter() {
@@ -125,13 +126,13 @@ class CPaymentDialog ( context: Context,
             banks = sharedPref.readBankList()!!
         }
 
-        binding.paymentRV.adapter = PaymentAdapter(context,
-            payList, payments, terminals, banks,this)
+        dBinding.paymentRV.adapter = PaymentAdapter(context, order.pay, payments, terminals, banks,
+            dBinding.totalDue,dBinding.payableAmount,dBinding.changeDue,dBinding.addAnotherPay)
     }
 
-    override fun onPayAmountTextChange() {
+    /*override fun onPayAmountTextChange() {
         payableAmount = 0.0
-        returnable = 0.0
+        changeDue = 0.0
 
         var adAmount = 0.0
         for (i in payList.indices) {
@@ -140,19 +141,19 @@ class CPaymentDialog ( context: Context,
 
         if (adAmount > totalDue) {
             payableAmount = 0.0
-            returnable = adAmount - totalDue
+            changeDue = adAmount - totalDue
         } else {
             payableAmount = totalDue - adAmount
         }
-        binding.payableAmount.text = payableAmount.toString()
-        binding.returnable.text = returnable.toString()
+        dBinding.payableAmount.text = payableAmount.toString()
+        dBinding.changeDue.text = changeDue.toString()
 
         if (payableAmount > 0) {
-            binding.addAnotherPay.visibility = View.VISIBLE
+            dBinding.addAnotherPay.visibility = View.VISIBLE
         } else {
-            binding.addAnotherPay.visibility = View.GONE
-            Util.hideSoftKeyBoard(context,binding.root)
+            dBinding.addAnotherPay.visibility = View.GONE
+            Util.hideSoftKeyBoard(context,dBinding.root)
         }
-    }
+    }*/
 
 }

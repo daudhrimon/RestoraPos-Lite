@@ -15,10 +15,11 @@ data class Mrg (
     val sts: Int,
     val dat: String,
     val tkn: String,
+    val dist: Int,
     val dis: Double,
     val vat: Double,
     val crg: Double,
-    val gTtl: Double,
+    val tPrc: Double,
     val odrInf: OdrInf,
     val cart: MutableList<Cart>,
     val pay: MutableList<Pay>
