@@ -156,7 +156,7 @@ class AddPaymentDialog(context: Context): Dialog(context) {
         if (status == 1){
             Toasty.success(context,toast, Toasty.LENGTH_SHORT).show()
         } else {
-            Toasty.warning(context,toast, Toasty.LENGTH_SHORT).show()
+            Toasty.info(context,toast, Toasty.LENGTH_SHORT).show()
         }
     }
 }

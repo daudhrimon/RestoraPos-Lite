@@ -87,7 +87,7 @@ class CPaymentDialog ( context: Context,
             if (payable == 0.0){
 
             } else {
-                Toasty.warning(context,"Please Complete Payment First, Amount Left to Pay ${totalAmount - payable}")
+                Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
             }
         }
 

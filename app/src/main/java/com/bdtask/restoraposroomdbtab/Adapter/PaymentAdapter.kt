@@ -44,6 +44,7 @@ class PaymentAdapter( private val context: Context,
 
             if (position == payList.size-1){
                 holder.binding.payAmountEt.setText(dPayableAmount.text.toString())
+                dPayableAmount.text = "0.0"
                 holder.binding.payAmountEt.requestFocus()
             }
         }
