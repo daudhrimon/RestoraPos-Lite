@@ -187,7 +187,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         if (multiSelect){
             ongBinding.searchBtn.visibility = View.GONE
             ongBinding.tickBtn.visibility = View.VISIBLE
-            ongBinding.ongHeader.text = clickedList.size.toString() + " / " + ongList.size.toString() + " Selected"
+            ongBinding.ongHeader.text = "${clickedList.size} / ${ongList.size} Selected"
             ongBinding.root.isFocusableInTouchMode = true
             ongBinding.root.requestFocus()
         }

@@ -43,6 +43,7 @@ class PaymentAdapter( private val context: Context,
             holder.binding.dltPayBtn.visibility = View.VISIBLE
 
             if (position == payList.size-1){
+                holder.binding.payAmountEt.setText(dPayableAmount.text.toString())
                 holder.binding.payAmountEt.requestFocus()
             }
         }
@@ -97,7 +98,6 @@ class PaymentAdapter( private val context: Context,
                     dAnotherPay.visibility = View.VISIBLE
                 } else {
                     dAnotherPay.visibility = View.GONE
-                    Util.hideSoftKeyBoard(context,holder.binding.root)
                 }
             }
             override fun afterTextChanged(p0: Editable?) {/**/}

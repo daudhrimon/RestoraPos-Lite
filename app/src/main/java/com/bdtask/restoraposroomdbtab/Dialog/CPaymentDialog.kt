@@ -15,21 +15,21 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
+import es.dmoral.toasty.Toasty
 
 class CPaymentDialog ( context: Context,
                        private val state: Int,
                        private val order: Order ): Dialog(context)/*, PayAmountTextChangedListener*/ {
 
     //state " 0 " for complete orders
-
     private lateinit var dBinding: DialogPaymentBinding
     private val disTypes = arrayOf("Amount", "Percentage (%)")
     private val sharedPref = SharedPref
     private var payments = mutableListOf<String>()
     private var terminals = mutableListOf<String>()
     private var banks = mutableListOf<String>()
+    private var totalAmount = 0.0
     private var disType = 0
-    private var discount = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,13 +83,18 @@ class CPaymentDialog ( context: Context,
         }
 
         dBinding.payPrintBtn.setOnClickListener {
+            val payable = dBinding.payableAmount.text.toString().toDouble()
+            if (payable == 0.0){
 
+            } else {
+                Toasty.warning(context,"Please Complete Payment First, Amount Left to Pay ${totalAmount - payable}")
+            }
         }
 
     }
 
     private fun setPaymentHeaders() {
-        var totalAmount = 0.0
+        totalAmount = 0.0
         var totalDue = 0.0
         var discount = 0.0
 

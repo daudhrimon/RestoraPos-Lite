@@ -31,17 +31,17 @@ class OngoingAdapter(
 
     override fun onBindViewHolder(holder: VHOngoing, position: Int) {
         try {
-            holder.binding.cusName.text = "Customer : " + ongList[position].odrInf.csInf.csNm
+            holder.binding.cusName.text = "Customer : ${ongList[position].odrInf.csInf.csNm}"
         } catch (e: Exception){/**/}
 
         try {
-            holder.binding.orderId.text = "Order Id : " + ongList[position].id.toString()
+            holder.binding.orderId.text = "Order Id : ${ongList[position].id}"
         } catch (e: Exception){/**/}
 
         try {
             if (ongList[position].odrInf.wtr.isNotEmpty()) {
                 holder.binding.waiterName.visibility = View.VISIBLE
-                holder.binding.waiterName.text = "Waiter : " + ongList[position].odrInf.wtr
+                holder.binding.waiterName.text = "Waiter : ${ongList[position].odrInf.wtr}"
             } else {
                 holder.binding.waiterName.visibility = View.INVISIBLE
             }
@@ -49,7 +49,7 @@ class OngoingAdapter(
 
         try {
             if (ongList[position].odrInf.tbl.isNotEmpty()) {
-                holder.binding.tableName.text = "Table : " + ongList[position].odrInf.tbl
+                holder.binding.tableName.text = "Table : ${ongList[position].odrInf.tbl}"
             } else {
                 if (ongList[position].odrInf.csTyp.isNotEmpty()){
                     holder.binding.tableName.text = ongList[position].odrInf.csTyp
