@@ -15,7 +15,6 @@ data class Mrg (
     val sts: Int,
     val dat: String,
     val tkn: String,
-    val dist: Int,
     val dis: Double,
     val vat: Double,
     val crg: Double,

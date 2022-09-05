@@ -211,7 +211,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                     Log.wtf("CART",tempCartList.toString())
                     GlobalScope.launch {
                         orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0,
-                            Util.getDate().toString(),token,0,0.0,
+                            Util.getDate().toString(),token,0.0,
                                 0.0,0.0,0.0, odrInf,tempCartList, emptyList<Pay>().toMutableList()))
                     }
                     Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()

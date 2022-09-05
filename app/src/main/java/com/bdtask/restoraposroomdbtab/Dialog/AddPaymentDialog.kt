@@ -83,15 +83,9 @@ class AddPaymentDialog(context: Context): Dialog(context) {
                             showToasty(0,"This Payment is Already In")
                         }
                     } else {
-                        payList.add("Cash Payment")
-                        payList.add("Card Payment")
-                        if (!Gson().toJson(payList).contains(Gson().toJson(binding.name.text.toString()))){
-                            payList.add(binding.name.text.toString())
-                            sharedPref.writePayList(payList)
-                        } else {
-                            sharedPref.writePayList(payList)
-                            showToasty(0,"Cash Payment & Card Payment is Already in By Default")
-                        }
+                        payList.add(binding.name.text.toString())
+                        sharedPref.writePayList(payList)
+                        showToasty(1,"Added New Payment Successfully")
                     }
 
                     binding.name.setText("")

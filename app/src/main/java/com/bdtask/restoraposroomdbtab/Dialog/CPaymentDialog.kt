@@ -9,14 +9,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.PaymentAdapter
-import com.bdtask.restoraposroomdbtab.Interface.PayAmountTextChangedListener
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
-import kotlin.properties.Delegates
 
 class CPaymentDialog ( context: Context,
                        private val state: Int,
@@ -30,6 +28,8 @@ class CPaymentDialog ( context: Context,
     private var payments = mutableListOf<String>()
     private var terminals = mutableListOf<String>()
     private var banks = mutableListOf<String>()
+    private var disType = 0
+    private var discount = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,8 @@ class CPaymentDialog ( context: Context,
 
         dBinding.spinDisType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
-                order.dist = sPos
+                disType = sPos
+                setPaymentHeaders()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
@@ -60,11 +61,6 @@ class CPaymentDialog ( context: Context,
         dBinding.discountEt.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {/**/}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0.toString().isNotEmpty()){
-                    order.dis = p0.toString().toDouble()
-                } else {
-                    order.dis = 0.0
-                }
                 setPaymentHeaders()
             }
             override fun afterTextChanged(p0: Editable?) {/**/}
@@ -94,24 +90,41 @@ class CPaymentDialog ( context: Context,
 
     private fun setPaymentHeaders() {
         var totalAmount = 0.0
+        var totalDue = 0.0
+        var discount = 0.0
 
+        // getting total Amount
         for (i in order.cart.indices) {
             totalAmount += order.cart[i].tUPrc
+        }
+
+        // get discount
+        discount = if (dBinding.discountEt.text.toString().isNotEmpty()){
+            dBinding.discountEt.text.toString().toDouble()
+
+        } else {
+            0.0
+        }
+
+        // saving Total Amount
+        order.tPrc = totalAmount
+
+        // discount amount or percent calculation
+        if (disType == 1) {
+            discount *= (totalAmount / 100)
+            order.dis = discount
+            totalDue = totalAmount - discount
+        } else {
+            order.dis = discount
+            totalDue = totalAmount - discount
         }
 
         order.vat = 0.0
         order.crg = 0.0
 
-        order.tPrc = totalAmount
 
         totalAmount += order.crg + order.vat
 
-        // discount amount or percent calculation
-        val totalDue = if (order.dist == 0){
-            totalAmount - order.dis
-        } else {
-            ( totalAmount / 100 ) * order.dis
-        }
 
         dBinding.totalAmount.text = totalAmount.toString()
         dBinding.totalDue.text = totalDue.toString()

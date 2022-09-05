@@ -70,7 +70,7 @@ class SplitOrderDialog(context: Context,
                 for (i in 1..splitterCount){
                     id += 1
                     splitterList.add(Split(tmpOngItem.id.toString() + " ( $id )",tmpOngItem.id,0,
-                        CsInf("","",""),0,0.0,0.0, 0.0,0.0,
+                        CsInf("","",""),0.0,0.0, 0.0,0.0,
                         emptyList<Cart>().toMutableList(),emptyList<Pay>().toMutableList()))
                 }
 
@@ -229,7 +229,7 @@ class SplitOrderDialog(context: Context,
             if (spFoodCount == 0){
 
                 val dialog = PaymentDialog(context,1,
-                    Order(0,0,0,0,"","", 0,0.0,0.0,0.0,0.0,
+                    Order(0,0,0,0,"","",0.0,0.0,0.0,0.0,
                         OdrInf(CsInf("","",""),"","","","",""),
                     emptyList<Cart>().toMutableList(), emptyList<Pay>().toMutableList()),splitterList[splitterIndex])
 

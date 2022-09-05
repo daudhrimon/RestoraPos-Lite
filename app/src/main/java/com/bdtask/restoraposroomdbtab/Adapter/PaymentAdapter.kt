@@ -52,7 +52,7 @@ class PaymentAdapter( private val context: Context,
 
         holder.binding.spinPayments.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
-                if (holder.binding.spinPayments.selectedItem.toString() == "Card Payment"){
+                if (/*holder.binding.spinPayments.selectedItem.toString() == "Card Payment" || */sPos == 1){
                     holder.binding.cardLay.visibility = View.VISIBLE
                     payList[adapterPos].typ = 1
                     setCardLayAdapter(holder, adapterPos)

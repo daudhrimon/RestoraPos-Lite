@@ -13,7 +13,6 @@ data class Split(
     val ref: Long,
     val sts: Int,
     var csInf: CsInf,
-    val dist: Int,
     val dis: Double,
     val vat: Double,
     val crg: Double,

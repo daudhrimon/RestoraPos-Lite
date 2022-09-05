@@ -15,15 +15,17 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
-
+    private val sharedPref = SharedPref
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
+        sharedPref.init(requireContext())
 
         if (ContextCompat.checkSelfPermission(requireContext().applicationContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -37,6 +39,11 @@ class SplashFragment : Fragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.splashFrag2homeFrag)
             }, 3000)
+        }
+
+        if (sharedPref.readPayList() == null){
+            val payList = arrayOf("Cash Payment","Card Payment")
+            sharedPref.writePayList(payList.toMutableList())
         }
 
         return binding.root
