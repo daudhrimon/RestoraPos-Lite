@@ -23,15 +23,10 @@ class CPaymentDialog ( context: Context,
 
     private lateinit var dBinding: DialogPaymentBinding
     private val disTypes = arrayOf("Amount", "Percentage (%)")
-    private var disType by Delegates.notNull<Int>()
     private val sharedPref = SharedPref
     private var payments = mutableListOf<String>()
     private var terminals = mutableListOf<String>()
     private var banks = mutableListOf<String>()
-    private var totalAmount = 0.0
-    private var totalDue = 0.0
-    private var payableAmount = 0.0
-    private var changeDue = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +40,7 @@ class CPaymentDialog ( context: Context,
 
         dBinding.spinDisType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
-                disType = sPos
+                order.dist = sPos
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
@@ -95,20 +90,25 @@ class CPaymentDialog ( context: Context,
     }
 
     private fun setPaymentHeaders() {
-        totalAmount = 0.0
-        totalDue = 0.0
-        payableAmount = 0.0
-        changeDue = 0.0
+        var totalAmount = 0.0
 
-        order.crg = 0.0
         for (i in order.cart.indices) {
             totalAmount += order.cart[i].tUPrc
         }
+
         order.vat = 0.0
+        order.crg = 0.0
+
         order.tPrc = totalAmount
 
         totalAmount += order.crg + order.vat
-        totalDue = totalAmount - order.dis
+
+        // discount amount or percent calculation
+        val totalDue = if (order.dist == 0){
+            totalAmount - order.dis
+        } else {
+            ( totalAmount / 100 ) * order.dis
+        }
 
         dBinding.totalAmount.text = totalAmount.toString()
         dBinding.totalDue.text = totalDue.toString()
