@@ -19,7 +19,10 @@ import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
 import kotlin.properties.Delegates
 
 class CPaymentDialog ( context: Context,
+                       private val state: Int,
                        private val order: Order ): Dialog(context)/*, PayAmountTextChangedListener*/ {
+
+    //state " 0 " for complete orders
 
     private lateinit var dBinding: DialogPaymentBinding
     private val disTypes = arrayOf("Amount", "Percentage (%)")

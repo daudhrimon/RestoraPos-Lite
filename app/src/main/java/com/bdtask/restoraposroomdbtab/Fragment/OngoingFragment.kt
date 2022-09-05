@@ -99,7 +99,7 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ongBinding.completeBtn.setOnClickListener {
-            val dialog = CPaymentDialog(requireContext(),ongList[ongPos])
+            val dialog = CPaymentDialog(requireContext(),0,ongList[ongPos])
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels

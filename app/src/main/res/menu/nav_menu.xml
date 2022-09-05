@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/addFood"
-        android:icon="@drawable/ic_add_food"
+        android:icon="@drawable/ic_food_bar"
         android:title="Add Food"/>
 
     <item
         android:id="@+id/addPay"
-        android:icon="@drawable/ic_add_food"
+        android:icon="@drawable/ic_card_cash"
         android:title="Add Payment Method"/>
 
 </menu>
