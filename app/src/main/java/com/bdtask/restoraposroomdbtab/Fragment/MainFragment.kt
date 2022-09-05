@@ -1,7 +1,9 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
+import android.Manifest
 import android.app.Dialog
 import android.bluetooth.BluetoothAdapter
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,6 +14,8 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,8 +23,10 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bdtask.restoraposroomdbtab.Dialog.CalculatorDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
+import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
 import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
+import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.Model.*
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOff
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOn
@@ -47,7 +53,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class MainFragment : Fragment(), FoodClickListener, CartClickListener {
+class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
     private lateinit var mainBinding: FragmentMainBinding
     private var categoryList = mutableListOf<String>()
     private var variantNameList = mutableListOf<String>()
@@ -68,8 +74,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
     ): View? {
         mainBinding = FragmentMainBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
-
-        printerInit()
 
         // getting and setting category Recycler
         MainActivity.database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
@@ -165,7 +169,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
             placeOrderClickHandler()
         }
 
-        // return View
+
+        ///// init Printer /////
+        initPrinter()
         return mainBinding.root
     }
 
@@ -210,9 +216,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
                 try {
                     Log.wtf("CART",tempCartList.toString())
                     GlobalScope.launch {
-                        orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0,
-                            Util.getDate().toString(),token,0.0,
-                                0.0,0.0,0.0, odrInf,tempCartList, emptyList<Pay>().toMutableList()))
+                        orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0, "",token,
+                            0.0, 0.0,0.0,0.0, odrInf,tempCartList, emptyList<Pay>().toMutableList()))
                     }
                     Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
                 } catch (e:Exception){
@@ -237,7 +242,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
     // asking for print token
     private fun showTokenPrintDialog() {
-       val printDialog = SweetAlertDialog(requireContext(),SweetAlertDialog.SUCCESS_TYPE)
+       /*val printDialog = SweetAlertDialog(requireContext(),SweetAlertDialog.SUCCESS_TYPE)
         printDialog.titleText = "Do you want to print Token ?"
         printDialog.confirmText = "Yes"
         printDialog.cancelText = "No"
@@ -249,9 +254,27 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         }.setConfirmClickListener {
             it.dismissWithAnimation()
             printToken(printDialog)
-        }.show()
+        }.show()*/
+
+        var tempCartList = mutableListOf<Cart>()
+        var odrInf = OdrInf(CsInf("","",""),"","","","","")
+
+        if (sharedPref.readSharedCartList() != null){
+            tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
+        }
+        if (sharedPref.readSharedOrderInfoList() != null){
+            odrInf = sharedPref.readSharedOrderInfoList()!!
+        }
+
+        TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
+
+        sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
     }
 
+    override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
+        tokenDialog.dismissWithAnimation()
+        setCartRecyclerAdapter()
+    }
 
 
     // print Token
@@ -265,6 +288,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         if (sharedPref.readSharedOrderInfoList() != null){
             odrInf = sharedPref.readSharedOrderInfoList()!!
         }
+
 
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
             val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
@@ -355,42 +379,47 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
 
         } else {
 
-            //ESCPOS-ThermalPrinter
+            // Print By Bluetooth
+            if (ContextCompat.checkSelfPermission(requireActivity(),Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(),arrayOf(Manifest.permission.BLUETOOTH), 1)
+            } else {
 
-            var printer: EscPosPrinter? = null
-            try {
-                printer = EscPosPrinter(
-                    BluetoothPrintersConnections.selectFirstPaired(),
-                    180, 78f, 45, EscPosCharsetEncoding("windows-1252", 16)
-                )
-            } catch (e: EscPosConnectionException) {
-                e.printStackTrace()
+                //ESCPOS-ThermalPrinter
+
+                var printer: EscPosPrinter? = null
+                try {
+                    printer = EscPosPrinter(
+                        BluetoothPrintersConnections.selectFirstPaired(),
+                        180, 78f, 45, EscPosCharsetEncoding("windows-1252", 16)
+                    )
+                } catch (e: EscPosConnectionException) {
+                    e.printStackTrace()
+                }
+                try {
+                    printer!!.printFormattedTextAndCut(
+                        "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
+                                + "[C]" + odrInf.csInf.csNm
+                                + "[L]\n" +
+                                "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
+                                "[L]\n" +
+                                tokenLoopData(tempCartList) +
+                                "[L]\n" +
+                                "[L]Order No: " + orderId + "[R] " + odrInf.tbl + "\n"
+                    )
+                } catch (e: EscPosConnectionException) {
+                    e.printStackTrace()
+                } catch (e: EscPosParserException) {
+                    e.printStackTrace()
+                } catch (e: EscPosEncodingException) {
+                    e.printStackTrace()
+                } catch (e: EscPosBarcodeException) {
+                    e.printStackTrace()
+                }
             }
-            try {
-                printer!!.printFormattedTextAndCut(
-                    "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
-                            + "[C]" + odrInf.csInf.csNm
-                            + "[L]\n" +
-                            "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
-                            "[L]\n" +
-                            tokenLoopData(tempCartList) +
-                            "[L]\n" +
-                            "[L]Order No: " + orderId + "[R] " + odrInf.tbl + "\n"
-                )
-            } catch (e: EscPosConnectionException) {
-                e.printStackTrace()
-            } catch (e: EscPosParserException) {
-                e.printStackTrace()
-            } catch (e: EscPosEncodingException) {
-                e.printStackTrace()
-            } catch (e: EscPosBarcodeException) {
-                e.printStackTrace()
-            }
+            sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+            orderId = null
+            setCartRecyclerAdapter()
         }
-        sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
-        printDialog.dismissWithAnimation()
-        orderId = null
-        setCartRecyclerAdapter()
     }
 
 
@@ -434,8 +463,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         adnsList.clear()
         var tempCartList = mutableListOf<Cart>()
         val newAddonList = mutableListOf<Adns>()
-
-
 
         foodDialogBinding.dcFoodName.text = foodTitle
 
@@ -640,13 +667,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener {
         setCartRecyclerAdapter()
     }
 
-
     // init Printer
-    private fun printerInit() {
+    private fun initPrinter() {
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
-            SunmiPrintHelper.getInstance().initSunmiPrinterService(requireContext())
+            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
             printHelper = SunmiPrintHelper.getInstance()
-            printHelper.initSunmiPrinterService(requireContext())
+            printHelper.initSunmiPrinterService(context)
         }
     }
 }

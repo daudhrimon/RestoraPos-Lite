@@ -10,10 +10,10 @@ import com.bdtask.restoraposroomdbtab.Model.Pay
 data class Order(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val sts: Int,
+    var sts: Int,
     val spl: Int,
     val mrg: Int,
-    val dat: String,
+    var dat: String,
     val tkn: String,
     var dis: Double,
     var vat: Double,

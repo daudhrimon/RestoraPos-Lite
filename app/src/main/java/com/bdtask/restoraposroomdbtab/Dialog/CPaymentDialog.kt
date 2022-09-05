@@ -1,6 +1,7 @@
 package com.bdtask.restoraposroomdbtab.Dialog
 
 import android.app.Dialog
+import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -9,19 +10,23 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.PaymentAdapter
+import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
+import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Model.Pay
+import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CPaymentDialog ( context: Context,
                        private val state: Int,
-                       private val order: Order ): Dialog(context)/*, PayAmountTextChangedListener*/ {
+                       private val order: Order ): Dialog(context), TokenClickListener {
 
-    //state " 0 " for complete orders
     private lateinit var dBinding: DialogPaymentBinding
     private val disTypes = arrayOf("Amount", "Percentage (%)")
     private val sharedPref = SharedPref
@@ -30,6 +35,7 @@ class CPaymentDialog ( context: Context,
     private var banks = mutableListOf<String>()
     private var totalAmount = 0.0
     private var disType = 0
+    private lateinit var printHelper: SunmiPrintHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,12 +91,31 @@ class CPaymentDialog ( context: Context,
         dBinding.payPrintBtn.setOnClickListener {
             val payable = dBinding.payableAmount.text.toString().toDouble()
             if (payable == 0.0){
+                order.sts = 1
+                order.dat = Util.getDate().toString()
+                GlobalScope.launch {
+                    MainActivity.database.orderDao().updateOnGoing(order)
+                }
+                Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
+
+
+
+                //TokenDialog(context,order.tkn,order.id,order.cart,order.odrInf,this).show()
+
+
 
             } else {
                 Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
             }
         }
 
+        /// printer init ///
+        //initPrinter()
+    }
+
+    override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
+        tokenDialog.dismissWithAnimation()
+        onBackPressed()
     }
 
     private fun setPaymentHeaders() {
@@ -177,4 +202,12 @@ class CPaymentDialog ( context: Context,
         }
     }*/
 
+    // init Printer
+    private fun initPrinter() {
+        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
+            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
+            printHelper = SunmiPrintHelper.getInstance()
+            printHelper.initSunmiPrinterService(context)
+        }
+    }
 }

@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
 import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
 import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
+import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
+import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.Pay
@@ -25,7 +27,7 @@ import com.bdtask.restoraposroomdbtab.databinding.FragmentOngoingBinding
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 
-class OngoingFragment : Fragment(), OngoingClickListener {
+class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
     private lateinit var ongBinding: FragmentOngoingBinding
     private var ongPos = -1
     private var ongList = mutableListOf<Order>()
@@ -109,8 +111,6 @@ class OngoingFragment : Fragment(), OngoingClickListener {
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-
-
         ongBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
@@ -164,7 +164,18 @@ class OngoingFragment : Fragment(), OngoingClickListener {
         })
 
 
+        ongBinding.tokenBtn.setOnClickListener {
+            TokenDialog(requireContext(),ongList[ongPos].tkn,ongList[ongPos].id,
+                ongList[ongPos].cart,ongList[ongPos].odrInf,this).show()
+        }
+
+
+
         return ongBinding.root
+    }
+
+    override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
+        tokenDialog.dismissWithAnimation()
     }
 
     // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class

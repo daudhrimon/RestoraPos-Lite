@@ -6,13 +6,20 @@ import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
 import android.widget.EditText
-import androidx.lifecycle.LifecycleOwner
-import com.bdtask.restoraposroomdbtab.MainActivity
-import com.bdtask.restoraposroomdbtab.Model.CsInf
-import com.bdtask.restoraposroomdbtab.R
-import java.security.acl.Owner
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.bdtask.restoraposroomdbtab.Model.Cart
+import com.bdtask.restoraposroomdbtab.Model.OdrInf
+import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil
+import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
+import com.dantsu.escposprinter.EscPosCharsetEncoding
+import com.dantsu.escposprinter.EscPosPrinter
+import com.dantsu.escposprinter.connection.bluetooth.BluetoothPrintersConnections
+import com.dantsu.escposprinter.exceptions.EscPosBarcodeException
+import com.dantsu.escposprinter.exceptions.EscPosConnectionException
+import com.dantsu.escposprinter.exceptions.EscPosEncodingException
+import com.dantsu.escposprinter.exceptions.EscPosParserException
+import com.sunmi.peripheral.printer.SunmiPrinterService
 import java.text.SimpleDateFormat
 import java.util.*
 
