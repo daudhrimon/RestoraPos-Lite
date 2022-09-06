@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -27,6 +28,7 @@ import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
 import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.drawerLayout
 import com.bdtask.restoraposroomdbtab.Model.*
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOff
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOn
@@ -74,6 +76,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     ): View? {
         mainBinding = FragmentMainBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
         // getting and setting category Recycler
         MainActivity.database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
@@ -187,12 +190,11 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     private fun placeOrderClickHandler() {
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
-        if (sharedPref.readSharedCartList() != null){
-            tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
-        }
 
-        if (sharedPref.readSharedOrderInfoList() != null){
-            odrInf = sharedPref.readSharedOrderInfoList()!!
+        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+
+        if (sharedPref.readSharedOrderInfo() != null){
+            odrInf = sharedPref.readSharedOrderInfo()!!
         }
 
         if (tempCartList.isNotEmpty()) {
@@ -200,18 +202,17 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                     odrInf.csTyp.isNotEmpty()){
 
                 // token to SharedPref
-                var lToken: Long = 1
-                if (sharedPref.getSharedToken() != null){
-                    lToken = sharedPref.getSharedToken()!!
-                    sharedPref.setSharedToken(lToken)
-                } else {
-                    sharedPref.setSharedToken(lToken)
-                }
+                val lToken = sharedPref.getSharedToken() ?: 1
+
+                sharedPref.setSharedToken(lToken)
+
                 token = if (lToken in 1..9){
                     "0$lToken"
                 } else {
                     lToken.toString()
                 }
+
+                token = Util.getToken(sharedPref)
 
                 try {
                     Log.wtf("CART",tempCartList.toString())
@@ -259,11 +260,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
 
-        if (sharedPref.readSharedCartList() != null){
-            tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
-        }
-        if (sharedPref.readSharedOrderInfoList() != null){
-            odrInf = sharedPref.readSharedOrderInfoList()!!
+        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+
+        if (sharedPref.readSharedOrderInfo() != null){
+            odrInf = sharedPref.readSharedOrderInfo()!!
         }
 
         TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
@@ -282,11 +282,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
 
-        if (sharedPref.readSharedCartList() != null){
-            tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
-        }
-        if (sharedPref.readSharedOrderInfoList() != null){
-            odrInf = sharedPref.readSharedOrderInfoList()!!
+        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+
+        if (sharedPref.readSharedOrderInfo() != null){
+            odrInf = sharedPref.readSharedOrderInfo()!!
         }
 
 

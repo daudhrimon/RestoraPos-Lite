@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="@dimen/_6sdp"
     android:background="@color/white"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="7dp">
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/unselected_ongoing" />
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="5dp"
             android:padding="5dp"
             android:text="Table No : 01 "
             android:textAlignment="center"

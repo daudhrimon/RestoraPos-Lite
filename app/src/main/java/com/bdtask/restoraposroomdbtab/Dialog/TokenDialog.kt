@@ -57,7 +57,7 @@ class TokenDialog(context: Context,
                 val width = intArrayOf(1, 1)
                 val align = intArrayOf(0, 2)
                 sunmiPrinterService!!.setAlignment(1, null)
-                sunmiPrinterService!!.printTextWithFont("Token :\b$token", null, 42f, null)
+                sunmiPrinterService!!.printTextWithFont("<b>Token :$token</b>", null, 42f, null)
 
                 sunmiPrinterService.printText("\n", null)
 
@@ -67,6 +67,8 @@ class TokenDialog(context: Context,
                     txt,
                     width, align, null
                 )
+
+                sunmiPrinterService.printText("\n", null)
 
                 sunmiPrinterService.sendRAWData(ESCUtil.boldOn(), null)
                 val itemss = arrayOf("Items","Size")
@@ -100,7 +102,7 @@ class TokenDialog(context: Context,
                         val addonsList = cartList[i].adns
 
                         for (k in addonsList.indices) {
-                            val addonItem = arrayOf(addonsList[k].adnNm,""+addonsList[k].adnQnty)
+                            val addonItem = arrayOf(addonsList[k].adnNm,addonsList[k].adnQnty.toString())
                             sunmiPrinterService.printColumnsString(
                                 addonItem,
                                 width, align, null)
@@ -117,14 +119,14 @@ class TokenDialog(context: Context,
                 sunmiPrinterService.printTextWithFont("\n", null, 28f, null)
                 sunmiPrinterService.sendRAWData(ESCUtil.boldOn(), null)
                 if (odrInf.tbl.isNotEmpty()) {
-                    items[0] = "Order:$orderId"
-                    items[1] = "Table:" + odrInf.tbl
+                    items[0] = "Order: $orderId"
+                    items[1] = "Table: ${odrInf.tbl}"
                     sunmiPrinterService.printColumnsString(
                         items,
                         width, align, null
                     )
                 }else{
-                    items[0] = "Order:$orderId"
+                    items[0] = "Order: $orderId"
                     items[1] = ""
                     sunmiPrinterService.printColumnsString(
                         items, width, align, null
@@ -150,22 +152,22 @@ class TokenDialog(context: Context,
                     try {
                         printer = EscPosPrinter(
                             BluetoothPrintersConnections.selectFirstPaired(),
-                            180, 78f, 45, EscPosCharsetEncoding("windows-1252", 16)
+                            203, 48f, 32, EscPosCharsetEncoding("windows-1252", 16)
                         )
                     } catch (e: EscPosConnectionException) {
                         e.printStackTrace()
                     }
                     try {
                         printer!!.printFormattedTextAndCut(
-                            "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
-                                    + "[C]" + odrInf.csInf.csNm
-                                    + "[L]\n" +
-                                    "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
-                                    "[L]\n" +
-                                    tokenLoopData(cartList) +
-                                    "[L]\n" +
-                                    "[L]Order No: " + orderId + "[R] " + odrInf.tbl + "\n"
-                        )
+                                    "[C]<b><font size='big'>Token : $token </font></b>\n"+
+                                    "[L]\n"+
+                                    "[L]${odrInf.csInf.csNm} [R]${odrInf.wtr}\n"+
+                                    "[L]\n"+
+                                    "[L]<b>Items</b> [R]<b>Size</b>\n"+
+                                    "[L]\n"+
+                                    tokenLoopData(cartList)+
+                                    "[L]\n"+
+                                    "[L]Order: $orderId [R]Table: ${odrInf.tbl}")
                     } catch (e: EscPosConnectionException) {
                         e.printStackTrace()
                     } catch (e: EscPosParserException) {
@@ -187,19 +189,19 @@ class TokenDialog(context: Context,
         var items = ""
         var adOnPrice = 0.0
         for (i in list.indices) {
-            items = "" + items + "[L]<b>" + list[i].title + "</b>\n" +
-                    "[L]"+"x" + list[i].fQnty + "[R]<b>" +  list[i].vari +  "</b>\n"
+            items = "$items[L]<b>${list[i].title}</b>\n"+
+                    "[L]x${list[i].fQnty} [R]<b>${list[i].vari}</b>\n"
 
             if (list[i].adns.size > 0) {
                 val addonsList = list[i].adns
                 for (k in addonsList.indices) {
                     adOnPrice = addonsList[k].adnPrc.toDouble() * addonsList[k].adnQnty
-                    items = "" + items + "" + "[L]" + addonsList[k].adnNm + "x" + addonsList[k].adnQnty +"\n"
+                    items = "$items[L]${addonsList[k].adnNm}x${addonsList[k].adnQnty}\n"
                 }
             }
 
             if  (list[i].nt != ""){
-                items = items+ "[L]<b>" + list[i].title + "</b>\n"
+                items = "$items[L]<b>${list[i].title}</b>\n"
             }
         }
         return items

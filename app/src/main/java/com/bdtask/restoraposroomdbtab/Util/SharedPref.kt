@@ -38,7 +38,7 @@ object SharedPref {
         prefsEditor.apply()
     }
 
-    fun readSharedOrderInfoList(): OdrInf? {
+    fun readSharedOrderInfo(): OdrInf? {
         val type = object : TypeToken<OdrInf?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("orderInfo", ""), type)
     }

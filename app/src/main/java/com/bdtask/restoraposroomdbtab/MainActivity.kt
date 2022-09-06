@@ -26,6 +26,7 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         drawerLayout = findViewById(R.id.drawerLayout)
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         navDrawer = findViewById(R.id.navDrawer)
 
         // getting instance of ROOM database
