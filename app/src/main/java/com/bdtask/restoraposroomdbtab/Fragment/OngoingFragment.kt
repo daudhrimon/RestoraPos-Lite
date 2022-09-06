@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
 import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
+import com.bdtask.restoraposroomdbtab.Dialog.InvoiceViewDialog
 import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
 import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
@@ -148,7 +149,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels
             val win = dialog.window
-            win!!.setLayout((18 * width)/19,WindowManager.LayoutParams.MATCH_PARENT)
+            win!!.setLayout((14 * width)/15,(24 * height)/25)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
@@ -169,8 +170,15 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 ongList[ongPos].cart,ongList[ongPos].odrInf,this).show()
         }
 
-
-
+        ongBinding.dueposBtn.setOnClickListener {
+            val dialog = InvoiceViewDialog(requireContext(),ongList[ongPos])
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
+            val win = dialog.window
+            win!!.setLayout((14 * width)/15,(24 * height)/25)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
         return ongBinding.root
     }
 
