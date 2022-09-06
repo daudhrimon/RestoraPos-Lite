@@ -173,8 +173,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         }
 
 
-        ///// init Printer /////
-        initPrinter()
         return mainBinding.root
     }
 
@@ -664,14 +662,5 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     // set CardRecycler on Cart Item Delete
     override fun onCartReload() {
         setCartRecyclerAdapter()
-    }
-
-    // init Printer
-    private fun initPrinter() {
-        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
-            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
-            printHelper = SunmiPrintHelper.getInstance()
-            printHelper.initSunmiPrinterService(context)
-        }
     }
 }

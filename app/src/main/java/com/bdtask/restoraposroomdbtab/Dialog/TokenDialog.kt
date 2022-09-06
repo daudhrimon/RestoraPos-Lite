@@ -1,7 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Dialog
 
 import android.Manifest
-import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.pm.PackageManager
@@ -10,7 +9,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
-import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil
@@ -40,8 +38,7 @@ class TokenDialog(context: Context,
         confirmText = "Yes"
         cancelText = "No"
 
-        printerInit()
-
+        initPrinter()
 
         setCancelClickListener {
             tokenClickListener.onTokenButtonsClick(this)
@@ -209,7 +206,7 @@ class TokenDialog(context: Context,
 
 
     // init Printer
-    private fun printerInit() {
+    private fun initPrinter() {
         if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
             SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
             printHelper = SunmiPrintHelper.getInstance()
