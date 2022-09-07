@@ -41,14 +41,14 @@ class PaymentAdapter( private val context: Context,
 
         if (position != 0){
             holder.binding.dltPayBtn.visibility = View.VISIBLE
+        }
 
-            if (position == payList.size-1){
-                payList[position].amo = dPayableAmount.text.toString().toDouble()
-                holder.binding.payAmountEt.setText(payList[position].amo.toString())
-                dPayableAmount.text = "0.0"
-                dAnotherPay.visibility = View.GONE
-                holder.binding.payAmountEt.requestFocus()
-            }
+        if (position == payList.size-1){
+            payList[position].amo = dPayableAmount.text.toString().toDouble()
+            holder.binding.payAmountEt.setText(payList[position].amo.toString())
+            dPayableAmount.text = "0.0"
+            dAnotherPay.visibility = View.GONE
+            holder.binding.payAmountEt.requestFocus()
         }
 
         holder.binding.spinPayments.adapter = ArrayAdapter(context,

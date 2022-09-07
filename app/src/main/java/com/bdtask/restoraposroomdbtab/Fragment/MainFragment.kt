@@ -199,7 +199,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             if (odrInf.csInf.csNm.isNotEmpty() &&
                     odrInf.csTyp.isNotEmpty()){
 
-                // token to SharedPref
                 val lToken = sharedPref.getSharedToken() ?: 1
 
                 sharedPref.setSharedToken(lToken)
@@ -210,14 +209,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                     lToken.toString()
                 }
 
-                token = Util.getToken(sharedPref)
-
                 try {
                     Log.wtf("CART",tempCartList.toString())
                     GlobalScope.launch {
-                        orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0,Util.getDate().toString(),
-                            token, 0.0, sharedPref.readVat() ?: 0.0,sharedPref.readCharge() ?: 0.0,
-                            0.0, odrInf,tempCartList, emptyList<Pay>().toMutableList()))
+                        orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0,
+                            Util.getDate().toString(), token, 0.0,sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0, odrInf,tempCartList,
+                            emptyList<Pay>().toMutableList()))
                     }
                     Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
                 } catch (e:Exception){

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E3E3E3"
+    android:id="@+id/parentLay"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="8">
+
+        <TextView
+            android:id="@+id/order_Id"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/cust_name"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:gravity="center_horizontal" />
+
+
+        <TextView
+            android:id="@+id/cust_type"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="DIne In"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:gravity="center_horizontal" />
+
+
+        <TextView
+            android:id="@+id/paymentStatus"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Paid"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:gravity="center_horizontal" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/arrowIv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_12sdp"
+        android:src="@drawable/ic_down_arrow"/>
+
+    <LinearLayout
+        android:id="@+id/expandLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#B7B4B4"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Waiter"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Table No."
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center_horizontal" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Date"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center_horizontal" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Amount"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center_horizontal" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <TextView
+                android:id="@+id/waiterName"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Ainal"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tableNo"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="T-03"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center" />
+
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="12-10-21"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center" />
+
+
+            <TextView
+                android:id="@+id/amountTv"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/helvetica_nueu_light"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="450.00"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:gravity="center" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#313631">
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="#313631">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_gravity="center"
+                        android:background="#313631"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/acceptTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:backgroundTint="#139A03"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Accept"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            tools:ignore="RtlCompat" />
+
+                        <Button
+                            android:id="@+id/cancelTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:backgroundTint="#C60000"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Cancel"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            tools:ignore="RtlCompat" />
+
+                        <Button
+                            android:id="@+id/editTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#0B5B81"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Edit"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            tools:ignore="RtlCompat" />
+
+                        <Button
+                            android:id="@+id/viewTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:backgroundTint="#FFBC00"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="View"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            tools:ignore="RtlCompat" />
+
+
+                        <Button
+                            android:id="@+id/printTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:backgroundTint="#02B1BF"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Print"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            tools:ignore="RtlCompat" />
+
+                        <Button
+                            android:id="@+id/paymentTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:backgroundTint="#C43F04"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Payment"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

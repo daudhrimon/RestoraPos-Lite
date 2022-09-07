@@ -82,6 +82,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         binding.orderId.text = order.id.toString()
 
         binding.printBtn.setOnClickListener {
+            onBackPressed()
             InvoicePrintDialog(context,order).show()
         }
     }

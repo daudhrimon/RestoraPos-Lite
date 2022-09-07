@@ -101,6 +101,7 @@ class CPaymentDialog ( context: Context): Dialog(context) {
                     MainActivity.database.orderDao().updateOnGoing(order)
                 }
                 Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
+                onBackPressed()
                 Log.wtf("CPaymentDialogOrderData",order.toString())
                 Log.wtf("CPaymentDialogOrderData",sharedPref.readSharedOrder()!!.toString())
                 val dialog = InvoiceViewDialog(context,1)

@@ -9,11 +9,8 @@ interface OrderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOrder(order: Order): Long
 
-    @Query("SELECT * FROM order_tbl")
-    fun getTodayOrder(): LiveData<List<Order>>
-
     @Query("SELECT * FROM order_tbl WHERE dat LIKE :date AND sts LIKE :status")
-    fun getTodayOrder(date: String?, status: String): LiveData<List<Order>>
+    fun getTodayOrder(date: String?, status: Int): LiveData<MutableList<Order>>
 
     @Query("SELECT * FROM order_tbl WHERE sts LIKE :status")
     fun getOngoing(status: Int): LiveData<List<Order>>

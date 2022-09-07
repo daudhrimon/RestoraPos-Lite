@@ -105,7 +105,7 @@ object SharedPref {
     }
 
     fun readVat(): Double? {
-        return mSharedPref!!.getString("vat", "")?.toDouble()
+        return mSharedPref!!.getString("vat", "0.0")?.toDouble()
     }
 
     fun writeCharge(crg: String){
@@ -114,7 +114,7 @@ object SharedPref {
         prefsEditor.apply()
     }
     fun readCharge(): Double? {
-        return mSharedPref!!.getString("crg", "")?.toDouble()
+        return mSharedPref!!.getString("crg", "0.0")?.toDouble()
     }
 
 
