@@ -11,4 +11,14 @@
         android:icon="@drawable/ic_card_cash"
         android:title="Add Payment"/>
 
+    <item
+        android:id="@+id/addVat"
+        android:icon="@drawable/ic_vat"
+        android:title="Add Vat"/>
+
+    <item
+        android:id="@+id/addSc"
+        android:icon="@drawable/ic_service_crg"
+        android:title="Add Service Charge"/>
+
 </menu>

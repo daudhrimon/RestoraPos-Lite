@@ -21,12 +21,12 @@ class InvoiceFoodAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: VHInvoiceFood, position: Int) {
         if (cart[position].adns.isNotEmpty()){
-            holder.binding.addonsRv.adapter = InvoiceAddonAdapter(context,cart[position].adns)
+            holder.binding.addonsRecycler.adapter = InvoiceAddonAdapter(context,cart[position].adns)
         }
         holder.binding.title.text = cart[position].title
         holder.binding.variant.text = cart[position].vari
         holder.binding.quantity.text = "${cart[position].varPrc} * ${cart[position].fQnty}"
-        holder.binding.price.text = cart[position].tUPrc.toString()
+        holder.binding.price.text = cart[position].fPrc.toString()
     }
 
     override fun getItemCount(): Int {

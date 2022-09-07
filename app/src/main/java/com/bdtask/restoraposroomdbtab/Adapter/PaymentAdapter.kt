@@ -46,6 +46,7 @@ class PaymentAdapter( private val context: Context,
                 payList[position].amo = dPayableAmount.text.toString().toDouble()
                 holder.binding.payAmountEt.setText(payList[position].amo.toString())
                 dPayableAmount.text = "0.0"
+                dAnotherPay.visibility = View.GONE
                 holder.binding.payAmountEt.requestFocus()
             }
         }

@@ -54,15 +54,15 @@ object SharedPref {
         return mSharedPref!!.getLong("token",1)
     }
 
-    fun writeSharedSplit(order: Order) {
+    fun writeSharedOrder(order: Order) {
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("split", Gson().toJson(order))
+        prefsEditor.putString("order", Gson().toJson(order))
         prefsEditor.apply()
     }
 
-    fun readSharedSplit() : Order? {
+    fun readSharedOrder() : Order? {
         val type = object : TypeToken<Order?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("split", ""), type)
+        return Gson().fromJson(mSharedPref!!.getString("order", ""), type)
     }
 
     fun writeBankList(bank: MutableList<String>?){
@@ -97,4 +97,25 @@ object SharedPref {
         val type = object : TypeToken<MutableList<String>?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("pay", ""), type)
     }
+
+    fun writeVat(vat: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("vat",vat)
+        prefsEditor.apply()
+    }
+
+    fun readVat(): Double? {
+        return mSharedPref!!.getString("vat", "")?.toDouble()
+    }
+
+    fun writeCharge(crg: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("crg",crg)
+        prefsEditor.apply()
+    }
+    fun readCharge(): Double? {
+        return mSharedPref!!.getString("crg", "")?.toDouble()
+    }
+
+
 }

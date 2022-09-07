@@ -36,6 +36,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_close_alert.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_food_clicked.xml" value="0.25" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_insert_addon.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_invoice_view.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_note.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_payment.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_progress.xml" value="0.371875" />
@@ -55,6 +56,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_edit_delete.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_food_item.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_food_recycler.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_invoice_food.xml" value="0.2798913043478261" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_ongoing.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_payment.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_split_item.xml" value="0.33" />

@@ -3,9 +3,12 @@ package com.bdtask.restoraposroomdbtab.Dialog
 import android.app.Dialog
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -23,11 +26,10 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class CPaymentDialog ( context: Context,
-                       private val state: Int,
-                       private val order: Order ): Dialog(context), TokenClickListener {
+class CPaymentDialog ( context: Context): Dialog(context) {
 
     private lateinit var dBinding: DialogPaymentBinding
+    private lateinit var order: Order
     private val disTypes = arrayOf("Amount", "Percentage (%)")
     private val sharedPref = SharedPref
     private var payments = mutableListOf<String>()
@@ -38,11 +40,13 @@ class CPaymentDialog ( context: Context,
     private lateinit var printHelper: SunmiPrintHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPref.init(context)
+        order = sharedPref.readSharedOrder()!!
         super.onCreate(savedInstanceState)
         dBinding = DialogPaymentBinding.bind(layoutInflater.inflate(R.layout.dialog_payment,null))
         setContentView(dBinding.root)
-        sharedPref.init(context)
 
+        getTotalPrice()
         setPaymentHeaders()
 
         dBinding.spinDisType.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,disTypes)
@@ -91,18 +95,21 @@ class CPaymentDialog ( context: Context,
         dBinding.payPrintBtn.setOnClickListener {
             val payable = dBinding.payableAmount.text.toString().toDouble()
             if (payable == 0.0){
+                sharedPref.writeSharedOrder(order)
                 order.sts = 1
-                order.dat = Util.getDate().toString()
                 GlobalScope.launch {
                     MainActivity.database.orderDao().updateOnGoing(order)
                 }
                 Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
-
-
-
-                //TokenDialog(context,order.tkn,order.id,order.cart,order.odrInf,this).show()
-
-
+                Log.wtf("CPaymentDialogOrderData",order.toString())
+                Log.wtf("CPaymentDialogOrderData",sharedPref.readSharedOrder()!!.toString())
+                val dialog = InvoiceViewDialog(context,1)
+                dialog.show()
+                val width = context.resources.displayMetrics.widthPixels
+                val height = context.resources.displayMetrics.heightPixels
+                val win = dialog.window
+                win!!.setLayout((14 * width)/15,(24 * height)/25)
+                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             } else {
                 Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
@@ -113,20 +120,20 @@ class CPaymentDialog ( context: Context,
         //initPrinter()
     }
 
-    override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
-        tokenDialog.dismissWithAnimation()
-        onBackPressed()
+    private fun getTotalPrice() {
+        // getting total Amount
+        for (i in order.cart.indices) {
+            order.tPrc += order.cart[i].tUPrc
+        }
+        val vat = (order.tPrc * order.vat) / 100
+        val crg = (order.tPrc * order.crg) / 100
+        totalAmount = order.tPrc + vat + crg
+        dBinding.totalAmount.text = totalAmount.toString()
     }
 
     private fun setPaymentHeaders() {
-        totalAmount = 0.0
         var totalDue = 0.0
         var discount = 0.0
-
-        // getting total Amount
-        for (i in order.cart.indices) {
-            totalAmount += order.cart[i].tUPrc
-        }
 
         // get discount
         discount = if (dBinding.discountEt.text.toString().isNotEmpty()){
@@ -135,9 +142,6 @@ class CPaymentDialog ( context: Context,
         } else {
             0.0
         }
-
-        // saving Total Amount
-        order.tPrc = totalAmount
 
         // discount amount or percent calculation
         if (disType == 1) {
@@ -149,14 +153,6 @@ class CPaymentDialog ( context: Context,
             totalDue = totalAmount - discount
         }
 
-        order.vat = 0.0
-        order.crg = 0.0
-
-
-        totalAmount += order.crg + order.vat
-
-
-        dBinding.totalAmount.text = totalAmount.toString()
         dBinding.totalDue.text = totalDue.toString()
         dBinding.payableAmount.text = totalDue.toString()
     }

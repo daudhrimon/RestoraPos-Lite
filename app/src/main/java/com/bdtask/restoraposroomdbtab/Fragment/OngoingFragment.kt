@@ -30,6 +30,7 @@ import kotlinx.coroutines.*
 
 class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
     private lateinit var ongBinding: FragmentOngoingBinding
+    private val sharedPref = SharedPref
     private var ongPos = -1
     private var ongList = mutableListOf<Order>()
     private var selectedItem = -1
@@ -46,6 +47,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         savedInstanceState: Bundle?
     ): View? {
         ongBinding = FragmentOngoingBinding.inflate(inflater, container, false)
+        sharedPref.init(requireContext())
 
         MainActivity.database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
             ongList.clear()
@@ -102,7 +104,8 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ongBinding.completeBtn.setOnClickListener {
-            val dialog = CPaymentDialog(requireContext(),0,ongList[ongPos])
+            sharedPref.writeSharedOrder(ongList[ongPos])
+            val dialog = CPaymentDialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -141,9 +144,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
 
         ongBinding.splitBtn.setOnClickListener {
-            val sharedPref = SharedPref
-            sharedPref.init(requireContext())
-            sharedPref.writeSharedSplit(ongList[ongPos])
+            sharedPref.writeSharedOrder(ongList[ongPos])
             val dialog = SplitOrderDialog(requireContext(), sharedPref, foodCount)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -171,7 +172,8 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         }
 
         ongBinding.dueposBtn.setOnClickListener {
-            val dialog = InvoiceViewDialog(requireContext(),ongList[ongPos])
+            sharedPref.writeSharedOrder(ongList[ongPos])
+            val dialog = InvoiceViewDialog(requireContext(),0)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels

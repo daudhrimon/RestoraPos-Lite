@@ -150,7 +150,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/subTotaltv"
+                    android:id="@+id/subTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/foodRecycler"
@@ -166,7 +166,7 @@
                     android:id="@+id/vatLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/subTotaltv"
+                    android:layout_below="@+id/subTotal"
                     android:layout_marginStart="10dp">
 
                     <TextView
@@ -331,19 +331,19 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/payTxt"
+                    android:id="@+id/totalD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/grandtotalTV"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/helvetica_neue"
-                    android:text="Total due"
+                    android:text="Total Due"
                     android:textColor="#000"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/paidTV"
+                    android:id="@+id/totalDue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/grandtotalTV"
@@ -358,7 +358,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/paidTV"
+                    android:layout_below="@+id/totalDue"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/helvetica_neue"
@@ -367,10 +367,10 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/dueTv"
+                    android:id="@+id/changeDue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/paidTV"
+                    android:layout_below="@+id/totalDue"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
@@ -382,19 +382,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/dueTv"
+                    android:layout_below="@+id/changeDue"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/helvetica_neue"
-                    android:text="Total Payment"
+                    android:text="Customer Paid"
                     android:textColor="#000"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/paymentTV"
+                    android:id="@+id/customerPaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/dueTv"
+                    android:layout_below="@+id/changeDue"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
@@ -408,7 +408,7 @@
                     android:id="@+id/billingLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/paymentTV"
+                    android:layout_below="@+id/customerPaid"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
