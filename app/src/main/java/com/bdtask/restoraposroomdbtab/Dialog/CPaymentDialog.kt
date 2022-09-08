@@ -95,15 +95,17 @@ class CPaymentDialog ( context: Context): Dialog(context) {
         dBinding.payPrintBtn.setOnClickListener {
             val payable = dBinding.payableAmount.text.toString().toDouble()
             if (payable == 0.0){
-                sharedPref.writeSharedOrder(order)
+
                 order.sts = 1
+
+                sharedPref.writeSharedOrder(order)
+
                 GlobalScope.launch {
                     MainActivity.database.orderDao().updateOnGoing(order)
                 }
+
                 Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
-                onBackPressed()
-                Log.wtf("CPaymentDialogOrderData",order.toString())
-                Log.wtf("CPaymentDialogOrderData",sharedPref.readSharedOrder()!!.toString())
+
                 val dialog = InvoiceViewDialog(context,1)
                 dialog.show()
                 val width = context.resources.displayMetrics.widthPixels
@@ -111,6 +113,8 @@ class CPaymentDialog ( context: Context): Dialog(context) {
                 val win = dialog.window
                 win!!.setLayout((14 * width)/15,(24 * height)/25)
                 win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                onBackPressed()
 
             } else {
                 Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
@@ -172,32 +176,6 @@ class CPaymentDialog ( context: Context): Dialog(context) {
         dBinding.paymentRV.adapter = PaymentAdapter(context, order.pay, payments, terminals, banks,
             dBinding.totalDue,dBinding.payableAmount,dBinding.changeDue,dBinding.addAnotherPay)
     }
-
-    /*override fun onPayAmountTextChange() {
-        payableAmount = 0.0
-        changeDue = 0.0
-
-        var adAmount = 0.0
-        for (i in payList.indices) {
-            adAmount += payList[i].amo
-        }
-
-        if (adAmount > totalDue) {
-            payableAmount = 0.0
-            changeDue = adAmount - totalDue
-        } else {
-            payableAmount = totalDue - adAmount
-        }
-        dBinding.payableAmount.text = payableAmount.toString()
-        dBinding.changeDue.text = changeDue.toString()
-
-        if (payableAmount > 0) {
-            dBinding.addAnotherPay.visibility = View.VISIBLE
-        } else {
-            dBinding.addAnotherPay.visibility = View.GONE
-            Util.hideSoftKeyBoard(context,dBinding.root)
-        }
-    }*/
 
     // init Printer
     private fun initPrinter() {

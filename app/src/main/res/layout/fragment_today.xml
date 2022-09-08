@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F0F0"
-    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
     tools:context=".Fragment.TodayFragment">
 
     <!--TOOLBAR -->
@@ -54,16 +54,19 @@
     <!-- START FROM HERE -->
 
     <LinearLayout
+        android:id="@+id/rvLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/toolBar"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="3dp"
             android:background="@color/theme_color"
             android:orientation="horizontal"
             android:weightSum="8">
@@ -130,15 +133,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/todayRecycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/vh_today_order" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layoutNoOrder"
+        android:id="@+id/emptyOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -159,22 +163,5 @@
             android:textColor="@color/theme_color"
             android:textSize="20sp" />
     </LinearLayout>
-
-    <!--<RelativeLayout
-        android:id="@+id/loadingLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loadingLottie"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_centerInParent="true"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading"
-            tools:ignore="MissingConstraints" />
-
-    </RelativeLayout>-->
 
 </RelativeLayout>

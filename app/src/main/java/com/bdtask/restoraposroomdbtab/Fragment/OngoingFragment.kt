@@ -60,9 +60,12 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             ongBinding.searchBtn.visibility = View.VISIBLE
 
             if (ongList.isNotEmpty()){
+                ongBinding.emptyOrder.visibility = View.GONE
+                ongBinding.ongRecycler.visibility = View.VISIBLE
                 ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), ongList,this)
             } else {
                 ongBinding.ongRecycler.visibility = View.GONE
+                ongBinding.emptyOrder.visibility = View.VISIBLE
             }
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })

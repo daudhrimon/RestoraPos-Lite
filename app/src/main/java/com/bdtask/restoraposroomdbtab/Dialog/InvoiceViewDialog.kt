@@ -44,6 +44,10 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         getCustomerPay(order.pay)
 
+        binding.closeBtn.setOnClickListener {
+            onBackPressed()
+        }
+
         ///////////// get address from sharedPref
 
         binding.foodRecycler.adapter = InvoiceFoodAdapter(context,order.cart)

@@ -6,10 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="@dimen/_10sdp">
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical">
+        android:layout_height="wrap_content">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical">
 
             <RelativeLayout
                 android:id="@+id/invoiceLayout"
@@ -17,34 +21,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true">
-
-                    <ImageView
-                        android:id="@+id/printBtn"
-                        android:layout_width="@dimen/_33sdp"
-                        android:layout_height="@dimen/_33sdp"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="3dp"
-                        android:background="@drawable/selector_print_icon"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_baseline_print_24"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-                </RelativeLayout>
-
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="@dimen/_130sdp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp" />
+                    android:layout_marginTop="@dimen/_39sdp" />
 
                 <TextView
                     android:id="@+id/address"
@@ -592,6 +574,41 @@
 
             </RelativeLayout>
 
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:id="@+id/closeBtn"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/selector_print_icon"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="1dp"
+            android:src="@drawable/ic_close_white"
+            app:tint="@color/theme_color"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/printBtn"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_gravity="end"
+            android:layout_toStartOf="@id/closeBtn"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/selector_print_icon"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_print_24"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

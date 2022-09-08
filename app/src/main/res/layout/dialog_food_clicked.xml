@@ -177,23 +177,6 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/addToCartBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_31sdp"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_today"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="@font/helvetica_nueu_light"
-                    android:gravity="center"
-                    android:text="Add to Cart"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <TextView
                     android:id="@+id/addMultiBtn"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_31sdp"
@@ -206,6 +189,23 @@
                     android:fontFamily="@font/helvetica_nueu_light"
                     android:gravity="center"
                     android:text="Add multiple"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/addToCartBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_31sdp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_today"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:gravity="center"
+                    android:text="Add to Cart"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     tools:ignore="TouchTargetSizeCheck" />

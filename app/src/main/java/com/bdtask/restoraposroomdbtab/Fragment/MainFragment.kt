@@ -1,9 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
-import android.Manifest
 import android.app.Dialog
-import android.bluetooth.BluetoothAdapter
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,13 +11,10 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bdtask.restoraposroomdbtab.Dialog.CalculatorDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
@@ -30,8 +24,6 @@ import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.drawerLayout
 import com.bdtask.restoraposroomdbtab.Model.*
-import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOff
-import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOn
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
@@ -40,17 +32,9 @@ import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogCloseAlertBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogFoodClickedBinding
 import com.bdtask.restoraposroomdbtab.databinding.FragmentMainBinding
-import com.dantsu.escposprinter.EscPosCharsetEncoding
-import com.dantsu.escposprinter.EscPosPrinter
-import com.dantsu.escposprinter.connection.bluetooth.BluetoothPrintersConnections
-import com.dantsu.escposprinter.exceptions.EscPosBarcodeException
-import com.dantsu.escposprinter.exceptions.EscPosConnectionException
-import com.dantsu.escposprinter.exceptions.EscPosEncodingException
-import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
-import com.sunmi.peripheral.printer.SunmiPrinterService
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 import java.lang.Exception
@@ -65,7 +49,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     private var foodQuantity = 1
     private var foodPrice = 0.0
     private var totalUnitPrice = 0.0
-    private var adnsList = mutableListOf<Adns>()
+    private var addonsList = mutableListOf<Adns>()
     private var cartList = mutableListOf<Cart>()
     private var sharedPref = SharedPref
     private lateinit var printHelper: SunmiPrintHelper
@@ -77,6 +61,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         mainBinding = FragmentMainBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+
 
         // getting and setting category Recycler
         MainActivity.database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
@@ -98,28 +84,34 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             }.attach()
         })
 
+
         // setting cart Recycler Adapter
         setCartRecyclerAdapter()
+
 
         // menu Button Click
         mainBinding.menuBtn.setOnClickListener {
             MainActivity.drawerLayout.open()
         }
 
+
         // PLUS Button Click
         mainBinding.orderCustomize.setOnClickListener{
             findNavController().navigate(R.id.homeFrag2orderInfoFrag)
         }
+
 
         // OnGoing Button Click
         mainBinding.ongoingTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2ongoingFrag)
         }
 
+
         // Today Button Click
         mainBinding.todayTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2todayFrag)
         }
+
 
         // close Button Click
         mainBinding.closeTv.setOnClickListener {
@@ -129,16 +121,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             dialog.setContentView(binding.root)
             dialog.show()
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            /*binding.logout.setOnClickListener {
-                /////////////////////////////////////////////////////
-                //findNavController().navigate(R.id.to_loginFragment)
-                dialog.dismiss()
-            }
-            binding.closeCounter.setOnClickListener {
-                dialog.dismiss()
-            }*/
         }
+
 
         // Calculator BUTTON Click
         mainBinding.calculatorLay.setOnClickListener {
@@ -210,7 +194,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 }
 
                 try {
-                    Log.wtf("CART",tempCartList.toString())
+
                     GlobalScope.launch {
                         orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0,
                             Util.getDate().toString(), token, 0.0,sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0, odrInf,tempCartList,
@@ -221,7 +205,24 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                     Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
                 }
 
-                showTokenPrintDialog()
+
+
+                // asking for print token
+
+                var tempCartList = mutableListOf<Cart>()
+                var odrInf = OdrInf(CsInf("","",""),"","","","","")
+
+                tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+
+                if (sharedPref.readSharedOrderInfo() != null){
+                    odrInf = sharedPref.readSharedOrderInfo()!!
+                }
+
+                TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
+
+                sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+
+
 
             } else {
                 mainBinding.focusLottie.visibility = View.VISIBLE
@@ -236,36 +237,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     }
 
 
-
-    // asking for print token
-    private fun showTokenPrintDialog() {
-       /*val printDialog = SweetAlertDialog(requireContext(),SweetAlertDialog.SUCCESS_TYPE)
-        printDialog.titleText = "Do you want to print Token ?"
-        printDialog.confirmText = "Yes"
-        printDialog.cancelText = "No"
-
-        printDialog.setCancelClickListener {
-            sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
-            it.dismissWithAnimation()
-            setCartRecyclerAdapter()
-        }.setConfirmClickListener {
-            it.dismissWithAnimation()
-            printToken(printDialog)
-        }.show()*/
-
-        var tempCartList = mutableListOf<Cart>()
-        var odrInf = OdrInf(CsInf("","",""),"","","","","")
-
-        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
-
-        if (sharedPref.readSharedOrderInfo() != null){
-            odrInf = sharedPref.readSharedOrderInfo()!!
-        }
-
-        TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
-
-        sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
-    }
+    // Token dialog Click Listener
 
     override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
         tokenDialog.dismissWithAnimation()
@@ -273,205 +245,37 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     }
 
 
-    // print Token
-    private fun printToken(printDialog: SweetAlertDialog) {
-        var tempCartList = mutableListOf<Cart>()
-        var odrInf = OdrInf(CsInf("","",""),"","","","","")
-
-        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
-
-        if (sharedPref.readSharedOrderInfo() != null){
-            odrInf = sharedPref.readSharedOrderInfo()!!
-        }
-
-
-        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
-            val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
-
-            //Sunmi Printer
-
-            val txt = arrayOf("Daud", "Hoshen")
-            val width = intArrayOf(1, 1)
-            val align = intArrayOf(0, 2)
-            sunmiPrinterService!!.setAlignment(1, null)
-            sunmiPrinterService!!.printTextWithFont("Token :\b$token", null, 42f, null)
-
-            sunmiPrinterService.printText("\n", null)
-
-            txt[0] = odrInf.csInf.csNm
-            txt[1] = odrInf.wtr
-            sunmiPrinterService.printColumnsString(
-                txt,
-                width, align, null
-            )
-
-            sunmiPrinterService.sendRAWData(boldOn(), null)
-            val itemss = arrayOf("Items","Size")
-            sunmiPrinterService.printColumnsString(
-                itemss,
-                width, align, null
-            )
-            sunmiPrinterService!!.printTextWithFont("\n", null, 28f, null)
-
-            val items = arrayOf("", "")
-            sunmiPrinterService!!.setAlignment(0, null)
-            for (i in tempCartList.indices) {
-
-                sunmiPrinterService.sendRAWData(boldOn(), null)
-
-                sunmiPrinterService!!.printTextWithFont(
-                    tempCartList[i].title + "\n",
-                    null,
-                    28f,
-                    null
-                )
-                sunmiPrinterService.setFontSize(26f,null)
-                sunmiPrinterService.sendRAWData(boldOff(), null)
-                val items = arrayOf("x"+tempCartList[i].fQnty,tempCartList[i].vari )
-                sunmiPrinterService.printColumnsString(
-                    items,
-                    width, align, null
-                )
-
-                if (tempCartList[i].adns.size > 0) {
-                    val addonsList = tempCartList[i].adns
-
-                    for (k in addonsList.indices) {
-                        val addonItem = arrayOf(addonsList[k].adnNm,""+addonsList[k].adnQnty)
-                        sunmiPrinterService.printColumnsString(
-                            addonItem,
-                            width, align, null)
-                    }
-                }
-
-                if (tempCartList[i].nt.isNotEmpty()){
-                    sunmiPrinterService.printTextWithFont(
-                        tempCartList[i].nt+"\n" , null, 28f, null
-                    )
-                }
-
-            }
-            sunmiPrinterService.printTextWithFont("\n", null, 28f, null)
-            sunmiPrinterService.sendRAWData(boldOn(), null)
-            if (odrInf.tbl.isNotEmpty()) {
-                items[0] = "Order:$orderId"
-                items[1] = "Table:" + odrInf.tbl
-                sunmiPrinterService.printColumnsString(
-                    items,
-                    width, align, null
-                )
-            }else{
-                items[0] = "Order:$orderId"
-                items[1] = ""
-                sunmiPrinterService.printColumnsString(
-                    items, width, align, null
-                )
-            }
-
-            sunmiPrinterService.printText("\n", null)
-
-            SunmiPrintHelper.getInstance().feedPaper()
-
-        } else {
-
-            // Print By Bluetooth
-            if (ContextCompat.checkSelfPermission(requireActivity(),Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(requireActivity(),arrayOf(Manifest.permission.BLUETOOTH), 1)
-            } else {
-
-                //ESCPOS-ThermalPrinter
-
-                var printer: EscPosPrinter? = null
-                try {
-                    printer = EscPosPrinter(
-                        BluetoothPrintersConnections.selectFirstPaired(),
-                        180, 78f, 45, EscPosCharsetEncoding("windows-1252", 16)
-                    )
-                } catch (e: EscPosConnectionException) {
-                    e.printStackTrace()
-                }
-                try {
-                    printer!!.printFormattedTextAndCut(
-                        "[C]<b><font size='big'>Token No:" + token + "</font></b>\n"
-                                + "[C]" + odrInf.csInf.csNm
-                                + "[L]\n" +
-                                "[L]<b>Items</b>" + "[R]Size<b></b>\n" +
-                                "[L]\n" +
-                                tokenLoopData(tempCartList) +
-                                "[L]\n" +
-                                "[L]Order No: " + orderId + "[R] " + odrInf.tbl + "\n"
-                    )
-                } catch (e: EscPosConnectionException) {
-                    e.printStackTrace()
-                } catch (e: EscPosParserException) {
-                    e.printStackTrace()
-                } catch (e: EscPosEncodingException) {
-                    e.printStackTrace()
-                } catch (e: EscPosBarcodeException) {
-                    e.printStackTrace()
-                }
-            }
-            sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
-            orderId = null
-            setCartRecyclerAdapter()
-        }
-    }
-
-
-    // token loop Data
-    private fun tokenLoopData(list: MutableList<Cart>): String {
-        var items = ""
-        var adOnPrice = 0.0
-        for (i in list.indices) {
-            items = "" + items + "[L]<b>" + list[i].title + "</b>\n" +
-                    "[L]"+"x" + list[i].fQnty + "[R]<b>" +  list[i].vari +  "</b>\n"
-
-            if (list[i].adns.size > 0) {
-                val addonsList = list[i].adns
-                for (k in addonsList.indices) {
-                    adOnPrice = addonsList[k].adnPrc.toDouble() * addonsList[k].adnQnty
-                    items = "" + items + "" + "[L]" + addonsList[k].adnNm + "x" + addonsList[k].adnQnty +"\n"
-                }
-            }
-
-            if  (list[i].nt != ""){
-                items = items+ "[L]<b>" + list[i].title + "</b>\n"
-            }
-        }
-        return items
-    }
-
 
 
     // show alert Dialog BasedOn Food Item Click
     override fun onFoodClick(foodId: Long?, foodTitle: String?, variantlist: List<Variant>, adnList: List<Adn> ) {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val foodDialogBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
-        dialog.setContentView(foodDialogBinding.root)
+        val fdBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
+        dialog.setContentView(fdBinding.root)
 
         foodVariant = ""
         variantPrice = 0.0
         foodQuantity = 1
         foodPrice = 0.0
         totalUnitPrice = 0.0
-        adnsList.clear()
+        addonsList.clear()
         var tempCartList = mutableListOf<Cart>()
         val newAddonList = mutableListOf<Adns>()
 
-        foodDialogBinding.dcFoodName.text = foodTitle
+        fdBinding.dcFoodName.text = foodTitle
 
         variantNameList.clear()
         for (i in variantlist.indices){
             variantNameList.add(variantlist[i].vari)
         }
 
-        foodDialogBinding.dcVariantSpinner.adapter = context?.let { ArrayAdapter(it, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, variantNameList) }
+        fdBinding.dcVariantSpinner.adapter = context?.let { ArrayAdapter(it, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, variantNameList) }
 
-        foodDialogBinding.dcVariantSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        fdBinding.dcVariantSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
 
-                foodVariant = foodDialogBinding.dcVariantSpinner.selectedItem.toString()
+                foodVariant = fdBinding.dcVariantSpinner.selectedItem.toString()
 
                 for (i in variantlist.indices){
                     if (variantlist[i].vari == foodVariant){
@@ -479,14 +283,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                         variantPrice = variantlist[i].fPrc
 
                         foodQuantity = 1
-                        foodDialogBinding.dcQuantity.text = foodQuantity.toString()
+                        fdBinding.dcQuantity.text = foodQuantity.toString()
 
                         foodPrice = variantPrice
 
                         totalUnitPrice = variantPrice
-                        foodDialogBinding.dcFoodPrice.text = totalUnitPrice.toString()
-                        adnsList.clear()
-                        foodDialogBinding.addonsRecycler.adapter?.notifyDataSetChanged()
+                        fdBinding.dcFoodPrice.text = totalUnitPrice.toString()
+                        addonsList.clear()
+                        fdBinding.addonsRecycler.adapter?.notifyDataSetChanged()
                     }
                 }
             }
@@ -494,61 +298,61 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         }
 
         if (adnList.isNotEmpty()){
-            foodDialogBinding.addonsRecycler.visibility = View.VISIBLE
-            foodDialogBinding.addonsRecycler.adapter = AddonsAdapter(requireContext(), adnList, foodDialogBinding, adnsList)
+            fdBinding.addonsRecycler.visibility = View.VISIBLE
+            fdBinding.addonsRecycler.adapter = AddonsAdapter(requireContext(), adnList, fdBinding, addonsList)
         }
 
-        foodDialogBinding.dcCrossBtn.setOnClickListener {
+        fdBinding.dcCrossBtn.setOnClickListener {
             dialog.dismiss()
         }
 
-        foodDialogBinding.dcPlusBtn.setOnClickListener {
-            var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
-            foodQuantity = foodDialogBinding.dcQuantity.text.toString().toInt()
+        fdBinding.dcPlusBtn.setOnClickListener {
+            var foodPrice = fdBinding.dcFoodPrice.text.toString().toDouble()
+            foodQuantity = fdBinding.dcQuantity.text.toString().toInt()
 
             if (foodQuantity < 99){
 
                 foodQuantity += 1
-                foodDialogBinding.dcQuantity.text = foodQuantity.toString()
+                fdBinding.dcQuantity.text = foodQuantity.toString()
 
                 foodPrice += variantPrice
-                foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
+                fdBinding.dcFoodPrice.text = foodPrice.toString()
             }
         }
 
-        foodDialogBinding.dcMinusBtn.setOnClickListener {
-            var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
-            foodQuantity = foodDialogBinding.dcQuantity.text.toString().toInt()
+        fdBinding.dcMinusBtn.setOnClickListener {
+            var foodPrice = fdBinding.dcFoodPrice.text.toString().toDouble()
+            foodQuantity = fdBinding.dcQuantity.text.toString().toInt()
 
             if (foodQuantity > 1){
 
                 foodQuantity -= 1
-                foodDialogBinding.dcQuantity.text = foodQuantity.toString()
+                fdBinding.dcQuantity.text = foodQuantity.toString()
 
                 foodPrice -= variantPrice
-                foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
+                fdBinding.dcFoodPrice.text = foodPrice.toString()
             }
         }
 
 
 
         // add To Cart Button Click
-        foodDialogBinding.addToCartBtn.setOnClickListener {
+        fdBinding.addToCartBtn.setOnClickListener {
             var haveToInsert = true
             var addonChecker = 0
             var addonsPrice = 0.0
             tempCartList.clear()
             newAddonList.clear()
-            totalUnitPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
+            totalUnitPrice = fdBinding.dcFoodPrice.text.toString().toDouble()
             foodPrice = variantPrice * foodQuantity
 
             if (sharedPref.readSharedCartList() != null){
                 tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
             }
-            if (adnsList.size > 0){
+            if (addonsList.size > 0){
                 addonChecker = 1
-                for (h in adnsList.indices) {
-                    addonsPrice += adnsList[h].adnPrc
+                for (h in addonsList.indices) {
+                    addonsPrice += addonsList[h].adnPrc
                 }
             }
 
@@ -561,14 +365,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                         if (addonChecker == 1) {
 
-                            if (Gson().toJson(tempCartList[i].adns).contains(Gson().toJson(adnsList))) {
+                            if (Gson().toJson(tempCartList[i].adns).contains(Gson().toJson(addonsList))) {
                                 tempCartList[i].fQnty += foodQuantity
                                 tempCartList[i].fPrc += foodPrice
                                 tempCartList[i].tUPrc += totalUnitPrice
                                 tempCartList[i].adnPrc += addonsPrice
 
                                 //marge Addons by Name
-                                val addonListByName = adnsList.associateBy { it.adnNm}
+                                val addonListByName = addonsList.associateBy { it.adnNm}
                                 tempCartList[i].adns.forEach { tempAdn ->
                                     addonListByName[tempAdn.adnNm]?.let { homeAdn ->
                                         tempAdn.adnPrc += homeAdn.adnPrc
@@ -592,7 +396,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 }
             }
             if (haveToInsert){
-                tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, adnsList,""))
+                tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, addonsList,""))
             }
             sharedPref.writeSharedCartList(tempCartList)
             setCartRecyclerAdapter()
@@ -601,24 +405,24 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
         // add multiple button click
-        foodDialogBinding.addMultiBtn.setOnClickListener {
+        fdBinding.addMultiBtn.setOnClickListener {
             /*var haveToInsert = true
             var checkCounter = 0*/
             var addonsPrice = 0.0
             tempCartList.clear()
-            totalUnitPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
+            totalUnitPrice = fdBinding.dcFoodPrice.text.toString().toDouble()
             foodPrice = variantPrice * foodQuantity
 
             if (sharedPref.readSharedCartList() != null){
                 tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
             }
             //val tempAddonList = mutableListOf<String>()
-            if (adnsList.size > 0){
-                for (i in adnsList.indices){
-                    addonsPrice += adnsList[i].adnPrc
+            if (addonsList.size > 0){
+                for (i in addonsList.indices){
+                    addonsPrice += addonsList[i].adnPrc
                 }
             }
-            tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, adnsList,""))
+            tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, addonsList,""))
             sharedPref.writeSharedCartList(tempCartList)
             setCartRecyclerAdapter()
         }

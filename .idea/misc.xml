@@ -12,6 +12,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_add_green.xml" value="0.2035" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.1765" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_empty_cart_24dp.xml" value="0.184" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1795" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ic_menu.xml" value="0.1795" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/ongoing_card_background.xml" value="0.1795" />
@@ -22,6 +23,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selector_plus_oc.xml" value="0.2275" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selector_slide_cross.xml" value="0.1765" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/selectro_cross_btn.xml" value="0.2275" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_border.xml" value="0.184" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_one_side.xml" value="0.2035" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_splitter_selected.xml" value="0.2035" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/drawable/shape_splitter_unselect.xml" value="0.2035" />
@@ -43,6 +45,7 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_single_itemet.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_split_item.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_split_order.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_view_order.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_food.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_main.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_ongoing.xml" value="0.25" />
@@ -65,6 +68,8 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_splitter.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_splitter_details.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_temp_var_addon.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_today_order.xml" value="0.33" />
+        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_view_item.xml" value="0.37083333333333335" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/menu/nav_menu.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1795" />
         <entry key="..\:/Users/Daud/StudioProjects/RestoraPos-Offline/app/src/main/res/drawable-v24/dotted_line.xml" value="0.198" />
@@ -85,12 +90,9 @@
         <entry key="..\:/Users/Daud/StudioProjects/RestoraPos-Offline/app/src/main/res/layout/vh_payment.xml" value="0.371875" />
         <entry key="..\:/Users/Daud/StudioProjects/RestoraPos-Offline/app/src/main/res/layout/vh_splitter.xml" value="0.371875" />
         <entry key="..\:/Users/Daud/StudioProjects/RestoraPos-Offline/app/src/main/res/menu/nav_menu.xml" value="0.371875" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/drawable/ic_down_arrow.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/activity_main.xml" value="0.22962962962962963" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_add_payment.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_payment.xml" value="0.264" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/fragment_today.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/vh_today_order.xml" value="0.259375" />
       </map>
     </option>
   </component>
