@@ -28,7 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class OrderInfoFragment : Fragment() {
-    private lateinit var binding: FragmentOrderInfoBinding
+    private lateinit var oBinding: FragmentOrderInfoBinding
     private var cusNameList = mutableListOf<String>()
     private var cusInfoList = mutableListOf<CsInf>()
     private var deliveryCmpnyList = mutableListOf<Cmpny>()
@@ -50,7 +50,7 @@ class OrderInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentOrderInfoBinding.inflate(inflater, container, false)
+        oBinding = FragmentOrderInfoBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
 
 
@@ -64,15 +64,15 @@ class OrderInfoFragment : Fragment() {
                 cusNameList.add(it[i].nm)
                 cusInfoList.add(CsInf(it[i].nm, it[i].adrs, it[i].mbl))
             }
-            binding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
+            oBinding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
         })
 
 
         // Customer Spinner
-        binding.cusNameSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        oBinding.cusNameSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
 
-                val selectedItem =  binding.cusNameSpnr.selectedItem.toString()
+                val selectedItem =  oBinding.cusNameSpnr.selectedItem.toString()
 
                 for (i in cusInfoList.indices){
                     if (cusInfoList[i].csNm == selectedItem && cusNameList[spnrPos] == cusInfoList[spnrPos].csNm){
@@ -88,31 +88,31 @@ class OrderInfoFragment : Fragment() {
 
         // Customer Type Spinner Set
         cusTypeList = arrayListOf<String>("Walk In", "Take Way", "Online Customer", "Third Party")
-        binding.cusTypeSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, cusTypeList)
+        oBinding.cusTypeSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, cusTypeList)
 
 
 
 
         // customer Type Spinner select Listener
-        binding.cusTypeSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        oBinding.cusTypeSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                selectedCustomerType = binding.cusTypeSpnr.selectedItem.toString()
+                selectedCustomerType = oBinding.cusTypeSpnr.selectedItem.toString()
                 if (selectedCustomerType.equals("Walk In")) {
-                    binding.waiterLay.visibility = View.VISIBLE
-                    binding.tableLay.visibility = View.VISIBLE
-                    binding.deliveryCompanyLay.visibility = View.GONE
-                    binding.orderIdLay.visibility = View.GONE
+                    oBinding.waiterLay.visibility = View.VISIBLE
+                    oBinding.tableLay.visibility = View.VISIBLE
+                    oBinding.deliveryCompanyLay.visibility = View.GONE
+                    oBinding.orderIdLay.visibility = View.GONE
                 } else if (selectedCustomerType.equals("Online Customer")
                     || selectedCustomerType.equals("Take Way")) {
-                    binding.waiterLay.visibility = View.VISIBLE
-                    binding.tableLay.visibility = View.GONE
-                    binding.deliveryCompanyLay.visibility = View.GONE
-                    binding.orderIdLay.visibility = View.GONE
+                    oBinding.waiterLay.visibility = View.VISIBLE
+                    oBinding.tableLay.visibility = View.GONE
+                    oBinding.deliveryCompanyLay.visibility = View.GONE
+                    oBinding.orderIdLay.visibility = View.GONE
                 } else {
-                    binding.waiterLay.visibility = View.GONE
-                    binding.tableLay.visibility = View.GONE
-                    binding.deliveryCompanyLay.visibility = View.VISIBLE
-                    binding.orderIdLay.visibility = View.VISIBLE
+                    oBinding.waiterLay.visibility = View.GONE
+                    oBinding.tableLay.visibility = View.GONE
+                    oBinding.deliveryCompanyLay.visibility = View.VISIBLE
+                    oBinding.orderIdLay.visibility = View.VISIBLE
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
@@ -130,7 +130,7 @@ class OrderInfoFragment : Fragment() {
             for (i in waiterList.indices){
                 waiterSpnrList.add(waiterList[i].wNm)
             }
-            binding.waiterSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList)
+            oBinding.waiterSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList)
         })
 
 
@@ -138,9 +138,9 @@ class OrderInfoFragment : Fragment() {
 
 
         //Waiter Spinner
-        binding.waiterSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        oBinding.waiterSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
-                selectedWaiter = binding.waiterSpnr.selectedItem.toString()
+                selectedWaiter = oBinding.waiterSpnr.selectedItem.toString()
 
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
@@ -157,16 +157,16 @@ class OrderInfoFragment : Fragment() {
             for (i in tableList.indices){
                 tableSpnrList.add(tableList[i].tNm)
             }
-            binding.tableSpnr.adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList)
+            oBinding.tableSpnr.adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList)
         })
 
 
 
 
         // table spinner selected listener
-        binding.tableSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        oBinding.tableSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
-                selectedTable = binding.tableSpnr.selectedItem.toString()
+                selectedTable = oBinding.tableSpnr.selectedItem.toString()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
@@ -182,16 +182,16 @@ class OrderInfoFragment : Fragment() {
             for (i in deliveryCmpnyList.indices){
                 deliveryCompanySpnrList.add(deliveryCmpnyList[i].cNm)
             }
-            binding.deliveryCompanySpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList)
+            oBinding.deliveryCompanySpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList)
         })
 
 
 
 
         // delivery Company Spinner
-        binding.deliveryCompanySpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        oBinding.deliveryCompanySpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                selectedDeliveryCompany = binding.deliveryCompanySpnr.selectedItem.toString()
+                selectedDeliveryCompany = oBinding.deliveryCompanySpnr.selectedItem.toString()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
@@ -200,11 +200,11 @@ class OrderInfoFragment : Fragment() {
 
 
         // back button click handler
-        binding.ocfBack.setOnClickListener{ findNavController().popBackStack() }
+        oBinding.ocfBack.setOnClickListener{ findNavController().popBackStack() }
 
-        binding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(), binding.root) }
+        oBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(), oBinding.root) }
 
-        binding.cusAddBtn.setOnClickListener {
+        oBinding.cusAddBtn.setOnClickListener {
             val dialog = AddCustomerDialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
@@ -214,24 +214,24 @@ class OrderInfoFragment : Fragment() {
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-        binding.deliveryCmpnyAddBtn.setOnClickListener {
+        oBinding.deliveryCmpnyAddBtn.setOnClickListener {
             deliveryCompanyAddBtnClick()
         }
 
-        binding.waiterAddBtn.setOnClickListener {
+        oBinding.waiterAddBtn.setOnClickListener {
             waiterAddBtnClick()
         }
 
-        binding.tableAddBtn.setOnClickListener {
+        oBinding.tableAddBtn.setOnClickListener {
             tableAddBtnClick()
         }
 
-        binding.doneBtn.setOnClickListener {
+        oBinding.doneBtn.setOnClickListener {
             //findNavController().popBackStack()
             doneButtonClickHandler()
         }
 
-        return binding.root
+        return oBinding.root
     }
 
     private fun doneButtonClickHandler() {
@@ -284,9 +284,9 @@ class OrderInfoFragment : Fragment() {
                 return
             }
 
-            if (binding.orderIdEt.text.toString().isEmpty()) {
-                binding.orderIdEt.setError("Empty Value Can't Save")
-                binding.orderIdEt.requestFocus()
+            if (oBinding.orderIdEt.text.toString().isEmpty()) {
+                oBinding.orderIdEt.setError("Empty Value Can't Save")
+                oBinding.orderIdEt.requestFocus()
                 return
             }
             odrInf = OdrInf(
@@ -295,9 +295,9 @@ class OrderInfoFragment : Fragment() {
                     "",
                     "",
                     selectedDeliveryCompany,
-                    binding.orderIdEt.text.toString().trim()
+                    oBinding.orderIdEt.text.toString().trim()
                 )
-            binding.orderIdEt.setText("")
+            oBinding.orderIdEt.setText("")
         }
 
         sharedPref.writeSharedOrderInfoList(odrInf)

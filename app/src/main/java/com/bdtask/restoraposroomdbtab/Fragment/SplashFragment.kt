@@ -20,6 +20,7 @@ import com.bdtask.restoraposroomdbtab.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
     private val sharedPref = SharedPref
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

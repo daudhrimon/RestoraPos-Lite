@@ -34,9 +34,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class FoodFragment : Fragment() {
-    private lateinit var foodBinding: FragmentFoodBinding
+    private lateinit var fBinding: FragmentFoodBinding
     private var btmBinding: BtmsheetItemEditDeleteBinding? = null
-    private var catgryList = mutableListOf<Catgry>()
+    private var cateList = mutableListOf<Catgry>()
     private var fCategoryList = mutableListOf<String>()
     private var tempVariantList = mutableListOf<Variant>()
     private var tempAddonsList = mutableListOf<Adn>()
@@ -47,56 +47,56 @@ class FoodFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        foodBinding = FragmentFoodBinding.inflate(inflater, container, false)
+        fBinding = FragmentFoodBinding.inflate(inflater, container, false)
 
         // getting category from database and setting them to Spinner
         getCategoryLive()
 
         // hideKeyboard to Touch on Screen
-        foodBinding.root.setOnClickListener {
-            Util.hideSoftKeyBoard(requireContext(),foodBinding.root)
-            foodBinding.foodTitleEt.clearFocus()
+        fBinding.root.setOnClickListener {
+            Util.hideSoftKeyBoard(requireContext(),fBinding.root)
+            fBinding.foodTitleEt.clearFocus()
         }
-        foodBinding.secondView.setOnClickListener {
-            Util.hideSoftKeyBoard(requireContext(),foodBinding.root)
-            foodBinding.foodTitleEt.clearFocus()
+        fBinding.secondView.setOnClickListener {
+            Util.hideSoftKeyBoard(requireContext(),fBinding.root)
+            fBinding.foodTitleEt.clearFocus()
         }
 
         // BackButton On Click
-        foodBinding.foodBack.setOnClickListener {
+        fBinding.foodBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
         // setting Category Item From Spinner
-        foodBinding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        fBinding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                spinnerCategory = foodBinding.categorySpinner.selectedItem.toString()
+                spinnerCategory = fBinding.categorySpinner.selectedItem.toString()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
         // Category Add Button On Click
-        foodBinding.cateAddBtn.setOnClickListener{
+        fBinding.cateAddBtn.setOnClickListener{
             addNewCategoryDialog()
-            foodBinding.foodTitleEt.clearFocus()
+            fBinding.foodTitleEt.clearFocus()
         }
 
         // Category Add Button On Click
         tempAddonsList.clear()
-        foodBinding.variantPlusBtn.setOnClickListener{
+        fBinding.variantPlusBtn.setOnClickListener{
             variantPlusButtonDialog()
-            foodBinding.foodTitleEt.clearFocus()
+            fBinding.foodTitleEt.clearFocus()
         }
 
         // on longClick at CategoryButton will show all category in a BottomSheet
         // and user can edit and delete them
-        foodBinding.cateAddBtn.setOnLongClickListener {
+        fBinding.cateAddBtn.setOnLongClickListener {
             showCategoryBtmSheet()
-            foodBinding.foodTitleEt.clearFocus()
+            fBinding.foodTitleEt.clearFocus()
             return@setOnLongClickListener true
         }
 
-        foodBinding.addImageBtn.setOnClickListener {
+        fBinding.addImageBtn.setOnClickListener {
             ImagePicker.with(this)
                 .crop(1.4f,1f)
                 .compress(1024)         //Final image size will be less than 1 MB(Optional)
@@ -104,42 +104,42 @@ class FoodFragment : Fragment() {
                 .createIntent { intent ->
                     startForProfileImageResult.launch(intent)
                 }
-            foodBinding.foodTitleEt.clearFocus()
+            fBinding.foodTitleEt.clearFocus()
         }
 
         //add addons
         tempAddonsList.clear()
-        foodBinding.addAddonsBtn.setOnClickListener {
+        fBinding.addAddonsBtn.setOnClickListener {
             addAddonsButtonClick()
-            foodBinding.foodTitleEt.clearFocus()
+            fBinding.foodTitleEt.clearFocus()
         }
 
         // add Food
-        foodBinding.addFoodBtn.setOnClickListener {
+        fBinding.addFoodBtn.setOnClickListener {
             addFoodBtnClickHandler()
         }
 
-        return foodBinding.root
+        return fBinding.root
     }
 
     // getting category from database and setting them to Spinner
     private fun getCategoryLive() {
         MainActivity.database.categoryDao().getAllCategory().observe(viewLifecycleOwner, Observer {
-            catgryList.clear()
+            cateList.clear()
             fCategoryList.clear()
-            catgryList = it.toMutableList()
+            cateList = it.toMutableList()
 
-            for (i in catgryList.indices){
-                fCategoryList.add(catgryList[i].fCat)
+            for (i in cateList.indices){
+                fCategoryList.add(cateList[i].fCat)
             }
 
             // setting Spinner ADAPTER
-            foodBinding.categorySpinner.adapter = ArrayAdapter(requireContext(),
+            fBinding.categorySpinner.adapter = ArrayAdapter(requireContext(),
                 com.google.android.material.R.layout.support_simple_spinner_dropdown_item, fCategoryList)
 
             // setting BottomSheet Recycler
             if (btmBinding != null){
-                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), catgryList)
+                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), cateList)
             }
         })
     }
@@ -158,7 +158,7 @@ class FoodFragment : Fragment() {
             btmSheet?.dismiss()
         }
 
-        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),catgryList)
+        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),cateList)
     }
 
 
@@ -240,7 +240,7 @@ class FoodFragment : Fragment() {
 
             tempVariantList.add(Variant(dBinding.addonNameEt.text.toString(), dBinding.addonPriceEt.text.toString().toDouble()))
 
-            foodBinding.variantRecycler.adapter = TempVariantAdapter(requireContext(), tempVariantList)
+            fBinding.variantRecycler.adapter = TempVariantAdapter(requireContext(), tempVariantList)
 
             dialog.dismiss()
         }
@@ -283,7 +283,7 @@ class FoodFragment : Fragment() {
 
             tempAddonsList.add(Adn(dBinding.addonNameEt.text.toString(),addonPrice))
 
-            foodBinding.addonsRecycler.adapter = TempAddonsAdapter(requireContext(),tempAddonsList)
+            fBinding.addonsRecycler.adapter = TempAddonsAdapter(requireContext(),tempAddonsList)
 
             dialog.dismiss()
         }
@@ -301,9 +301,9 @@ class FoodFragment : Fragment() {
             Toasty.error(requireContext(),"Add Food Categories", Toast.LENGTH_SHORT, true).show()
             return
         }
-        if (foodBinding.foodTitleEt.text.toString().isEmpty()){
-            foodBinding.foodTitleEt.setError("Enter Food Title")
-            foodBinding.foodTitleEt.requestFocus()
+        if (fBinding.foodTitleEt.text.toString().isEmpty()){
+            fBinding.foodTitleEt.setError("Enter Food Title")
+            fBinding.foodTitleEt.requestFocus()
             return
         }
 
@@ -318,7 +318,7 @@ class FoodFragment : Fragment() {
         }
 
         for (i in foodList.indices){
-            if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == foodBinding.foodTitleEt.text.toString()){
+            if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == fBinding.foodTitleEt.text.toString()){
                 Toasty.error(requireContext(),"This Food already Available", Toast.LENGTH_SHORT, true).show()
                 return
             }
@@ -326,14 +326,14 @@ class FoodFragment : Fragment() {
 
         GlobalScope.launch {
             MainActivity.database.foodDao().insertFood(
-                Food(0, spinnerCategory, foodBinding.foodTitleEt.text.toString(), tempVariantList, foodImage, tempAddonsList.toList())
+                Food(0, spinnerCategory, fBinding.foodTitleEt.text.toString(), tempVariantList, foodImage, tempAddonsList.toList())
             )
         }
         Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
-        foodBinding.foodTitleEt.text.clear()
-        foodBinding.addImageBtn.setImageResource(R.drawable.add_image)
-        foodBinding.variantRecycler.adapter = null
-        foodBinding.addonsRecycler.adapter = null
+        fBinding.foodTitleEt.text.clear()
+        fBinding.addImageBtn.setImageResource(R.drawable.add_image)
+        fBinding.variantRecycler.adapter = null
+        fBinding.addonsRecycler.adapter = null
         tempVariantList.clear()
         tempAddonsList.clear()
     }
@@ -350,7 +350,7 @@ class FoodFragment : Fragment() {
                     //Image Uri will not be null for RESULT_OK
                     val fileUri = data?.data!!
                     foodImage = fileUri.toString()
-                    foodBinding.addImageBtn.setImageURI(fileUri)
+                    fBinding.addImageBtn.setImageURI(fileUri)
                 }
 
                 ImagePicker.RESULT_ERROR -> {

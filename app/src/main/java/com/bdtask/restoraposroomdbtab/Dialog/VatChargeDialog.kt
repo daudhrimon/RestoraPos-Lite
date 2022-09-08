@@ -40,11 +40,11 @@ class VatChargeDialog(context: Context,
 
             if (status==0){
                 sharedPref.writeVat(binding.itemEt.text.toString())
-                Toasty.success(context,"${sharedPref.readVat()!!} % Added as Global Vat",Toasty.LENGTH_SHORT).show()
+                Toasty.success(context,"${sharedPref.readVat()!!} % Added as Global Vat",Toasty.LENGTH_SHORT,true).show()
                 onBackPressed()
             } else {
                 sharedPref.writeCharge(binding.itemEt.text.toString())
-                Toasty.success(context,"${sharedPref.readCharge()!!} % Added as Global Service Charge",Toasty.LENGTH_SHORT).show()
+                Toasty.success(context,"${sharedPref.readCharge()!!} % Added as Global Service Charge",Toasty.LENGTH_SHORT,true).show()
                 onBackPressed()
             }
         }

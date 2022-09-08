@@ -12,21 +12,20 @@ import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.databinding.FragmentCompletedBinding.inflate
 import com.bdtask.restoraposroomdbtab.databinding.FragmentCompletedBinding
-import java.util.*
 
 class CompletedFragment : Fragment() {
-    private lateinit var binding: FragmentCompletedBinding
+    private lateinit var cBinding: FragmentCompletedBinding
     private var comList = mutableListOf<Order>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = inflate(inflater, container, false)
+        cBinding = inflate(inflater, container, false)
 
 
 
-        binding.tdBack.setOnClickListener {
+        cBinding.tdBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -37,17 +36,17 @@ class CompletedFragment : Fragment() {
 
                 if (comList.isNotEmpty()){
 
-                    binding.emptyOrder.visibility = View.GONE
-                    binding.rvLay.visibility = View.VISIBLE
-                    binding.todayRecycler.adapter = TodayAdapter(requireContext(),comList)
+                    cBinding.emptyOrder.visibility = View.GONE
+                    cBinding.rvLay.visibility = View.VISIBLE
+                    cBinding.todayRecycler.adapter = TodayAdapter(requireContext(),comList)
                 } else {
-                    binding.rvLay.visibility = View.GONE
-                    binding.emptyOrder.visibility = View.VISIBLE
+                    cBinding.rvLay.visibility = View.GONE
+                    cBinding.emptyOrder.visibility = View.VISIBLE
                 }
             })
 
 
 
-        return binding.root
+        return cBinding.root
     }
 }

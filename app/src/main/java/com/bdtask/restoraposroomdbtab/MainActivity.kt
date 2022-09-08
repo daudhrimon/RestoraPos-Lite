@@ -83,25 +83,13 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
-                R.id.addScD -> {
+                R.id.addCrgD -> {
                     val dialog = VatChargeDialog(this,1,"Add Global Service Charge in %","Enter Service Charge in % here")
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
                     val win = dialog.window
                     win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
-
-                R.id.ongoingD -> {
-                    findNavController(R.id.navController).navigate(R.id.homeFrag2ongoingFrag)
-                }
-
-                R.id.todayD -> {
-                    findNavController(R.id.navController).navigate(R.id.homeFrag2todayFrag)
-                }
-
-                R.id.completeOD -> {
-                    findNavController(R.id.navController).navigate(R.id.homeFrag2comFrag)
                 }
             }
             return@setNavigationItemSelectedListener true

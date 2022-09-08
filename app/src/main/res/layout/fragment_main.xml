@@ -151,7 +151,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginHorizontal="6dp"
             android:layout_marginTop=".6dp"
             android:orientation="horizontal"
             android:weightSum="5">
@@ -164,7 +164,7 @@
                 android:background="@color/bg_color"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/_2sdp"
-                android:weightSum="3">
+                android:weightSum="4">
 
                 <TextView
                     android:id="@+id/ongoingTv"
@@ -205,6 +205,25 @@
                     android:focusable="true" />
 
                 <TextView
+                    android:id="@+id/allOrderTv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginHorizontal="@dimen/_2sdp"
+                    android:layout_marginVertical="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_today"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:fontFamily="@font/helvetica_neue"
+                    android:gravity="center"
+                    android:text="All Order"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
+                    android:focusable="true" />
+
+                <TextView
                     android:id="@+id/closeTv"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_30sdp"
@@ -217,7 +236,7 @@
                     android:clickable="true"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
-                    android:text="Close "
+                    android:text="Close"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -237,7 +256,7 @@
                 app:cardElevation="1dp">
 
                 <RelativeLayout
-                    android:id="@+id/orderCustomize"
+                    android:id="@+id/orderInfo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/selector_plus"

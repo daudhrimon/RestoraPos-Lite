@@ -15,17 +15,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TodayFragment : Fragment() {
-    private lateinit var binding: FragmentTodayBinding
+    private lateinit var tBinding: FragmentTodayBinding
     private var todayList = mutableListOf<Order>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTodayBinding.inflate(inflater, container, false)
+        tBinding = FragmentTodayBinding.inflate(inflater, container, false)
 
 
-        binding.tdBack.setOnClickListener {
+        tBinding.tdBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -38,18 +38,18 @@ class TodayFragment : Fragment() {
 
                 if (todayList.isNotEmpty()){
 
-                    binding.emptyOrder.visibility = View.GONE
-                    binding.rvLay.visibility = View.VISIBLE
-                    binding.todayRecycler.adapter = TodayAdapter(requireContext(),todayList)
+                    tBinding.emptyOrder.visibility = View.GONE
+                    tBinding.rvLay.visibility = View.VISIBLE
+                    tBinding.todayRecycler.adapter = TodayAdapter(requireContext(),todayList)
                 } else {
-                    binding.rvLay.visibility = View.GONE
-                    binding.emptyOrder.visibility = View.VISIBLE
+                    tBinding.rvLay.visibility = View.GONE
+                    tBinding.emptyOrder.visibility = View.VISIBLE
                 }
             })
 
 
 
 
-        return binding.root
+        return tBinding.root
     }
 }

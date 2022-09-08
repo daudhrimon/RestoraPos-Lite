@@ -29,9 +29,9 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 
 class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
-    private lateinit var ongBinding: FragmentOngoingBinding
+    private lateinit var oBinding: FragmentOngoingBinding
     private val sharedPref = SharedPref
-    private var ongPos = -1
+    private var oPos = -1
     private var ongList = mutableListOf<Order>()
     private var selectedItem = -1
     private var foodCount = 0
@@ -46,7 +46,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        ongBinding = FragmentOngoingBinding.inflate(inflater, container, false)
+        oBinding = FragmentOngoingBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
 
         MainActivity.database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
@@ -54,23 +54,23 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             ongList = it.toMutableList()
 
             clickedList.clear()
-            ongBinding.scrollView.visibility = View.GONE
-            ongBinding.tickBtn.visibility = View.GONE
-            ongBinding.ongHeader.text = "Ongoing Order"
-            ongBinding.searchBtn.visibility = View.VISIBLE
+            oBinding.scrollView.visibility = View.GONE
+            oBinding.tickBtn.visibility = View.GONE
+            oBinding.ongHeader.text = "Ongoing Order"
+            oBinding.searchBtn.visibility = View.VISIBLE
 
             if (ongList.isNotEmpty()){
-                ongBinding.emptyOrder.visibility = View.GONE
-                ongBinding.ongRecycler.visibility = View.VISIBLE
-                ongBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), ongList,this)
+                oBinding.emptyOrder.visibility = View.GONE
+                oBinding.ongRecycler.visibility = View.VISIBLE
+                oBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), ongList,this)
             } else {
-                ongBinding.ongRecycler.visibility = View.GONE
-                ongBinding.emptyOrder.visibility = View.VISIBLE
+                oBinding.ongRecycler.visibility = View.GONE
+                oBinding.emptyOrder.visibility = View.VISIBLE
             }
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 
-        ongBinding.ongBack.setOnClickListener {
+        oBinding.ongBack.setOnClickListener {
             if (multiSelect){
                 disableMultiSelect()
             } else {
@@ -78,21 +78,21 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             }
         }
 
-        ongBinding.searchBtn.setOnClickListener {
-            if (ongBinding.ongSearchEt.visibility == View.GONE){
-                ongBinding.ongHeader.visibility = View.GONE
-                ongBinding.ongSearchEt.visibility = View.VISIBLE
-                Util.showKeyboard(ongBinding.ongSearchEt)
-                ongBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
+        oBinding.searchBtn.setOnClickListener {
+            if (oBinding.ongSearchEt.visibility == View.GONE){
+                oBinding.ongHeader.visibility = View.GONE
+                oBinding.ongSearchEt.visibility = View.VISIBLE
+                Util.showKeyboard(oBinding.ongSearchEt)
+                oBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
             } else {
-                ongBinding.ongSearchEt.visibility = View.GONE
-                ongBinding.ongHeader.visibility = View.VISIBLE
-                Util.hideSoftKeyBoard(requireContext(), ongBinding.root)
-                ongBinding.searchBtn.setImageResource(R.drawable.search_icon)
+                oBinding.ongSearchEt.visibility = View.GONE
+                oBinding.ongHeader.visibility = View.VISIBLE
+                Util.hideSoftKeyBoard(requireContext(), oBinding.root)
+                oBinding.searchBtn.setImageResource(R.drawable.search_icon)
             }
         }
 
-        ongBinding.root.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        oBinding.root.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK && multiSelect) {
                 disableMultiSelect()
                 return@OnKeyListener true
@@ -100,14 +100,14 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             false
         })
 
-        ongBinding.tickBtn.setOnClickListener {
+        oBinding.tickBtn.setOnClickListener {
             disableMultiSelect()
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
-        ongBinding.completeBtn.setOnClickListener {
-            sharedPref.writeSharedOrder(ongList[ongPos])
+        oBinding.completeBtn.setOnClickListener {
+            sharedPref.writeSharedOrder(ongList[oPos])
             val dialog = CPaymentDialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
@@ -118,12 +118,12 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-        ongBinding.cancelBtn.setOnClickListener {
+        oBinding.cancelBtn.setOnClickListener {
             if (selectedItem == 1){
                 GlobalScope.launch {
-                    MainActivity.database.orderDao().deleteOnGoing( Order(ongList[ongPos].id,0,0,0,
-                        ongList[ongPos].dat, ongList[ongPos].tkn,0.0, 0.0,0.0,0.0,
-                            ongList[ongPos].odrInf, ongList[ongPos].cart, emptyList<Pay>().toMutableList()))
+                    MainActivity.database.orderDao().deleteOnGoing( Order(ongList[oPos].id,0,0,0,
+                        ongList[oPos].dat, ongList[oPos].tkn,0.0, 0.0,0.0,0.0,
+                            ongList[oPos].odrInf, ongList[oPos].cart, emptyList<Pay>().toMutableList()))
                 }
                 Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
             } else {
@@ -140,14 +140,14 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             if (multiSelect){
                 multiSelect = false
                 clickedList.clear()
-                ongBinding.root.isFocusableInTouchMode = false
-                ongBinding.root.clearFocus()
+                oBinding.root.isFocusableInTouchMode = false
+                oBinding.root.clearFocus()
             }
         }
 
 
-        ongBinding.splitBtn.setOnClickListener {
-            sharedPref.writeSharedOrder(ongList[ongPos])
+        oBinding.splitBtn.setOnClickListener {
+            sharedPref.writeSharedOrder(ongList[oPos])
             val dialog = SplitOrderDialog(requireContext(), sharedPref, foodCount)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -169,13 +169,13 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         })
 
 
-        ongBinding.tokenBtn.setOnClickListener {
-            TokenDialog(requireContext(),ongList[ongPos].tkn,ongList[ongPos].id,
-                ongList[ongPos].cart,ongList[ongPos].odrInf,this).show()
+        oBinding.tokenBtn.setOnClickListener {
+            TokenDialog(requireContext(),ongList[oPos].tkn,ongList[oPos].id,
+                ongList[oPos].cart,ongList[oPos].odrInf,this).show()
         }
 
-        ongBinding.dueposBtn.setOnClickListener {
-            sharedPref.writeSharedOrder(ongList[ongPos])
+        oBinding.dueposBtn.setOnClickListener {
+            sharedPref.writeSharedOrder(ongList[oPos])
             val dialog = InvoiceViewDialog(requireContext(),0)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -184,7 +184,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             win!!.setLayout((14 * width)/15,(24 * height)/25)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
-        return ongBinding.root
+        return oBinding.root
     }
 
     override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
@@ -196,7 +196,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
     override fun onGoingItemClick(position: Int, selectedItem: Int) {
         this.selectedItem = selectedItem
         foodCount = 0
-        ongPos = position
+        oPos = position
 
         //////////////////////////
         if (selectedItem == 1) {
@@ -204,65 +204,65 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 foodCount += ongList[position].cart[i].fQnty
             }
         } else {
-            ongBinding.splitBtn.visibility = View.GONE
+            oBinding.splitBtn.visibility = View.GONE
         }
 
         //////////////////////////
         if (multiSelect){
-            ongBinding.searchBtn.visibility = View.GONE
-            ongBinding.tickBtn.visibility = View.VISIBLE
-            ongBinding.ongHeader.text = "${clickedList.size} / ${ongList.size} Selected"
-            ongBinding.root.isFocusableInTouchMode = true
-            ongBinding.root.requestFocus()
+            oBinding.searchBtn.visibility = View.GONE
+            oBinding.tickBtn.visibility = View.VISIBLE
+            oBinding.ongHeader.text = "${clickedList.size} / ${ongList.size} Selected"
+            oBinding.root.isFocusableInTouchMode = true
+            oBinding.root.requestFocus()
         }
 
         //////////////////////////
         when (selectedItem) {
             0 -> {
-                ongBinding.scrollView.visibility = View.GONE
+                oBinding.scrollView.visibility = View.GONE
             }
 
             1 -> {
                 if (foodCount > 1) {
-                    ongBinding.splitBtn.visibility = View.VISIBLE
+                    oBinding.splitBtn.visibility = View.VISIBLE
                 } else {
-                    ongBinding.splitBtn.visibility = View.GONE
+                    oBinding.splitBtn.visibility = View.GONE
                 }
-                ongBinding.scrollView.visibility = View.VISIBLE
-                ongBinding.mergeBtn.visibility = View.GONE
-                ongBinding.cancelBtn.visibility = View.VISIBLE
-                ongBinding.dueposBtn.visibility = View.VISIBLE
-                ongBinding.tokenBtn.visibility = View.VISIBLE
-                ongBinding.editBtn.visibility = View.VISIBLE
-                ongBinding.completeBtn.visibility = View.VISIBLE
-                ongBinding.scrollView.post {
-                    ongBinding.scrollView.fullScroll(ScrollView.FOCUS_RIGHT)
+                oBinding.scrollView.visibility = View.VISIBLE
+                oBinding.mergeBtn.visibility = View.GONE
+                oBinding.cancelBtn.visibility = View.VISIBLE
+                oBinding.dueposBtn.visibility = View.VISIBLE
+                oBinding.tokenBtn.visibility = View.VISIBLE
+                oBinding.editBtn.visibility = View.VISIBLE
+                oBinding.completeBtn.visibility = View.VISIBLE
+                oBinding.scrollView.post {
+                    oBinding.scrollView.fullScroll(ScrollView.FOCUS_RIGHT)
                 }
             }
 
             else -> {
-                ongBinding.scrollView.visibility = View.VISIBLE
-                ongBinding.dueposBtn.visibility = View.GONE
-                ongBinding.tokenBtn.visibility = View.GONE
-                ongBinding.editBtn.visibility = View.GONE
-                ongBinding.completeBtn.visibility = View.GONE
-                ongBinding.cancelBtn.visibility = View.VISIBLE
-                ongBinding.mergeBtn.visibility = View.VISIBLE
+                oBinding.scrollView.visibility = View.VISIBLE
+                oBinding.dueposBtn.visibility = View.GONE
+                oBinding.tokenBtn.visibility = View.GONE
+                oBinding.editBtn.visibility = View.GONE
+                oBinding.completeBtn.visibility = View.GONE
+                oBinding.cancelBtn.visibility = View.VISIBLE
+                oBinding.mergeBtn.visibility = View.VISIBLE
             }
         }
-        ongBinding.ongRecycler.adapter?.notifyDataSetChanged()
+        oBinding.ongRecycler.adapter?.notifyDataSetChanged()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun disableMultiSelect() {
-        ongBinding.scrollView.visibility = View.GONE
+        oBinding.scrollView.visibility = View.GONE
         multiSelect = false
         clickedList.clear()
-        ongBinding.tickBtn.visibility = View.GONE
-        ongBinding.ongHeader.text = "Ongoing Order"
-        ongBinding.searchBtn.visibility = View.VISIBLE
-        ongBinding.ongRecycler.adapter?.notifyDataSetChanged()
-        ongBinding.root.isFocusableInTouchMode = false
-        ongBinding.root.clearFocus()
+        oBinding.tickBtn.visibility = View.GONE
+        oBinding.ongHeader.text = "Ongoing Order"
+        oBinding.searchBtn.visibility = View.VISIBLE
+        oBinding.ongRecycler.adapter?.notifyDataSetChanged()
+        oBinding.root.isFocusableInTouchMode = false
+        oBinding.root.clearFocus()
     }
 }

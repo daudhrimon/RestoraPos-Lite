@@ -18,27 +18,9 @@
                 android:title="Add Vat"/>
 
             <item
-                android:id="@+id/addScD"
+                android:id="@+id/addCrgD"
                 android:icon="@drawable/ic_service_crg"
                 android:title="Add Service Charge"/>
-        </menu>
-    </item>
-    <item android:title="Menu">
-        <menu>
-            <item
-                android:id="@+id/ongoingD"
-                android:icon="@drawable/ic_food_bar"
-                android:title="Ongoing Orders"/>
-
-            <item
-                android:id="@+id/todayD"
-                android:icon="@drawable/ic_card_cash"
-                android:title="Today's Orders"/>
-
-            <item
-                android:id="@+id/completeOD"
-                android:icon="@drawable/ic_vat"
-                android:title="Completed Orders"/>
         </menu>
     </item>
 </menu>

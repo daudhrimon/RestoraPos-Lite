@@ -37,7 +37,7 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
-    private lateinit var mainBinding: FragmentMainBinding
+    private lateinit var mBinding: FragmentMainBinding
     private var categoryList = mutableListOf<String>()
     private var variantNameList = mutableListOf<String>()
     private var grandTotal = 0.0
@@ -53,7 +53,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        mainBinding = FragmentMainBinding.inflate(inflater, container, false)
+        mBinding = FragmentMainBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
@@ -66,15 +66,15 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
             if (categoryList.size > 0){
                 categoryList.add(0,"All Category")
-                mainBinding.tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+                mBinding.tabLayout.tabGravity = TabLayout.GRAVITY_FILL
             } else {
                 categoryList.add(0,"There is No Food Category Found")
-                mainBinding.tabLayout.tabGravity = TabLayout.GRAVITY_CENTER
+                mBinding.tabLayout.tabGravity = TabLayout.GRAVITY_CENTER
             }
 
-            mainBinding.viewPager2.adapter = CategoryAdapter(requireContext(),categoryList,this)
+            mBinding.viewPager2.adapter = CategoryAdapter(requireContext(),categoryList,this)
 
-            TabLayoutMediator(mainBinding.tabLayout, mainBinding.viewPager2) {tab,position->
+            TabLayoutMediator(mBinding.tabLayout, mBinding.viewPager2) { tab, position->
                 tab.text = categoryList[position]
             }.attach()
         })
@@ -85,31 +85,38 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
         // menu Button Click
-        mainBinding.menuBtn.setOnClickListener {
+        mBinding.menuBtn.setOnClickListener {
             MainActivity.drawerLayout.open()
         }
 
 
         // PLUS Button Click
-        mainBinding.orderCustomize.setOnClickListener{
+        mBinding.orderInfo.setOnClickListener{
             findNavController().navigate(R.id.homeFrag2orderInfoFrag)
         }
 
 
         // OnGoing Button Click
-        mainBinding.ongoingTv.setOnClickListener {
+        mBinding.ongoingTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2ongoingFrag)
         }
 
 
         // Today Button Click
-        mainBinding.todayTv.setOnClickListener {
+        mBinding.todayTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2todayFrag)
         }
 
 
+        // All Order Button Click
+        mBinding.allOrderTv.setOnClickListener {
+            findNavController().navigate(R.id.homeFrag2comFrag)
+        }
+
+
+
         // close Button Click
-        mainBinding.closeTv.setOnClickListener {
+        mBinding.closeTv.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             val binding = DialogCloseAlertBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_close_alert,null))
@@ -120,7 +127,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
         // Calculator BUTTON Click
-        mainBinding.calculatorLay.setOnClickListener {
+        mBinding.calculatorLay.setOnClickListener {
             val dialog: Dialog = CalculatorDialog(requireContext())
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -131,7 +138,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         }
 
         // cart Delete Click
-        mainBinding.deleteBtn.setOnClickListener {
+        mBinding.deleteBtn.setOnClickListener {
             if (sharedPref.readSharedCartList() == null || sharedPref.readSharedCartList()!!.isEmpty()){
                 Toasty.info(requireContext(), "Nothing To Delete !", Toast.LENGTH_SHORT, true).show()
             } else {
@@ -142,18 +149,18 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         }
 
         // quick order Click Handler
-        mainBinding.quickOrder.setOnClickListener {
+        mBinding.quickOrder.setOnClickListener {
             quickOrderClickHandler()
         }
 
         // placeOrder Click Handler
-        mainBinding.placeOrder.setOnClickListener {
+        mBinding.placeOrder.setOnClickListener {
             placeOrderClickHandler()
         }
 
 
 
-        return mainBinding.root
+        return mBinding.root
     }
 
 
@@ -193,10 +200,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             } else {
-                mainBinding.focusLottie.visibility = View.VISIBLE
+                mBinding.focusLottie.visibility = View.VISIBLE
                 Toasty.error(requireActivity(), "Set Order Info First !", Toast.LENGTH_SHORT, true).show()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    mainBinding.focusLottie.visibility = View.GONE
+                    mBinding.focusLottie.visibility = View.GONE
                 }, 5000)
             }
         } else {
@@ -248,10 +255,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                     Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
                 }
             } else {
-                mainBinding.focusLottie.visibility = View.VISIBLE
+                mBinding.focusLottie.visibility = View.VISIBLE
                 Toasty.error(requireActivity(), "Set Order Info First !", Toast.LENGTH_SHORT, true).show()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    mainBinding.focusLottie.visibility = View.GONE
+                    mBinding.focusLottie.visibility = View.GONE
                 }, 5000)
             }
         } else {
@@ -483,19 +490,19 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             cartList = sharedPref.readSharedCartList()!!.toMutableList()
 
             if (cartList.size > 0) {
-                mainBinding.cartRecyclerLay.visibility = View.VISIBLE
-                mainBinding.cartRecycler.visibility = View.VISIBLE
-                mainBinding.cartRecycler.adapter = CartAdapter(requireContext(), cartList, this)
+                mBinding.cartRecyclerLay.visibility = View.VISIBLE
+                mBinding.cartRecycler.visibility = View.VISIBLE
+                mBinding.cartRecycler.adapter = CartAdapter(requireContext(), cartList, this)
 
                 grandTotal = 0.0
                 for (i in cartList.indices){
                     grandTotal += cartList[i].tUPrc
                 }
-                mainBinding.grandTotalTv.text = grandTotal.toString()
+                mBinding.grandTotalTv.text = grandTotal.toString()
 
             } else {
-                mainBinding.cartRecyclerLay.visibility = View.GONE
-                mainBinding.cartRecycler.visibility = View.GONE
+                mBinding.cartRecyclerLay.visibility = View.GONE
+                mBinding.cartRecycler.visibility = View.GONE
             }
         }
     }
