@@ -25,6 +25,12 @@ class CompletedFragment : Fragment() {
         binding = inflate(inflater, container, false)
 
 
+
+        binding.tdBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+
         MainActivity.database.orderDao().getComOrder(1).observe(viewLifecycleOwner, Observer {
 
                 comList = it.toMutableList()
@@ -41,9 +47,6 @@ class CompletedFragment : Fragment() {
             })
 
 
-        binding.tdBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         return binding.root
     }

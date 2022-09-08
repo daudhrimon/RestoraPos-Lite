@@ -18,6 +18,7 @@ import com.bdtask.restoraposroomdbtab.Room.PosDatabase
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity: AppCompatActivity() {
+
     companion object{
         lateinit var drawerLayout:DrawerLayout
         lateinit var navDrawer: NavigationView
@@ -30,17 +31,28 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         drawerLayout = findViewById(R.id.drawerLayout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         navDrawer = findViewById(R.id.navDrawer)
 
+
+
+
         // getting instance of ROOM database
         database = PosDatabase.getDatabaseInstance(this)
+
+
+
 
         database.foodDao().getAllFood().observe(this, Observer{
             foodList.clear()
             foodList = it.toMutableList()
         })
+
+
+
 
         // Nav Drawer Controller
         navDrawer.setNavigationItemSelectedListener {

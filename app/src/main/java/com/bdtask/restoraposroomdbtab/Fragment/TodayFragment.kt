@@ -25,6 +25,10 @@ class TodayFragment : Fragment() {
         binding = FragmentTodayBinding.inflate(inflater, container, false)
 
 
+        binding.tdBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
 
         MainActivity.database.orderDao()
             .getTodayOrder(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString(),1)
@@ -45,9 +49,6 @@ class TodayFragment : Fragment() {
 
 
 
-        binding.tdBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         return binding.root
     }

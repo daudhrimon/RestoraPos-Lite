@@ -64,6 +64,7 @@ class InvoicePrintDialog(context: Context,
         }
 
         setConfirmClickListener {
+            dismissWithAnimation()
             Glide.with(context)
                 .asBitmap()
                 .load(MainActivity.posLogo)
@@ -275,13 +276,10 @@ class InvoicePrintDialog(context: Context,
                                     e.printStackTrace()
                                 }
                             }
-
                         }
-
                     }
                     override fun onLoadCleared(placeholder: Drawable?) {/**/}
                 })
-            dismissWithAnimation()
         }
     }
 

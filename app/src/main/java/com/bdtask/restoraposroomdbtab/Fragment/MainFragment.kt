@@ -14,11 +14,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.bdtask.restoraposroomdbtab.Dialog.CalculatorDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
-import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
-import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
+import com.bdtask.restoraposroomdbtab.Dialog.*
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
 import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
@@ -152,6 +150,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         mainBinding.placeOrder.setOnClickListener {
             placeOrderClickHandler()
         }
+
 
 
         return mainBinding.root
