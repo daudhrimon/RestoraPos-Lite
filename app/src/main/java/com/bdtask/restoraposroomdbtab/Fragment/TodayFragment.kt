@@ -19,8 +19,7 @@ class TodayFragment : Fragment() {
     private var todayList = mutableListOf<Order>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         tBinding = FragmentTodayBinding.inflate(inflater, container, false)
 

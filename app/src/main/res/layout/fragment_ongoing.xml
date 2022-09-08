@@ -116,7 +116,7 @@
         android:layout_height="?actionBarSize"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/bg_color"
+        android:background="@color/splash_bg"
         android:layoutDirection="rtl"
         android:visibility="gone">
 
@@ -130,9 +130,9 @@
 
             <TextView
                 android:id="@+id/completeBtn"
-                android:layout_width="100dp"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="3dp"
                 android:background="@drawable/selector_ongoing"
                 android:clickable="true"
                 android:focusable="true"
@@ -141,14 +141,14 @@
                 android:gravity="center"
                 android:text="Complete"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/editBtn"
-                android:layout_width="100dp"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="3dp"
                 android:background="@drawable/selector_place_order"
                 android:clickable="true"
                 android:focusable="true"
@@ -157,14 +157,14 @@
                 android:gravity="center"
                 android:text="Edit"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tokenBtn"
-                android:layout_width="100dp"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="3dp"
                 android:background="@drawable/selector_today"
                 android:clickable="true"
                 android:focusable="true"
@@ -173,15 +173,15 @@
                 android:gravity="center"
                 android:text="Token"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/dueposBtn"
-                android:layout_width="100dp"
+                android:id="@+id/duePosBtn"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
-                android:background="@drawable/selector_close"
+                android:layout_marginHorizontal="3dp"
+                android:background="@drawable/selector_allorder"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/helvetica_neue"
@@ -189,14 +189,14 @@
                 android:gravity="center"
                 android:text="Due POS"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/splitBtn"
-                android:layout_width="100dp"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="3dp"
                 android:background="@drawable/selector_place_order"
                 android:clickable="true"
                 android:focusable="true"
@@ -205,14 +205,14 @@
                 android:gravity="center"
                 android:text="Split"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/mergeBtn"
-                android:layout_width="100dp"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="3dp"
                 android:background="@drawable/selector_ongoing"
                 android:clickable="true"
                 android:focusable="true"
@@ -221,14 +221,14 @@
                 android:gravity="center"
                 android:text="Merge"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cancelBtn"
-                android:layout_width="100dp"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="3dp"
                 android:background="@drawable/selector_close"
                 android:clickable="true"
                 android:focusable="true"
@@ -237,7 +237,7 @@
                 android:gravity="center"
                 android:text="Cancel"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:visibility="gone" />
 
         </LinearLayout>

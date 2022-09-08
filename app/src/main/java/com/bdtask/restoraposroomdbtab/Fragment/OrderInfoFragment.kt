@@ -47,8 +47,7 @@ class OrderInfoFragment : Fragment() {
     private var sharedPref = SharedPref
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         oBinding = FragmentOrderInfoBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())

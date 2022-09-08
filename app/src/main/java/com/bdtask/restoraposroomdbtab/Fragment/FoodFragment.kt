@@ -44,28 +44,33 @@ class FoodFragment : Fragment() {
     private var foodImage = ""
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         fBinding = FragmentFoodBinding.inflate(inflater, container, false)
 
+
         // getting category from database and setting them to Spinner
         getCategoryLive()
+
 
         // hideKeyboard to Touch on Screen
         fBinding.root.setOnClickListener {
             Util.hideSoftKeyBoard(requireContext(),fBinding.root)
             fBinding.foodTitleEt.clearFocus()
         }
+
+
         fBinding.secondView.setOnClickListener {
             Util.hideSoftKeyBoard(requireContext(),fBinding.root)
             fBinding.foodTitleEt.clearFocus()
         }
 
+
         // BackButton On Click
         fBinding.foodBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
 
         // setting Category Item From Spinner
         fBinding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -75,11 +80,13 @@ class FoodFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
+
         // Category Add Button On Click
         fBinding.cateAddBtn.setOnClickListener{
             addNewCategoryDialog()
             fBinding.foodTitleEt.clearFocus()
         }
+
 
         // Category Add Button On Click
         tempAddonsList.clear()
@@ -88,6 +95,7 @@ class FoodFragment : Fragment() {
             fBinding.foodTitleEt.clearFocus()
         }
 
+
         // on longClick at CategoryButton will show all category in a BottomSheet
         // and user can edit and delete them
         fBinding.cateAddBtn.setOnLongClickListener {
@@ -95,6 +103,7 @@ class FoodFragment : Fragment() {
             fBinding.foodTitleEt.clearFocus()
             return@setOnLongClickListener true
         }
+
 
         fBinding.addImageBtn.setOnClickListener {
             ImagePicker.with(this)

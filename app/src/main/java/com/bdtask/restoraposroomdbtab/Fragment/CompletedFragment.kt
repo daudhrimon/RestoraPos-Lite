@@ -18,11 +18,9 @@ class CompletedFragment : Fragment() {
     private var comList = mutableListOf<Order>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         cBinding = inflate(inflater, container, false)
-
 
 
         cBinding.tdBack.setOnClickListener {

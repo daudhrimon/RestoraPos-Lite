@@ -43,11 +43,11 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         oBinding = FragmentOngoingBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
+
 
         MainActivity.database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
             ongList.clear()
@@ -174,7 +174,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 ongList[oPos].cart,ongList[oPos].odrInf,this).show()
         }
 
-        oBinding.dueposBtn.setOnClickListener {
+        oBinding.duePosBtn.setOnClickListener {
             sharedPref.writeSharedOrder(ongList[oPos])
             val dialog = InvoiceViewDialog(requireContext(),0)
             dialog.show()
@@ -231,7 +231,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 oBinding.scrollView.visibility = View.VISIBLE
                 oBinding.mergeBtn.visibility = View.GONE
                 oBinding.cancelBtn.visibility = View.VISIBLE
-                oBinding.dueposBtn.visibility = View.VISIBLE
+                oBinding.duePosBtn.visibility = View.VISIBLE
                 oBinding.tokenBtn.visibility = View.VISIBLE
                 oBinding.editBtn.visibility = View.VISIBLE
                 oBinding.completeBtn.visibility = View.VISIBLE
@@ -242,7 +242,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
             else -> {
                 oBinding.scrollView.visibility = View.VISIBLE
-                oBinding.dueposBtn.visibility = View.GONE
+                oBinding.duePosBtn.visibility = View.GONE
                 oBinding.tokenBtn.visibility = View.GONE
                 oBinding.editBtn.visibility = View.GONE
                 oBinding.completeBtn.visibility = View.GONE

@@ -15,7 +15,7 @@
             <item
                 android:id="@+id/addVatD"
                 android:icon="@drawable/ic_vat"
-                android:title="Add Vat"/>
+                android:title="Add Vat / Tax"/>
 
             <item
                 android:id="@+id/addCrgD"

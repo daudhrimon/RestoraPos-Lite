@@ -169,7 +169,7 @@
                 <TextView
                     android:id="@+id/ongoingTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_31sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
@@ -181,14 +181,14 @@
                     android:text="Ongoing"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck"
                     android:focusable="true" />
 
                 <TextView
                     android:id="@+id/todayTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_31sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
@@ -200,33 +200,33 @@
                     android:text="Today"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck"
                     android:focusable="true" />
 
                 <TextView
                     android:id="@+id/allOrderTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_31sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_today"
+                    android:background="@drawable/selector_allorder"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
-                    android:text="All Order"
+                    android:text="Completed"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck"
                     android:focusable="true" />
 
                 <TextView
                     android:id="@+id/closeTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_31sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_3sdp"
@@ -239,7 +239,7 @@
                     android:text="Close"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck"
                     android:focusable="true" />
 
@@ -247,7 +247,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_33sdp"
+                android:layout_height="@dimen/_34sdp"
                 android:layout_marginHorizontal="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
@@ -373,7 +373,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/splash_background"
+        android:background="@color/splash_bg"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
         android:paddingTop="17dp"
