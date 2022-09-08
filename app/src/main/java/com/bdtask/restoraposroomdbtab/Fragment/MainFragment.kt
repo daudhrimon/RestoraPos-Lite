@@ -24,7 +24,6 @@ import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.drawerLayout
 import com.bdtask.restoraposroomdbtab.Model.*
-import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref

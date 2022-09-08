@@ -23,20 +23,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/homeFrag2ongoingFrag"
-            app:destination="@id/ongoingFragment"/>
-            <!--app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
-        <action
-            android:id="@+id/homeFrag2todayFrag"
-            app:destination="@id/todayFragment"/>
-            <!--app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>-->
-        <action
             android:id="@+id/homeFrag2orderInfoFrag"
             app:destination="@id/orderInfoFragment"
             app:enterAnim="@anim/enter"
@@ -44,12 +30,24 @@
             app:popEnterAnim="@anim/pop_enter"
             app:popExitAnim="@anim/pop_exit" />
         <action
+            android:id="@+id/homeFrag2ongoingFrag"
+            app:destination="@id/ongoingFragment"/>
+        <action
+            android:id="@+id/homeFrag2todayFrag"
+            app:destination="@id/todayFragment"/>
+        <action
             android:id="@+id/homeFrag2foodFrag"
             app:destination="@id/foodFragment"/>
-            <!--app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+        <action
+            android:id="@+id/homeFrag2comFrag"
+            app:destination="@id/completedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="com.bdtask.restoraposroomdbtab.Fragment.TodayFragment"
+        android:label="fragment_today"
+        tools:layout="@layout/fragment_today">
+
     </fragment>
     <fragment
         android:id="@+id/orderInfoFragment"
@@ -66,17 +64,14 @@
 
     </fragment>
     <fragment
-        android:id="@+id/todayFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.TodayFragment"
-        android:label="fragment_today"
-        tools:layout="@layout/fragment_today">
-
-    </fragment>
-    <fragment
         android:id="@+id/foodFragment"
         android:name="com.bdtask.restoraposroomdbtab.Fragment.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food">
 
     </fragment>
+    <fragment
+        android:id="@+id/completedFragment"
+        android:name="com.bdtask.restoraposroomdbtab.Fragment.CompletedFragment"
+        android:label="CompletedFragment" />
 </navigation>

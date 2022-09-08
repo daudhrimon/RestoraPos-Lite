@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -43,11 +45,15 @@ class MainActivity: AppCompatActivity() {
         // Nav Drawer Controller
         navDrawer.setNavigationItemSelectedListener {
 
+            drawerLayout.postDelayed({drawerLayout.closeDrawer(GravityCompat.START)},69)
+
             when(it.itemId){
 
-                R.id.addFood -> findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
+                R.id.addFoodD -> {
+                    findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
+                }
 
-                R.id.addPay -> {
+                R.id.addPayD -> {
                     val dialog = AddPaymentDialog(this)
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
@@ -56,7 +62,7 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
-                R.id.addVat -> {
+                R.id.addVatD -> {
                     val dialog = VatChargeDialog(this,0,"Add Global Vat in %","Enter Vat in % here")
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
@@ -65,7 +71,7 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
-                R.id.addSc -> {
+                R.id.addScD -> {
                     val dialog = VatChargeDialog(this,1,"Add Global Service Charge in %","Enter Service Charge in % here")
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
@@ -73,9 +79,19 @@ class MainActivity: AppCompatActivity() {
                     win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
-            }
 
-            drawerLayout.close()
+                R.id.ongoingD -> {
+                    findNavController(R.id.navController).navigate(R.id.homeFrag2ongoingFrag)
+                }
+
+                R.id.todayD -> {
+                    findNavController(R.id.navController).navigate(R.id.homeFrag2todayFrag)
+                }
+
+                R.id.completeOD -> {
+                    findNavController(R.id.navController).navigate(R.id.homeFrag2comFrag)
+                }
+            }
             return@setNavigationItemSelectedListener true
         }
 

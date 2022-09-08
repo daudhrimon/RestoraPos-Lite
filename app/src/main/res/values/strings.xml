@@ -16,4 +16,6 @@
     <string name="toast_11">Settings->System->Advanced->InnerPrinter-> set black mark function</string>
     <string name="toast_12">Please set the printer to label mode!</string>
     <string name="bluetooth_per">App is Closing.....\nRestart this App or clear app data and Allow Bluetooth Permission</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
