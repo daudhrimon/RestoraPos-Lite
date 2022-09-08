@@ -109,21 +109,27 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
         // All Order Button Click
-        mBinding.allOrderTv.setOnClickListener {
+        mBinding.completedTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2comFrag)
+        }
+
+
+        // Cancelled Order Click
+        mBinding.canceledTv.setOnClickListener {
+            findNavController().navigate(R.id.homeFrag2canFrag)
         }
 
 
 
         // close Button Click
-        mBinding.closeTv.setOnClickListener {
+        /*mBinding.closeTv.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             val binding = DialogCloseAlertBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_close_alert,null))
             dialog.setContentView(binding.root)
             dialog.show()
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }
+        }*/
 
 
         // Calculator BUTTON Click

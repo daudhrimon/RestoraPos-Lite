@@ -7,14 +7,14 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_123sdp"
+        android:layout_height="@dimen/_99sdp"
         android:scaleType="centerCrop"
         android:src="@drawable/splash_img"
         android:background="#E11A1A1A"/>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_height="@dimen/_44sdp"
         android:background="#C41A1A1A"
         android:padding="@dimen/_10sdp"
         android:scaleType="fitStart"

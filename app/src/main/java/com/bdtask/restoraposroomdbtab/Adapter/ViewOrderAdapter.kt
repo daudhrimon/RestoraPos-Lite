@@ -12,27 +12,30 @@ import com.bdtask.restoraposroomdbtab.Dialog.ViewOrderDialog
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
-import com.bdtask.restoraposroomdbtab.databinding.VhTodayOrderBinding
+import com.bdtask.restoraposroomdbtab.databinding.VhViewOrderBinding
 
-class TodayAdapter(private val context: Context,
-                   private val todayList: MutableList<Order>): RecyclerView.Adapter<TodayAdapter.VHToday>() {
+class ViewOrderAdapter(private val context: Context,
+                       private val todayList: MutableList<Order>): RecyclerView.Adapter<ViewOrderAdapter.VHViewOrder>() {
     var index = -1
 
-    inner class VHToday(_binding: VhTodayOrderBinding): RecyclerView.ViewHolder(_binding.root) {
+    inner class VHViewOrder(_binding: VhViewOrderBinding): RecyclerView.ViewHolder(_binding.root) {
         val binding = _binding
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHToday {
-        return VHToday(VhTodayOrderBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_today_order,parent,false)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHViewOrder {
+        return VHViewOrder(VhViewOrderBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_view_order,parent,false)))
     }
 
-    override fun onBindViewHolder(holder: VHToday, position: Int) {
+    override fun onBindViewHolder(holder: VHViewOrder, position: Int) {
 
         holder.binding.orderId.text = todayList[position].id.toString()
         holder.binding.cusName.text = todayList[position].odrInf.csInf.csNm
         holder.binding.cusType.text = todayList[position].odrInf.csTyp
+
         if(todayList[position].sts == 1){
             holder.binding.payStatus.text = "Paid"
+        } else if (todayList[position].sts == 2){
+            holder.binding.payStatus.text = "Cancel"
         }
 
         if (index == position){

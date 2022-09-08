@@ -41,6 +41,9 @@
         <action
             android:id="@+id/homeFrag2comFrag"
             app:destination="@id/completedFragment" />
+        <action
+            android:id="@+id/homeFrag2canFrag"
+            app:destination="@id/canceledFragment" />
     </fragment>
     <fragment
         android:id="@+id/todayFragment"
@@ -74,4 +77,9 @@
         android:id="@+id/completedFragment"
         android:name="com.bdtask.restoraposroomdbtab.Fragment.CompletedFragment"
         android:label="CompletedFragment" />
+    <fragment
+        android:id="@+id/canceledFragment"
+        android:name="com.bdtask.restoraposroomdbtab.Fragment.CanceledFragment"
+        android:label="fragment_canceled"
+        tools:layout="@layout/fragment_canceled" />
 </navigation>

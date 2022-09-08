@@ -118,24 +118,45 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
+
+
         oBinding.cancelBtn.setOnClickListener {
+            val order = Order(ongList[oPos].id,2,0,0,
+                ongList[oPos].dat, ongList[oPos].tkn,0.0, 0.0,0.0,0.0,
+                ongList[oPos].odrInf, ongList[oPos].cart, emptyList<Pay>().toMutableList())
+
             if (selectedItem == 1){
-                GlobalScope.launch {
-                    MainActivity.database.orderDao().deleteOnGoing( Order(ongList[oPos].id,0,0,0,
-                        ongList[oPos].dat, ongList[oPos].tkn,0.0, 0.0,0.0,0.0,
-                            ongList[oPos].odrInf, ongList[oPos].cart, emptyList<Pay>().toMutableList()))
-                }
-                Toasty.success(requireContext(),"Selected Item Deleted",Toasty.LENGTH_SHORT).show()
-            } else {
-                for (i in clickedList.indices){
-                    val pos = clickedList[i]
-                    GlobalScope.launch {
-                        MainActivity.database.orderDao().deleteOnGoing(Order(ongList[pos].id,0,0,0,
-                            ongList[pos].dat, ongList[pos].tkn,0.0, 0.0,0.0, 0.0,
-                            ongList[pos].odrInf, ongList[pos].cart,emptyList<Pay>().toMutableList()))
+
+                GlobalScope.launch(Dispatchers.IO) {
+
+                    MainActivity.database.orderDao().updateOnGoing(order)
+
+                    withContext(Dispatchers.Main){
+
+                        Toasty.success(requireContext(),"Selected Order Cancelled",Toasty.LENGTH_SHORT,true).show()
                     }
                 }
-                Toasty.success(requireContext(),"Selected Items Deleted",Toasty.LENGTH_SHORT).show()
+
+            } else {
+                for (i in clickedList.indices){
+
+                    val pos = clickedList[i]
+
+                    val order = Order(ongList[pos].id,2,0,0,
+                        ongList[pos].dat, ongList[pos].tkn,0.0, 0.0,0.0, 0.0,
+                        ongList[pos].odrInf, ongList[pos].cart,emptyList<Pay>().toMutableList())
+
+                    GlobalScope.launch(Dispatchers.IO) {
+
+                        MainActivity.database.orderDao().updateOnGoing(order)
+
+                        withContext(Dispatchers.Main){
+                            if (i == clickedList.size-1){
+                                Toasty.success(requireContext(),"Selected Orders Cancelled",Toasty.LENGTH_SHORT,true).show()
+                            }
+                        }
+                    }
+                }
             }
             if (multiSelect){
                 multiSelect = false

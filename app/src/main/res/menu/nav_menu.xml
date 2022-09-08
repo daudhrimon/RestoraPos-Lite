@@ -5,7 +5,7 @@
             <item
                 android:id="@+id/addFoodD"
                 android:icon="@drawable/ic_food_bar"
-                android:title="Add Food"/>
+                android:title="Add Foods"/>
 
             <item
                 android:id="@+id/addPayD"
@@ -20,7 +20,13 @@
             <item
                 android:id="@+id/addCrgD"
                 android:icon="@drawable/ic_service_crg"
-                android:title="Add Service Charge"/>
+                android:title="Add Service Crg"/>
+
+            <item
+                android:id="@+id/addCurr"
+                android:icon="@drawable/ic_currency"
+                android:title="Add Currency"/>
+
         </menu>
     </item>
 </menu>

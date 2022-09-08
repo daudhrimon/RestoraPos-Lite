@@ -1,6 +1,7 @@
 package com.bdtask.restoraposroomdbtab.Room.Dao
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 
@@ -10,13 +11,13 @@ interface OrderDao {
     fun insertOrder(order: Order): Long
 
     @Query("SELECT * FROM order_tbl WHERE dat LIKE :date AND sts LIKE :status")
-    fun getTodayOrder(date: String?, status: Int): LiveData<List<Order>>
+    fun getTodayOrder(date: String?, status: Int): LiveData<MutableList<Order>>
 
     @Query("SELECT * FROM order_tbl WHERE sts LIKE :status")
     fun getOngoing(status: Int): LiveData<List<Order>>
 
     @Query("SELECT * FROM order_tbl WHERE sts LIKE :status")
-    fun getComOrder(status: Int): LiveData<List<Order>>
+    fun getCOrder(status: Int): LiveData<List<Order>>
 
     @Update
     suspend fun updateOnGoing(order: Order)

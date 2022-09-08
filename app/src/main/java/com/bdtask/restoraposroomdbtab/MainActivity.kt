@@ -57,15 +57,13 @@ class MainActivity: AppCompatActivity() {
         // Nav Drawer Controller
         navDrawer.setNavigationItemSelectedListener {
 
-            drawerLayout.postDelayed({drawerLayout.closeDrawer(GravityCompat.START)},69)
+            drawerLayout.closeDrawer(GravityCompat.START)
 
             when(it.itemId){
 
-                R.id.addFoodD -> {
-                    findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
-                }
+                R.id.addFoodD -> findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
 
-                R.id.addPayD -> {
+            R.id.addPayD -> {
                     val dialog = AddPaymentDialog(this)
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels

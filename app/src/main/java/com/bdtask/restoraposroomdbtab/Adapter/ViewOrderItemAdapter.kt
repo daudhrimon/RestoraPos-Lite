@@ -21,7 +21,7 @@ class ViewOrderItemAdapter(val context: Context,
 
     override fun onBindViewHolder(holder: VHViewOrderItem, position: Int) {
         holder.binding.itemName.text = cart[position].title
-        holder.binding.addOnRecycler.adapter = AddonViewAdapter(context,cart[position].adns)
+        holder.binding.addOnRecycler.adapter = ViewOrderAddonAdapter(context,cart[position].adns)
         holder.binding.itemVariant.text = cart[position].vari
         holder.binding.foodPrice.text = cart[position].fPrc.toString()
         holder.binding.itemQuantity.text = cart[position].fQnty.toString()

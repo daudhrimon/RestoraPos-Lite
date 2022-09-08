@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.bdtask.restoraposroomdbtab.Adapter.TodayAdapter
+import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.databinding.FragmentTodayBinding
 import java.text.SimpleDateFormat
@@ -29,23 +30,22 @@ class TodayFragment : Fragment() {
         }
 
 
-        MainActivity.database.orderDao()
+        database.orderDao()
             .getTodayOrder(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString(),1)
             .observe(viewLifecycleOwner, Observer {
 
-                todayList = it.toMutableList()
+                todayList = it
 
                 if (todayList.isNotEmpty()){
 
                     tBinding.emptyOrder.visibility = View.GONE
                     tBinding.rvLay.visibility = View.VISIBLE
-                    tBinding.todayRecycler.adapter = TodayAdapter(requireContext(),todayList)
+                    tBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),todayList)
                 } else {
                     tBinding.rvLay.visibility = View.GONE
                     tBinding.emptyOrder.visibility = View.VISIBLE
                 }
             })
-
 
 
 

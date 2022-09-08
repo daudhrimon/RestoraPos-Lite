@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.bdtask.restoraposroomdbtab.Adapter.TodayAdapter
+import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
-import com.bdtask.restoraposroomdbtab.databinding.FragmentCompletedBinding.inflate
 import com.bdtask.restoraposroomdbtab.databinding.FragmentCompletedBinding
 
 class CompletedFragment : Fragment() {
@@ -20,7 +19,7 @@ class CompletedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        cBinding = inflate(inflater, container, false)
+        cBinding = FragmentCompletedBinding.inflate(inflater, container, false)
 
 
         cBinding.tdBack.setOnClickListener {
@@ -28,7 +27,7 @@ class CompletedFragment : Fragment() {
         }
 
 
-        MainActivity.database.orderDao().getComOrder(1).observe(viewLifecycleOwner, Observer {
+        MainActivity.database.orderDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
 
                 comList = it.toMutableList()
 
@@ -36,7 +35,7 @@ class CompletedFragment : Fragment() {
 
                     cBinding.emptyOrder.visibility = View.GONE
                     cBinding.rvLay.visibility = View.VISIBLE
-                    cBinding.todayRecycler.adapter = TodayAdapter(requireContext(),comList)
+                    cBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),comList)
                 } else {
                     cBinding.rvLay.visibility = View.GONE
                     cBinding.emptyOrder.visibility = View.VISIBLE
