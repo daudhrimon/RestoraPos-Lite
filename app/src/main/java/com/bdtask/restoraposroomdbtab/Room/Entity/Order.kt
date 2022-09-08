@@ -9,7 +9,7 @@ import com.bdtask.restoraposroomdbtab.Model.Pay
 @Entity(tableName = "order_tbl")
 data class Order(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    var id: Long,
     var sts: Int,
     val spl: Int,
     val mrg: Int,

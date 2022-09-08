@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Dialog.CalculatorDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
+import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
 import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
 import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
@@ -52,8 +52,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     private var addonsList = mutableListOf<Adns>()
     private var cartList = mutableListOf<Cart>()
     private var sharedPref = SharedPref
-    private lateinit var printHelper: SunmiPrintHelper
-    private var orderId: Long? = null
     private var token = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -162,8 +160,50 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
     private fun quickOrderClickHandler() {
-        val data = Util.getDate()
-        println(data)
+
+        var tempCartList = mutableListOf<Cart>()
+        var odrInf = OdrInf(CsInf("","",""),"","","","","")
+
+        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+
+        if (sharedPref.readSharedOrderInfo() != null){
+            odrInf = sharedPref.readSharedOrderInfo()!!
+        }
+
+        if (tempCartList.isNotEmpty()) {
+            if (odrInf.csInf.csNm.isNotEmpty() &&
+                odrInf.csTyp.isNotEmpty()){
+
+                val order = Order(0,1,0,0,Util.getDate().toString(),"",0.0,
+                    sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0,
+                    odrInf,tempCartList, emptyList<Pay>().toMutableList())
+
+                sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+
+                sharedPref.writeSharedOrder(order)
+
+                setCartRecyclerAdapter()
+
+                // InVoice View Dialog
+                val dialog = CPaymentDialog(requireContext())
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.show()
+                val width = resources.displayMetrics.widthPixels
+                val height = resources.displayMetrics.heightPixels
+                val win = dialog.window
+                win!!.setLayout((9 * width)/10,(14 * height)/15)
+                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            } else {
+                mainBinding.focusLottie.visibility = View.VISIBLE
+                Toasty.error(requireActivity(), "Set Order Info First !", Toast.LENGTH_SHORT, true).show()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    mainBinding.focusLottie.visibility = View.GONE
+                }, 5000)
+            }
+        } else {
+            Toasty.error(requireActivity(),"Add Food To Cart First !", Toast.LENGTH_SHORT,true).show()
+        }
     }
 
 
@@ -183,47 +223,32 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             if (odrInf.csInf.csNm.isNotEmpty() &&
                     odrInf.csTyp.isNotEmpty()){
 
-                val lToken = sharedPref.getSharedToken() ?: 1
+                token = Util.getToken(sharedPref)
 
-                sharedPref.setSharedToken(lToken)
-
-                token = if (lToken in 1..9){
-                    "0$lToken"
-                } else {
-                    lToken.toString()
-                }
+                val order = Order(0, 0,0,0,
+                    Util.getDate().toString(), token, 0.0,sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0, odrInf,tempCartList,
+                    emptyList<Pay>().toMutableList())
 
                 try {
 
-                    GlobalScope.launch {
-                        orderId = MainActivity.database.orderDao().insertOrder( Order(0, 0,0,0,
-                            Util.getDate().toString(), token, 0.0,sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0, odrInf,tempCartList,
-                            emptyList<Pay>().toMutableList()))
+                    GlobalScope.launch(Dispatchers.IO){
+
+                        val orderId = MainActivity.database.orderDao().insertOrder(order)
+
+                        withContext(Dispatchers.Main){
+
+                            if (orderId != null && orderId.toString().isNotEmpty()){
+
+                                Toasty.success(requireContext(),"Placed Order $orderId Successfully",Toast.LENGTH_SHORT,true).show()
+
+                                // asking for print token
+                                printToken(orderId)
+                            }
+                        }
                     }
-                    Toasty.success(requireContext(),"Successful",Toast.LENGTH_SHORT,true).show()
                 } catch (e:Exception){
                     Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
                 }
-
-
-
-                // asking for print token
-
-                var tempCartList = mutableListOf<Cart>()
-                var odrInf = OdrInf(CsInf("","",""),"","","","","")
-
-                tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
-
-                if (sharedPref.readSharedOrderInfo() != null){
-                    odrInf = sharedPref.readSharedOrderInfo()!!
-                }
-
-                TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
-
-                sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
-
-
-
             } else {
                 mainBinding.focusLottie.visibility = View.VISIBLE
                 Toasty.error(requireActivity(), "Set Order Info First !", Toast.LENGTH_SHORT, true).show()
@@ -244,6 +269,23 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         setCartRecyclerAdapter()
     }
 
+
+    // ask for print Token
+
+    private fun printToken(orderId: Long) {
+        var tempCartList = mutableListOf<Cart>()
+        var odrInf = OdrInf(CsInf("","",""),"","","","","")
+
+        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+
+        if (sharedPref.readSharedOrderInfo() != null){
+            odrInf = sharedPref.readSharedOrderInfo()!!
+        }
+
+        TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
+
+        sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+    }
 
 
 

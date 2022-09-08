@@ -23,10 +23,12 @@ import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CPaymentDialog ( context: Context): Dialog(context) {
+class CPaymentDialog (context: Context): Dialog(context) {
 
     private lateinit var dBinding: DialogPaymentBinding
     private lateinit var order: Order
@@ -96,26 +98,42 @@ class CPaymentDialog ( context: Context): Dialog(context) {
             val payable = dBinding.payableAmount.text.toString().toDouble()
             if (payable == 0.0){
 
-                order.sts = 1
+                if (order.sts == 0){
+                    order.sts = 1
 
-                sharedPref.writeSharedOrder(order)
+                    GlobalScope.launch(Dispatchers.IO) {
 
-                GlobalScope.launch {
-                    MainActivity.database.orderDao().updateOnGoing(order)
+                        MainActivity.database.orderDao().updateOnGoing(order)
+
+                        withContext(Dispatchers.Main){
+
+                            sharedPref.writeSharedOrder(order)
+
+                            Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
+
+                            printInvoice()
+                        }
+                    }
+                } else {
+
+                    GlobalScope.launch(Dispatchers.IO){
+
+                        val orderId = MainActivity.database.orderDao().insertOrder(order)
+
+                        withContext(Dispatchers.Main){
+                            if (orderId != null && orderId.toString().isNotEmpty()) {
+
+                                order.id = orderId
+
+                                sharedPref.writeSharedOrder(order)
+
+                                Toasty.success(context, "Placed Order $orderId Successfully",Toasty.LENGTH_SHORT,true).show()
+
+                                printInvoice()
+                            }
+                        }
+                    }
                 }
-
-                Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
-
-                val dialog = InvoiceViewDialog(context,1)
-                dialog.show()
-                val width = context.resources.displayMetrics.widthPixels
-                val height = context.resources.displayMetrics.heightPixels
-                val win = dialog.window
-                win!!.setLayout((14 * width)/15,(24 * height)/25)
-                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-                onBackPressed()
-
             } else {
                 Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
             }
@@ -123,6 +141,17 @@ class CPaymentDialog ( context: Context): Dialog(context) {
 
         /// printer init ///
         //initPrinter()
+    }
+
+    private fun printInvoice(){
+        val dialog = InvoiceViewDialog(context,1)
+        dialog.show()
+        val width = context.resources.displayMetrics.widthPixels
+        val height = context.resources.displayMetrics.heightPixels
+        val win = dialog.window
+        win!!.setLayout((14 * width)/15,(24 * height)/25)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        onBackPressed()
     }
 
     private fun getTotalPrice() {

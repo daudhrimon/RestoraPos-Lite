@@ -261,7 +261,7 @@ class InvoicePrintDialog(context: Context,
                                                 "[L]Grand Total: " + "[R]$grandTotal\n" +
                                                 "[L]Total Due: " + "[R]${getTotalDue()}\n" +
                                                 "[L]Change Due: " + "[R]${getChangeDue()}\n" +
-                                                "[L]Customer paid: " + "[R]$customerPay\n" +
+                                                "[L]Customer Paid: " + "[R]$customerPay\n" +
                                                 "[C] <b> Thank you very much </b>\n" +
                                                 "[C]================================\n" +
                                                 "[C] <b>Powered by RestoraPos</b>\n" + "\n\n")

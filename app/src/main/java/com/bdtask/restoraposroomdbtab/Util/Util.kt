@@ -58,4 +58,17 @@ object Util {
         }
         return false
     }
+
+    fun getToken(sharedPref: SharedPref): String {
+
+        val lToken = sharedPref.getSharedToken() ?: 1
+
+        sharedPref.setSharedToken(lToken)
+
+        return if (lToken in 1..9){
+            "0$lToken"
+        } else {
+            lToken.toString()
+        }
+    }
 }
