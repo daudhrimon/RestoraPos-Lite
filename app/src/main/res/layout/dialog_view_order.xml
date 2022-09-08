@@ -148,12 +148,11 @@
                                 android:textColor="#6D7990" />
 
                             <TextView
-                                android:id="@+id/order_status"
+                                android:id="@+id/status"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/helvetica_neue"
-                                android:text="Paid"
                                 android:textColor="#6D7990" />
 
                         </LinearLayout>
@@ -463,8 +462,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp" />
-
+                            android:layout_marginRight="10dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -535,7 +534,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text=" $ 0"
+                                        android:text="0"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -586,7 +585,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text="Discount "
+                                        android:text="Vat (%)"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -619,12 +618,12 @@
                                     android:padding="10dp">
 
                                     <TextView
-                                        android:id="@+id/discountTv"
+                                        android:id="@+id/vat"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text=" 0"
+                                        android:text="0"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -676,7 +675,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text="Service Charge"
+                                        android:text="Service Charge (%)"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -709,12 +708,12 @@
                                     android:padding="10dp">
 
                                     <TextView
-                                        android:id="@+id/serviceChargeTv"
+                                        android:id="@+id/serviceCharge"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text=" 0"
+                                        android:text="0"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -773,7 +772,7 @@
                                             android:layout_height="match_parent"
                                             android:layout_gravity="center"
                                             android:gravity="center"
-                                            android:text="Vat  (%)"
+                                            android:text="Discount"
                                             android:textColor="#262626"
                                             android:textStyle="bold" />
 
@@ -806,12 +805,12 @@
                                         android:padding="10dp">
 
                                         <TextView
-                                            android:id="@+id/vatTv"
+                                            android:id="@+id/discount"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:gravity="center"
-                                            android:text=" 0"
+                                            android:text="0"
                                             android:textColor="#262626"
                                             android:textStyle="bold" />
 
@@ -901,7 +900,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:gravity="center"
-                                            android:text=" 0"
+                                            android:text="0"
                                             android:textColor="#262626"
                                             android:textStyle="bold" />
 
@@ -991,7 +990,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:gravity="center"
-                                            android:text=" 0"
+                                            android:text="0"
                                             android:textColor="#262626"
                                             android:textStyle="bold" />
 
@@ -1044,7 +1043,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text="Grand Total	"
+                                        android:text="Grand Total"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -1077,12 +1076,12 @@
                                     android:padding="10dp">
 
                                     <TextView
-                                        android:id="@+id/grandTotalInViewOrder"
+                                        android:id="@+id/grandTotal"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text=" 0"
+                                        android:text="0"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -1166,12 +1165,12 @@
                                     android:padding="10dp">
 
                                     <TextView
-                                        android:id="@+id/totalDueInViewOrder"
+                                        android:id="@+id/totalDue"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text=" 0"
+                                        android:text="0"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -1223,7 +1222,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text="Change due	"
+                                        android:text="Change due"
                                         android:textColor="#262626" />
 
                                 </LinearLayout>
@@ -1255,12 +1254,101 @@
                                     android:padding="10dp">
 
                                     <TextView
-                                        android:id="@+id/changeDueInViewOrder"
+                                        android:id="@+id/changeDue"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text=" 0"
+                                        android:text="0"
+                                        android:textColor="#262626"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/black" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:weightSum="2">
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Customer Paid"
+                                        android:textColor="#262626" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/black" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:id="@+id/customerPay"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="0"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 

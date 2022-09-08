@@ -55,7 +55,7 @@ class InvoicePrintDialog(context: Context,
         vat = (order.tPrc*order.vat)/100
         crg = (order.tPrc*order.crg)/100
         customerPay = getCustomerPay(order.pay)
-        grandTotal = (order.tPrc+vat+crg)
+        grandTotal = (order.tPrc+vat+crg)-order.dis
 
 
         setCancelClickListener {
@@ -288,7 +288,7 @@ class InvoicePrintDialog(context: Context,
     private fun getTotalDue(): String {
         var ttlDue = 0.0
         return if (grandTotal > customerPay){
-            ttlDue = (grandTotal-order.dis)-customerPay
+            ttlDue = grandTotal-customerPay
             if (ttlDue < 0){
                 ttlDue = 0.0
                 return ttlDue.toString()

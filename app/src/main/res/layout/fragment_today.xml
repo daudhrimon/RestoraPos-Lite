@@ -67,7 +67,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="3dp"
-            android:background="@color/theme_color"
+            android:background="@drawable/shape_splitter_selected"
             android:orientation="horizontal"
             android:weightSum="8">
 
@@ -82,7 +82,7 @@
                 android:text="Order ID"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="@color/theme_color"
                 android:textSize="12sp" />
 
             <TextView
@@ -96,7 +96,7 @@
                 android:text="Customer"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="@color/theme_color"
                 android:textSize="12sp" />
 
             <TextView
@@ -110,7 +110,7 @@
                 android:text="Type"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="@color/theme_color"
                 android:textSize="12sp" />
 
 
@@ -125,7 +125,7 @@
                 android:text="Payment"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="@color/theme_color"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -133,10 +133,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/todayRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true"
             tools:listitem="@layout/vh_today_order" />
 
     </LinearLayout>

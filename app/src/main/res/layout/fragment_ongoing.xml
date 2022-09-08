@@ -99,8 +99,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ong_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/appbar"
         android:layout_above="@+id/scroll_view"
         android:layout_marginHorizontal="6dp"

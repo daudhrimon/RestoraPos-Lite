@@ -16,16 +16,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TodayFragment : Fragment() {
-    private var _binding: FragmentTodayBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentTodayBinding
     private var todayList = mutableListOf<Order>()
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTodayBinding.inflate(inflater, container, false)
+        binding = FragmentTodayBinding.inflate(inflater, container, false)
 
         MainActivity.database.orderDao()
             .getTodayOrder(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString(),1)
@@ -33,14 +31,14 @@ class TodayFragment : Fragment() {
 
             todayList = it
 
-            /*if (todayList.isNotEmpty()){
+            if (todayList.isNotEmpty()){
                 binding.emptyOrder.visibility = View.GONE
                 binding.rvLay.visibility = View.VISIBLE
                 binding.todayRecycler.adapter = TodayAdapter(requireContext(),todayList)
-            } else {*/
+            } else {
                 binding.rvLay.visibility = View.GONE
                 binding.emptyOrder.visibility = View.VISIBLE
-            //}
+            }
         })
 
         binding.tdBack.setOnClickListener {

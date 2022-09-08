@@ -72,7 +72,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         binding.discountTv.text = order.dis.toString()
 
-        grandTotal = order.tPrc + vat + crg
+        grandTotal = (order.tPrc + vat + crg)-order.dis
         binding.grandtotalTV.text = grandTotal.toString()
 
         binding.totalDue.text = getTotalDue()
@@ -102,7 +102,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
     private fun getTotalDue(): String {
         var ttlDue = 0.0
         return if (grandTotal > customerPay){
-            ttlDue = (grandTotal-order.dis)-customerPay
+            ttlDue = grandTotal-customerPay
             if (ttlDue < 0){
                 ttlDue = 0.0
                 return ttlDue.toString()

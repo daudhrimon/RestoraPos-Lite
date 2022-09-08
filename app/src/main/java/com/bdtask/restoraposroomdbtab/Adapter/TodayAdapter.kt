@@ -31,11 +31,20 @@ class TodayAdapter(private val context: Context,
         holder.binding.orderId.text = todayList[position].id.toString()
         holder.binding.cusName.text = todayList[position].odrInf.csInf.csNm
         holder.binding.cusType.text = todayList[position].odrInf.csTyp
-        holder.binding.payStatus.text = "Paid"
-
+        if(todayList[position].sts == 1){
+            holder.binding.payStatus.text = "Paid"
+        }
 
         if (index == position){
             holder.binding.expandLay.visibility = View.VISIBLE
+            holder.binding.waiterName.text = todayList[position].odrInf.wtr
+            holder.binding.tableNo.text = todayList[position].odrInf.tbl
+            holder.binding.date.text = todayList[position].dat
+            var payAmo = 0.0
+            for (i in todayList[position].pay.indices){
+                payAmo += todayList[position].pay[i].amo
+            }
+            holder.binding.amountTv.text = payAmo.toString()
         } else {
             holder.binding.expandLay.visibility = View.GONE
         }
@@ -43,20 +52,11 @@ class TodayAdapter(private val context: Context,
 
         holder.binding.parentLay.setOnClickListener {
             if (index == position){
-                index = -1
                 holder.binding.expandLay.visibility = View.GONE
+                index = -1
             } else {
-                index = position
                 holder.binding.expandLay.visibility = View.VISIBLE
-                holder.binding.waiterName.text = todayList[position].odrInf.wtr
-                holder.binding.tableNo.text = todayList[position].odrInf.tbl
-                holder.binding.date.text = todayList[position].dat
-                var payAmo = 0.0
-                for (i in todayList[position].pay.indices){
-                    payAmo += todayList[position].pay[i].amo
-                }
-                holder.binding.amountTv.text = payAmo.toString()
-
+                index = position
             }
             notifyDataSetChanged()
         }
