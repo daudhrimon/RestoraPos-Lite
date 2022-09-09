@@ -15,7 +15,7 @@ import com.bdtask.restoraposroomdbtab.databinding.FragmentTodayBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TodayFragment : Fragment() {
+class TodayFragment() : Fragment() {
     private lateinit var tBinding: FragmentTodayBinding
     private var todayList = mutableListOf<Order>()
 

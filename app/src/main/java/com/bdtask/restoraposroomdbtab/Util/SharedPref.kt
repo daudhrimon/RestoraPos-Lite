@@ -113,9 +113,18 @@ object SharedPref {
         prefsEditor.putString("crg",crg)
         prefsEditor.apply()
     }
+
     fun readCharge(): Double? {
         return mSharedPref!!.getString("crg", "0.0")?.toDouble()
     }
 
+    fun writeCurrency(curr: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("curr",curr)
+        prefsEditor.apply()
+    }
 
+    fun readCurrency(): String? {
+        return mSharedPref!!.getString("curr", "") ?: ""
+    }
 }

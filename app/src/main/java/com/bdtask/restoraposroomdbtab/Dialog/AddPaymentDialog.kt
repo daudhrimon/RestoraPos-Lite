@@ -30,7 +30,7 @@ class AddPaymentDialog(context: Context): Dialog(context) {
         binding.typeSpinner.adapter = ArrayAdapter(context,androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,payType)
 
         binding.payCross.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
         binding.root.setOnClickListener {

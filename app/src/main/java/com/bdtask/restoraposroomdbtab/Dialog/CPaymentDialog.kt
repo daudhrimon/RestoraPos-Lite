@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.PaymentAdapter
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
 import com.bdtask.restoraposroomdbtab.R
@@ -49,6 +50,7 @@ class CPaymentDialog (context: Context): Dialog(context) {
         setContentView(dBinding.root)
 
         getTotalPrice()
+
         setPaymentHeaders()
 
         dBinding.spinDisType.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,disTypes)
@@ -62,7 +64,7 @@ class CPaymentDialog (context: Context): Dialog(context) {
         }
 
         dBinding.closeBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
         dBinding.addDisBtn.setOnClickListener {
@@ -151,7 +153,7 @@ class CPaymentDialog (context: Context): Dialog(context) {
         val win = dialog.window
         win!!.setLayout((14 * width)/15,(24 * height)/25)
         win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        onBackPressed()
+        dismiss()
     }
 
     private fun getTotalPrice() {
@@ -162,7 +164,7 @@ class CPaymentDialog (context: Context): Dialog(context) {
         val vat = (order.tPrc * order.vat) / 100
         val crg = (order.tPrc * order.crg) / 100
         totalAmount = order.tPrc + vat + crg
-        dBinding.totalAmount.text = totalAmount.toString()
+        dBinding.totalAmount.text = "$totalAmount $appCurrency"
     }
 
     private fun setPaymentHeaders() {
@@ -172,7 +174,6 @@ class CPaymentDialog (context: Context): Dialog(context) {
         // get discount
         discount = if (dBinding.discountEt.text.toString().isNotEmpty()){
             dBinding.discountEt.text.toString().toDouble()
-
         } else {
             0.0
         }
@@ -187,8 +188,8 @@ class CPaymentDialog (context: Context): Dialog(context) {
             totalDue = totalAmount - discount
         }
 
-        dBinding.totalDue.text = totalDue.toString()
-        dBinding.payableAmount.text = totalDue.toString()
+        dBinding.totalDue.text = "$totalDue $appCurrency"
+        dBinding.payableAmount.text = "$totalDue $appCurrency"
     }
 
     private fun setPaymentAdapter() {

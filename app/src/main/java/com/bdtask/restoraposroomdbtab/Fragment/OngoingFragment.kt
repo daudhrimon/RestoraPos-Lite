@@ -126,6 +126,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 ongList[oPos].odrInf, ongList[oPos].cart, emptyList<Pay>().toMutableList())
 
             if (selectedItem == 1){
+                clickedList.clear()
 
                 GlobalScope.launch(Dispatchers.IO) {
 
@@ -151,8 +152,10 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                         MainActivity.database.orderDao().updateOnGoing(order)
 
                         withContext(Dispatchers.Main){
-                            if (i == clickedList.size-1){
-                                Toasty.success(requireContext(),"Selected Orders Cancelled",Toasty.LENGTH_SHORT,true).show()
+                            val items = clickedList.size
+                            if (i == items-1){
+                                clickedList.clear()
+                                Toasty.success(requireContext(),"$items Selected Orders Cancelled",Toasty.LENGTH_SHORT,true).show()
                             }
                         }
                     }
@@ -160,7 +163,6 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             }
             if (multiSelect){
                 multiSelect = false
-                clickedList.clear()
                 oBinding.root.isFocusableInTouchMode = false
                 oBinding.root.clearFocus()
             }

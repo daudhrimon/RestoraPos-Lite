@@ -57,13 +57,29 @@
                 android:layout_height="@dimen/_36sdp"
                 android:background="@drawable/et_round_bg_outline"
                 android:fontFamily="@font/helvetica_neue"
-                android:hint="Enter Item"
                 android:inputType="textCapWords"
                 android:paddingHorizontal="10dp"
+                android:textDirection="locale"
                 android:textSize="13sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/addCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_69sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/selector_add_food_image"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/_9sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_currency"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/itemBtn"

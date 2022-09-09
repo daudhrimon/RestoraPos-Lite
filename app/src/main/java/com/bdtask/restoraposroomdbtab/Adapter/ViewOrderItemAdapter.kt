@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.databinding.VhViewOrderItemBinding
@@ -20,12 +21,14 @@ class ViewOrderItemAdapter(val context: Context,
     }
 
     override fun onBindViewHolder(holder: VHViewOrderItem, position: Int) {
+        if (cart[position].adns.isNotEmpty()){
+            holder.binding.addOnRecycler.adapter = ViewOrderAddonAdapter(context,cart[position].adns)
+        }
         holder.binding.itemName.text = cart[position].title
-        holder.binding.addOnRecycler.adapter = ViewOrderAddonAdapter(context,cart[position].adns)
         holder.binding.itemVariant.text = cart[position].vari
-        holder.binding.foodPrice.text = cart[position].fPrc.toString()
+        holder.binding.foodPrice.text = "${cart[position].fPrc} $appCurrency"
         holder.binding.itemQuantity.text = cart[position].fQnty.toString()
-        holder.binding.totalUnitPrice.text = cart[position].tUPrc.toString()
+        holder.binding.totalUnitPrice.text = "${cart[position].tUPrc} $appCurrency"
     }
 
     override fun getItemCount(): Int {

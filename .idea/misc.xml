@@ -99,11 +99,14 @@
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/drawable/ic_minus_button.xml" value="0.156" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/drawable/selector_allorder.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/activity_main.xml" value="0.22962962962962963" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_add_new_customer.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_add_payment.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_food_clicked.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_invoice_view.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_note.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_payment.xml" value="0.264" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_single_itemet.xml" value="0.2462962962962963" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_view_order.xml" value="0.2462962962962963" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/fragment_canceled.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/fragment_completed.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/fragment_food.xml" value="0.259375" />

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.Interface.PayAmountTextChangedListener
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Util.Util
@@ -46,7 +47,7 @@ class PaymentAdapter( private val context: Context,
         if (position == payList.size-1){
             payList[position].amo = dPayableAmount.text.toString().toDouble()
             holder.binding.payAmountEt.setText(payList[position].amo.toString())
-            dPayableAmount.text = "0.0"
+            dPayableAmount.text = "0.0 $appCurrency"
             dAnotherPay.visibility = View.GONE
             holder.binding.payAmountEt.requestFocus()
         }
@@ -94,8 +95,8 @@ class PaymentAdapter( private val context: Context,
                     payableAmount = totalDue - adAmount
                 }
 
-                dPayableAmount.text = payableAmount.toString()
-                dChangeDue.text = changeDue.toString()
+                dPayableAmount.text = "$payableAmount $appCurrency"
+                dChangeDue.text = "$changeDue $appCurrency"
 
                 if (payableAmount > 0) {
                     dAnotherPay.visibility = View.VISIBLE

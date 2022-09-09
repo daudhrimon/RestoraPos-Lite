@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.bdtask.restoraposroomdbtab.Adapter.InvoiceFoodAdapter
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
@@ -62,24 +63,24 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         binding.counterName.text = "Daud"
 
-        binding.subTotal.text = order.tPrc.toString()
+        binding.subTotal.text = "${order.tPrc} $appCurrency"
 
         vat = (order.tPrc * order.vat) / 100
-        binding.vatTv.text = vat.toString()
+        binding.vatTv.text = "$vat $appCurrency"
 
         crg = (order.tPrc * order.crg) / 100
-        binding.chargeTv.text = crg.toString()
+        binding.chargeTv.text = "$crg $appCurrency"
 
-        binding.discountTv.text = order.dis.toString()
+        binding.discountTv.text = "${order.dis} $appCurrency"
 
         grandTotal = (order.tPrc + vat + crg)-order.dis
-        binding.grandtotalTV.text = grandTotal.toString()
+        binding.grandtotalTV.text = "$grandTotal $appCurrency"
 
-        binding.totalDue.text = getTotalDue()
+        binding.totalDue.text = "${getTotalDue()} $appCurrency"
 
-        binding.changeDue.text = getChangeDue()
+        binding.changeDue.text = "${getChangeDue()} $appCurrency"
 
-        binding.customerPaid.text = customerPay.toString()
+        binding.customerPaid.text = "$customerPay $appCurrency"
 
         binding.tableNo.text = order.odrInf.tbl
 

@@ -44,6 +44,8 @@ class CalculatorDialog(context: Context) : Dialog(context) {
 
         init()
 
+        closeBtn = findViewById(R.id.closeBtn)
+
         equalsOnClick.setOnClickListener { equalsOnClickk() }
         decimalOnClick.setOnClickListener { decimalOnClick() }
         zeroOnClick.setOnClickListener { zeroOnClick() }
@@ -63,8 +65,6 @@ class CalculatorDialog(context: Context) : Dialog(context) {
         powerOfOnClick.setOnClickListener { powerOfOnClick() }
         bracketsOnClick.setOnClickListener { bracketsOnClick() }
         clearOnClick.setOnClickListener { clearOnClick() }
-        closeBtn.setOnClickListener { dismiss() }
-
     }
 
     private fun init() {
@@ -89,7 +89,7 @@ class CalculatorDialog(context: Context) : Dialog(context) {
         powerOfOnClick = findViewById(R.id.powerOfOnClick)
         bracketsOnClick = findViewById(R.id.bracketsOnClick)
         clearOnClick = findViewById(R.id.clearOnClick)
-        closeBtn = findViewById(R.id.closeBtn)
+
     }
 
     private fun equalsOnClickk() {

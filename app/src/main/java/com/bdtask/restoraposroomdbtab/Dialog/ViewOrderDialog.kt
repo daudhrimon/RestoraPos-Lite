@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.View
 import com.bdtask.restoraposroomdbtab.Adapter.SplitterDetailsAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderItemAdapter
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.DialogViewOrderBinding
 
 class ViewOrderDialog(context: Context, private val order: Order): Dialog(context) {
@@ -25,7 +27,7 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
         setContentView(binding.root)
 
         binding.closeBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
         binding.itemRecycler.adapter = ViewOrderItemAdapter(context,order.cart)
@@ -47,21 +49,21 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
         binding.mobile.text = order.odrInf.csInf.mbl
 
         vat = (order.tPrc * order.vat) / 100
-        binding.vat.text = vat.toString()
+        binding.vat.text = "$vat $appCurrency"
 
         crg = (order.tPrc * order.crg) / 100
-        binding.serviceCharge.text = crg.toString()
+        binding.serviceCharge.text = "$crg $appCurrency"
 
-        binding.discount.text = order.dis.toString()
+        binding.discount.text = "${order.dis} $appCurrency"
 
         grandTotal = (order.tPrc + vat + crg)-order.dis
-        binding.grandTotal.text = grandTotal.toString()
+        binding.grandTotal.text = "$grandTotal $appCurrency"
 
-        binding.totalDue.text = getTotalDue()
+        binding.totalDue.text = "${getTotalDue()} $appCurrency"
 
-        binding.changeDue.text = getChangeDue()
+        binding.changeDue.text = "${getChangeDue()} $appCurrency"
 
-        binding.customerPay.text = customerPay.toString()
+        binding.customerPay.text = "$customerPay $appCurrency"
     }
 
     private fun getCustomerPay(pay: MutableList<Pay>) {

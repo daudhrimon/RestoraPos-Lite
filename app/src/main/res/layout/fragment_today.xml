@@ -135,7 +135,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true" />
 
     </LinearLayout>
 
@@ -157,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="No orders available"
+            android:text="@string/no_order"
             android:textColor="@color/theme_color"
             android:textSize="20sp" />
     </LinearLayout>

@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -17,6 +16,7 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Room.PosDatabase
 import com.google.android.material.navigation.NavigationView
 
+
 class MainActivity: AppCompatActivity() {
 
     companion object{
@@ -25,6 +25,7 @@ class MainActivity: AppCompatActivity() {
         lateinit var database: PosDatabase
         var foodList = mutableListOf<Food>()
         lateinit var posLogo: Uri
+        var appCurrency = "$"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +74,13 @@ class MainActivity: AppCompatActivity() {
                 }
 
                 R.id.addVatD -> {
-                    val dialog = VatChargeDialog(this,0,"Add Global Vat in %","Enter Vat in % here")
+                    val dialog = VatChargeDialog(
+                        this,
+                        0,
+                        "Add Global Vat in %",
+                        "Enter Vat in % here",
+                        supportFragmentManager
+                    )
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
                     val win = dialog.window
@@ -82,11 +89,32 @@ class MainActivity: AppCompatActivity() {
                 }
 
                 R.id.addCrgD -> {
-                    val dialog = VatChargeDialog(this,1,"Add Global Service Charge in %","Enter Service Charge in % here")
+                    val dialog = VatChargeDialog(
+                        this,
+                        1,
+                        "Add Global Service Charge in %",
+                        "Enter Service Charge in % here",
+                        supportFragmentManager
+                    )
                     dialog.show()
                     val width = resources.displayMetrics.widthPixels
                     val win = dialog.window
                     win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
+                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                }
+
+                R.id.addCurr -> {
+                    val dialog = VatChargeDialog(
+                        this,
+                        2,
+                        "Set Global Currency",
+                        "Selected Currency Will Appear Here",
+                        supportFragmentManager
+                    )
+                    dialog.show()
+                    val width = resources.displayMetrics.widthPixels
+                    val win = dialog.window
+                    win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
             }

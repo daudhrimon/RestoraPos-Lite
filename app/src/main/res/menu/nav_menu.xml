@@ -25,7 +25,7 @@
             <item
                 android:id="@+id/addCurr"
                 android:icon="@drawable/ic_currency"
-                android:title="Add Currency"/>
+                android:title="Set Currency"/>
 
         </menu>
     </item>

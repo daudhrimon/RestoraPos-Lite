@@ -56,7 +56,7 @@ class SplitOrderDialog(context: Context,
         }
 
         binding.spClose.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
 

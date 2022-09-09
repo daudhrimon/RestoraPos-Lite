@@ -60,11 +60,12 @@ class InvoicePrintDialog(context: Context,
 
         setCancelClickListener {
             dismissWithAnimation()
-            onBackPressed()
+            dismiss()
         }
 
         setConfirmClickListener {
             dismissWithAnimation()
+            dismiss()
             Glide.with(context)
                 .asBitmap()
                 .load(MainActivity.posLogo)

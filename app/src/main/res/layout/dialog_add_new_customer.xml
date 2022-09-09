@@ -108,7 +108,7 @@
                         android:layout_below="@+id/emailHeader"
                         android:background="@drawable/no_radius_background"
                         android:fontFamily="@font/helvetica_nueu_light"
-                        android:hint="example@gmail.com"
+                        android:hint="example@gmail.com ( Optional )"
                         android:inputType="textEmailAddress"
                         android:paddingHorizontal="11dp"
                         android:textColor="@color/black"
@@ -175,38 +175,6 @@
                         android:hint="Customer Address"
                         android:inputType="textPostalAddress"
                         android:paddingHorizontal="11dp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        tools:ignore="TouchTargetSizeCheck" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_18sdp"
-                    android:layout_marginTop="@dimen/_15sdp">
-
-                    <TextView
-                        android:id="@+id/favAddHeader"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/helvetica_nueu_light"
-                        android:text="Favourite Address"
-                        android:textColor="@color/theme_color"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <EditText
-                        android:id="@+id/cusFavAddEt"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_34sdp"
-                        android:layout_below="@+id/favAddHeader"
-                        android:background="@drawable/no_radius_background"
-                        android:fontFamily="@font/helvetica_nueu_light"
-                        android:hint="Customer Address"
-                        android:inputType="textPostalAddress"
-                        android:paddingHorizontal="@dimen/_11sdp"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         tools:ignore="TouchTargetSizeCheck" />

@@ -29,21 +29,16 @@ class AddCustomerDialog(context: Context): Dialog(context) {
             Util.hideSoftKeyBoard(context,binding.addCview)
         }
         binding.crossBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
         binding.closeBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
         binding.submitBtn.setOnClickListener {
             if (binding.cusNameEt.text.toString().isEmpty()){
                 binding.cusNameEt.setError("Name is Empty")
                 binding.cusNameEt.requestFocus()
-                return@setOnClickListener
-            }
-            if (binding.cusEmailEt.text.toString().isEmpty()){
-                binding.cusEmailEt.setError("Email is Empty")
-                binding.cusEmailEt.requestFocus()
                 return@setOnClickListener
             }
             if (binding.cusMobileEt.text.toString().isEmpty()){
@@ -56,20 +51,15 @@ class AddCustomerDialog(context: Context): Dialog(context) {
                 binding.cusAddEt.requestFocus()
                 return@setOnClickListener
             }
-            if (binding.cusNameEt.text.toString().isEmpty()){
-                binding.cusNameEt.setError("Favourite Address is Empty")
-                binding.cusNameEt.requestFocus()
-                return@setOnClickListener
-            }
 
             GlobalScope.launch {
                 MainActivity.database.customerDao().insertCustomer(
                     Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
-                        binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString(),binding.cusNameEt.text.toString())
+                        binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString())
                 )
             }
             Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
-            onBackPressed()
+            dismiss()
         }
     }
 }

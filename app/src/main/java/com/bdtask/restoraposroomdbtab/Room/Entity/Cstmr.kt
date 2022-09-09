@@ -10,6 +10,5 @@ data class Cstmr(
     val nm: String,
     val eml: String,
     val mbl: String,
-    val adrs: String,
-    val fAdrs: String
+    val adrs: String
     )

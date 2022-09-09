@@ -578,8 +578,8 @@
 
         <ImageView
             android:id="@+id/closeBtn"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
@@ -595,8 +595,8 @@
 
         <ImageView
             android:id="@+id/printBtn"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_gravity="end"
             android:layout_toStartOf="@id/closeBtn"
             android:layout_marginTop="10dp"

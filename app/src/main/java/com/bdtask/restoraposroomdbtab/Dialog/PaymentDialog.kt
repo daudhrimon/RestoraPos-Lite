@@ -52,7 +52,7 @@ class PaymentDialog( context: Context,
         }
 
         binding.closeBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
         binding.addDisBtn.setOnClickListener {
