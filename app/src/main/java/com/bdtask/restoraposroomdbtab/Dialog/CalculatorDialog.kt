@@ -3,96 +3,48 @@ package com.bdtask.restoraposroomdbtab.Dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.databinding.DialogCalculatorBinding
 import java.util.*
 import javax.script.ScriptEngine
 import javax.script.ScriptEngineManager
 import javax.script.ScriptException
 
 class CalculatorDialog(context: Context) : Dialog(context) {
-    private lateinit var workingsTV: TextView
-    private lateinit var resultsTV: TextView
-    private lateinit var equalsOnClick: TextView
-    private lateinit var decimalOnClick: TextView
-    private lateinit var zeroOnClick: TextView
-    private lateinit var plusOnClick: TextView
-    private lateinit var threeOnClick: TextView
-    private lateinit var twoOnClick: TextView
-    private lateinit var oneOnClick: TextView
-    private lateinit var minusOnClick: TextView
-    private lateinit var sixOnClick: TextView
-    private lateinit var fiveOnClick: TextView
-    private lateinit var fourOnClick: TextView
-    private lateinit var timesOnClick: TextView
-    private lateinit var nineOnClick: TextView
-    private lateinit var eightOnClick: TextView
-    private lateinit var sevenOnClick: TextView
-    private lateinit var divisionOnClick: TextView
-    private lateinit var powerOfOnClick: TextView
-    private lateinit var bracketsOnClick: TextView
-    private lateinit var clearOnClick: TextView
-    private lateinit var closeBtn: ImageView
+    private lateinit var binding: DialogCalculatorBinding
     var workings = ""
     var formula = ""
     var tempFormula = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_calculator)
+        binding = DialogCalculatorBinding.bind(layoutInflater.inflate(R.layout.dialog_calculator,null))
+        setContentView(binding.root)
 
-        init()
+        binding.closeBtn.setOnClickListener { dismiss() }
 
-        closeBtn.setOnClickListener { dismiss() }
-
-        equalsOnClick.setOnClickListener { equalsOnClickk() }
-        decimalOnClick.setOnClickListener { decimalOnClick() }
-        zeroOnClick.setOnClickListener { zeroOnClick() }
-        plusOnClick.setOnClickListener { plusOnClick() }
-        threeOnClick.setOnClickListener { threeOnClick() }
-        twoOnClick.setOnClickListener { twoOnClick() }
-        oneOnClick.setOnClickListener { oneOnClick() }
-        minusOnClick.setOnClickListener { minusOnClick() }
-        sixOnClick.setOnClickListener { sixOnClick() }
-        fiveOnClick.setOnClickListener { fiveOnClick() }
-        fourOnClick.setOnClickListener { fourOnClick() }
-        timesOnClick.setOnClickListener { timesOnClick() }
-        nineOnClick.setOnClickListener { nineOnClick() }
-        eightOnClick.setOnClickListener { eightOnClick() }
-        sevenOnClick.setOnClickListener { sevenOnClick() }
-        divisionOnClick.setOnClickListener { divisionOnClick() }
-        powerOfOnClick.setOnClickListener { powerOfOnClick() }
-        bracketsOnClick.setOnClickListener { bracketsOnClick() }
-        clearOnClick.setOnClickListener { clearOnClick() }
+        binding.equalsOnClick.setOnClickListener { equalsOnClick() }
+        binding.decimalOnClick.setOnClickListener { decimalOnClick() }
+        binding.zeroOnClick.setOnClickListener { zeroOnClick() }
+        binding.plusOnClick.setOnClickListener { plusOnClick() }
+        binding.threeOnClick.setOnClickListener { threeOnClick() }
+        binding.twoOnClick.setOnClickListener { twoOnClick() }
+        binding.oneOnClick.setOnClickListener { oneOnClick() }
+        binding.minusOnClick.setOnClickListener { minusOnClick() }
+        binding.sixOnClick.setOnClickListener { sixOnClick() }
+        binding.fiveOnClick.setOnClickListener { fiveOnClick() }
+        binding.fourOnClick.setOnClickListener { fourOnClick() }
+        binding.timesOnClick.setOnClickListener { timesOnClick() }
+        binding.nineOnClick.setOnClickListener { nineOnClick() }
+        binding.eightOnClick.setOnClickListener { eightOnClick() }
+        binding.sevenOnClick.setOnClickListener { sevenOnClick() }
+        binding.divisionOnClick.setOnClickListener { divisionOnClick() }
+        binding.powerOfOnClick.setOnClickListener { powerOfOnClick() }
+        binding.bracketsOnClick.setOnClickListener { bracketsOnClick() }
+        binding.clearOnClick.setOnClickListener { clearOnClick() }
     }
 
-    private fun init() {
-        closeBtn = findViewById(R.id.closeBtn)
-        workingsTV = findViewById(R.id.workingsTextView)
-        resultsTV = findViewById(R.id.resultTextView)
-        equalsOnClick = findViewById(R.id.equalsOnClick)
-        decimalOnClick = findViewById(R.id.decimalOnClick)
-        zeroOnClick = findViewById(R.id.zeroOnClick)
-        plusOnClick = findViewById(R.id.plusOnClick)
-        threeOnClick = findViewById(R.id.threeOnClick)
-        twoOnClick = findViewById(R.id.twoOnClick)
-        oneOnClick = findViewById(R.id.oneOnClick)
-        minusOnClick = findViewById(R.id.minusOnClick)
-        sixOnClick = findViewById(R.id.sixOnClick)
-        fiveOnClick = findViewById(R.id.fiveOnClick)
-        fourOnClick = findViewById(R.id.fourOnClick)
-        timesOnClick = findViewById(R.id.timesOnClick)
-        nineOnClick = findViewById(R.id.nineOnClick)
-        eightOnClick = findViewById(R.id.eightOnClick)
-        sevenOnClick = findViewById(R.id.sevenOnClick)
-        divisionOnClick = findViewById(R.id.divisionOnClick)
-        powerOfOnClick = findViewById(R.id.powerOfOnClick)
-        bracketsOnClick = findViewById(R.id.bracketsOnClick)
-        clearOnClick = findViewById(R.id.clearOnClick)
-    }
-
-    private fun equalsOnClickk() {
+    private fun equalsOnClick() {
         var result: Double? = null
         val engine: ScriptEngine = ScriptEngineManager().getEngineByName("rhino")
         checkForPowerOf()
@@ -101,13 +53,13 @@ class CalculatorDialog(context: Context) : Dialog(context) {
         } catch (e: ScriptException) {
 
         }
-        if (result != null) resultsTV.text = result.toDouble().toString()
+        if (result != null) binding.resultsTV.text = result.toDouble().toString()
     }
 
     @JvmName("setWorkings1")
     private fun setWorkings(givenValue: String) {
-        workings = workings + givenValue
-        workingsTV.text = workings
+        workings += givenValue
+        binding.workingsTV.text = workings
     }
 
     private fun checkForPowerOf() {
@@ -138,13 +90,13 @@ class CalculatorDialog(context: Context) : Dialog(context) {
     }
 
     private fun isNumeric(c: Char): Boolean {
-        return if (c <= '9' && c >= '0' || c == '.') true else false
+        return c in '0'..'9' || c == '.'
     }
 
     private fun clearOnClick() {
-        workingsTV.text = ""
+        binding.workingsTV.text = ""
         workings = ""
-        resultsTV.text = ""
+        binding.resultsTV.text = ""
         leftBracket = true
     }
 

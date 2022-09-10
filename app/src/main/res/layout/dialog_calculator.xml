@@ -52,7 +52,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/workingsTextView"
+                android:id="@+id/workingsTV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="end"
@@ -68,7 +68,7 @@
                 tools:ignore="RtlCompat" />
 
             <TextView
-                android:id="@+id/resultTextView"
+                android:id="@+id/resultsTV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="end"

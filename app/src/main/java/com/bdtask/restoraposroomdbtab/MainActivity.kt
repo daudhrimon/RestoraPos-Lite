@@ -16,7 +16,6 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Room.PosDatabase
 import com.google.android.material.navigation.NavigationView
 
-
 class MainActivity: AppCompatActivity() {
 
     companion object{
@@ -40,10 +39,8 @@ class MainActivity: AppCompatActivity() {
 
 
 
-
         // getting instance of ROOM database
         database = PosDatabase.getDatabaseInstance(this)
-
 
 
 
@@ -51,7 +48,6 @@ class MainActivity: AppCompatActivity() {
             foodList.clear()
             foodList = it.toMutableList()
         })
-
 
 
 
