@@ -26,7 +26,6 @@ import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
-import com.bdtask.restoraposroomdbtab.databinding.DialogCloseAlertBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogFoodClickedBinding
 import com.bdtask.restoraposroomdbtab.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -36,7 +35,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
+class MainFragment() : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
     private lateinit var mBinding: FragmentMainBinding
     private var categoryList = mutableListOf<String>()
     private var variantNameList = mutableListOf<String>()
@@ -57,7 +56,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         sharedPref.init(requireContext())
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
-
+        readEditMode()
 
         // getting and setting category Recycler
         MainActivity.database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
@@ -167,6 +166,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
         return mBinding.root
+    }
+
+    private fun readEditMode() {
+        if (sharedPref.readEMOde() == 1){
+
+        }
     }
 
 

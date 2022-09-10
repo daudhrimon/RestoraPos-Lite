@@ -148,7 +148,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:visibility="gone"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_4sdp"
@@ -287,7 +287,7 @@
 
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -406,7 +406,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cancelBtn"
+            android:id="@+id/deleteCard"
             android:layout_width="0dp"
             android:layout_height="@dimen/_27sdp"
             android:layout_margin="5dp"
@@ -434,7 +434,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/quickOrderCardView"
+            android:id="@+id/quickCard"
             android:layout_width="0dp"
             android:layout_height="@dimen/_27sdp"
             android:layout_margin="5dp"
@@ -465,7 +465,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/placeOrderCardView"
+            android:id="@+id/placeCard"
             android:layout_width="0dp"
             android:layout_height="@dimen/_27sdp"
             android:layout_margin="5dp"

@@ -278,7 +278,7 @@
                                 android:textSize="12sp"
                                 tools:ignore="RtlCompat" />-->
 
-                            <Button
+                            <!--<Button
                                 android:id="@+id/editBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="12sp"
-                                tools:ignore="RtlCompat" />
+                                tools:ignore="RtlCompat" />-->
 
                             <Button
                                 android:id="@+id/printBtn"

@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.eMode
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.editMode
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.FragmentSplashBinding
@@ -58,6 +60,7 @@ class SplashFragment : Fragment() {
 
     private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
         if (isGranted) {
+            sharedPref.writeEMode(0)
             Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.splashFrag2homeFrag)
             }, 3000)

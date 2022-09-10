@@ -21,6 +21,16 @@ object SharedPref {
                 context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
     }
 
+    fun writeEMode(eMode: Int){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putInt("EMode",eMode)
+        prefsEditor.apply()
+    }
+
+    fun readEMOde(): Int? {
+        return mSharedPref!!.getInt("eMode", 0)
+    }
+
     fun writeSharedCartList(cartList: MutableList<Cart>) {
         val prefsEditor = mSharedPref!!.edit()
         prefsEditor.putString("cartList", Gson().toJson(cartList))

@@ -46,6 +46,15 @@
             app:destination="@id/canceledFragment" />
     </fragment>
     <fragment
+        android:id="@+id/ongoingFragment"
+        android:name="com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment"
+        android:label="fragment_ongoing"
+        tools:layout="@layout/fragment_ongoing">
+        <action
+            android:id="@+id/ongFrag2homeFrag"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/todayFragment"
         android:name="com.bdtask.restoraposroomdbtab.Fragment.TodayFragment"
         android:label="fragment_today"
@@ -57,13 +66,6 @@
         android:name="com.bdtask.restoraposroomdbtab.Fragment.OrderInfoFragment"
         android:label="fragment_order_info"
         tools:layout="@layout/fragment_order_info">
-
-    </fragment>
-    <fragment
-        android:id="@+id/ongoingFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment"
-        android:label="fragment_ongoing"
-        tools:layout="@layout/fragment_ongoing">
 
     </fragment>
     <fragment

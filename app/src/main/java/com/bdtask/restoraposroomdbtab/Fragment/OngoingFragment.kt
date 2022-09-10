@@ -169,7 +169,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         }
 
 
-        oBinding.splitBtn.setOnClickListener {
+        /*oBinding.splitBtn.setOnClickListener {
             sharedPref.writeSharedOrder(ongList[oPos])
             val dialog = SplitOrderDialog(requireContext(), sharedPref, foodCount)
             dialog.show()
@@ -178,6 +178,11 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             val win = dialog.window
             win!!.setLayout((14 * width)/15,(24 * height)/25)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }*/
+
+        oBinding.editBtn.setOnClickListener {
+            MainFragment(true)
+            findNavController().navigate(R.id.ongFrag2homeFrag)
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -227,7 +232,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 foodCount += ongList[position].cart[i].fQnty
             }
         } else {
-            oBinding.splitBtn.visibility = View.GONE
+            ///oBinding.splitBtn.visibility = View.GONE
         }
 
         //////////////////////////
@@ -247,12 +252,12 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
             1 -> {
                 if (foodCount > 1) {
-                    oBinding.splitBtn.visibility = View.VISIBLE
+                    //oBinding.splitBtn.visibility = View.VISIBLE
                 } else {
-                    oBinding.splitBtn.visibility = View.GONE
+                    //oBinding.splitBtn.visibility = View.GONE
                 }
                 oBinding.scrollView.visibility = View.VISIBLE
-                oBinding.mergeBtn.visibility = View.GONE
+                //oBinding.mergeBtn.visibility = View.GONE
                 oBinding.cancelBtn.visibility = View.VISIBLE
                 oBinding.duePosBtn.visibility = View.VISIBLE
                 oBinding.tokenBtn.visibility = View.VISIBLE
@@ -270,7 +275,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 oBinding.editBtn.visibility = View.GONE
                 oBinding.completeBtn.visibility = View.GONE
                 oBinding.cancelBtn.visibility = View.VISIBLE
-                oBinding.mergeBtn.visibility = View.VISIBLE
+               // oBinding.mergeBtn.visibility = View.VISIBLE
             }
         }
         oBinding.ongRecycler.adapter?.notifyDataSetChanged()
