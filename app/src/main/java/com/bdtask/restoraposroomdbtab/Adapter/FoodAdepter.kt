@@ -28,12 +28,22 @@ class FoodAdepter(private val context: Context,
 
         holder.binding.foodTile.text = foodList[position].fTitle
 
-        holder.binding.foodVariant.text = foodList[position].fVar[0].vari
-
-        holder.binding.foodPrice.text = foodList[position].fVar[0].fPrc.toString()
+        if (foodList[position].fVar.isNotEmpty()) {
+            holder.binding.foodVariant.text = foodList[position].fVar[0].vari
+            holder.binding.foodPrice.text = foodList[position].fVar[0].fPrc.toString()
+        }
 
         holder.itemView.setOnClickListener {
+
             foodClickListener.onFoodClick( foodList[position].id, foodList[position].fTitle, foodList[position].fVar, foodList[position].fAdns )
+
+        }
+
+        holder.itemView.setOnLongClickListener{
+
+            foodClickListener.onFoodLongClick(foodList[position])
+
+            return@setOnLongClickListener true
         }
     }
 

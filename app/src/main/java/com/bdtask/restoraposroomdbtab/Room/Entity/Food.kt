@@ -10,8 +10,8 @@ data class Food(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     var fCate: String,
-    val fTitle: String,
-    val fVar: MutableList<Variant>,
-    val fImg: String,
-    val fAdns: List<Adn>
+    var fTitle: String,
+    var fVar: MutableList<Variant>,
+    var fImg: String,
+    var fAdns: MutableList<Adn>
 )

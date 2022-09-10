@@ -18,6 +18,9 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/menu/nav_menu.xml" value="0.371875" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_calculator.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_close_alert.xml" value="0.259375" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_edit_food.xml" value="0.25833333333333336" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_note.xml" value="0.24814814814814815" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/fragment_food.xml" value="0.24814814814814815" />
       </map>
     </option>
   </component>

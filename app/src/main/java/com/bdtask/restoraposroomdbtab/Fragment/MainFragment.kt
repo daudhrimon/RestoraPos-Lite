@@ -6,16 +6,15 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Adapter.*
 import com.bdtask.restoraposroomdbtab.Dialog.*
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
@@ -26,9 +25,11 @@ import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.drawerLayout
 import com.bdtask.restoraposroomdbtab.Model.*
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
+import com.bdtask.restoraposroomdbtab.databinding.DialogEditFoodBinding
 import com.bdtask.restoraposroomdbtab.databinding.DialogFoodClickedBinding
 import com.bdtask.restoraposroomdbtab.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -423,7 +424,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
     // show alert Dialog BasedOn Food Item Click
-    override fun onFoodClick(foodId: Long?, foodTitle: String?, variantlist: List<Variant>, adnList: List<Adn> ) {
+    override fun onFoodClick(foodId: Long?, foodTitle: String?, variantList: List<Variant>, adnList: List<Adn> ) {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val fdBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
@@ -441,8 +442,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         fdBinding.dcFoodName.text = foodTitle
 
         variantNameList.clear()
-        for (i in variantlist.indices){
-            variantNameList.add(variantlist[i].vari)
+        for (i in variantList.indices){
+            variantNameList.add(variantList[i].vari)
         }
 
         fdBinding.dcVariantSpinner.adapter = context?.let { ArrayAdapter(it, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, variantNameList) }
@@ -452,10 +453,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                 foodVariant = fdBinding.dcVariantSpinner.selectedItem.toString()
 
-                for (i in variantlist.indices){
-                    if (variantlist[i].vari == foodVariant){
+                for (i in variantList.indices){
+                    if (variantList[i].vari == foodVariant){
 
-                        variantPrice = variantlist[i].fPrc
+                        variantPrice = variantList[i].fPrc
 
                         foodQuantity = 1
                         fdBinding.dcQuantity.text = foodQuantity.toString()
@@ -609,6 +610,33 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         win!!.setLayout((6*width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
         win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
+
+
+
+
+    override fun onFoodLongClick(food: Food) {
+        val dialog = Dialog(requireContext())
+        val binding = DialogEditFoodBinding.bind(layoutInflater.inflate(R.layout.dialog_edit_food,null))
+        dialog.setContentView(binding.root)
+
+        binding.noBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        binding.yesBtn.setOnClickListener {
+            dialog.dismiss()
+            val bundle = bundleOf("Food" to Gson().toJson(food))
+            findNavController().navigate(R.id.homeFrag2foodFrag,bundle)
+        }
+
+        dialog.show()
+        val width = resources.displayMetrics.widthPixels
+        val win = dialog.window
+        win!!.setLayout((6*width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+
 
 
     // setting cart Recycler Adapter

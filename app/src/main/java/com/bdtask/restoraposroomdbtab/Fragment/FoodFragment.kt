@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.foodList
 import com.bdtask.restoraposroomdbtab.Adapter.*
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.Room.Entity.Catgry
 import com.bdtask.restoraposroomdbtab.Model.Adn
 import com.bdtask.restoraposroomdbtab.R
@@ -29,9 +32,13 @@ import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.*
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FoodFragment : Fragment() {
     private lateinit var fBinding: FragmentFoodBinding
@@ -42,12 +49,33 @@ class FoodFragment : Fragment() {
     private var tempAddonsList = mutableListOf<Adn>()
     private var spinnerCategory = ""
     private var foodImage = ""
+    private var food: Food? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         fBinding = FragmentFoodBinding.inflate(inflater, container, false)
 
+        val type = object : TypeToken<Food?>() {}.type
+        food = Gson().fromJson<Food>(arguments?.getString("Food"),type)
+
+        if (food != null) {
+            val variant = food!!.fVar.toList()
+            val addons = food!!.fAdns.toList()
+
+            fBinding.header.text = "Edit Foods"
+            fBinding.foodTitleEt.setText(food!!.fTitle)
+            fBinding.addFoodBtn.text = "Update"
+
+            tempVariantList = variant.toMutableList()
+            tempAddonsList = addons.toMutableList()
+
+            foodImage = food!!.fImg
+            fBinding.addImageBtn.setImageURI(foodImage.toUri())
+
+            fBinding.variantRecycler.adapter = TempVariantAdapter(requireContext(), tempVariantList)
+            fBinding.addonsRecycler.adapter = TempAddonsAdapter(requireContext(),tempAddonsList)
+        }
 
         // getting category from database and setting them to Spinner
         getCategoryLive()
@@ -89,7 +117,6 @@ class FoodFragment : Fragment() {
 
 
         // Category Add Button On Click
-        tempAddonsList.clear()
         fBinding.variantPlusBtn.setOnClickListener{
             variantPlusButtonDialog()
             fBinding.foodTitleEt.clearFocus()
@@ -117,7 +144,6 @@ class FoodFragment : Fragment() {
         }
 
         //add addons
-        tempAddonsList.clear()
         fBinding.addAddonsBtn.setOnClickListener {
             addAddonsButtonClick()
             fBinding.foodTitleEt.clearFocus()
@@ -130,6 +156,8 @@ class FoodFragment : Fragment() {
 
         return fBinding.root
     }
+
+
 
     // getting category from database and setting them to Spinner
     private fun getCategoryLive() {
@@ -149,6 +177,14 @@ class FoodFragment : Fragment() {
             // setting BottomSheet Recycler
             if (btmBinding != null){
                 btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), cateList)
+            }
+
+            if (food != null){
+                for (i in fCategoryList.indices) {
+                    if (fCategoryList[i] == food!!.fCate){
+                        fBinding.categorySpinner.setSelection(i)
+                    }
+                }
             }
         })
     }
@@ -199,11 +235,17 @@ class FoodFragment : Fragment() {
                 }
             }
 
-            GlobalScope.launch {
-                MainActivity.database.categoryDao().insertCategory(Catgry(0,dbinding.itemEt.text.toString().trim()))
+
+            GlobalScope.launch(Dispatchers.IO) {
+
+                database.categoryDao().insertCategory(Catgry(0,dbinding.itemEt.text.toString().trim()))
+
+                withContext(Dispatchers.Main) {
+                        Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
+                }
             }
 
-            Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
+
             dialog.dismiss()
         }
         dialog.show()
@@ -266,7 +308,7 @@ class FoodFragment : Fragment() {
         val dBinding = DialogInsertAddonBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_insert_addon,null))
         dialog.setContentView(dBinding.root)
 
-        var addonPrice: Double = 0.0
+        var addonPrice = 0.0
 
         dBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(),dBinding.root) }
 
@@ -327,18 +369,61 @@ class FoodFragment : Fragment() {
         }
 
         for (i in foodList.indices){
-            if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == fBinding.foodTitleEt.text.toString()){
+            if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == fBinding.foodTitleEt.text.toString() && food == null){
                 Toasty.error(requireContext(),"This Food already Available", Toast.LENGTH_SHORT, true).show()
                 return
             }
         }
 
-        GlobalScope.launch {
-            MainActivity.database.foodDao().insertFood(
-                Food(0, spinnerCategory, fBinding.foodTitleEt.text.toString(), tempVariantList, foodImage, tempAddonsList.toList())
-            )
+        if (food != null){
+            if (food!!.fCate == spinnerCategory &&
+                food!!.fTitle == fBinding.foodTitleEt.text.toString() &&
+                food!!.fVar == tempVariantList &&
+                food!!.fImg == foodImage &&
+                food!!.fAdns == tempAddonsList){
+                Log.wtf("FADDONS", food!!.fAdns.toString())
+                Log.wtf("FADDONS", tempAddonsList.toString())
+
+                Toasty.warning(requireContext(),"Nothing Changed Yet",Toasty.LENGTH_SHORT,true).show()
+                return
+            } else {
+                food!!.fCate = spinnerCategory
+                food!!.fTitle = fBinding.foodTitleEt.text.toString()
+                food!!.fVar = tempVariantList
+                food!!.fImg = foodImage
+                food!!.fAdns = tempAddonsList
+
+                GlobalScope.launch(Dispatchers.IO) {
+
+                    database.foodDao().updateFood(food!!)
+
+                    withContext(Dispatchers.Main) {
+
+                        Toasty.success(requireContext(), "Updated Successfully", Toast.LENGTH_SHORT, true).show()
+
+                        setFragDefault()
+                    }
+                }
+            }
+        } else {
+            GlobalScope.launch(Dispatchers.IO) {
+
+                database.foodDao().insertFood(
+
+                    Food(0, spinnerCategory, fBinding.foodTitleEt.text.toString(), tempVariantList, foodImage, tempAddonsList))
+
+                withContext(Dispatchers.Main) {
+
+                    Toasty.success(requireContext(), "Added Successfully", Toast.LENGTH_SHORT, true).show()
+
+                    setFragDefault()
+                }
+            }
         }
-        Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
+
+    }
+
+    private fun setFragDefault() {
         fBinding.foodTitleEt.text.clear()
         fBinding.addImageBtn.setImageResource(R.drawable.add_image)
         fBinding.variantRecycler.adapter = null
