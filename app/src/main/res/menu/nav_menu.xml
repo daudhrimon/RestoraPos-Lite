@@ -27,6 +27,11 @@
                 android:icon="@drawable/ic_currency"
                 android:title="Set Currency"/>
 
+            <item
+                android:id="@+id/setOp"
+                android:icon="@drawable/ic_person"
+                android:title="Set Operator's Name"/>
+
         </menu>
     </item>
 </menu>

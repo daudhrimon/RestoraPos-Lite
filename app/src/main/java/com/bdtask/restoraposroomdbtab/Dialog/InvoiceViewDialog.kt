@@ -45,7 +45,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         getCustomerPay(order.pay)
 
         binding.closeBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
         }
 
         ///////////// get address from sharedPref
@@ -60,7 +60,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         binding.customerName.text = order.odrInf.csInf.csNm
 
-        binding.counterName.text = "Daud"
+        binding.oprName.text = order.opr
 
         binding.subTotal.text = "${order.tPrc} $appCurrency"
 
@@ -86,7 +86,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         binding.orderId.text = order.id.toString()
 
         binding.printBtn.setOnClickListener {
-            onBackPressed()
+            dismiss()
             InvoicePrintDialog(context,order).show()
         }
     }

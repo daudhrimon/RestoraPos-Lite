@@ -134,9 +134,22 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
 
         oBinding.cancelBtn.setOnClickListener {
-            val order = Order(ongList[oPos].id,2,0,0,
-                ongList[oPos].dat, ongList[oPos].tkn,0.0, 0.0,0.0,0.0,
-                ongList[oPos].odrInf, ongList[oPos].cart, emptyList<Pay>().toMutableList())
+            val order = Order(
+                ongList[oPos].id,
+                2,
+                0,
+                0,
+                ongList[oPos].dat,
+                ongList[oPos].tkn,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                sharedPref.readOperator() ?: "",
+                ongList[oPos].odrInf,
+                ongList[oPos].cart,
+                emptyList<Pay>().toMutableList()
+            )
 
             if (selectedItem == 1){
                 clickedList.clear()
@@ -156,9 +169,22 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
                     val pos = clickedList[i]
 
-                    val order = Order(ongList[pos].id,2,0,0,
-                        ongList[pos].dat, ongList[pos].tkn,0.0, 0.0,0.0, 0.0,
-                        ongList[pos].odrInf, ongList[pos].cart,emptyList<Pay>().toMutableList())
+                    val order = Order(
+                        ongList[pos].id,
+                        2,
+                        0,
+                        0,
+                        ongList[pos].dat,
+                        ongList[pos].tkn,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        sharedPref.readOperator() ?: "",
+                        ongList[pos].odrInf,
+                        ongList[pos].cart,
+                        emptyList<Pay>().toMutableList()
+                    )
 
                     GlobalScope.launch(Dispatchers.IO) {
 

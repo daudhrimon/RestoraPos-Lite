@@ -117,6 +117,21 @@ class MainActivity: AppCompatActivity() {
                     win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
+
+                R.id.setOp -> {
+                    val dialog = VatChargeDialog(
+                        this,
+                        3,
+                        "Set Operator's Name",
+                        "Enter Name here",
+                        supportFragmentManager
+                    )
+                    dialog.show()
+                    val width = resources.displayMetrics.widthPixels
+                    val win = dialog.window
+                    win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
+                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                }
             }
             return@setNavigationItemSelectedListener true
         }

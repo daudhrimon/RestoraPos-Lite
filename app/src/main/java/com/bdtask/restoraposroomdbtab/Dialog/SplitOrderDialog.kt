@@ -229,9 +229,12 @@ class SplitOrderDialog(context: Context,
             if (spFoodCount == 0){
 
                 val dialog = PaymentDialog(context,1,
-                    Order(0,0,0,0,"","",0.0,0.0,0.0,0.0,
-                        OdrInf(CsInf("","",""),"","","","",""),
-                    emptyList<Cart>().toMutableList(), emptyList<Pay>().toMutableList()),splitterList[splitterIndex])
+                    Order(
+                        0, 0, 0, 0, "", "", 0.0, 0.0, 0.0, 0.0,
+                        sharedPref.readOperator() ?: "",
+                        OdrInf(CsInf("", "", ""), "", "", "", "", ""),
+                        emptyList<Cart>().toMutableList(), emptyList<Pay>().toMutableList()), splitterList[splitterIndex]
+                )
 
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 dialog.show()

@@ -248,6 +248,29 @@
                                 android:textColor="#6D7990" />
 
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/shape_border"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:padding="5dp"
+                            android:text="Billing By"
+                            android:textColor="#4CC40C"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/opName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:layout_marginTop="3dp"
+                            android:padding="5dp"
+                            android:text="H"
+                            android:textColor="#3C4767"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
 
                 </LinearLayout>

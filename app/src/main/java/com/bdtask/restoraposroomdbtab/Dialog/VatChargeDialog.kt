@@ -37,8 +37,10 @@ class VatChargeDialog(context: Context,
             binding.itemEt.isFocusable = false
             binding.addCurrency.visibility = View.VISIBLE
             binding.itemBtn.text = "Set"
-        } else {
-            binding.itemEt.inputType = InputType.TYPE_CLASS_NUMBER
+        }
+
+        if (status == 3){
+            binding.itemEt.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
         }
 
         binding.itemCross.setOnClickListener {
@@ -59,21 +61,27 @@ class VatChargeDialog(context: Context,
             when(status){
                 0 -> {
                     sharedPref.writeVat(binding.itemEt.text.toString())
-                    Toasty.success(context,"${sharedPref.readVat()!!} % Added as Global Vat",Toasty.LENGTH_SHORT,true).show()
-                    onBackPressed()
+                    Toasty.success(context,"${sharedPref.readVat()!!} % Set as Global Vat",Toasty.LENGTH_SHORT,true).show()
+                    dismiss()
                 }
 
                 1 -> {
                     sharedPref.writeCharge(binding.itemEt.text.toString())
-                    Toasty.success(context,"${sharedPref.readCharge()!!} % Added as Global Service Charge",Toasty.LENGTH_SHORT,true).show()
-                    onBackPressed()
+                    Toasty.success(context,"${sharedPref.readCharge()!!} % Set as Global Service Charge",Toasty.LENGTH_SHORT,true).show()
+                    dismiss()
                 }
 
                 2 -> {
                     sharedPref.writeCurrency(binding.itemEt.text.toString().trim())
                     MainActivity.appCurrency = binding.itemEt.text.toString().trim()
                     Toasty.success(context,"Now ${sharedPref.readCurrency()!!} is your Global Currency",Toasty.LENGTH_SHORT,true).show()
-                    onBackPressed()
+                    dismiss()
+                }
+
+                3 -> {
+                    sharedPref.writeOperator(binding.itemEt.text.toString())
+                    Toasty.success(context,"Assign ${binding.itemEt.text.toString()} as Current Operator Successfully",Toasty.LENGTH_SHORT,true).show()
+                    dismiss()
                 }
             }
         }

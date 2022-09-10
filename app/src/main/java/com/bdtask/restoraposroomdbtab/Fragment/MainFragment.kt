@@ -162,7 +162,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         // quick order Click Handler
         mBinding.quickOrder.setOnClickListener {
             if (eMode == 0){
-                quickOrderClick()
+                val operator = sharedPref.readOperator() ?: ""
+                if (operator.isNotEmpty()){
+                    quickOrderClick()
+                } else {
+                    Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
+                }
             } else {
                 eMode = 0
                 checkEditMode()
@@ -224,9 +229,22 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             if (odrInf.csInf.csNm.isNotEmpty() &&
                 odrInf.csTyp.isNotEmpty()){
 
-                val order = Order(0,1,0,0,Util.getDate().toString(),"",0.0,
-                    sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0,
-                    odrInf,tempCartList, emptyList<Pay>().toMutableList())
+                val order = Order(
+                    0,
+                    1,
+                    0,
+                    0,
+                    Util.getDate().toString(),
+                    "",
+                    0.0,
+                    sharedPref.readVat() ?: 0.0,
+                    sharedPref.readCharge() ?: 0.0,
+                    0.0,
+                    sharedPref.readOperator() ?: "",
+                    odrInf,
+                    tempCartList,
+                    emptyList<Pay>().toMutableList()
+                )
 
                 sharedPref.writeCart(emptyList<Cart>().toMutableList())
 
@@ -269,49 +287,58 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             odrInf = sharedPref.readSharedOrderInfo()!!
         }
 
+
         if (tempCartList.isNotEmpty()) {
             if (odrInf.csInf.csNm.isNotEmpty() &&
                     odrInf.csTyp.isNotEmpty()) {
 
                 if (eMode == 0) {
 
-                    token = Util.getToken(sharedPref)
+                    val operator = sharedPref.readOperator() ?: ""
 
-                    val order = Order(
-                        0,
-                        0,
-                        0,
-                        0,
-                        Util.getDate().toString(),
-                        token,
-                        0.0,
-                        sharedPref.readVat() ?: 0.0,
-                        sharedPref.readCharge() ?: 0.0,
-                        0.0,
-                        odrInf,
-                        tempCartList,
-                        emptyList<Pay>().toMutableList()
-                    )
+                    if (operator.isNotEmpty()) {
 
-                    try {
+                        token = Util.getToken(sharedPref)
 
-                        GlobalScope.launch(Dispatchers.IO) {
+                        val order = Order(
+                            0,
+                            0,
+                            0,
+                            0,
+                            Util.getDate().toString(),
+                            token,
+                            0.0,
+                            sharedPref.readVat() ?: 0.0,
+                            sharedPref.readCharge() ?: 0.0,
+                            0.0,
+                            sharedPref.readOperator() ?: "",
+                            odrInf,
+                            tempCartList,
+                            emptyList<Pay>().toMutableList())
 
-                            val orderId = database.orderDao().insertOrder(order)
+                        try {
 
-                            withContext(Dispatchers.Main) {
+                            GlobalScope.launch(Dispatchers.IO) {
 
-                                if (orderId != null && orderId.toString().isNotEmpty()) {
+                                val orderId = database.orderDao().insertOrder(order)
 
-                                    Toasty.success(requireContext(),"Placed Order $orderId Successfully",Toast.LENGTH_SHORT,true).show()
+                                withContext(Dispatchers.Main) {
 
-                                    // asking for print token
-                                    printToken(orderId)
+                                    if (orderId != null && orderId.toString().isNotEmpty()) {
+
+                                        Toasty.success(requireContext(),"Placed Order $orderId Successfully",Toast.LENGTH_SHORT,true).show()
+
+                                        // asking for print token
+                                        printToken(orderId)
+                                    }
                                 }
                             }
+                        } catch (e: Exception) {
+                            Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
                         }
-                    } catch (e: Exception) {
-                        Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
+
+                    } else {
+                        Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
                     }
 
                 } else {
@@ -598,9 +625,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             for (i in cartList.indices){
                 grandTotal += cartList[i].tUPrc
             }
-            mBinding.grandTotalTv.text = "$grandTotal $appCurrency"
+            mBinding.grandTotalTv.text = " : $grandTotal $appCurrency"
         } else {
-            mBinding.grandTotalTv.text = "0.0 $appCurrency"
+            mBinding.grandTotalTv.text = " : 0.0 $appCurrency"
             mBinding.cartRecyclerLay.visibility = View.GONE
             mBinding.cartRecycler.visibility = View.GONE
         }

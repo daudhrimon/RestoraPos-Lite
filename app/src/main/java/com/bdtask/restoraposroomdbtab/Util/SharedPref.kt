@@ -137,4 +137,14 @@ object SharedPref {
     fun readCurrency(): String? {
         return mSharedPref!!.getString("curr", "$") ?: "$"
     }
+
+    fun writeOperator(ope: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("OP",ope)
+        prefsEditor.apply()
+    }
+
+    fun readOperator(): String? {
+        return mSharedPref!!.getString("OP", "") ?: ""
+    }
 }

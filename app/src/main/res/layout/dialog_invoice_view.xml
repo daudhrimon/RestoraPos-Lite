@@ -437,7 +437,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="20dp"
-                            android:layout_toStartOf="@id/counterName"
+                            android:layout_toStartOf="@id/oprName"
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Billing By:  "
                             android:textColor="#000"
@@ -445,7 +445,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/counterName"
+                            android:id="@+id/oprName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"

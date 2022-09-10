@@ -7,43 +7,45 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.foodList
 import com.bdtask.restoraposroomdbtab.Room.Entity.Catgry
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposroomdbtab.databinding.VhEditDeleteBinding
+import com.bdtask.restoraposroomdbtab.databinding.VhItemEditBinding
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class CategoryBtmAdapter(private val context: Context,
                          private var list: MutableList<Catgry>): RecyclerView.Adapter<CategoryBtmAdapter.CategoryBtmVH>() {
 
-    inner class CategoryBtmVH(binding: VhEditDeleteBinding): RecyclerView.ViewHolder(binding.root) {
-        var binding = binding
-    }
+    inner class CategoryBtmVH(val binding: VhItemEditBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryBtmVH {
-        return CategoryBtmVH(VhEditDeleteBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_edit_delete,parent,false)))
+        return CategoryBtmVH(VhItemEditBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_item_edit,parent,false)))
     }
 
     override fun onBindViewHolder(holder: CategoryBtmVH, position: Int) {
-        holder.binding.itemTv.setText(list[position].fCat)
+
+        holder.binding.itemTv.text = list[position].fCat
 
         holder.binding.itemEditBtn.setOnClickListener {
 
             showEditDialog(position)
-        }
 
-        // this is for Delete button from BottomSheet
-        holder.binding.itemDltBtn.setOnClickListener {
-
-            showDeleteAlert(position)
         }
     }
 
@@ -85,10 +87,33 @@ class CategoryBtmAdapter(private val context: Context,
                 }
             }
 
-            GlobalScope.launch {
-                MainActivity.database.categoryDao().updateCategory(Catgry(list[position].id, binding.itemEt.text.toString()))
+            var tempFoodList = mutableListOf<Food>()
+
+            for (i in foodList.indices){
+                if (foodList[i].fCate == list[position].fCat){
+                    foodList[i].fCate = binding.itemEt.text.toString()
+
+                    try {
+                        GlobalScope.launch(Dispatchers.IO) {
+                            database.foodDao().updateFood(foodList[i])
+
+                            withContext(Dispatchers.Main){
+                                if (i == foodList.size-1){
+
+                                    GlobalScope.launch(Dispatchers.IO) {
+                                        database.categoryDao().updateCategory(Catgry(list[position].id, binding.itemEt.text.toString()))
+
+                                        withContext(Dispatchers.Main){
+                                            Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } catch (e: Exception){/**/}
+                }
             }
-            Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
+
             dialog.dismiss()
         }
         dialog.show()
@@ -96,25 +121,5 @@ class CategoryBtmAdapter(private val context: Context,
         val win = dialog.window
         win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
         win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-    // this method will asking for delete confirmation
-    private fun showDeleteAlert(position: Int) {
-        val alert = AlertDialog.Builder(context)
-        alert.setTitle("Delete Alert !")
-        alert.setMessage("Are you sure,that you want to delete this ?")
-
-        alert.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
-            dialogInterface.dismiss()
-        })
-
-        alert.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
-            GlobalScope.launch {
-                MainActivity.database.categoryDao().deleteCategory(Catgry(list[position].id,list[position].fCat))
-            }
-            Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
-        })
-
-        alert.show()
     }
 }

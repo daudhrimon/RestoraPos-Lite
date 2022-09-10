@@ -19,7 +19,7 @@ data class Order(
     var vat: Double,
     var crg: Double,
     var tPrc: Double,
-    //val gtPrc: Double,
+    val opr: String,
     var odrInf: OdrInf,
     var cart: MutableList<Cart>,
     val pay: MutableList<Pay>

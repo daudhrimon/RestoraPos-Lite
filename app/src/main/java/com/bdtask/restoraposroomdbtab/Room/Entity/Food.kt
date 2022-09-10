@@ -9,7 +9,7 @@ import com.bdtask.restoraposroomdbtab.Model.Variant
 data class Food(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val fCate: String,
+    var fCate: String,
     val fTitle: String,
     val fVar: MutableList<Variant>,
     val fImg: String,

@@ -48,6 +48,8 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
         binding.address.text = order.odrInf.csInf.csAdrs
         binding.mobile.text = order.odrInf.csInf.mbl
 
+        binding.opName.text = order.opr
+
         vat = (order.tPrc * order.vat) / 100
         binding.vat.text = "$vat $appCurrency"
 
