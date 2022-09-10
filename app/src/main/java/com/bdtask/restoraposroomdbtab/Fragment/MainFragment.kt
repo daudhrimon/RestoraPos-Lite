@@ -35,7 +35,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class MainFragment() : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
+class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
     private lateinit var mBinding: FragmentMainBinding
     private var categoryList = mutableListOf<String>()
     private var variantNameList = mutableListOf<String>()
@@ -170,6 +170,7 @@ class MainFragment() : Fragment(), FoodClickListener, CartClickListener, TokenCl
 
     private fun readEditMode() {
         if (sharedPref.readEMOde() == 1){
+            mBinding.topBtnLay.visibility = View.GONE
 
         }
     }
