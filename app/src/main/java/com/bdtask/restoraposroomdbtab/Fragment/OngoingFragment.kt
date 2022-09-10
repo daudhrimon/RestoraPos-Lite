@@ -181,7 +181,6 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         }*/
 
         oBinding.editBtn.setOnClickListener {
-            MainFragment(true)
             findNavController().navigate(R.id.ongFrag2homeFrag)
         }
 

@@ -148,7 +148,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:visibility="gone"/>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_4sdp"
@@ -287,7 +287,7 @@
 
             </androidx.cardview.widget.CardView>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
