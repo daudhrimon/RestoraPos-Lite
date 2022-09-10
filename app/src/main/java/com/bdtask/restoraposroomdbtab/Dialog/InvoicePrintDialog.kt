@@ -251,11 +251,11 @@ class InvoicePrintDialog(context: Context,
                                                 "[L]\n" +
                                                 "[L]Date: ${order.dat}\n" +
                                                 "[L]\n" +
-                                                "[L]Order: " + order.id + " [R]Table:" + order.odrInf.tbl + "\n" +
+                                                "[L]Order: ${order.id}" + "[R]Table: ${order.odrInf.tbl}\n" +
                                                 "[C]================================\n" +
                                                 loopData(order.cart)+
                                                 "[C]================================\n" +
-                                                "[L]Subtotal: " + "[R]" + (order.tPrc) + "\n" +
+                                                "[L]Subtotal: " + "[R]${order.tPrc}\n" +
                                                 "[L]VAT: " + "[R]$vat\n" +
                                                 "[L]Service charge: " + "[R]$crg\n" +
                                                 "[L]Discount: " + "[R]${order.dis}\n" +

@@ -87,30 +87,59 @@ class CategoryBtmAdapter(private val context: Context,
                 }
             }
 
-            var tempFoodList = mutableListOf<Food>()
+            if (foodList.size > 0) {
+                for (i in foodList.indices) {
+                    if (foodList[i].fCate == list[position].fCat) {
+                        foodList[i].fCate = binding.itemEt.text.toString()
 
-            for (i in foodList.indices){
-                if (foodList[i].fCate == list[position].fCat){
-                    foodList[i].fCate = binding.itemEt.text.toString()
+                        try {
+                            GlobalScope.launch(Dispatchers.IO) {
+                                database.foodDao().updateFood(foodList[i])
 
-                    try {
-                        GlobalScope.launch(Dispatchers.IO) {
-                            database.foodDao().updateFood(foodList[i])
+                                withContext(Dispatchers.Main) {
+                                    if (i == foodList.size - 1) {
 
-                            withContext(Dispatchers.Main){
-                                if (i == foodList.size-1){
+                                        GlobalScope.launch(Dispatchers.IO) {
+                                            database.categoryDao().updateCategory(
+                                                Catgry(
+                                                    list[position].id,
+                                                    binding.itemEt.text.toString()
+                                                )
+                                            )
 
-                                    GlobalScope.launch(Dispatchers.IO) {
-                                        database.categoryDao().updateCategory(Catgry(list[position].id, binding.itemEt.text.toString()))
-
-                                        withContext(Dispatchers.Main){
-                                            Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
+                                            withContext(Dispatchers.Main) {
+                                                Toasty.success(
+                                                    context,
+                                                    "Successful",
+                                                    Toast.LENGTH_SHORT,
+                                                    true
+                                                ).show()
+                                            }
                                         }
                                     }
                                 }
                             }
+                        } catch (e: Exception) {/**/
                         }
-                    } catch (e: Exception){/**/}
+                    }
+                }
+            } else {
+                GlobalScope.launch(Dispatchers.IO) {
+                    database.categoryDao().updateCategory(
+                        Catgry(
+                            list[position].id,
+                            binding.itemEt.text.toString()
+                        )
+                    )
+
+                    withContext(Dispatchers.Main) {
+                        Toasty.success(
+                            context,
+                            "Successful",
+                            Toast.LENGTH_SHORT,
+                            true
+                        ).show()
+                    }
                 }
             }
 
