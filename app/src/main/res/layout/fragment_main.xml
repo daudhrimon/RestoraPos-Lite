@@ -152,7 +152,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_4sdp"
-            android:layout_marginTop=".6dp">
+            android:layout_marginTop=".6dp"
+            android:animateLayoutChanges="true">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/orderInfCard"
@@ -378,7 +379,8 @@
         android:paddingHorizontal="10dp"
         android:paddingTop="17dp"
         android:paddingBottom="2dp"
-        android:weightSum="8">
+        android:weightSum="8"
+        android:animateLayoutChanges="true">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -402,6 +404,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_calculator" />
+
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
@@ -435,7 +438,6 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/quickCard"
             android:layout_width="0dp"
             android:layout_height="@dimen/_27sdp"
             android:layout_margin="5dp"
@@ -453,6 +455,7 @@
                 android:focusable="true">
 
                 <TextView
+                    android:id="@+id/quickTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -466,7 +469,6 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/placeCard"
             android:layout_width="0dp"
             android:layout_height="@dimen/_27sdp"
             android:layout_margin="5dp"
@@ -484,6 +486,7 @@
                 android:focusable="true">
 
                 <TextView
+                    android:id="@+id/placeTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

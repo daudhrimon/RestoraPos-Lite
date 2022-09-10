@@ -32,7 +32,7 @@ class SplitOrderDialog(context: Context,
                        private val sharedPref: SharedPref,
                        private val foodCount: Int ): Dialog(context), SplitFoodClickListener, SplitterClickListener {
 
-    private var tmpOngItem = sharedPref.readSharedOrder()!!
+    private var tmpOngItem = sharedPref.readOrder()!!
     private lateinit var binding: DialogSplitOrderBinding
     private lateinit var dialog :Dialog
     private lateinit var spiBind: DialogSplitItemBinding
@@ -94,7 +94,7 @@ class SplitOrderDialog(context: Context,
     }
 
     private fun getCartAndSetPlusFood() {
-        tmpOngItem = sharedPref.readSharedOrder()!!
+        tmpOngItem = sharedPref.readOrder()!!
         dialog = Dialog(context)
         spiBind = DialogSplitItemBinding.bind(layoutInflater.inflate(R.layout.dialog_split_item,null))
         dialog.setContentView(spiBind.root)

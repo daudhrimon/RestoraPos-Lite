@@ -8,12 +8,10 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.PaymentAdapter
-import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
@@ -44,7 +42,7 @@ class CPaymentDialog (context: Context): Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPref.init(context)
-        order = sharedPref.readSharedOrder()!!
+        order = sharedPref.readOrder()!!
         super.onCreate(savedInstanceState)
         dBinding = DialogPaymentBinding.bind(layoutInflater.inflate(R.layout.dialog_payment,null))
         setContentView(dBinding.root)
@@ -105,11 +103,11 @@ class CPaymentDialog (context: Context): Dialog(context) {
 
                     GlobalScope.launch(Dispatchers.IO) {
 
-                        MainActivity.database.orderDao().updateOnGoing(order)
+                        MainActivity.database.orderDao().updateOrder(order)
 
                         withContext(Dispatchers.Main){
 
-                            sharedPref.writeSharedOrder(order)
+                            sharedPref.writeOrder(order)
 
                             Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
 
@@ -127,7 +125,7 @@ class CPaymentDialog (context: Context): Dialog(context) {
 
                                 order.id = orderId
 
-                                sharedPref.writeSharedOrder(order)
+                                sharedPref.writeOrder(order)
 
                                 Toasty.success(context, "Placed Order $orderId Successfully",Toasty.LENGTH_SHORT,true).show()
 
@@ -164,7 +162,12 @@ class CPaymentDialog (context: Context): Dialog(context) {
         val vat = (order.tPrc * order.vat) / 100
         val crg = (order.tPrc * order.crg) / 100
         totalAmount = order.tPrc + vat + crg
-        dBinding.totalAmount.text = "$totalAmount $appCurrency"
+        dBinding.totalAmount.text = totalAmount.toString()
+
+        dBinding.totalAmountCr.text = " $appCurrency"
+        dBinding.totalDueCr.text = " $appCurrency"
+        dBinding.payableAmountCr.text = " $appCurrency"
+        dBinding.changeDueCr.text = " $appCurrency"
     }
 
     private fun setPaymentHeaders() {
@@ -188,8 +191,8 @@ class CPaymentDialog (context: Context): Dialog(context) {
             totalDue = totalAmount - discount
         }
 
-        dBinding.totalDue.text = "$totalDue $appCurrency"
-        dBinding.payableAmount.text = "$totalDue $appCurrency"
+        dBinding.totalDue.text = totalDue.toString()
+        dBinding.payableAmount.text = totalDue.toString()
     }
 
     private fun setPaymentAdapter() {

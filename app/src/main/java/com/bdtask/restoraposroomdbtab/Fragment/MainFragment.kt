@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -20,6 +21,8 @@ import com.bdtask.restoraposroomdbtab.Dialog.*
 import com.bdtask.restoraposroomdbtab.Interface.CartClickListener
 import com.bdtask.restoraposroomdbtab.Interface.FoodClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.drawerLayout
 import com.bdtask.restoraposroomdbtab.Model.*
 import com.bdtask.restoraposroomdbtab.R
@@ -49,17 +52,20 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     private var cartList = mutableListOf<Cart>()
     private var sharedPref = SharedPref
     private var token = ""
+    private var eMode = 0
+    private var orderUp: Order? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentMainBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        eMode = sharedPref.readEMOde() ?: 0
 
-        readEditMode()
+        checkEditMode()
 
         // getting and setting category Recycler
-        MainActivity.database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
+        database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
             categoryList.clear()
             categoryList = it.toMutableList()
 
@@ -85,7 +91,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         // menu Button Click
         mBinding.menuBtn.setOnClickListener {
-            MainActivity.drawerLayout.open()
+            drawerLayout.open()
         }
 
 
@@ -144,10 +150,10 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         // cart Delete Click
         mBinding.deleteBtn.setOnClickListener {
-            if (sharedPref.readSharedCartList() == null || sharedPref.readSharedCartList()!!.isEmpty()){
+            if (sharedPref.readCart() == null || sharedPref.readCart()!!.isEmpty()){
                 Toasty.info(requireContext(), "Nothing To Delete !", Toast.LENGTH_SHORT, true).show()
             } else {
-                sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+                sharedPref.writeCart(emptyList<Cart>().toMutableList())
                 setCartRecyclerAdapter()
                 Toasty.success(requireContext(),"Delete Successful",Toast.LENGTH_SHORT,true).show()
             }
@@ -155,12 +161,21 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         // quick order Click Handler
         mBinding.quickOrder.setOnClickListener {
-            quickOrderClickHandler()
+            if (eMode == 0){
+                quickOrderClick()
+            } else {
+                eMode = 0
+                checkEditMode()
+                sharedPref.writeCart(emptyList<Cart>().toMutableList())
+                sharedPref.writeOrderInfo(OdrInf(CsInf("","",""),"","","","",""))
+                sharedPref.writeEMode(0)
+                setCartRecyclerAdapter()
+            }
         }
 
         // placeOrder Click Handler
         mBinding.placeOrder.setOnClickListener {
-            placeOrderClickHandler()
+            placeOrderClick()
         }
 
 
@@ -168,20 +183,38 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         return mBinding.root
     }
 
-    private fun readEditMode() {
-        if (sharedPref.readEMOde() == 1){
-            mBinding.topBtnLay.visibility = View.GONE
+    private fun checkEditMode() {
+        if (eMode == 1) {
+            orderUp = sharedPref.readOrder()
 
+            mBinding.topBtnLay.visibility = View.GONE
+            mBinding.deleteCard.visibility = View.GONE
+            mBinding.quickOrder.setBackgroundResource(R.drawable.selector_close)
+            mBinding.quickTv.text = "Cancel Edit"
+            mBinding.placeTv.text = "Update Order"
+
+            if (orderUp != null){
+                if (orderUp!!.cart.isNotEmpty()){
+                    sharedPref.writeCart(orderUp!!.cart)
+                    sharedPref.writeOrderInfo(orderUp!!.odrInf)
+                }
+            }
+        } else {
+            mBinding.topBtnLay.visibility = View.VISIBLE
+            mBinding.deleteCard.visibility = View.VISIBLE
+            mBinding.quickOrder.setBackgroundResource(R.drawable.selector_ongoing)
+            mBinding.quickTv.text = "Quick Order"
+            mBinding.placeTv.text = "Place Order"
         }
     }
 
 
-    private fun quickOrderClickHandler() {
+    private fun quickOrderClick() {
 
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
 
-        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+        tempCartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
         if (sharedPref.readSharedOrderInfo() != null){
             odrInf = sharedPref.readSharedOrderInfo()!!
@@ -195,9 +228,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                     sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0,
                     odrInf,tempCartList, emptyList<Pay>().toMutableList())
 
-                sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+                sharedPref.writeCart(emptyList<Cart>().toMutableList())
 
-                sharedPref.writeSharedOrder(order)
+                sharedPref.writeOrder(order)
 
                 setCartRecyclerAdapter()
 
@@ -226,11 +259,11 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
     // place order ClickHandler
-    private fun placeOrderClickHandler() {
+    private fun placeOrderClick() {
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
 
-        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+        tempCartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
         if (sharedPref.readSharedOrderInfo() != null){
             odrInf = sharedPref.readSharedOrderInfo()!!
@@ -238,33 +271,89 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         if (tempCartList.isNotEmpty()) {
             if (odrInf.csInf.csNm.isNotEmpty() &&
-                    odrInf.csTyp.isNotEmpty()){
+                    odrInf.csTyp.isNotEmpty()) {
 
-                token = Util.getToken(sharedPref)
+                if (eMode == 0) {
 
-                val order = Order(0, 0,0,0,
-                    Util.getDate().toString(), token, 0.0,sharedPref.readVat() ?: 0.0, sharedPref.readCharge() ?: 0.0, 0.0, odrInf,tempCartList,
-                    emptyList<Pay>().toMutableList())
+                    token = Util.getToken(sharedPref)
 
-                try {
+                    val order = Order(
+                        0,
+                        0,
+                        0,
+                        0,
+                        Util.getDate().toString(),
+                        token,
+                        0.0,
+                        sharedPref.readVat() ?: 0.0,
+                        sharedPref.readCharge() ?: 0.0,
+                        0.0,
+                        odrInf,
+                        tempCartList,
+                        emptyList<Pay>().toMutableList()
+                    )
 
-                    GlobalScope.launch(Dispatchers.IO){
+                    try {
 
-                        val orderId = MainActivity.database.orderDao().insertOrder(order)
+                        GlobalScope.launch(Dispatchers.IO) {
 
-                        withContext(Dispatchers.Main){
+                            val orderId = database.orderDao().insertOrder(order)
 
-                            if (orderId != null && orderId.toString().isNotEmpty()){
+                            withContext(Dispatchers.Main) {
 
-                                Toasty.success(requireContext(),"Placed Order $orderId Successfully",Toast.LENGTH_SHORT,true).show()
+                                if (orderId != null && orderId.toString().isNotEmpty()) {
 
-                                // asking for print token
-                                printToken(orderId)
+                                    Toasty.success(requireContext(),"Placed Order $orderId Successfully",Toast.LENGTH_SHORT,true).show()
+
+                                    // asking for print token
+                                    printToken(orderId)
+                                }
                             }
                         }
+                    } catch (e: Exception) {
+                        Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
                     }
-                } catch (e:Exception){
-                    Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
+
+                } else {
+
+                    // EDIT Order
+
+                    if (orderUp != null){
+                        orderUp!!.odrInf = odrInf
+                        orderUp!!.cart = tempCartList
+                        orderUp!!.vat = sharedPref.readVat() ?: 0.0
+                        orderUp!!.crg = sharedPref.readCharge() ?: 0.0
+
+                        try {
+
+                            GlobalScope.launch(Dispatchers.IO) {
+
+                                database.orderDao().updateOrder(orderUp!!)
+
+                                withContext(Dispatchers.Main) {
+
+                                    Toasty.success(requireContext(),"Update Order ${orderUp!!.id} Successfully",Toast.LENGTH_SHORT,true).show()
+
+                                    // asking for print token
+                                    printToken(orderUp!!.id)
+
+                                    orderUp = null
+
+                                    eMode = 0
+                                    checkEditMode()
+                                    sharedPref.writeEMode(0)
+                                }
+                            }
+                        } catch (e: Exception) {
+                            Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
+                            eMode = 0
+                            checkEditMode()
+                            sharedPref.writeCart(emptyList<Cart>().toMutableList())
+                            sharedPref.writeOrderInfo(OdrInf(CsInf("","",""),"","","","",""))
+                            sharedPref.writeEMode(0)
+                            setCartRecyclerAdapter()
+                        }
+                    }
                 }
             } else {
                 mBinding.focusLottie.visibility = View.VISIBLE
@@ -293,7 +382,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
 
-        tempCartList = sharedPref.readSharedCartList() ?: emptyList<Cart>().toMutableList()
+        tempCartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
         if (sharedPref.readSharedOrderInfo() != null){
             odrInf = sharedPref.readSharedOrderInfo()!!
@@ -301,7 +390,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
 
-        sharedPref.writeSharedCartList(emptyList<Cart>().toMutableList())
+        sharedPref.writeCart(emptyList<Cart>().toMutableList())
     }
 
 
@@ -405,8 +494,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             totalUnitPrice = fdBinding.dcFoodPrice.text.toString().toDouble()
             foodPrice = variantPrice * foodQuantity
 
-            if (sharedPref.readSharedCartList() != null){
-                tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
+            if (sharedPref.readCart() != null){
+                tempCartList = sharedPref.readCart()!!.toMutableList()
             }
             if (addonsList.size > 0){
                 addonChecker = 1
@@ -457,7 +546,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             if (haveToInsert){
                 tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, addonsList,""))
             }
-            sharedPref.writeSharedCartList(tempCartList)
+            sharedPref.writeCart(tempCartList)
             setCartRecyclerAdapter()
             dialog.dismiss()
         }
@@ -472,8 +561,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             totalUnitPrice = fdBinding.dcFoodPrice.text.toString().toDouble()
             foodPrice = variantPrice * foodQuantity
 
-            if (sharedPref.readSharedCartList() != null){
-                tempCartList = sharedPref.readSharedCartList()!!.toMutableList()
+            if (sharedPref.readCart() != null){
+                tempCartList = sharedPref.readCart()!!.toMutableList()
             }
             //val tempAddonList = mutableListOf<String>()
             if (addonsList.size > 0){
@@ -482,7 +571,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 }
             }
             tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, addonsList,""))
-            sharedPref.writeSharedCartList(tempCartList)
+            sharedPref.writeCart(tempCartList)
             setCartRecyclerAdapter()
         }
 
@@ -497,25 +586,23 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
     // setting cart Recycler Adapter
     private fun setCartRecyclerAdapter() {
-        if (sharedPref.readSharedCartList() != null) {
-            cartList.clear()
-            cartList = sharedPref.readSharedCartList()!!.toMutableList()
+        cartList.clear()
+        cartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
-            if (cartList.size > 0) {
-                mBinding.cartRecyclerLay.visibility = View.VISIBLE
-                mBinding.cartRecycler.visibility = View.VISIBLE
-                mBinding.cartRecycler.adapter = CartAdapter(requireContext(), cartList, this)
+        if (cartList.isNotEmpty()) {
+            mBinding.cartRecyclerLay.visibility = View.VISIBLE
+            mBinding.cartRecycler.visibility = View.VISIBLE
+            mBinding.cartRecycler.adapter = CartAdapter(requireContext(), cartList, this)
 
-                grandTotal = 0.0
-                for (i in cartList.indices){
-                    grandTotal += cartList[i].tUPrc
-                }
-                mBinding.grandTotalTv.text = grandTotal.toString()
-
-            } else {
-                mBinding.cartRecyclerLay.visibility = View.GONE
-                mBinding.cartRecycler.visibility = View.GONE
+            grandTotal = 0.0
+            for (i in cartList.indices){
+                grandTotal += cartList[i].tUPrc
             }
+            mBinding.grandTotalTv.text = "$grandTotal $appCurrency"
+        } else {
+            mBinding.grandTotalTv.text = "0.0 $appCurrency"
+            mBinding.cartRecyclerLay.visibility = View.GONE
+            mBinding.cartRecycler.visibility = View.GONE
         }
     }
 

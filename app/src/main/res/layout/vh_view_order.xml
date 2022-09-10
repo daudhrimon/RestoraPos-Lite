@@ -251,20 +251,6 @@
                             android:orientation="horizontal">
 
                             <!--<Button
-                                android:id="@+id/acceptBtn"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
-                                android:backgroundTint="#139A03"
-                                android:fontFamily="@font/helvetica_neue"
-                                android:text="Accept"
-                                android:textAlignment="center"
-                                android:textAllCaps="false"
-                                android:textColor="#fff"
-                                android:textSize="12sp"
-                                tools:ignore="RtlCompat" />-->
-
-                            <!--<Button
                                 android:id="@+id/cancelBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -319,6 +305,21 @@
                                 android:textColor="@color/white"
                                 android:textSize="12sp"
                                 tools:ignore="RtlCompat" />
+
+                            <Button
+                                android:id="@+id/undoBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="3dp"
+                                android:backgroundTint="#139A03"
+                                android:fontFamily="@font/helvetica_neue"
+                                android:text="Undo"
+                                android:textAlignment="center"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                tools:ignore="RtlCompat"
+                                android:visibility="gone"/>
 
                             <!--<Button
                                 android:id="@+id/paymentBtn"

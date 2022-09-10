@@ -13,11 +13,11 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
 import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
 import com.bdtask.restoraposroomdbtab.Dialog.InvoiceViewDialog
-import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
 import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
@@ -47,16 +47,17 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
     ): View? {
         oBinding = FragmentOngoingBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
+        sharedPref.writeEMode(0)
 
 
-        MainActivity.database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
+        database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
             ongList.clear()
             ongList = it.toMutableList()
 
             clickedList.clear()
             oBinding.scrollView.visibility = View.GONE
             oBinding.tickBtn.visibility = View.GONE
-            oBinding.ongHeader.text = "Ongoing Order"
+            oBinding.header.text = "Ongoing Order"
             oBinding.searchBtn.visibility = View.VISIBLE
 
             if (ongList.isNotEmpty()){
@@ -70,7 +71,10 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 
-        oBinding.ongBack.setOnClickListener {
+
+
+
+        oBinding.back.setOnClickListener {
             if (multiSelect){
                 disableMultiSelect()
             } else {
@@ -78,19 +82,23 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             }
         }
 
+
+
         oBinding.searchBtn.setOnClickListener {
-            if (oBinding.ongSearchEt.visibility == View.GONE){
-                oBinding.ongHeader.visibility = View.GONE
-                oBinding.ongSearchEt.visibility = View.VISIBLE
-                Util.showKeyboard(oBinding.ongSearchEt)
+            if (oBinding.searchEt.visibility == View.GONE){
+                oBinding.header.visibility = View.GONE
+                oBinding.searchEt.visibility = View.VISIBLE
+                Util.showKeyboard(oBinding.searchEt)
                 oBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
             } else {
-                oBinding.ongSearchEt.visibility = View.GONE
-                oBinding.ongHeader.visibility = View.VISIBLE
+                oBinding.searchEt.visibility = View.GONE
+                oBinding.header.visibility = View.VISIBLE
                 Util.hideSoftKeyBoard(requireContext(), oBinding.root)
                 oBinding.searchBtn.setImageResource(R.drawable.search_icon)
             }
         }
+
+
 
         oBinding.root.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK && multiSelect) {
@@ -100,14 +108,19 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             false
         })
 
+
+
         oBinding.tickBtn.setOnClickListener {
             disableMultiSelect()
         }
 
+
+
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+
         oBinding.completeBtn.setOnClickListener {
-            sharedPref.writeSharedOrder(ongList[oPos])
+            sharedPref.writeOrder(ongList[oPos])
             val dialog = CPaymentDialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
@@ -130,7 +143,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    MainActivity.database.orderDao().updateOnGoing(order)
+                    database.orderDao().updateOrder(order)
 
                     withContext(Dispatchers.Main){
 
@@ -149,7 +162,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
                     GlobalScope.launch(Dispatchers.IO) {
 
-                        MainActivity.database.orderDao().updateOnGoing(order)
+                        database.orderDao().updateOrder(order)
 
                         withContext(Dispatchers.Main){
                             val items = clickedList.size
@@ -182,13 +195,15 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
         oBinding.editBtn.setOnClickListener {
             sharedPref.writeEMode(1)
+            sharedPref.writeOrder(ongList[oPos])
             findNavController().navigate(R.id.ongFrag2homeFrag)
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+
         // getting  customer name live and setting to spinner live
-        MainActivity.database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
+        database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
             cusNameList.clear()
             for (i in it.indices){
                 cusNameList.add(it[i].nm)
@@ -197,13 +212,16 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         })
 
 
+
         oBinding.tokenBtn.setOnClickListener {
             TokenDialog(requireContext(),ongList[oPos].tkn,ongList[oPos].id,
                 ongList[oPos].cart,ongList[oPos].odrInf,this).show()
         }
 
+
+
         oBinding.duePosBtn.setOnClickListener {
-            sharedPref.writeSharedOrder(ongList[oPos])
+            sharedPref.writeOrder(ongList[oPos])
             val dialog = InvoiceViewDialog(requireContext(),0)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -212,6 +230,9 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             win!!.setLayout((14 * width)/15,(24 * height)/25)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
+
+
+
         return oBinding.root
     }
 
@@ -239,7 +260,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         if (multiSelect){
             oBinding.searchBtn.visibility = View.GONE
             oBinding.tickBtn.visibility = View.VISIBLE
-            oBinding.ongHeader.text = "${clickedList.size} / ${ongList.size} Selected"
+            oBinding.header.text = "${clickedList.size} / ${ongList.size} Selected"
             oBinding.root.isFocusableInTouchMode = true
             oBinding.root.requestFocus()
         }
@@ -287,7 +308,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         multiSelect = false
         clickedList.clear()
         oBinding.tickBtn.visibility = View.GONE
-        oBinding.ongHeader.text = "Ongoing Order"
+        oBinding.header.text = "Ongoing Order"
         oBinding.searchBtn.visibility = View.VISIBLE
         oBinding.ongRecycler.adapter?.notifyDataSetChanged()
         oBinding.root.isFocusableInTouchMode = false

@@ -9,7 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
+import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentCanceledBinding
 
 class CanceledFragment : Fragment() {
@@ -22,12 +25,27 @@ class CanceledFragment : Fragment() {
         cBinding = FragmentCanceledBinding.inflate(inflater, container, false)
 
 
-        cBinding.tdBack.setOnClickListener {
+        cBinding.back.setOnClickListener {
             findNavController().popBackStack()
         }
 
 
-        MainActivity.database.orderDao().getCOrder(2).observe(viewLifecycleOwner, Observer {
+        cBinding.searchBtn.setOnClickListener {
+            if (cBinding.searchEt.visibility == View.GONE){
+                cBinding.header.visibility = View.GONE
+                cBinding.searchEt.visibility = View.VISIBLE
+                Util.showKeyboard(cBinding.searchEt)
+                cBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
+            } else {
+                cBinding.searchEt.visibility = View.GONE
+                cBinding.header.visibility = View.VISIBLE
+                Util.hideSoftKeyBoard(requireContext(), cBinding.root)
+                cBinding.searchBtn.setImageResource(R.drawable.search_icon)
+            }
+        }
+
+
+        database.orderDao().getCOrder(2).observe(viewLifecycleOwner, Observer {
 
             canList = it.toMutableList()
 

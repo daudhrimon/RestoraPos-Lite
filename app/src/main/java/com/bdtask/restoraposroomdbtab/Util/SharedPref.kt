@@ -23,7 +23,7 @@ object SharedPref {
 
     fun writeEMode(eMode: Int){
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putInt("EMode",eMode)
+        prefsEditor.putInt("eMode",eMode)
         prefsEditor.apply()
     }
 
@@ -31,18 +31,18 @@ object SharedPref {
         return mSharedPref!!.getInt("eMode", 0)
     }
 
-    fun writeSharedCartList(cartList: MutableList<Cart>) {
+    fun writeCart(cartList: MutableList<Cart>) {
         val prefsEditor = mSharedPref!!.edit()
         prefsEditor.putString("cartList", Gson().toJson(cartList))
         prefsEditor.apply()
     }
 
-    fun readSharedCartList() : MutableList<Cart>? {
+    fun readCart() : MutableList<Cart>? {
         val type = object : TypeToken<MutableList<Cart?>?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("cartList", emptyList<Cart>().toString()), type)
     }
 
-    fun writeSharedOrderInfoList(odrInf: OdrInf) {
+    fun writeOrderInfo(odrInf: OdrInf) {
         val prefsEditor = mSharedPref!!.edit()
         prefsEditor.putString("orderInfo", Gson().toJson(odrInf))
         prefsEditor.apply()
@@ -64,13 +64,13 @@ object SharedPref {
         return mSharedPref!!.getLong("token",1)
     }
 
-    fun writeSharedOrder(order: Order) {
+    fun writeOrder(order: Order) {
         val prefsEditor = mSharedPref!!.edit()
         prefsEditor.putString("order", Gson().toJson(order))
         prefsEditor.apply()
     }
 
-    fun readSharedOrder() : Order? {
+    fun readOrder() : Order? {
         val type = object : TypeToken<Order?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("order", ""), type)
     }
@@ -135,6 +135,6 @@ object SharedPref {
     }
 
     fun readCurrency(): String? {
-        return mSharedPref!!.getString("curr", "") ?: ""
+        return mSharedPref!!.getString("curr", "$") ?: "$"
     }
 }

@@ -8,7 +8,7 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 @Dao
 interface OrderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertOrder(order: Order): Long
+    suspend fun insertOrder(order: Order): Long
 
     @Query("SELECT * FROM order_tbl WHERE dat LIKE :date AND sts LIKE :status")
     fun getTodayOrder(date: String?, status: Int): LiveData<MutableList<Order>>
@@ -20,7 +20,7 @@ interface OrderDao {
     fun getCOrder(status: Int): LiveData<List<Order>>
 
     @Update
-    suspend fun updateOnGoing(order: Order)
+    suspend fun updateOrder(order: Order)
 
     @Query("UPDATE order_tbl SET spl=:status WHERE id = :id")
     suspend fun updateSplitStatus(status: Int, id: Long)

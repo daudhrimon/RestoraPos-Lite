@@ -55,7 +55,7 @@ class CartAdapter(private val context: Context,
                 cartList[position].tUPrc = currentTotalUnitPrice
 
                 SharedPref.init(context)
-                SharedPref.writeSharedCartList(cartList)
+                SharedPref.writeCart(cartList)
 
                 cartClickListener.onCartReload()
             }
@@ -76,7 +76,7 @@ class CartAdapter(private val context: Context,
                 cartList[position].tUPrc = currentTotalUnitPrice
 
                 SharedPref.init(context)
-                SharedPref.writeSharedCartList(cartList)
+                SharedPref.writeCart(cartList)
 
                 cartClickListener.onCartReload()
             }
@@ -85,7 +85,7 @@ class CartAdapter(private val context: Context,
         holder.binding.deleteBtnC.setOnClickListener {
             cartList.removeAt(position)
             SharedPref.init(context)
-            SharedPref.writeSharedCartList(cartList)
+            SharedPref.writeCart(cartList)
 
             cartClickListener.onCartReload()
         }
@@ -115,7 +115,7 @@ class CartAdapter(private val context: Context,
                 }
 
                 SharedPref.init(context)
-                SharedPref.writeSharedCartList(cartList)
+                SharedPref.writeCart(cartList)
 
                 notifyDataSetChanged()
 

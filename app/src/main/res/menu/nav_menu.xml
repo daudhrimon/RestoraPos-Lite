@@ -13,17 +13,17 @@
                 android:title="Add Payment"/>
 
             <item
-                android:id="@+id/addVatD"
+                android:id="@+id/setVatD"
                 android:icon="@drawable/ic_vat"
-                android:title="Add Vat / Tax"/>
+                android:title="Set Vat / Tax"/>
 
             <item
-                android:id="@+id/addCrgD"
+                android:id="@+id/setCrgD"
                 android:icon="@drawable/ic_service_crg"
-                android:title="Add Service Crg"/>
+                android:title="Set Service Crg"/>
 
             <item
-                android:id="@+id/addCurr"
+                android:id="@+id/setCurr"
                 android:icon="@drawable/ic_currency"
                 android:title="Set Currency"/>
 

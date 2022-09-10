@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.FragmentSplashBinding
@@ -47,11 +48,7 @@ class SplashFragment : Fragment() {
             sharedPref.writePayList(payList.toMutableList())
         }
 
-        if (sharedPref.readCurrency() == null){
-            sharedPref.writeCurrency("$")
-        } else {
-            MainActivity.appCurrency = sharedPref.readCurrency() ?: "$"
-        }
+        appCurrency = sharedPref.readCurrency() ?: "$"
 
         return binding.root
     }

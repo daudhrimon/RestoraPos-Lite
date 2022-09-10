@@ -299,7 +299,7 @@ class OrderInfoFragment : Fragment() {
             oBinding.orderIdEt.setText("")
         }
 
-        sharedPref.writeSharedOrderInfoList(odrInf)
+        sharedPref.writeOrderInfo(odrInf)
 
         findNavController().popBackStack()
     }

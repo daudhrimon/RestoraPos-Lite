@@ -73,7 +73,7 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
-                R.id.addVatD -> {
+                R.id.setVatD -> {
                     val dialog = VatChargeDialog(
                         this,
                         0,
@@ -88,7 +88,7 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
-                R.id.addCrgD -> {
+                R.id.setCrgD -> {
                     val dialog = VatChargeDialog(
                         this,
                         1,
@@ -103,7 +103,7 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
-                R.id.addCurr -> {
+                R.id.setCurr -> {
                     val dialog = VatChargeDialog(
                         this,
                         2,

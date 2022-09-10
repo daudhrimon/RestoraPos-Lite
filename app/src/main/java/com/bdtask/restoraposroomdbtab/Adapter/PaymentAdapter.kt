@@ -47,7 +47,7 @@ class PaymentAdapter( private val context: Context,
         if (position == payList.size-1){
             payList[position].amo = dPayableAmount.text.toString().toDouble()
             holder.binding.payAmountEt.setText(payList[position].amo.toString())
-            dPayableAmount.text = "0.0 $appCurrency"
+            dPayableAmount.text = "0.0"
             dAnotherPay.visibility = View.GONE
             holder.binding.payAmountEt.requestFocus()
         }
@@ -95,8 +95,8 @@ class PaymentAdapter( private val context: Context,
                     payableAmount = totalDue - adAmount
                 }
 
-                dPayableAmount.text = "$payableAmount $appCurrency"
-                dChangeDue.text = "$changeDue $appCurrency"
+                dPayableAmount.text = payableAmount.toString()
+                dChangeDue.text = changeDue.toString()
 
                 if (payableAmount > 0) {
                     dAnotherPay.visibility = View.VISIBLE

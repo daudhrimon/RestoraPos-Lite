@@ -1,6 +1,7 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
+import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
+import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.FragmentTodayBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,8 +28,23 @@ class TodayFragment() : Fragment() {
         tBinding = FragmentTodayBinding.inflate(inflater, container, false)
 
 
-        tBinding.tdBack.setOnClickListener {
+        tBinding.back.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+
+        tBinding.searchBtn.setOnClickListener {
+            if (tBinding.searchEt.visibility == View.GONE){
+                tBinding.header.visibility = View.GONE
+                tBinding.searchEt.visibility = View.VISIBLE
+                Util.showKeyboard(tBinding.searchEt)
+                tBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
+            } else {
+                tBinding.searchEt.visibility = View.GONE
+                tBinding.header.visibility = View.VISIBLE
+                Util.hideSoftKeyBoard(requireContext(), tBinding.root)
+                tBinding.searchBtn.setImageResource(R.drawable.search_icon)
+            }
         }
 
 

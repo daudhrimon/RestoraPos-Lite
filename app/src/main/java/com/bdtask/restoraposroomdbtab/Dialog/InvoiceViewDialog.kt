@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.bdtask.restoraposroomdbtab.Adapter.InvoiceFoodAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
@@ -29,7 +28,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPref.init(context)
-        _order = sharedPref.readSharedOrder()!!
+        _order = sharedPref.readOrder()!!
         super.onCreate(savedInstanceState)
         _binding = DialogInvoiceViewBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_invoice_view,null))
         setContentView(binding.root)

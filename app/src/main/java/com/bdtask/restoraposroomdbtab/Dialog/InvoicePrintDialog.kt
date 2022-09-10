@@ -267,6 +267,7 @@ class InvoicePrintDialog(context: Context,
                                                 "[C] <b> Thank you very much </b>\n" +
                                                 "[C]================================\n" +
                                                 "[C] <b>Powered by RestoraPos</b>\n" + "\n\n")
+
                                 } catch (e: EscPosConnectionException) {
                                     e.printStackTrace()
                                 } catch (e: EscPosParserException) {
