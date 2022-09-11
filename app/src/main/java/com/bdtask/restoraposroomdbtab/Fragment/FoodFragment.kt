@@ -145,7 +145,11 @@ class FoodFragment : Fragment() {
 
         //add addons
         fBinding.addAddonsBtn.setOnClickListener {
-            addAddonsButtonClick()
+            if (cateList.size > 0) {
+                addAddonsButtonClick()
+            } else {
+                Toasty.warning(requireContext(),"No Category Available to Edit",Toasty.LENGTH_SHORT).show()
+            }
             fBinding.foodTitleEt.clearFocus()
         }
 
@@ -223,7 +227,7 @@ class FoodFragment : Fragment() {
 
         dbinding.itemBtn.setOnClickListener {
             if (dbinding.itemEt.text.toString().isEmpty()){
-                dbinding.itemEt.setError("Enter Category")
+                dbinding.itemEt.error = "Enter Category"
                 dbinding.itemEt.requestFocus()
                 return@setOnClickListener
             }

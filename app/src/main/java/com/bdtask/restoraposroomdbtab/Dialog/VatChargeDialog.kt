@@ -16,11 +16,11 @@ import com.mynameismidori.currencypicker.CurrencyPicker
 import es.dmoral.toasty.Toasty
 import java.util.*
 
-class VatChargeDialog(context: Context,
-                      private val status: Int,
-                      private val header: String,
-                      private val hint: String,
-                      private val supportFragmentManager: FragmentManager): Dialog(context) {
+class VatChargeDialog( context: Context,
+                       private val status: Int,
+                       private val header: String,
+                       private val hint: String,
+                       private val supportFragmentManager: FragmentManager ): Dialog(context) {
 
     private lateinit var binding: DialogSingleItemetBinding
     private val sharedPref = SharedPref
@@ -33,14 +33,36 @@ class VatChargeDialog(context: Context,
         binding.itemTv.text = header
         binding.itemEt.hint = hint
 
-        if (status == 2) {
-            binding.itemEt.isFocusable = false
-            binding.addCurrency.visibility = View.VISIBLE
-            binding.itemBtn.text = "Set"
-        }
+        when(status){
+            0 -> {
+                val vat = sharedPref.readVat() ?: 0.0
+                if (vat.toString().isNotEmpty()) {
+                    binding.itemEt.setText(vat.toString())
+                }
+            }
+            1 -> {
+               val crg = sharedPref.readCharge() ?: 0.0
+                if (crg.toString().isNotEmpty()) {
+                    binding.itemEt.setText(crg.toString())
+                }
+            }
+            2 -> {
+                binding.itemEt.isFocusable = false
+                binding.addCurrency.visibility = View.VISIBLE
+                binding.itemBtn.text = "Set"
 
-        if (status == 3){
-            binding.itemEt.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
+                val currency = sharedPref.readCurrency() ?: ""
+                if (currency.isNotEmpty()) {
+                    binding.itemEt.setText(currency)
+                }
+            }
+            3 -> {
+                binding.itemEt.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
+                val operator = sharedPref.readOperator() ?: ""
+                if (operator.isNotEmpty()) {
+                    binding.itemEt.setText(operator)
+                }
+            }
         }
 
         binding.itemCross.setOnClickListener {

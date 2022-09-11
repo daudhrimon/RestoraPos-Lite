@@ -37,7 +37,11 @@
             app:destination="@id/todayFragment"/>
         <action
             android:id="@+id/homeFrag2foodFrag"
-            app:destination="@id/foodFragment"/>
+            app:destination="@id/foodFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"/>
         <action
             android:id="@+id/homeFrag2comFrag"
             app:destination="@id/completedFragment" />

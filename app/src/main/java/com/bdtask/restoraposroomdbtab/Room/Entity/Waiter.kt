@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Waiter(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val wNm: String
+    var wNm: String
 )

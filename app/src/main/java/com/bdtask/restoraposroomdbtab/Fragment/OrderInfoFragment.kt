@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Dialog.AddCustomerDialog
+import com.bdtask.restoraposroomdbtab.Dialog.BtmSItemRecyclerDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.bdtask.restoraposroomdbtab.R
@@ -46,6 +48,9 @@ class OrderInfoFragment : Fragment() {
     private lateinit var odrInf: OdrInf
     private var sharedPref = SharedPref
 
+    private var btmDialog: BtmSItemRecyclerDialog? = null
+    companion object {var state = ""}
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -57,7 +62,7 @@ class OrderInfoFragment : Fragment() {
 
 
         // getting  customer name live and setting to spinner live
-        MainActivity.database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
+        database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
             cusNameList.clear()
             for (i in it.indices){
                 cusNameList.add(it[i].nm)
@@ -122,7 +127,7 @@ class OrderInfoFragment : Fragment() {
 
 
         //getting waiter Live and setting to Waiter spinner Live
-        MainActivity.database.waiterDao().getAllWaiter().observe(viewLifecycleOwner, Observer{
+        database.waiterDao().getAllWaiter().observe(viewLifecycleOwner, Observer{
             waiterList.clear()
             waiterSpnrList.clear()
             waiterList = it.toMutableList()
@@ -130,6 +135,15 @@ class OrderInfoFragment : Fragment() {
                 waiterSpnrList.add(waiterList[i].wNm)
             }
             oBinding.waiterSpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, waiterSpnrList)
+
+            if (btmDialog != null){
+                if (btmDialog!!.isShowing && state == "wtr"){
+                    btmDialog?.dismiss()
+                    btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList, emptyList<Cmpny>().toMutableList(),
+                        emptyList<Table>().toMutableList())
+                    btmDialog?.show()
+                }
+            }
         })
 
 
@@ -149,14 +163,23 @@ class OrderInfoFragment : Fragment() {
 
 
         // getting and setting Table Spinner
-        MainActivity.database.tableDao().getAllTable().observe(viewLifecycleOwner, Observer{
+        database.tableDao().getAllTable().observe(viewLifecycleOwner, Observer{
             tableList.clear()
             tableList = it.toMutableList()
             tableSpnrList.clear()
             for (i in tableList.indices){
                 tableSpnrList.add(tableList[i].tNm)
             }
+
             oBinding.tableSpnr.adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, tableSpnrList)
+
+            if (btmDialog != null){
+                if (btmDialog!!.isShowing && state == "tbl"){
+                    btmDialog?.dismiss()
+                    btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),emptyList<Cmpny>().toMutableList(),tableList)
+                    btmDialog?.show()
+                }
+            }
         })
 
 
@@ -174,7 +197,7 @@ class OrderInfoFragment : Fragment() {
 
 
         //getting delivery Company Live and setting to spinner live
-        MainActivity.database.deliveryCompanyDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
+        database.deliveryCompanyDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
             deliveryCmpnyList.clear()
             deliveryCmpnyList.clear()
             deliveryCmpnyList = it.toMutableList()
@@ -182,6 +205,14 @@ class OrderInfoFragment : Fragment() {
                 deliveryCompanySpnrList.add(deliveryCmpnyList[i].cNm)
             }
             oBinding.deliveryCompanySpnr.adapter = ArrayAdapter(requireContext(), com.airbnb.lottie.R.layout.support_simple_spinner_dropdown_item, deliveryCompanySpnrList)
+
+            if (btmDialog != null){
+                if (btmDialog!!.isShowing && state == "dc"){
+                    btmDialog?.dismiss()
+                    btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList, emptyList<Cmpny>().toMutableList(),emptyList<Table>().toMutableList())
+                    btmDialog?.show()
+                }
+            }
         })
 
 
@@ -217,12 +248,33 @@ class OrderInfoFragment : Fragment() {
             deliveryCompanyAddBtnClick()
         }
 
+        oBinding.deliveryCmpnyAddBtn.setOnLongClickListener {
+            state = "dc"
+            btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),deliveryCmpnyList,emptyList<Table>().toMutableList())
+            btmDialog?.show()
+            return@setOnLongClickListener true
+        }
+
         oBinding.waiterAddBtn.setOnClickListener {
             waiterAddBtnClick()
         }
 
+        oBinding.waiterAddBtn.setOnLongClickListener {
+            state = "wtr"
+            btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList,emptyList<Cmpny>().toMutableList(),emptyList<Table>().toMutableList())
+            btmDialog?.show()
+            return@setOnLongClickListener true
+        }
+
         oBinding.tableAddBtn.setOnClickListener {
             tableAddBtnClick()
+        }
+
+        oBinding.tableAddBtn.setOnLongClickListener {
+            state = "tbl"
+            btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),emptyList<Cmpny>().toMutableList(),tableList)
+            btmDialog?.show()
+            return@setOnLongClickListener true
         }
 
         oBinding.doneBtn.setOnClickListener {
