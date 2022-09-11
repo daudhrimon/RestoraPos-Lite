@@ -1,20 +1,29 @@
 package com.bdtask.restoraposroomdbtab
 
+import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.bdtask.restoraposroomdbtab.Dialog.AddCustomerDialog
 import com.bdtask.restoraposroomdbtab.Dialog.AddPaymentDialog
 import com.bdtask.restoraposroomdbtab.Dialog.VatChargeDialog
 import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.Room.PosDatabase
+import com.bdtask.restoraposroomdbtab.Util.SharedPref
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.navigation.NavigationView
+import es.dmoral.toasty.Toasty
 
 class MainActivity: AppCompatActivity() {
 
@@ -23,7 +32,6 @@ class MainActivity: AppCompatActivity() {
         lateinit var navDrawer: NavigationView
         lateinit var database: PosDatabase
         var foodList = mutableListOf<Food>()
-        lateinit var posLogo: Uri
         var appCurrency = "$"
     }
 
@@ -58,7 +66,9 @@ class MainActivity: AppCompatActivity() {
 
             when(it.itemId){
 
-                R.id.addFoodD -> findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
+                R.id.addFoodD -> {
+                    findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
+                }
 
             R.id.addPayD -> {
                     val dialog = AddPaymentDialog(this)
@@ -114,6 +124,26 @@ class MainActivity: AppCompatActivity() {
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
+                R.id.setInf -> {
+                    val dialog = AddCustomerDialog(this,1)
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                    dialog.show()
+                    val width = resources.displayMetrics.widthPixels
+                    val win = dialog.window
+                    win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                }
+
+                R.id.setLogo -> {
+                    ImagePicker.with(this)
+                        .crop(5f,2f)
+                        .compress(48)         //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(167, 65)  //Final image resolution will be less than 1080 x 1080(Optional)
+                        .createIntent { intent ->
+                            startForProfileImageResult.launch(intent)
+                        }
+                }
+
                 R.id.setOp -> {
                     val dialog = VatChargeDialog(
                         this,
@@ -131,7 +161,31 @@ class MainActivity: AppCompatActivity() {
             }
             return@setNavigationItemSelectedListener true
         }
-
-        posLogo = Uri.parse("android.resource://com.bdtask.restoraposroomdbtab/drawable/poslogo")
     }
+
+    // image picker RESULT
+    private val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data!!
+                    SharedPref.init(this)
+                    SharedPref.writePosLogo(fileUri.toString())
+                    Toasty.success(this,"Added POS Logo Successfully",Toasty.LENGTH_SHORT).show()
+                }
+
+                ImagePicker.RESULT_ERROR -> {
+                    Toasty.error(this, ImagePicker.getError(data), Toast.LENGTH_SHORT, true).show()
+                }
+
+                else -> {
+                    Toasty.error(this,"Cancelled", Toast.LENGTH_SHORT, true).show()
+                }
+            }
+        }
+
 }

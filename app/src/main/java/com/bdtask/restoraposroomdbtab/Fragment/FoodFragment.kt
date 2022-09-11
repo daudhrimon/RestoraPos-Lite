@@ -405,7 +405,9 @@ class FoodFragment : Fragment() {
 
                         Toasty.success(requireContext(), "Updated Successfully", Toast.LENGTH_SHORT, true).show()
 
-                        setFragDefault()
+                        findNavController().popBackStack()
+
+                        food = null
                     }
                 }
             }

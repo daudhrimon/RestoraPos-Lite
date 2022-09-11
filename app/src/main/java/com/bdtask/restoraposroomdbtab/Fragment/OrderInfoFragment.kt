@@ -19,6 +19,7 @@ import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Cmpny
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
 import com.bdtask.restoraposroomdbtab.Room.Entity.Table
 import com.bdtask.restoraposroomdbtab.Room.Entity.Waiter
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
@@ -47,9 +48,10 @@ class OrderInfoFragment : Fragment() {
     private var selectedDeliveryCompany = ""
     private lateinit var odrInf: OdrInf
     private var sharedPref = SharedPref
-
+    private var odrInf2: OdrInf? = null
     private var btmDialog: BtmSItemRecyclerDialog? = null
     companion object {var state = ""}
+    private var customerList = mutableListOf<Cstmr>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -58,18 +60,43 @@ class OrderInfoFragment : Fragment() {
         sharedPref.init(requireContext())
 
 
-        // getCustomer Info
+        // get Shared/Saved Customer Info
+        odrInf2 = sharedPref.readOrderInfo()
+
+
+
+        oBinding.ocfBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
 
 
         // getting  customer name live and setting to spinner live
         database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
+            customerList.clear()
             cusNameList.clear()
+            cusInfoList.clear()
+            customerList = it.toMutableList()
             for (i in it.indices){
                 cusNameList.add(it[i].nm)
                 cusInfoList.add(CsInf(it[i].nm, it[i].adrs, it[i].mbl))
             }
             oBinding.cusNameSpnr.adapter = ArrayAdapter(requireContext(), R.layout.custom_spinner_layout,cusNameList)
+
+            if (odrInf2 != null){
+                if (odrInf2!!.csInf.csNm.isNotEmpty()){
+                    for (i in cusInfoList.indices){
+                        if (cusInfoList[i].csNm == odrInf2!!.csInf.csNm &&
+                            cusInfoList[i].csAdrs == odrInf2!!.csInf.csAdrs &&
+                            cusInfoList[i].mbl == odrInf2!!.csInf.mbl){
+
+                            oBinding.cusNameSpnr.setSelection(i)
+                        }
+                    }
+                }
+            }
         })
+
 
 
         // Customer Spinner
@@ -117,6 +144,11 @@ class OrderInfoFragment : Fragment() {
                     oBinding.tableLay.visibility = View.GONE
                     oBinding.deliveryCompanyLay.visibility = View.VISIBLE
                     oBinding.orderIdLay.visibility = View.VISIBLE
+                    if (odrInf2 != null){
+                        if (odrInf2!!.odrIdTp.isNotEmpty()){
+                            oBinding.orderIdEt.setText(odrInf2!!.odrIdTp)
+                        }
+                    }
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
@@ -142,6 +174,16 @@ class OrderInfoFragment : Fragment() {
                     btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList, emptyList<Cmpny>().toMutableList(),
                         emptyList<Table>().toMutableList())
                     btmDialog?.show()
+                }
+            }
+
+            if (odrInf2 != null){
+                if (odrInf2!!.wtr.isNotEmpty()){
+                    for (i in waiterSpnrList.indices){
+                        if (waiterSpnrList[i] == odrInf2!!.wtr){
+                            oBinding.waiterSpnr.setSelection(i)
+                        }
+                    }
                 }
             }
         })
@@ -180,6 +222,16 @@ class OrderInfoFragment : Fragment() {
                     btmDialog?.show()
                 }
             }
+
+            if (odrInf2 != null){
+                if (odrInf2!!.tbl.isNotEmpty()){
+                    for (i in tableSpnrList.indices){
+                        if (tableSpnrList[i] == odrInf2!!.tbl){
+                            oBinding.tableSpnr.setSelection(i)
+                        }
+                    }
+                }
+            }
         })
 
 
@@ -213,6 +265,16 @@ class OrderInfoFragment : Fragment() {
                     btmDialog?.show()
                 }
             }
+
+            if (odrInf2 != null){
+                if (odrInf2!!.dlvCo.isNotEmpty()){
+                    for (i in deliveryCompanySpnrList.indices){
+                        if (deliveryCompanySpnrList[i] == odrInf2!!.dlvCo){
+                            oBinding.deliveryCompanySpnr.setSelection(i)
+                        }
+                    }
+                }
+            }
         })
 
 
@@ -229,13 +291,11 @@ class OrderInfoFragment : Fragment() {
 
 
 
-        // back button click handler
-        oBinding.ocfBack.setOnClickListener{ findNavController().popBackStack() }
 
         oBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(), oBinding.root) }
 
         oBinding.cusAddBtn.setOnClickListener {
-            val dialog = AddCustomerDialog(requireContext())
+            val dialog = AddCustomerDialog(requireContext(),0)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -284,6 +344,9 @@ class OrderInfoFragment : Fragment() {
 
         return oBinding.root
     }
+
+
+
 
     private fun doneButtonClickHandler() {
         if (cusInfoList.size == 0) {

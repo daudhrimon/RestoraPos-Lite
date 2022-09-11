@@ -206,7 +206,7 @@
                 android:text="Split"
                 android:textColor="@color/white"
                 android:textSize="13sp"
-                android:visibility="gone" />
+                 />-->
 
             <TextView
                 android:id="@+id/mergeBtn"

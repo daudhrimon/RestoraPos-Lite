@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.OdrInf
 import com.bdtask.restoraposroomdbtab.Model.Pay
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -48,7 +49,7 @@ object SharedPref {
         prefsEditor.apply()
     }
 
-    fun readSharedOrderInfo(): OdrInf? {
+    fun readOrderInfo(): OdrInf? {
         val type = object : TypeToken<OdrInf?>() {}.type
         return Gson().fromJson(mSharedPref!!.getString("orderInfo", ""), type)
     }
@@ -146,5 +147,26 @@ object SharedPref {
 
     fun readOperator(): String? {
         return mSharedPref!!.getString("OP", "") ?: ""
+    }
+
+    fun writeResInf(info: Cstmr) {
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("inf", Gson().toJson(info))
+        prefsEditor.apply()
+    }
+
+    fun readResInf() : Cstmr? {
+        val type = object : TypeToken<Cstmr?>() {}.type
+        return Gson().fromJson(mSharedPref!!.getString("inf", ""), type)
+    }
+
+    fun writePosLogo(logo: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("logo",logo)
+        prefsEditor.apply()
+    }
+
+    fun readPosLogo(): String? {
+        return mSharedPref!!.getString("logo", "") ?: ""
     }
 }

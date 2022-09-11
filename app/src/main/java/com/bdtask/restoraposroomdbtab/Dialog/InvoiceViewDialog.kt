@@ -9,10 +9,13 @@ import com.bdtask.restoraposroomdbtab.Adapter.InvoiceFoodAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogInvoiceViewBinding
+import com.bumptech.glide.Glide
+import es.dmoral.toasty.Toasty
 
 class InvoiceViewDialog(context: Context, private val state: Int): Dialog(context) {
 
@@ -25,6 +28,8 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
     private var crg = 0.0
     private var grandTotal = 0.0
     private var customerPay = 0.0
+    private var resInf: Cstmr? = null
+    private var posLogo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPref.init(context)
@@ -32,7 +37,15 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         super.onCreate(savedInstanceState)
         _binding = DialogInvoiceViewBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_invoice_view,null))
         setContentView(binding.root)
-        Log.wtf("InvoiceViewDialogOrders",order.toString())
+
+        posLogo = sharedPref.readPosLogo() ?: ""
+        resInf = sharedPref.readResInf()
+
+        Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
+
+        if (resInf != null) {
+            binding.address.text = "${resInf!!.nm}\n ${resInf!!.adrs}\n ${resInf!!.mbl}\n ${resInf!!.eml}"
+        }
 
         if (state == 0){
             if (order.cart.isNotEmpty()){
@@ -53,8 +66,6 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         binding.foodRecycler.adapter = InvoiceFoodAdapter(context,order.cart)
 
         binding.logo.setImageResource(R.drawable.poslogo)
-
-        binding.address.text = context.getString(R.string.address)
 
         binding.date.text = Util.getDate().toString()
 
@@ -86,8 +97,10 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         binding.orderId.text = order.id.toString()
 
         binding.printBtn.setOnClickListener {
+
+            InvoicePrintDialog(context,order, posLogo!!,resInf).show()
+
             dismiss()
-            InvoicePrintDialog(context,order).show()
         }
     }
 

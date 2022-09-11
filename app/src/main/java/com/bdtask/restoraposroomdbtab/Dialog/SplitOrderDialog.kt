@@ -83,7 +83,7 @@ class SplitOrderDialog(context: Context,
 
 
         binding.custmrPlus.setOnClickListener {
-            val dialog = AddCustomerDialog(context)
+            val dialog = AddCustomerDialog(context,0)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = context.resources.displayMetrics.widthPixels

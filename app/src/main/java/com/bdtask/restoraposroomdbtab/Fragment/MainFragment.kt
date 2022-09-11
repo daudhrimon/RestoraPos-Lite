@@ -222,8 +222,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         tempCartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
-        if (sharedPref.readSharedOrderInfo() != null){
-            odrInf = sharedPref.readSharedOrderInfo()!!
+        if (sharedPref.readOrderInfo() != null){
+            odrInf = sharedPref.readOrderInfo()!!
         }
 
         if (tempCartList.isNotEmpty()) {
@@ -284,8 +284,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         tempCartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
-        if (sharedPref.readSharedOrderInfo() != null){
-            odrInf = sharedPref.readSharedOrderInfo()!!
+        if (sharedPref.readOrderInfo() != null){
+            odrInf = sharedPref.readOrderInfo()!!
         }
 
 
@@ -412,8 +412,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
         tempCartList = sharedPref.readCart() ?: emptyList<Cart>().toMutableList()
 
-        if (sharedPref.readSharedOrderInfo() != null){
-            odrInf = sharedPref.readSharedOrderInfo()!!
+        if (sharedPref.readOrderInfo() != null){
+            odrInf = sharedPref.readOrderInfo()!!
         }
 
         TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()

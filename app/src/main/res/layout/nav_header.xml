@@ -7,7 +7,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_99sdp"
+        android:layout_height="@dimen/_111sdp"
         android:scaleType="centerCrop"
         android:src="@drawable/splash_img"
         android:background="#E11A1A1A"/>

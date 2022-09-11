@@ -21,7 +21,6 @@ class ViewOrderAddonAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: VHViewOrderAddon, position: Int) {
         holder.binding.addons.text = "${addons[position].adnNm} * ${addons[position].adnQnty}"
-
     }
 
     override fun getItemCount(): Int {

@@ -26,9 +26,9 @@ class ViewOrderItemAdapter(val context: Context,
         }
         holder.binding.itemName.text = cart[position].title
         holder.binding.itemVariant.text = cart[position].vari
-        holder.binding.foodPrice.text = "${cart[position].fPrc} $appCurrency"
+        holder.binding.foodPrice.text = cart[position].fPrc.toString()
         holder.binding.itemQuantity.text = cart[position].fQnty.toString()
-        holder.binding.totalUnitPrice.text = "${cart[position].tUPrc} $appCurrency"
+        holder.binding.totalUnitPrice.text = cart[position].tUPrc.toString()
     }
 
     override fun getItemCount(): Int {

@@ -8,13 +8,18 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
+import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogAddNewCustomerBinding
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class AddCustomerDialog(context: Context): Dialog(context) {
+class AddCustomerDialog(context: Context,
+                        val state: Int): Dialog(context) {
+
     private lateinit var binding: DialogAddNewCustomerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +27,26 @@ class AddCustomerDialog(context: Context): Dialog(context) {
         binding = DialogAddNewCustomerBinding.bind(layoutInflater.inflate(R.layout.dialog_add_new_customer,null))
         setContentView(binding.root)
 
-        binding.root.setOnClickListener {
-            Util.hideSoftKeyBoard(context,binding.root)
-        }
-        binding.addCview.setOnClickListener{
-            Util.hideSoftKeyBoard(context,binding.addCview)
-        }
         binding.crossBtn.setOnClickListener {
             dismiss()
         }
+
+        binding.root.setOnClickListener {
+            Util.hideSoftKeyBoard(context,binding.root)
+        }
+
+        binding.addCview.setOnClickListener{
+            Util.hideSoftKeyBoard(context,binding.addCview)
+        }
+
         binding.closeBtn.setOnClickListener {
             dismiss()
+        }
+
+        if (state == 1){
+            binding.cusNameEt.hint = "Restaurant Name"
+            binding.cusMobileEt.hint = "Restaurant Mobile no"
+            binding.cusAddEt.hint = "Restaurant Address"
         }
 
         binding.submitBtn.setOnClickListener {
@@ -52,14 +66,23 @@ class AddCustomerDialog(context: Context): Dialog(context) {
                 return@setOnClickListener
             }
 
-            GlobalScope.launch {
-                MainActivity.database.customerDao().insertCustomer(
-                    Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
-                        binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString())
-                )
+            if (state == 0) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    MainActivity.database.customerDao().insertCustomer(
+                        Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
+                            binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString()))
+
+                    withContext(Dispatchers.Main){
+                        Toasty.success(context,"Customer Added Successfully", Toast.LENGTH_SHORT, true).show()
+                        dismiss()
+                    }
+                }
+            } else {
+                SharedPref.init(context)
+                SharedPref.writeResInf(Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
+                    binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString()))
+                Toasty.success(context,"Restaurant Information Saved Successfully",Toasty.LENGTH_SHORT).show()
             }
-            Toasty.success(context,"Successful", Toast.LENGTH_SHORT, true).show()
-            dismiss()
         }
     }
 }

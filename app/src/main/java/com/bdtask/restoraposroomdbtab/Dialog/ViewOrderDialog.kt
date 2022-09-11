@@ -9,22 +9,37 @@ import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderItemAdapter
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.databinding.DialogViewOrderBinding
+import com.bumptech.glide.Glide
 
 class ViewOrderDialog(context: Context, private val order: Order): Dialog(context) {
     private var _binding: DialogViewOrderBinding? = null
     private val binding get() = _binding!!
+    private val sharedPref = SharedPref
     private var vat = 0.0
     private var crg = 0.0
     private var grandTotal = 0.0
     private var customerPay = 0.0
+    private var resInf: Cstmr? = null
+    private var posLogo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPref.init(context)
         _binding = DialogViewOrderBinding.bind(layoutInflater.inflate(R.layout.dialog_view_order,null))
         setContentView(binding.root)
+
+        posLogo = sharedPref.readPosLogo() ?: ""
+        resInf = sharedPref.readResInf()
+
+        Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
+
+        if (resInf != null) {
+            binding.addressTv.text = "${resInf!!.nm}\n ${resInf!!.adrs}\n ${resInf!!.mbl}\n ${resInf!!.eml}"
+        }
 
         binding.closeBtn.setOnClickListener {
             dismiss()

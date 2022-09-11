@@ -13,10 +13,13 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.Model.Adns
 import com.bdtask.restoraposroomdbtab.Model.Cart
+import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.Pay
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOff
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.ESCUtil.boldOn
 import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
+import com.bdtask.restoraposroomdbtab.R
+import com.bdtask.restoraposroomdbtab.Room.Entity.Cstmr
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
 import com.bdtask.restoraposroomdbtab.Util.Util
@@ -34,7 +37,9 @@ import com.dantsu.escposprinter.textparser.PrinterTextParserImg
 import com.sunmi.peripheral.printer.SunmiPrinterService
 
 class InvoicePrintDialog(context: Context,
-                         private var order: Order) : SweetAlertDialog(context, SUCCESS_TYPE) {
+                         private var order: Order,
+                         private val posLogo: String,
+                         private val resInf: Cstmr?) : SweetAlertDialog(context, SUCCESS_TYPE) {
 
     private lateinit var printHelper: SunmiPrintHelper
     private val sharedPref = SharedPref
@@ -49,6 +54,8 @@ class InvoicePrintDialog(context: Context,
         cancelText = "No"
         confirmText = "Yes"
         sharedPref.init(context)
+
+
 
         initPrinter()
 
@@ -68,7 +75,8 @@ class InvoicePrintDialog(context: Context,
             dismiss()
             Glide.with(context)
                 .asBitmap()
-                .load(MainActivity.posLogo)
+                .placeholder(R.drawable.poslogo)
+                .load(posLogo)
                 .into(object : CustomTarget<Bitmap>() {
 
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
@@ -77,7 +85,7 @@ class InvoicePrintDialog(context: Context,
 
                             val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
 
-                            val txts = arrayOf("Prinon", "Bhowmik")
+                            val txts = arrayOf("Daud", "Hoshen")
                             val width = intArrayOf(1, 1)
                             val align = intArrayOf(0, 2)
                             sunmiPrinterService?.setAlignment(1, null)
@@ -219,7 +227,7 @@ class InvoicePrintDialog(context: Context,
                                 null
                             )
                             SunmiPrintHelper.getInstance().printText(
-                                "Powered by RestoraPos\n", 22f, false, false,
+                                "Powered by\nRestora POS\n", 22f, false, false,
                                 null
                             )
                             SunmiPrintHelper.getInstance().feedPaper()
@@ -266,7 +274,7 @@ class InvoicePrintDialog(context: Context,
                                                 "[L]Customer Paid: " + "[R]$customerPay\n" +
                                                 "[C] <b> Thank you very much </b>\n" +
                                                 "[C]================================\n" +
-                                                "[C] <b>Powered by RestoraPos</b>\n" + "\n\n")
+                                                "[C] <b>Powered by ***Restora POS***</b>\n" + "\n\n")
 
                                 } catch (e: EscPosConnectionException) {
                                     e.printStackTrace()

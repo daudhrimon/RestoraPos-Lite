@@ -37,7 +37,7 @@
                     android:layout_marginTop="6dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
-                    android:text=""
+                    android:text="@string/address"
                     android:textColor="#000"
                     android:textSize="15sp" />
 
@@ -569,8 +569,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/helvetica_neue"
-                    android:text="PoweredBy\n *** BDTASK ***\n ( A Leading Software Company )"
                     android:gravity="center_horizontal"
+                    android:text="Powered by ***Restora POS***\nrestorapos.com"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 

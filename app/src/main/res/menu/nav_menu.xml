@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Admin Panel">
+    <item android:title="POS Admin Panel">
         <menu>
             <item
                 android:id="@+id/addFoodD"
@@ -26,6 +26,16 @@
                 android:id="@+id/setCurr"
                 android:icon="@drawable/ic_currency"
                 android:title="Set Currency"/>
+
+            <item
+                android:id="@+id/setInf"
+                android:icon="@drawable/ic_currency"
+                android:title="Set Restaurant Info"/>
+
+            <item
+                android:id="@+id/setLogo"
+                android:icon="@drawable/ic_currency"
+                android:title="Set POS Logo"/>
 
             <item
                 android:id="@+id/setOp"
