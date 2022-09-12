@@ -3,7 +3,6 @@ package com.bdtask.restoraposroomdbtab
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager

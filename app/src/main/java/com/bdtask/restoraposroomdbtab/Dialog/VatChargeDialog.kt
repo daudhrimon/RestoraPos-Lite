@@ -8,6 +8,7 @@ import android.text.InputType
 import android.text.TextDirectionHeuristics
 import android.view.View
 import androidx.fragment.app.FragmentManager
+import com.bdtask.restoraposroomdbtab.Fragment.MainFragment.Companion.mBinding
 import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
@@ -97,6 +98,7 @@ class VatChargeDialog( context: Context,
                     sharedPref.writeCurrency(binding.itemEt.text.toString().trim())
                     MainActivity.appCurrency = binding.itemEt.text.toString().trim()
                     Toasty.success(context,"Now ${sharedPref.readCurrency()!!} is your Global Currency",Toasty.LENGTH_SHORT,true).show()
+                    mBinding.grandTotalTv.text = " : ${sharedPref.readCurrency()!!}"
                     dismiss()
                 }
 

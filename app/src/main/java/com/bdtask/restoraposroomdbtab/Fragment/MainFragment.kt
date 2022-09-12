@@ -1,5 +1,6 @@
 package com.bdtask.restoraposroomdbtab.Fragment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -39,8 +40,9 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 import java.lang.Exception
 
+@SuppressLint("StaticFieldLeak")
 class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
-    private lateinit var mBinding: FragmentMainBinding
+    companion object { lateinit var mBinding: FragmentMainBinding}
     private var categoryList = mutableListOf<String>()
     private var variantNameList = mutableListOf<String>()
     private var grandTotal = 0.0
@@ -78,12 +80,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 mBinding.tabLayout.tabGravity = TabLayout.GRAVITY_CENTER
             }
 
-            mBinding.viewPager2.adapter = CategoryAdapter(requireContext(),categoryList,this)
+            mBinding.viewPager2.adapter = CategoryAdapter(requireContext(),categoryList,
+                mBinding.searchEt,this)
 
             TabLayoutMediator(mBinding.tabLayout, mBinding.viewPager2) { tab, position->
                 tab.text = categoryList[position]
             }.attach()
         })
+
 
 
         // setting cart Recycler Adapter
@@ -254,7 +258,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 setCartRecyclerAdapter()
 
                 // InVoice View Dialog
-                val dialog = CPaymentDialog(requireContext())
+                val dialog = PaymentDialog(requireContext())
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 dialog.show()
                 val width = resources.displayMetrics.widthPixels

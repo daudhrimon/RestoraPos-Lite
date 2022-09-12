@@ -75,10 +75,10 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         binding.subTotal.text = "${order.tPrc} $appCurrency"
 
-        vat = (order.tPrc * order.vat) / 100
+        vat = (order.tPrc * order.vat)/100
         binding.vatTv.text = "$vat $appCurrency"
 
-        crg = (order.tPrc * order.crg) / 100
+        crg = (order.tPrc * order.crg)/100
         binding.chargeTv.text = "$crg $appCurrency"
 
         binding.discountTv.text = "${order.dis} $appCurrency"

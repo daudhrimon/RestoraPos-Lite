@@ -1,27 +1,20 @@
 package com.bdtask.restoraposroomdbtab.Adapter
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bdtask.restoraposroomdbtab.Dialog.PaymentDialog
-import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog
 import com.bdtask.restoraposroomdbtab.Dialog.SplitOrderDialog.Companion.splitterIndex
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.cusInfoList
 import com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment.Companion.cusNameList
 import com.bdtask.restoraposroomdbtab.Interface.SplitterClickListener
-import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.databinding.VhSplitterBinding
-import es.dmoral.toasty.Toasty
 
 class SplitterAdapter( private val context: Context,
                        private val splitterList: MutableList<Split>,

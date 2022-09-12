@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Adns
 import com.bdtask.restoraposroomdbtab.Model.Cart
 import com.bdtask.restoraposroomdbtab.Model.CsInf
@@ -263,15 +264,15 @@ class InvoicePrintDialog(context: Context,
                                                 "[C]================================\n" +
                                                 loopData(order.cart)+
                                                 "[C]================================\n" +
-                                                "[L]Subtotal: " + "[R]${order.tPrc}\n" +
+                                                "[L]Subtotal: " + "[R]${order.tPrc} $appCurrency\n" +
                                                 "[L]VAT: " + "[R]$vat\n" +
-                                                "[L]Service charge: " + "[R]$crg\n" +
-                                                "[L]Discount: " + "[R]${order.dis}\n" +
+                                                "[L]Service charge: " + "[R]$crg $appCurrency\n" +
+                                                "[L]Discount: " + "[R]${order.dis} $appCurrency\n" +
                                                 "[C]================================\n" +
-                                                "[L]Grand Total: " + "[R]$grandTotal\n" +
-                                                "[L]Total Due: " + "[R]${getTotalDue()}\n" +
-                                                "[L]Change Due: " + "[R]${getChangeDue()}\n" +
-                                                "[L]Customer Paid: " + "[R]$customerPay\n" +
+                                                "[L]Grand Total: " + "[R]$grandTotal $appCurrency\n" +
+                                                "[L]Total Due: " + "[R]${getTotalDue()} $appCurrency\n" +
+                                                "[L]Change Due: " + "[R]${getChangeDue()} $appCurrency\n" +
+                                                "[L]Customer Paid: " + "[R]$customerPay $appCurrency\n" +
                                                 "[C] <b> Thank you very much </b>\n" +
                                                 "[C]================================\n" +
                                                 "[C] <b>Powered by ***Restora POS***</b>\n" + "\n\n")
@@ -333,11 +334,11 @@ class InvoicePrintDialog(context: Context,
     private fun loopData(list:MutableList<Cart>): String {
         var items = ""
         for (i in list.indices) {
-            items = "$items[L]<b>${list[i].title}</b>\n[L]${list[i].vari} x${list[i].fQnty}[R]<b>${list[i].fPrc}</b>\n"
+            items = "$items[L]<b>${list[i].title}</b>\n[L]${list[i].vari} x${list[i].fQnty}[R]<b>${list[i].fPrc} $appCurrency</b>\n"
             if (list[i].adns.isNotEmpty()) {
                 val addonsList: List<Adns> = list[i].adns
                 for (k in addonsList.indices) {
-                    items = "$items[L]${addonsList[k].adnNm} x${addonsList[k].adnQnty} [R]${addonsList[k].adnPrc}\n"
+                    items = "$items[L]${addonsList[k].adnNm} x${addonsList[k].adnQnty} [R]${addonsList[k].adnPrc} $appCurrency\n"
                 }
             }
         }

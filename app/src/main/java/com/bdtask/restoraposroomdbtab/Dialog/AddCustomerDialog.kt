@@ -82,6 +82,7 @@ class AddCustomerDialog(context: Context,
                 SharedPref.writeResInf(Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
                     binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString()))
                 Toasty.success(context,"Restaurant Information Saved Successfully",Toasty.LENGTH_SHORT).show()
+                dismiss()
             }
         }
     }

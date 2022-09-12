@@ -11,12 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.OngoingAdapter
-import com.bdtask.restoraposroomdbtab.Dialog.CPaymentDialog
+import com.bdtask.restoraposroomdbtab.Dialog.PaymentDialog
 import com.bdtask.restoraposroomdbtab.Dialog.InvoiceViewDialog
 import com.bdtask.restoraposroomdbtab.Dialog.TokenDialog
 import com.bdtask.restoraposroomdbtab.Interface.OngoingClickListener
 import com.bdtask.restoraposroomdbtab.Interface.TokenClickListener
-import com.bdtask.restoraposroomdbtab.MainActivity
 import com.bdtask.restoraposroomdbtab.MainActivity.Companion.database
 import com.bdtask.restoraposroomdbtab.Model.CsInf
 import com.bdtask.restoraposroomdbtab.Model.Pay
@@ -122,7 +121,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
         oBinding.completeBtn.setOnClickListener {
             sharedPref.writeOrder(ongList[oPos])
-            val dialog = CPaymentDialog(requireContext())
+            val dialog = PaymentDialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels

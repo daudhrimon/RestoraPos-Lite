@@ -228,7 +228,7 @@ class SplitOrderDialog(context: Context,
 
             if (spFoodCount == 0){
 
-                val dialog = PaymentDialog(context,1,
+                val dialog = SplitPaymentDialog(context,1,
                     Order(
                         0, 0, 0, 0, "", "", 0.0, 0.0, 0.0, 0.0,
                         sharedPref.readOperator() ?: "",

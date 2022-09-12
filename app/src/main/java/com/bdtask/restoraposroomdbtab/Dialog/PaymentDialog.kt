@@ -1,99 +1,198 @@
 package com.bdtask.restoraposroomdbtab.Dialog
 
 import android.app.Dialog
+import android.bluetooth.BluetoothAdapter
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bdtask.restoraposroomdbtab.Adapter.PaymentAdapter
+import com.bdtask.restoraposroomdbtab.MainActivity
+import com.bdtask.restoraposroomdbtab.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposroomdbtab.Model.Pay
+import com.bdtask.restoraposroomdbtab.Printer.PrinterUtil.SunmiPrintHelper
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.Room.Entity.Order
-import com.bdtask.restoraposroomdbtab.Room.Entity.Split
 import com.bdtask.restoraposroomdbtab.Util.SharedPref
+import com.bdtask.restoraposroomdbtab.Util.Util
 import com.bdtask.restoraposroomdbtab.databinding.DialogPaymentBinding
-import kotlin.properties.Delegates
+import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class PaymentDialog( context: Context,
-                     private val mode: Int,
-                     private val order: Order,
-                     private val split: Split ): Dialog(context) {
+class PaymentDialog (context: Context): Dialog(context) {
 
-    private lateinit var binding: DialogPaymentBinding
+    private lateinit var dBinding: DialogPaymentBinding
+    private lateinit var order: Order
     private val disTypes = arrayOf("Amount", "Percentage (%)")
-    private var paymentList = mutableListOf<Pay>()
-    private var disType by Delegates.notNull<Int>()
-    private var discount = 0.0
     private val sharedPref = SharedPref
     private var payments = mutableListOf<String>()
     private var terminals = mutableListOf<String>()
     private var banks = mutableListOf<String>()
     private var totalAmount = 0.0
-    private var totalDue = 0.0
-    private var payableAmount = 0.0
-    private var returnable = 0.0
+    private var disType = 0
+    private lateinit var printHelper: SunmiPrintHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DialogPaymentBinding.bind(layoutInflater.inflate(R.layout.dialog_payment,null))
-        setContentView(binding.root)
         sharedPref.init(context)
+        order = sharedPref.readOrder()!!
+        super.onCreate(savedInstanceState)
+        dBinding = DialogPaymentBinding.bind(layoutInflater.inflate(R.layout.dialog_payment,null))
+        setContentView(dBinding.root)
+
+        getTotalPrice()
 
         setPaymentHeaders()
 
-        binding.spinDisType.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,disTypes)
+        dBinding.spinDisType.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,disTypes)
 
-        binding.spinDisType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        dBinding.spinDisType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, sPos: Int, p3: Long) {
                 disType = sPos
+                setPaymentHeaders()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
         }
 
-        binding.closeBtn.setOnClickListener {
+        dBinding.closeBtn.setOnClickListener {
             dismiss()
         }
 
-        binding.addDisBtn.setOnClickListener {
-            binding.addDisBtn.visibility = View.GONE
-            binding.distLay.visibility = View.VISIBLE
+        dBinding.addDisBtn.setOnClickListener {
+            dBinding.addDisBtn.visibility = View.GONE
+            dBinding.distLay.visibility = View.VISIBLE
         }
 
-        binding.paymentBtn.setOnClickListener {
-            if (binding.discountEt.text.toString().isNotEmpty()){
-                discount = binding.discountEt.text.toString().toDouble()
+        dBinding.discountEt.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {/**/}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                setPaymentHeaders()
             }
-            binding.addDisBtn.visibility = View.GONE
-            binding.distLay.visibility = View.GONE
-            binding.paymentBtn.visibility = View.GONE
-            binding.payPrintBtn.visibility = View.VISIBLE
-            paymentList.add(Pay(0,"","","",0.0))
+            override fun afterTextChanged(p0: Editable?) {/**/}
+        })
+
+        dBinding.paymentBtn.setOnClickListener {
+            dBinding.addDisBtn.visibility = View.GONE
+            dBinding.distLay.visibility = View.GONE
+            dBinding.paymentBtn.visibility = View.GONE
+            dBinding.payPrintBtn.visibility = View.VISIBLE
+            order.pay.add(Pay(0,"","","",0.0))
             setPaymentAdapter()
+            Util.hideSoftKeyBoard(context,dBinding.root)
         }
 
-        binding.payPrintBtn.setOnClickListener {
-
+        dBinding.addAnotherPay.setOnClickListener {
+            order.pay.add(Pay(0,"","","",0.0))
+            setPaymentAdapter()
+            Util.hideSoftKeyBoard(context,dBinding.root)
         }
 
+        dBinding.payPrintBtn.setOnClickListener {
+            val payable = dBinding.payableAmount.text.toString().toDouble()
+            if (payable == 0.0){
+
+                if (order.sts == 0){
+                    order.sts = 1
+
+                    GlobalScope.launch(Dispatchers.IO) {
+
+                        MainActivity.database.orderDao().updateOrder(order)
+
+                        withContext(Dispatchers.Main){
+
+                            sharedPref.writeOrder(order)
+
+                            Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
+
+                            printInvoice()
+                        }
+                    }
+                } else {
+
+                    GlobalScope.launch(Dispatchers.IO){
+
+                        val orderId = MainActivity.database.orderDao().insertOrder(order)
+
+                        withContext(Dispatchers.Main){
+                            if (orderId != null && orderId.toString().isNotEmpty()) {
+
+                                order.id = orderId
+
+                                sharedPref.writeOrder(order)
+
+                                Toasty.success(context, "Placed Order $orderId Successfully",Toasty.LENGTH_SHORT,true).show()
+
+                                printInvoice()
+                            }
+                        }
+                    }
+                }
+            } else {
+                Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
+            }
+        }
+
+        /// printer init ///
+        //initPrinter()
+    }
+
+    private fun printInvoice(){
+        val dialog = InvoiceViewDialog(context,1)
+        dialog.show()
+        val width = context.resources.displayMetrics.widthPixels
+        val height = context.resources.displayMetrics.heightPixels
+        val win = dialog.window
+        win!!.setLayout((14 * width)/15,(24 * height)/25)
+        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dismiss()
+    }
+
+    private fun getTotalPrice() {
+        // getting total Amount
+        for (i in order.cart.indices) {
+            order.tPrc += order.cart[i].tUPrc
+        }
+        val vat = (order.tPrc * order.vat) / 100
+        val crg = (order.tPrc * order.crg) / 100
+        totalAmount = order.tPrc + vat + crg
+        dBinding.totalAmount.text = totalAmount.toString()
+
+        dBinding.totalAmountCr.text = " $appCurrency"
+        dBinding.totalDueCr.text = " $appCurrency"
+        dBinding.payableAmountCr.text = " $appCurrency"
+        dBinding.changeDueCr.text = " $appCurrency"
     }
 
     private fun setPaymentHeaders() {
-        when(mode){
-            0 -> {
-                order.crg = 0.0
-                // Complete Order
-                for (i in order.cart.indices){
-                    totalAmount += order.cart[i].tUPrc
-                }
-                order.vat = 0.0
-                totalAmount += totalAmount + order.crg + order.vat
-                binding.totalAmount.text = totalAmount.toString()
-            }
-            1 -> {
-                // Split Order
-            }
+        var totalDue = 0.0
+        var discount = 0.0
+
+        // get discount
+        discount = if (dBinding.discountEt.text.toString().isNotEmpty()){
+            dBinding.discountEt.text.toString().toDouble()
+        } else {
+            0.0
         }
+
+        // discount amount or percent calculation
+        if (disType == 1) {
+            discount *= (totalAmount / 100)
+            order.dis = discount
+            totalDue = totalAmount - discount
+        } else {
+            order.dis = discount
+            totalDue = totalAmount - discount
+        }
+
+        dBinding.totalDue.text = totalDue.toString()
+        dBinding.payableAmount.text = totalDue.toString()
     }
 
     private fun setPaymentAdapter() {
@@ -107,6 +206,16 @@ class PaymentDialog( context: Context,
             banks = sharedPref.readBankList()!!
         }
 
-        //binding.paymentRV.adapter = PaymentAdapter(context, paymentList, payments, terminals, banks)
+        dBinding.paymentRV.adapter = PaymentAdapter(context, order.pay, payments, terminals, banks,
+            dBinding.totalDue,dBinding.payableAmount,dBinding.changeDue,dBinding.addAnotherPay)
+    }
+
+    // init Printer
+    private fun initPrinter() {
+        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
+            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
+            printHelper = SunmiPrintHelper.getInstance()
+            printHelper.initSunmiPrinterService(context)
+        }
     }
 }

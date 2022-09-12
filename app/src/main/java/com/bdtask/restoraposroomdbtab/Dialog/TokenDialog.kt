@@ -184,7 +184,6 @@ class TokenDialog(context: Context,
     // token loop Data
     private fun tokenLoopData(list: MutableList<Cart>): String {
         var items = ""
-        var adOnPrice = 0.0
         for (i in list.indices) {
             items = "$items[L]<b>${list[i].title}</b>\n"+
                     "[L]x${list[i].fQnty} [R]<b>${list[i].vari}</b>\n"
@@ -192,7 +191,6 @@ class TokenDialog(context: Context,
             if (list[i].adns.size > 0) {
                 val addonsList = list[i].adns
                 for (k in addonsList.indices) {
-                    adOnPrice = addonsList[k].adnPrc.toDouble() * addonsList[k].adnQnty
                     items = "$items[L]${addonsList[k].adnNm}x${addonsList[k].adnQnty}\n"
                 }
             }

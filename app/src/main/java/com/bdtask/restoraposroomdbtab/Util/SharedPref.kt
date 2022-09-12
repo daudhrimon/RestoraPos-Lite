@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken
 object SharedPref {
     ///val SHARED_PREF_MAIN = "shared_preference_main"
     private var mSharedPref: SharedPreferences? = null
-    val NAME = "com.bdtask.POS"
+    val NAME = "com.bdtask.pos"
 
     private fun SharedPref() {}
 
@@ -34,24 +34,24 @@ object SharedPref {
 
     fun writeCart(cartList: MutableList<Cart>) {
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("cartList", Gson().toJson(cartList))
+        prefsEditor.putString("carts", Gson().toJson(cartList))
         prefsEditor.apply()
     }
 
     fun readCart() : MutableList<Cart>? {
         val type = object : TypeToken<MutableList<Cart?>?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("cartList", emptyList<Cart>().toString()), type)
+        return Gson().fromJson(mSharedPref!!.getString("carts", emptyList<Cart>().toString()), type)
     }
 
     fun writeOrderInfo(odrInf: OdrInf) {
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("orderInfo", Gson().toJson(odrInf))
+        prefsEditor.putString("orderInf", Gson().toJson(odrInf))
         prefsEditor.apply()
     }
 
     fun readOrderInfo(): OdrInf? {
         val type = object : TypeToken<OdrInf?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("orderInfo", ""), type)
+        return Gson().fromJson(mSharedPref!!.getString("orderInf", ""), type)
     }
 
     fun setSharedToken(token: Long) {
@@ -89,13 +89,13 @@ object SharedPref {
 
     fun writeTerminalList(bank: MutableList<String>?){
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("terminal", Gson().toJson(bank))
+        prefsEditor.putString("term", Gson().toJson(bank))
         prefsEditor.apply()
     }
 
     fun readTerminalList(): MutableList<String>? {
         val type = object : TypeToken<MutableList<String>?>() {}.type
-        return Gson().fromJson(mSharedPref!!.getString("terminal", ""), type)
+        return Gson().fromJson(mSharedPref!!.getString("term", ""), type)
     }
 
     fun writePayList(bank: MutableList<String>?){
@@ -141,12 +141,12 @@ object SharedPref {
 
     fun writeOperator(ope: String){
         val prefsEditor = mSharedPref!!.edit()
-        prefsEditor.putString("OP",ope)
+        prefsEditor.putString("ope",ope)
         prefsEditor.apply()
     }
 
     fun readOperator(): String? {
-        return mSharedPref!!.getString("OP", "") ?: ""
+        return mSharedPref!!.getString("ope", "") ?: ""
     }
 
     fun writeResInf(info: Cstmr) {
