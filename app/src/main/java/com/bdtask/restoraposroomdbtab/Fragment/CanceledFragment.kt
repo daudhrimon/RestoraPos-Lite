@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderAdapter
@@ -59,6 +60,29 @@ class CanceledFragment : Fragment() {
                 cBinding.emptyOrder.visibility = View.VISIBLE
             }
         })
+
+
+
+
+        cBinding.searchEt.doOnTextChanged { text, start, before, count ->
+            val srsList = mutableListOf<Order>()
+            if (text.toString() != "" && text.toString().isNotEmpty()){
+                srsList.clear()
+                for (i in canList.indices){
+                    if (canList[i].id.toString().contains(text.toString()) ||
+                        canList[i].tkn.contains(text.toString()) ||
+                            canList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
+                        canList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
+                        canList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
+
+                        srsList.add(canList[i])
+                    }
+                }
+                cBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
+            } else {
+                cBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),canList)
+            }
+        }
 
         return cBinding.root
     }

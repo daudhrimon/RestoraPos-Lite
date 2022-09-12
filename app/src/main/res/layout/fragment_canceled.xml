@@ -56,7 +56,7 @@
             android:drawablePadding="6dp"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="center_vertical"
-            android:hint=" Search By Order or Table"
+            android:hint=" Search Order Here"
             android:padding="10dp"
             android:textColor="#000"
             android:textColorHint="@color/hintColor"

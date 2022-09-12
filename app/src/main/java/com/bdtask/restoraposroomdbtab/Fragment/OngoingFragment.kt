@@ -114,21 +114,60 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         }
 
 
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        oBinding.completeBtn.setOnClickListener {
+            val operator = sharedPref.readOperator() ?: ""
+            if (operator.isNotEmpty()){
+
+                sharedPref.writeOrder(ongList[oPos])
+                val dialog = PaymentDialog(requireContext())
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.show()
+                val width = resources.displayMetrics.widthPixels
+                val height = resources.displayMetrics.heightPixels
+                val win = dialog.window
+                win!!.setLayout((9 * width)/10,(14 * height)/15)
+                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            } else {
+                Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
+            }
+
+        }
+
+
+
+        oBinding.editBtn.setOnClickListener {
+            sharedPref.writeEMode(1)
+            sharedPref.writeOrder(ongList[oPos])
+            findNavController().navigate(R.id.ongFrag2homeFrag)
+        }
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+        oBinding.tokenBtn.setOnClickListener {
+            TokenDialog(requireContext(),ongList[oPos].tkn,ongList[oPos].id,
+                ongList[oPos].cart,ongList[oPos].odrInf,this).show()
+        }
 
-        oBinding.completeBtn.setOnClickListener {
-            sharedPref.writeOrder(ongList[oPos])
-            val dialog = PaymentDialog(requireContext())
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.show()
-            val width = resources.displayMetrics.widthPixels
-            val height = resources.displayMetrics.heightPixels
-            val win = dialog.window
-            win!!.setLayout((9 * width)/10,(14 * height)/15)
-            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+        oBinding.duePosBtn.setOnClickListener {
+            val operator = sharedPref.readOperator() ?: ""
+            if (operator.isNotEmpty()){
+
+                sharedPref.writeOrder(ongList[oPos])
+                val dialog = InvoiceViewDialog(requireContext(),0)
+                dialog.show()
+                val width = resources.displayMetrics.widthPixels
+                val height = resources.displayMetrics.heightPixels
+                val win = dialog.window
+                win!!.setLayout((14 * width)/15,(24 * height)/25)
+                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            } else {
+                Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
+            }
         }
 
 
@@ -218,44 +257,6 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             win!!.setLayout((14 * width)/15,(24 * height)/25)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }*/
-
-        oBinding.editBtn.setOnClickListener {
-            sharedPref.writeEMode(1)
-            sharedPref.writeOrder(ongList[oPos])
-            findNavController().navigate(R.id.ongFrag2homeFrag)
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        // getting  customer name live and setting to spinner live
-        database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
-            cusNameList.clear()
-            for (i in it.indices){
-                cusNameList.add(it[i].nm)
-                cusInfoList.add(CsInf(it[i].nm, it[i].adrs, it[i].mbl))
-            }
-        })
-
-
-
-        oBinding.tokenBtn.setOnClickListener {
-            TokenDialog(requireContext(),ongList[oPos].tkn,ongList[oPos].id,
-                ongList[oPos].cart,ongList[oPos].odrInf,this).show()
-        }
-
-
-
-        oBinding.duePosBtn.setOnClickListener {
-            sharedPref.writeOrder(ongList[oPos])
-            val dialog = InvoiceViewDialog(requireContext(),0)
-            dialog.show()
-            val width = resources.displayMetrics.widthPixels
-            val height = resources.displayMetrics.heightPixels
-            val win = dialog.window
-            win!!.setLayout((14 * width)/15,(24 * height)/25)
-            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }
 
 
 

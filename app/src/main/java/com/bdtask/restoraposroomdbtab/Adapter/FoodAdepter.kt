@@ -11,12 +11,10 @@ import com.bdtask.restoraposroomdbtab.Room.Entity.Food
 import com.bdtask.restoraposroomdbtab.R
 import com.bdtask.restoraposroomdbtab.databinding.VhFoodItemBinding
 
-class FoodAdepter(
-    private val context: Context,
-    private var foodList: MutableList<Food>,
-    private val searchEt: EditText,
-    private var foodClickListener: FoodClickListener
-) : RecyclerView.Adapter<FoodAdepter.FoodVHH>() {
+class FoodAdepter(private val context: Context,
+                  private var foodList: List<Food>,
+                  private val searchEt: EditText,
+                  private var foodClickListener: FoodClickListener) : RecyclerView.Adapter<FoodAdepter.FoodVHH>() {
 
     inner class FoodVHH(binding: VhFoodItemBinding): RecyclerView.ViewHolder(binding.root) {
         var binding = binding

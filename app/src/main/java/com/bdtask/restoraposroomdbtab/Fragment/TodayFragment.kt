@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposroomdbtab.Adapter.ViewOrderAdapter
@@ -66,6 +67,27 @@ class TodayFragment() : Fragment() {
             })
 
 
+
+
+        tBinding.searchEt.doOnTextChanged { text, start, before, count ->
+            val srsList = mutableListOf<Order>()
+            if (text.toString() != "" && text.toString().isNotEmpty()){
+                srsList.clear()
+                for (i in todayList.indices){
+                    if (todayList[i].id.toString().contains(text.toString()) ||
+                        todayList[i].tkn.contains(text.toString()) ||
+                        todayList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
+                        todayList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
+                        todayList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
+
+                        srsList.add(todayList[i])
+                    }
+                }
+                tBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
+            } else {
+                tBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),todayList)
+            }
+        }
 
         return tBinding.root
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="POS Admin Panel">
+    <item android:title="POS Lite Admin Panel">
         <menu>
             <item
                 android:id="@+id/addFoodD"
@@ -29,12 +29,12 @@
 
             <item
                 android:id="@+id/setInf"
-                android:icon="@drawable/ic_currency"
+                android:icon="@drawable/ic_res_inf"
                 android:title="Set Restaurant Info"/>
 
             <item
                 android:id="@+id/setLogo"
-                android:icon="@drawable/ic_currency"
+                android:icon="@drawable/ic_add_logo"
                 android:title="Set POS Logo"/>
 
             <item

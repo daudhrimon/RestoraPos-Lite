@@ -30,7 +30,7 @@ class MainActivity: AppCompatActivity() {
         lateinit var drawerLayout:DrawerLayout
         lateinit var navDrawer: NavigationView
         lateinit var database: PosDatabase
-        var foodList = mutableListOf<Food>()
+        var foodList = listOf<Food>()
         var appCurrency = "$"
     }
 
@@ -52,8 +52,7 @@ class MainActivity: AppCompatActivity() {
 
 
         database.foodDao().getAllFood().observe(this, Observer{
-            foodList.clear()
-            foodList = it.toMutableList()
+            foodList = it
         })
 
 
