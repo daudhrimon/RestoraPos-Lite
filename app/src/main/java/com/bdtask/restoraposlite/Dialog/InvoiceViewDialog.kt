@@ -14,6 +14,7 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogInvoiceViewBinding
 import com.bumptech.glide.Glide
+import es.dmoral.toasty.Toasty
 
 class InvoiceViewDialog(context: Context, private val state: Int): Dialog(context) {
 
@@ -41,9 +42,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
 
-        if (resInf != null) {
-            binding.address.text = "${resInf!!.nm}\n ${resInf!!.adrs}\n ${resInf!!.mbl}\n ${resInf!!.eml}"
-        }
+        binding.address.text = "${resInf?.nm ?: "RestoraPOS Lite"}\n${resInf?.adrs ?: "Mannan Plaza, Khilkhet, Dhaka-1215"}\n${resInf?.eml ?: "Email: bdtask@gmail.com"}\n${resInf?.mbl  ?: "Mobile: 0123456789"}"
 
         if (state == 0){
             if (order.cart.isNotEmpty()){
@@ -94,11 +93,15 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         binding.orderId.text = order.id.toString()
 
+
+
         binding.printBtn.setOnClickListener {
-
-            InvoicePrintDialog(context,order, posLogo!!,resInf).show()
-
-            dismiss()
+            if (posLogo != null) {
+                InvoicePrintDialog(context,order,posLogo!!,resInf).show()
+                dismiss()
+            } else {
+                Toasty.warning(context,"You Can't Print invoice Without POS Logo",Toasty.LENGTH_SHORT).show()
+            }
         }
     }
 

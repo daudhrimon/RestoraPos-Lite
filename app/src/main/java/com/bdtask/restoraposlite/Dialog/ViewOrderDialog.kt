@@ -36,9 +36,9 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
 
         Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
 
-        if (resInf != null) {
-            binding.addressTv.text = "${resInf!!.nm}\n ${resInf!!.adrs}\n ${resInf!!.mbl}\n ${resInf!!.eml}"
-        }
+
+        binding.addressTv.text = "${resInf?.nm ?: "RestoraPOS Lite"}\n${resInf?.adrs ?: "Mannan Plaza, Khilkhet, Dhaka-1215"}\n${resInf?.eml ?: "Email: bdtask@gmail.com"}\n${resInf?.mbl  ?: "Mobile: 0123456789"}"
+
 
         binding.closeBtn.setOnClickListener {
             dismiss()

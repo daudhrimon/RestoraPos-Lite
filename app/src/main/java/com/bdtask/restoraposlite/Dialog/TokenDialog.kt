@@ -22,6 +22,7 @@ import com.dantsu.escposprinter.exceptions.EscPosConnectionException
 import com.dantsu.escposprinter.exceptions.EscPosEncodingException
 import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.sunmi.peripheral.printer.SunmiPrinterService
+import es.dmoral.toasty.Toasty
 
 class TokenDialog(context: Context,
                   private val token: String,
@@ -38,14 +39,20 @@ class TokenDialog(context: Context,
         confirmText = "Yes"
         cancelText = "No"
 
-        initPrinter()
-
         setCancelClickListener {
             tokenClickListener.onTokenButtonsClick(this)
         }
 
         setConfirmClickListener {
+
+            tokenClickListener.onTokenButtonsClick(this)
+
             if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
+
+                SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
+                printHelper = SunmiPrintHelper.getInstance()
+                printHelper.initSunmiPrinterService(context)
+
                 val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
 
                 //Sunmi Printer
@@ -134,8 +141,6 @@ class TokenDialog(context: Context,
 
                 SunmiPrintHelper.getInstance().feedPaper()
 
-                tokenClickListener.onTokenButtonsClick(this)
-
             } else {
 
                 // Print By Bluetooth
@@ -175,8 +180,6 @@ class TokenDialog(context: Context,
                         e.printStackTrace()
                     }
                 }
-
-                tokenClickListener.onTokenButtonsClick(this)
             }
         }
     }
@@ -200,15 +203,5 @@ class TokenDialog(context: Context,
             }
         }
         return items
-    }
-
-
-    // init Printer
-    private fun initPrinter() {
-        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
-            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
-            printHelper = SunmiPrintHelper.getInstance()
-            printHelper.initSunmiPrinterService(context)
-        }
     }
 }

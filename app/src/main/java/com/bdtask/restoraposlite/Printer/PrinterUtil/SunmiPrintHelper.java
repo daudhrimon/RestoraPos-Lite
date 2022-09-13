@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.bdtask.restoraposlite.R;
 import com.sunmi.peripheral.printer.ExceptionConst;
 import com.sunmi.peripheral.printer.InnerLcdCallback;

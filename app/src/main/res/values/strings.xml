@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Restora POS Lite</string>
 
-    <string name="address">Mannan Plaza, Khilkhet,\nDhaka-1215.\nMobile: 0123456789\nEmail: bdtask@gmail.com</string>
     <!--instruction-->
     <string name="toast_1">Transaction print,use the AIDL mode!</string>
     <string name="toast_2">The service has been disconnected!</string>

@@ -2,6 +2,7 @@ package com.bdtask.restoraposlite.Dialog
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothAdapter.getDefaultAdapter
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -34,6 +35,7 @@ import com.dantsu.escposprinter.exceptions.EscPosEncodingException
 import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.dantsu.escposprinter.textparser.PrinterTextParserImg
 import com.sunmi.peripheral.printer.SunmiPrinterService
+import es.dmoral.toasty.Toasty
 
 class InvoicePrintDialog(context: Context,
                          private var order: Order,
@@ -41,7 +43,6 @@ class InvoicePrintDialog(context: Context,
                          private val resInf: Cstmr?) : SweetAlertDialog(context, SUCCESS_TYPE) {
 
     private lateinit var printHelper: SunmiPrintHelper
-    private val sharedPref = SharedPref
     private var vat = 0.0
     private var crg = 0.0
     private var grandTotal = 0.0
@@ -52,11 +53,6 @@ class InvoicePrintDialog(context: Context,
         titleText = "Do You Want To Print Invoice ?"
         cancelText = "No"
         confirmText = "Yes"
-        sharedPref.init(context)
-
-
-
-        initPrinter()
 
         vat = (order.tPrc*order.vat)/100
         crg = (order.tPrc*order.crg)/100
@@ -66,21 +62,22 @@ class InvoicePrintDialog(context: Context,
 
         setCancelClickListener {
             dismissWithAnimation()
-            dismiss()
         }
 
         setConfirmClickListener {
+
             dismissWithAnimation()
-            dismiss()
+
             Glide.with(context)
                 .asBitmap()
-                .placeholder(R.drawable.poslogo)
                 .load(posLogo)
                 .into(object : CustomTarget<Bitmap>() {
-
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
 
-                        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
+                        if (Util.getPrinterDevice(getDefaultAdapter()) == true) {
+                            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
+                            printHelper = SunmiPrintHelper.getInstance()
+                            printHelper.initSunmiPrinterService(context)
 
                             val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
 
@@ -229,14 +226,18 @@ class InvoicePrintDialog(context: Context,
                                 "Powered by\nRestora POS\n", 22f, false, false,
                                 null
                             )
+
                             SunmiPrintHelper.getInstance().feedPaper()
-                        }
-                        else {
+
+                        } else {
+
                             // Print By Bluetooth
                             if (ContextCompat.checkSelfPermission(context.applicationContext, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
                                 ActivityCompat.requestPermissions(ownerActivity!!.parent, arrayOf(Manifest.permission.BLUETOOTH),1)
-                            }
-                            else {
+                            } else {
+
+                                //ESCPOS-ThermalPrinter
+
                                 var printer: EscPosPrinter? = null
 
                                 try {
@@ -252,12 +253,12 @@ class InvoicePrintDialog(context: Context,
                                         "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer,resource)
                                                 + "</img>\n" +
                                                 "[L]\n" +
-                                                "[C]Mannan Plaza,Khilkhet,Dhaka-1215\n" +
-                                                "[C]Mobile: 0123456789\n" +
-                                                "[C]Email: bdtask@gmail.com\n" +
+                                                "[C]${resInf?.nm ?: "RestoraPOS Lite"}\n" +
+                                                "[C]${resInf?.adrs ?: "MannanPlaza,Khilkhet,Dhaka-1215"}\n" +
+                                                "[C]Email: ${resInf?.eml ?: "bdtask@gmail.com"}\n" +
+                                                "[C]Mobile: ${resInf?.mbl ?: "0123456789"}\n" +
                                                 "[L]\n" +
-                                                "[L]Date: ${order.dat}\n" +
-                                                "[L]\n" +
+                                                "[C]Date: ${order.dat}\n" +
                                                 "[L]Order: ${order.id}" + "[R]Table: ${order.odrInf.tbl}\n" +
                                                 "[C]================================\n" +
                                                 loopData(order.cart)+
@@ -341,14 +342,5 @@ class InvoicePrintDialog(context: Context,
             }
         }
         return items
-    }
-
-    // init Printer
-    private fun initPrinter() {
-        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
-            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
-            printHelper = SunmiPrintHelper.getInstance()
-            printHelper.initSunmiPrinterService(context)
-        }
     }
 }

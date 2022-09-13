@@ -37,52 +37,44 @@
                     android:layout_marginTop="6dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
-                    android:text="@string/address"
                     android:textColor="#000"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/dateHeading"
+                <LinearLayout
+                    android:id="@+id/dateLay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/address"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
-                    android:fontFamily="@font/helvetica_neue"
-                    android:text="Date : "
-                    android:textColor="#000"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_below="@+id/address"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_toEndOf="@+id/dateHeading"
-                    android:fontFamily="@font/helvetica_neue"
-                    android:text="15/6/2021 "
-                    android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:layout_centerHorizontal="true">
 
-                <ImageView
-                    android:id="@+id/view1"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_below="@+id/date"
-                    android:layout_margin="10dp"
-                    android:layerType="software"
-                    android:src="@drawable/dotted_line" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/helvetica_neue"
+                        android:text="Date : "
+                        android:textColor="#000"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/helvetica_neue"
+                        android:text="15/6/2021 "
+                        android:textColor="#000"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/itemLayout"
+                    android:id="@+id/itemLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/view1"
+                    android:layout_below="@+id/dateLay"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="12dp"
                     android:layout_weight="4"
                     android:orientation="horizontal">
 
@@ -112,14 +104,24 @@
 
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/itemLay"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layerType="software"
+                    android:src="@drawable/dotted_line" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/foodRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/itemLayout"
+                    android:layout_below="@+id/view1"
                     android:overScrollMode="never"
                     android:scrollbars="none"
-                    android:layout_marginTop="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 <TextView

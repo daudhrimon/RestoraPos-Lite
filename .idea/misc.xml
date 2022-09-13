@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_invoice_view.xml" value="0.371875" />
+        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_view_order.xml" value="0.2861111111111111" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_invoice_view.xml" value="0.371875" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_payment.xml" value="0.33" />
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_view_order.xml" value="0.371875" />
