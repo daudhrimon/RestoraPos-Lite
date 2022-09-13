@@ -50,11 +50,7 @@
             app:destination="@id/canceledFragment" />
         <action
             android:id="@+id/homeFrag2aboutUs"
-            app:destination="@id/aboutUsFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/exit"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_exit"/>
+            app:destination="@id/aboutUsFragment" />
     </fragment>
     <fragment
         android:id="@+id/ongoingFragment"
