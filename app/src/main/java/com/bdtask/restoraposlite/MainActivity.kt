@@ -30,7 +30,7 @@ class MainActivity: AppCompatActivity() {
         lateinit var drawerLayout:DrawerLayout
         lateinit var navDrawer: NavigationView
         lateinit var database: PosDatabase
-        var foodList = listOf<Food>()
+        var foodList = mutableListOf<Food>()
         var appCurrency = "$"
     }
 
@@ -39,22 +39,18 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
         drawerLayout = findViewById(R.id.drawerLayout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         navDrawer = findViewById(R.id.navDrawer)
-
 
 
         // getting instance of ROOM database
         database = PosDatabase.getDatabaseInstance(this)
 
 
-
         database.foodDao().getAllFood().observe(this, Observer{
-            foodList = it
+            foodList = it.toMutableList()
         })
-
 
 
         // Nav Drawer Controller
@@ -160,6 +156,7 @@ class MainActivity: AppCompatActivity() {
             return@setNavigationItemSelectedListener true
         }
     }
+
 
     // image picker RESULT
     private val startForProfileImageResult =

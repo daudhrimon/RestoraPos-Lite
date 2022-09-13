@@ -1,7 +1,7 @@
 package com.bdtask.restoraposlite.Interface
 
-import com.bdtask.restoraposlite.Dialog.TokenDialog
+import com.bdtask.restoraposlite.Dialog.TokenPrintDialog
 
 interface TokenClickListener {
-    fun onTokenButtonsClick(tokenDialog: TokenDialog)
+    fun onTokenButtonsClick(tokenPrintDialog: TokenPrintDialog)
 }

@@ -3,7 +3,6 @@ package com.bdtask.restoraposlite.Adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.Interface.FoodClickListener
@@ -13,7 +12,6 @@ import com.bdtask.restoraposlite.databinding.VhFoodItemBinding
 
 class FoodAdepter(private val context: Context,
                   private var foodList: List<Food>,
-                  private val searchEt: EditText,
                   private var foodClickListener: FoodClickListener) : RecyclerView.Adapter<FoodAdepter.FoodVHH>() {
 
     inner class FoodVHH(binding: VhFoodItemBinding): RecyclerView.ViewHolder(binding.root) {
@@ -43,7 +41,7 @@ class FoodAdepter(private val context: Context,
 
         holder.itemView.setOnLongClickListener{
 
-            foodClickListener.onFoodLongClick(foodList[position])
+            foodClickListener.onFoodLongClick(foodList[position],foodClickListener)
 
             return@setOnLongClickListener true
         }

@@ -609,7 +609,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text="Vat (%)"
+                                        android:text="Vat/Tax"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 

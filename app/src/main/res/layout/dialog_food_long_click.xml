@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     app:cardCornerRadius="@dimen/_10sdp">
 
@@ -11,43 +12,57 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
+        <ImageView
+            android:id="@+id/crossBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/selector_cross_btn"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_close"
+            android:visibility="invisible"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
         <TextView
-            android:id="@+id/noteEt"
+            android:id="@+id/msgTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginEnd="@dimen/_36sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
             android:fontFamily="@font/helvetica_neue"
             android:padding="@dimen/_10sdp"
-            android:text="Do you want to Edit this Food ?"
+            android:text="What do you want to do with this Food ?"
             android:textColor="@color/color_red"
             android:textSize="@dimen/_13sdp" />
 
         <Button
-            android:id="@+id/yesBtn"
+            android:id="@+id/editBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/noteEt"
+            android:layout_below="@+id/msgTv"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="@dimen/_10sdp"
             android:backgroundTint="@color/theme_color"
             android:fontFamily="@font/helvetica_neue"
-            android:text="Yes"
+            android:text="Edit"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/noBtn"
+            android:id="@+id/dltBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/noteEt"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_toStartOf="@id/yesBtn"
+            android:layout_below="@+id/msgTv"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_toStartOf="@id/editBtn"
             android:backgroundTint="#C60000"
             android:fontFamily="@font/helvetica_neue"
-            android:text="No"
+            android:text="Delete"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 

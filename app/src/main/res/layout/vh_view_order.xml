@@ -250,39 +250,11 @@
                             android:background="#313631"
                             android:orientation="horizontal">
 
-                            <!--<Button
-                                android:id="@+id/cancelBtn"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
-                                android:backgroundTint="#C60000"
-                                android:fontFamily="@font/helvetica_neue"
-                                android:text="Cancel"
-                                android:textAlignment="center"
-                                android:textAllCaps="false"
-                                android:textColor="#fff"
-                                android:textSize="12sp"
-                                tools:ignore="RtlCompat" />-->
-
-                            <!--<Button
-                                android:id="@+id/editBtn"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
-                                android:backgroundTint="#0B5B81"
-                                android:fontFamily="@font/helvetica_neue"
-                                android:text="Edit"
-                                android:textAlignment="center"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="12sp"
-                                tools:ignore="RtlCompat" />-->
-
                             <Button
                                 android:id="@+id/printBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
+                                android:layout_marginHorizontal="4dp"
                                 android:backgroundTint="#02B1BF"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:text="Print"
@@ -296,7 +268,7 @@
                                 android:id="@+id/viewBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
+                                android:layout_marginHorizontal="4dp"
                                 android:backgroundTint="#FFBC00"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:text="View"
@@ -310,7 +282,7 @@
                                 android:id="@+id/undoBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
+                                android:layout_marginHorizontal="4dp"
                                 android:backgroundTint="#139A03"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:text="Undo"
@@ -321,25 +293,14 @@
                                 tools:ignore="RtlCompat"
                                 android:visibility="gone"/>
 
-                            <!--<Button
-                                android:id="@+id/paymentBtn"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="3dp"
-                                android:backgroundTint="#C43F04"
-                                android:fontFamily="@font/helvetica_neue"
-                                android:text="Payment"
-                                android:textAlignment="center"
-                                android:textAllCaps="false"
-                                android:textColor="#fff"
-                                android:textSize="12sp"
-                                tools:ignore="RtlCompat" />-->
-
-
                         </LinearLayout>
+
                     </LinearLayout>
+
                 </HorizontalScrollView>
+
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

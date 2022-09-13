@@ -28,7 +28,7 @@ class CategoryAdapter( private val context: Context,
     }
 
     override fun onBindViewHolder(holder: CategoryVH, position: Int) {
-        tempFoList = foodList
+        tempFoList = foodList.toList()
 
         if (position == 0){
 
@@ -62,7 +62,7 @@ class CategoryAdapter( private val context: Context,
                     holder.binding.emptyBox.visibility = View.GONE
                     holder.binding.foodRecycler.visibility = View.VISIBLE
                     holder.itemView.setBackgroundColor(getColor(context,R.color.disableColor))
-                    holder.binding.foodRecycler.adapter = FoodAdepter(context,srsList,searchEt,foodClickListener)
+                    holder.binding.foodRecycler.adapter = FoodAdepter(context,srsList,foodClickListener)
                 } else {
                     holder.binding.foodRecycler.visibility = View.GONE
                     holder.binding.emptyBox.visibility = View.VISIBLE
@@ -80,7 +80,7 @@ class CategoryAdapter( private val context: Context,
         if (tempFoList.isNotEmpty()){
             holder.binding.emptyBox.visibility = View.GONE
             holder.binding.foodRecycler.visibility = View.VISIBLE
-            holder.binding.foodRecycler.adapter = FoodAdepter(context,tempFoList,searchEt,foodClickListener)
+            holder.binding.foodRecycler.adapter = FoodAdepter(context,tempFoList,foodClickListener)
         }else{
             holder.binding.foodRecycler.visibility = View.GONE
             holder.binding.emptyBox.visibility = View.VISIBLE

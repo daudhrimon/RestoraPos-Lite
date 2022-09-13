@@ -54,6 +54,8 @@ class InvoicePrintDialog(context: Context,
         cancelText = "No"
         confirmText = "Yes"
 
+        initPrinter()
+
         vat = (order.tPrc*order.vat)/100
         crg = (order.tPrc*order.crg)/100
         customerPay = getCustomerPay(order.pay)
@@ -75,9 +77,6 @@ class InvoicePrintDialog(context: Context,
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
 
                         if (Util.getPrinterDevice(getDefaultAdapter()) == true) {
-                            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
-                            printHelper = SunmiPrintHelper.getInstance()
-                            printHelper.initSunmiPrinterService(context)
 
                             val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
 
@@ -89,6 +88,14 @@ class InvoicePrintDialog(context: Context,
 
                             sunmiPrinterService?.printText("\n", null)
                             //text print
+                            sunmiPrinterService?.setAlignment(1, null)
+                            sunmiPrinterService?.printTextWithFont(
+                                "${resInf?.nm ?: "Restora POS Lite"}\n${resInf?.adrs ?: "MannanPlaza,Khilkhet,Dhaka"}\n${resInf?.eml ?: "Email: bdtask@gmail.com"}\n${resInf?.mbl  ?: "Mobile: 0123456789"}\n\n",
+                                "",
+                                25f,
+                                null
+                            )
+
                             sunmiPrinterService?.setAlignment(1, null)
                             sunmiPrinterService?.printTextWithFont(
                                 "${order.dat}\n", "",
@@ -119,8 +126,8 @@ class InvoicePrintDialog(context: Context,
 
                                 sunmiPrinterService?.sendRAWData(boldOff(), null)
 
-                                items[0] = order.cart[i].vari + " x" + order.cart[i].fQnty + ""
-                                items[1] = "${order.cart[i].fPrc * order.cart[i].fQnty}"
+                                items[0] = "${order.cart[i].vari} x${order.cart[i].fQnty}"
+                                items[1] = "${order.cart[i].fPrc * order.cart[i].fQnty} $appCurrency"
                                 sunmiPrinterService?.printColumnsString(
                                     items,
                                     width,
@@ -129,10 +136,9 @@ class InvoicePrintDialog(context: Context,
                                 )
                                 if (order.cart[i].adns.isNotEmpty()) {
                                     val addonsList: List<Adns> = order.cart[i].adns
-
                                     for (k in addonsList.indices) {
                                         items[0] = "${addonsList[k].adnNm} x${addonsList[k].adnQnty}"
-                                        items[1] = addonsList[k].adnPrc.toString()
+                                        items[1] = "${addonsList[k].adnPrc} $appCurrency"
                                         sunmiPrinterService?.printColumnsString(
                                             items,
                                             width,
@@ -148,69 +154,85 @@ class InvoicePrintDialog(context: Context,
                                 null
                             )
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Subtotal: "
-                            txts[1] = order.tPrc.toString()
+                            txts[0] = "Subtotal:"
+                            txts[1] = "${order.tPrc} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
                                 width,
                                 align,
                                 null
                             )
-                            sunmiPrinterService?.setFontSize(23f, null)
 
-                            val sc = arrayOf(
-                                "Service charge: 0"
-                            )
-                            sunmiPrinterService?.printColumnsString(
-                                sc,
-                                width,
-                                align, null
-                            )
                             sunmiPrinterService?.setFontSize(23f, null)
-                            val vat = arrayOf("VAT: 0")
+                            txts[0] = "Vat/Tax:"
+                            txts[1] = "${order.vat} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
-                                vat,
+                                txts,
                                 width,
-                                align, null
+                                align,
+                                null
                             )
+
+                            sunmiPrinterService?.setFontSize(23f, null)
+                            txts[0] = "Service Charge:"
+                            txts[1] = "${order.crg} $appCurrency"
+                            sunmiPrinterService?.printColumnsString(
+                                txts,
+                                width,
+                                align,
+                                null
+                            )
+
+                            sunmiPrinterService?.setFontSize(23f, null)
+                            txts[0] = "Discount:"
+                            txts[1] = "${order.dis} $appCurrency"
+                            sunmiPrinterService?.printColumnsString(
+                                txts,
+                                width,
+                                align,
+                                null
+                            )
+
                             sunmiPrinterService?.printText(
                                 "================================\n",
                                 null
                             )
+
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Total:"
-                            txts[1] = order.tPrc.toString()
-                            sunmiPrinterService?.printColumnsString(
-                                txts,
-                                width,
-                                align, null
-                            )
-                            sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Discount:"
-                            txts[1] = order.dis.toString()
+                            txts[0] = "Grand Total:"
+                            txts[1] = "$grandTotal $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
                                 width,
                                 align, null
                             )
 
-                                sunmiPrinterService?.setFontSize(23f, null)
-                                txts[0] = "Customer Paid:"
-                                txts[1] = ""
-                                sunmiPrinterService?.printColumnsString(
-                                    txts,
-                                    width,
-                                    align, null
-                                )
+                            sunmiPrinterService?.setFontSize(23f, null)
+                            txts[0] = "Total Due:"
+                            txts[1] = "${getTotalDue()} $appCurrency"
+                            sunmiPrinterService?.printColumnsString(
+                                txts,
+                                width,
+                                align, null
+                            )
 
-                                sunmiPrinterService?.setFontSize(23f, null)
-                                txts[0] = "Change Due: "
-                                txts[1] = ""
-                                sunmiPrinterService?.printColumnsString(
-                                    txts,
-                                    width,
-                                    align, null
-                                )
+                            sunmiPrinterService?.setFontSize(23f, null)
+                            txts[0] = "Change Due: "
+                            txts[1] = "${getChangeDue()} $appCurrency"
+                            sunmiPrinterService?.printColumnsString(
+                                txts,
+                                width,
+                                align, null
+                            )
+
+                            sunmiPrinterService?.setFontSize(23f, null)
+                            txts[0] = "Customer Paid:"
+                            txts[1] = "$customerPay $appCurrency"
+                            sunmiPrinterService?.printColumnsString(
+                                txts,
+                                width,
+                                align, null
+                            )
 
                             sunmiPrinterService?.printText(
                                 "================================\n",
@@ -223,7 +245,7 @@ class InvoicePrintDialog(context: Context,
                                 null
                             )
                             SunmiPrintHelper.getInstance().printText(
-                                "Powered by\nRestora POS\n", 22f, false, false,
+                                "Powered by ***Restora POS***\n", 22f, false, false,
                                 null
                             )
 
@@ -252,28 +274,27 @@ class InvoicePrintDialog(context: Context,
                                     printer!!.printFormattedTextAndCut(
                                         "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer,resource)
                                                 + "</img>\n" +
-                                                "[L]\n" +
-                                                "[C]${resInf?.nm ?: "RestoraPOS Lite"}\n" +
-                                                "[C]${resInf?.adrs ?: "MannanPlaza,Khilkhet,Dhaka-1215"}\n" +
+                                                "[C]${resInf?.nm ?: "Restora POS Lite"}\n" +
+                                                "[C]${resInf?.adrs ?: "MannanPlaza,Khilkhet,Dhaka"}\n" +
                                                 "[C]Email: ${resInf?.eml ?: "bdtask@gmail.com"}\n" +
                                                 "[C]Mobile: ${resInf?.mbl ?: "0123456789"}\n" +
                                                 "[L]\n" +
-                                                "[C]Date: ${order.dat}\n" +
+                                                "[C]${order.dat}\n" +
                                                 "[L]Order: ${order.id}" + "[R]Table: ${order.odrInf.tbl}\n" +
                                                 "[C]================================\n" +
                                                 loopData(order.cart)+
                                                 "[C]================================\n" +
                                                 "[L]Subtotal: " + "[R]${order.tPrc} $appCurrency\n" +
-                                                "[L]VAT: " + "[R]$vat\n" +
-                                                "[L]Service charge: " + "[R]$crg $appCurrency\n" +
+                                                "[L]Vat/Tax: " + "[R]$vat $appCurrency\n" +
+                                                "[L]Service Charge: " + "[R]$crg $appCurrency\n" +
                                                 "[L]Discount: " + "[R]${order.dis} $appCurrency\n" +
                                                 "[C]================================\n" +
                                                 "[L]Grand Total: " + "[R]$grandTotal $appCurrency\n" +
                                                 "[L]Total Due: " + "[R]${getTotalDue()} $appCurrency\n" +
                                                 "[L]Change Due: " + "[R]${getChangeDue()} $appCurrency\n" +
                                                 "[L]Customer Paid: " + "[R]$customerPay $appCurrency\n" +
-                                                "[C] <b> Thank you very much </b>\n" +
                                                 "[C]================================\n" +
+                                                "[C] <b> Thank you very much </b>\n" +
                                                 "[C] <b>Powered by ***Restora POS***</b>\n" + "\n\n")
 
                                 } catch (e: EscPosConnectionException) {
@@ -290,6 +311,14 @@ class InvoicePrintDialog(context: Context,
                     }
                     override fun onLoadCleared(placeholder: Drawable?) {/**/}
                 })
+        }
+    }
+
+    private fun initPrinter() {
+        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
+            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
+            printHelper = SunmiPrintHelper.getInstance()
+            printHelper.initSunmiPrinterService(context)
         }
     }
 

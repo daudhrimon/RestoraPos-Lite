@@ -42,7 +42,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
 
-        binding.address.text = "${resInf?.nm ?: "RestoraPOS Lite"}\n${resInf?.adrs ?: "Mannan Plaza, Khilkhet, Dhaka-1215"}\n${resInf?.eml ?: "Email: bdtask@gmail.com"}\n${resInf?.mbl  ?: "Mobile: 0123456789"}"
+        binding.address.text = "${resInf?.nm ?: "Restora POS Lite"}\n${resInf?.adrs ?: "Mannan Plaza, Khilkhet, Dhaka"}\n${resInf?.eml ?: "Email: bdtask@gmail.com"}\n${resInf?.mbl  ?: "Mobile: 0123456789"}"
 
         if (state == 0){
             if (order.cart.isNotEmpty()){
@@ -96,11 +96,11 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
 
         binding.printBtn.setOnClickListener {
-            if (posLogo != null) {
+            if (posLogo != null && posLogo!!.isNotEmpty()) {
                 InvoicePrintDialog(context,order,posLogo!!,resInf).show()
                 dismiss()
             } else {
-                Toasty.warning(context,"You Can't Print invoice Without POS Logo",Toasty.LENGTH_SHORT).show()
+                Toasty.warning(context,"You Can't Print invoice Without a POS Logo",Toasty.LENGTH_SHORT).show()
             }
         }
     }

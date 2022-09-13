@@ -24,12 +24,12 @@ import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.sunmi.peripheral.printer.SunmiPrinterService
 import es.dmoral.toasty.Toasty
 
-class TokenDialog(context: Context,
-                  private val token: String,
-                  private val orderId: Long?,
-                  private val cartList: MutableList<Cart>,
-                  private val odrInf: OdrInf,
-                  private val tokenClickListener: TokenClickListener ): SweetAlertDialog(context, SUCCESS_TYPE) {
+class TokenPrintDialog(context: Context,
+                       private val token: String,
+                       private val orderId: Long?,
+                       private val cartList: MutableList<Cart>,
+                       private val odrInf: OdrInf,
+                       private val tokenClickListener: TokenClickListener ): SweetAlertDialog(context, SUCCESS_TYPE) {
 
     private lateinit var printHelper: SunmiPrintHelper
 
@@ -38,6 +38,8 @@ class TokenDialog(context: Context,
         titleText = "Do you want to print Token ?"
         confirmText = "Yes"
         cancelText = "No"
+
+        initPrinter()
 
         setCancelClickListener {
             tokenClickListener.onTokenButtonsClick(this)
@@ -49,10 +51,6 @@ class TokenDialog(context: Context,
 
             if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
 
-                SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
-                printHelper = SunmiPrintHelper.getInstance()
-                printHelper.initSunmiPrinterService(context)
-
                 val sunmiPrinterService: SunmiPrinterService? = printHelper.sunmiPrinterService
 
                 //Sunmi Printer
@@ -61,9 +59,7 @@ class TokenDialog(context: Context,
                 val width = intArrayOf(1, 1)
                 val align = intArrayOf(0, 2)
                 sunmiPrinterService!!.setAlignment(1, null)
-                sunmiPrinterService!!.printTextWithFont("<b>Token :$token</b>", null, 42f, null)
-
-                sunmiPrinterService.printText("\n", null)
+                sunmiPrinterService!!.printTextWithFont("Token :$token\b\n", null, 42f, null)
 
                 txt[0] = odrInf.csInf.csNm
                 txt[1] = odrInf.wtr
@@ -161,7 +157,7 @@ class TokenDialog(context: Context,
                     }
                     try {
                         printer!!.printFormattedTextAndCut(
-                                    "[C]<b><font size='big'>Token : $token </font></b>\n"+
+                            "[C]<b><font size='big'>Token : $token </font></b>\n"+
                                     "[L]\n"+
                                     "[L]${odrInf.csInf.csNm} [R]${odrInf.wtr}\n"+
                                     "[L]\n"+
@@ -181,6 +177,14 @@ class TokenDialog(context: Context,
                     }
                 }
             }
+        }
+    }
+
+    private fun initPrinter() {
+        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
+            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
+            printHelper = SunmiPrintHelper.getInstance()
+            printHelper.initSunmiPrinterService(context)
         }
     }
 

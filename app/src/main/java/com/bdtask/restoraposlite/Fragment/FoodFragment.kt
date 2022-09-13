@@ -135,8 +135,8 @@ class FoodFragment : Fragment() {
         fBinding.addImageBtn.setOnClickListener {
             ImagePicker.with(this)
                 .crop(1.4f,1f)
-                .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(240)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(360, 240)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .createIntent { intent ->
                     startForProfileImageResult.launch(intent)
                 }

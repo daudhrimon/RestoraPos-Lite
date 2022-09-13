@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.Model.Adn
 import com.bdtask.restoraposlite.Model.Adns
-import com.bdtask.restoraposlite.databinding.DialogFoodClickedBinding
+import com.bdtask.restoraposlite.databinding.DialogFoodClickBinding
 import com.bdtask.restoraposlite.databinding.VhAddonsBinding
 
 class AddonsAdapter(private val context: Context,
                     private var addonsList: List<Adn>,
-                    private val foodDialogBinding: DialogFoodClickedBinding,
+                    private val fcBinding: DialogFoodClickBinding,
                     private var adnsList: MutableList<Adns>): RecyclerView.Adapter<AddonsAdapter.VHFoodAddons>() {
 
     inner class VHFoodAddons(binding: VhAddonsBinding): RecyclerView.ViewHolder(binding.root) {
@@ -48,10 +48,10 @@ class AddonsAdapter(private val context: Context,
 
                 if (holder.binding.checkedBox.isVisible) {
 
-                    var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
+                    var foodPrice = fcBinding.dcFoodPrice.text.toString().toDouble()
 
                     foodPrice += addonsList[position].adnPrc
-                    foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
+                    fcBinding.dcFoodPrice.text = foodPrice.toString()
 
                     // adding and updating Addons Info at homeAddonsList
                     for (i in adnsList.indices) {
@@ -81,10 +81,10 @@ class AddonsAdapter(private val context: Context,
 
                 if (holder.binding.checkedBox.isVisible) {
 
-                    var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
+                    var foodPrice = fcBinding.dcFoodPrice.text.toString().toDouble()
 
                     foodPrice -= addonsList[position].adnPrc
-                    foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
+                    fcBinding.dcFoodPrice.text = foodPrice.toString()
 
                     // adding and updating Addons Info at homeAddonsList
                     for (i in adnsList.indices) {
@@ -110,9 +110,9 @@ class AddonsAdapter(private val context: Context,
                 val addonQuantity = holder.binding.addonQuantity.text.toString().toInt()
                 val addonnPrice = holder.binding.addonPrice.text.toString().toDouble()
 
-                var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
+                var foodPrice = fcBinding.dcFoodPrice.text.toString().toDouble()
                 foodPrice += addonnPrice
-                foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
+                fcBinding.dcFoodPrice.text = foodPrice.toString()
 
                 // adding and updating Addons Info at homeAddonsList
                 if (adnsList.size == 0) {
@@ -138,9 +138,9 @@ class AddonsAdapter(private val context: Context,
                 //var addonQuantity = holder.binding.addonQuantity.text.toString().toInt()
                 val addonnPrice = holder.binding.addonPrice.text.toString().toDouble()
 
-                var foodPrice = foodDialogBinding.dcFoodPrice.text.toString().toDouble()
+                var foodPrice = fcBinding.dcFoodPrice.text.toString().toDouble()
                 foodPrice -= addonnPrice
-                foodDialogBinding.dcFoodPrice.text = foodPrice.toString()
+                fcBinding.dcFoodPrice.text = foodPrice.toString()
 
                 // adding and updating Addons Info at homeAddonsList
                 if (adnsList.size > 0) {

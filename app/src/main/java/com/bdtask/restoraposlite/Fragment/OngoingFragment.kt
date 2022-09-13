@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Adapter.OngoingAdapter
 import com.bdtask.restoraposlite.Dialog.PaymentDialog
 import com.bdtask.restoraposlite.Dialog.InvoiceViewDialog
-import com.bdtask.restoraposlite.Dialog.TokenDialog
+import com.bdtask.restoraposlite.Dialog.TokenPrintDialog
 import com.bdtask.restoraposlite.Interface.OngoingClickListener
 import com.bdtask.restoraposlite.Interface.TokenClickListener
 import com.bdtask.restoraposlite.MainActivity.Companion.database
@@ -146,7 +146,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         oBinding.tokenBtn.setOnClickListener {
-            TokenDialog(requireContext(),ongList[oPos].tkn,ongList[oPos].id,
+            TokenPrintDialog(requireContext(),ongList[oPos].tkn,ongList[oPos].id,
                 ongList[oPos].cart,ongList[oPos].odrInf,this).show()
         }
 
@@ -262,8 +262,8 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         return oBinding.root
     }
 
-    override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
-        tokenDialog.dismissWithAnimation()
+    override fun onTokenButtonsClick(tokenPrintDialog: TokenPrintDialog) {
+        tokenPrintDialog.dismissWithAnimation()
     }
 
     // from here we can handle onGoing Fragment's Buttons Visible or Gone from Adapter Class

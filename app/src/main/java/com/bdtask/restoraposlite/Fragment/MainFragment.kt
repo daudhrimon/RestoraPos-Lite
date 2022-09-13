@@ -1,7 +1,9 @@
 package com.bdtask.restoraposlite.Fragment
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -30,8 +32,8 @@ import com.bdtask.restoraposlite.Room.Entity.Food
 import com.bdtask.restoraposlite.Room.Entity.Order
 import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.Util.Util
-import com.bdtask.restoraposlite.databinding.DialogEditFoodBinding
-import com.bdtask.restoraposlite.databinding.DialogFoodClickedBinding
+import com.bdtask.restoraposlite.databinding.DialogFoodClickBinding
+import com.bdtask.restoraposlite.databinding.DialogFoodLongClickBinding
 import com.bdtask.restoraposlite.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -65,7 +67,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         eMode = sharedPref.readEMOde() ?: 0
 
+
         checkEditMode()
+
 
         // getting and setting category Recycler
         database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
@@ -94,10 +98,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         setCartRecyclerAdapter()
 
 
+
         // menu Button Click
         mBinding.menuBtn.setOnClickListener {
             drawerLayout.open()
         }
+
 
 
         // PLUS Button Click
@@ -106,10 +112,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         }
 
 
+
         // OnGoing Button Click
         mBinding.ongoingTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2ongoingFrag)
         }
+
 
 
         // Today Button Click
@@ -118,10 +126,12 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         }
 
 
+
         // All Order Button Click
         mBinding.completedTv.setOnClickListener {
             findNavController().navigate(R.id.homeFrag2comFrag)
         }
+
 
 
         // Cancelled Order Click
@@ -129,17 +139,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             findNavController().navigate(R.id.homeFrag2canFrag)
         }
 
-
-
-        // close Button Click
-        /*mBinding.closeTv.setOnClickListener {
-            val dialog = Dialog(requireContext())
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            val binding = DialogCloseAlertBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_close_alert,null))
-            dialog.setContentView(binding.root)
-            dialog.show()
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }*/
 
 
         // Calculator BUTTON Click
@@ -153,6 +152,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
+
+
         // cart Delete Click
         mBinding.deleteBtn.setOnClickListener {
             if (sharedPref.readCart() == null || sharedPref.readCart()!!.isEmpty()){
@@ -163,6 +164,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 Toasty.success(requireContext(),"Delete Successful",Toast.LENGTH_SHORT,true).show()
             }
         }
+
+
 
         // quick order Click Handler
         mBinding.quickOrder.setOnClickListener {
@@ -183,6 +186,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             }
         }
 
+
+
         // placeOrder Click Handler
         mBinding.placeOrder.setOnClickListener {
             placeOrderClick()
@@ -190,8 +195,11 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
 
+
         return mBinding.root
     }
+
+
 
     private fun checkEditMode() {
         if (eMode == 1) {
@@ -217,6 +225,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             mBinding.placeTv.text = "Place Order"
         }
     }
+
+
 
 
     private fun quickOrderClick() {
@@ -278,6 +288,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             Toasty.error(requireActivity(),"Add Food To Cart First !", Toast.LENGTH_SHORT,true).show()
         }
     }
+
 
 
 
@@ -400,16 +411,17 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     }
 
 
-    // Token dialog Click Listener
 
-    override fun onTokenButtonsClick(tokenDialog: TokenDialog) {
-        tokenDialog.dismissWithAnimation()
+
+    // Token dialog Click Listener
+    override fun onTokenButtonsClick(tokenPrintDialog: TokenPrintDialog) {
+        tokenPrintDialog.dismissWithAnimation()
         setCartRecyclerAdapter()
     }
 
 
-    // ask for print Token
 
+    // ask for print Token
     private fun printToken(orderId: Long) {
         var tempCartList = mutableListOf<Cart>()
         var odrInf = OdrInf(CsInf("","",""),"","","","","")
@@ -420,10 +432,11 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             odrInf = sharedPref.readOrderInfo()!!
         }
 
-        TokenDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
+        TokenPrintDialog(requireContext(),token,orderId,tempCartList,odrInf,this).show()
 
         sharedPref.writeCart(emptyList<Cart>().toMutableList())
     }
+
 
 
 
@@ -431,7 +444,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     override fun onFoodClick(foodId: Long?, foodTitle: String?, variantList: List<Variant>, adnList: List<Adn> ) {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val fdBinding = DialogFoodClickedBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_clicked,null))
+        val fdBinding = DialogFoodClickBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_click,null))
         dialog.setContentView(fdBinding.root)
 
         foodVariant = ""
@@ -617,17 +630,43 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
 
-
-    override fun onFoodLongClick(food: Food) {
+    override fun onFoodLongClick(food: Food, foodClickListener: FoodClickListener) {
         val dialog = Dialog(requireContext())
-        val binding = DialogEditFoodBinding.bind(layoutInflater.inflate(R.layout.dialog_edit_food,null))
+        val binding = DialogFoodLongClickBinding.bind(layoutInflater.inflate(R.layout.dialog_food_long_click,null))
         dialog.setContentView(binding.root)
+        binding.crossBtn.visibility = View.VISIBLE
 
-        binding.noBtn.setOnClickListener {
+        binding.crossBtn.setOnClickListener { dialog.dismiss() }
+
+        binding.dltBtn.setOnClickListener {
             dialog.dismiss()
+            val alert = AlertDialog.Builder(requireContext())
+            alert.setTitle("Food Delete Alert !")
+            alert.setMessage("Are you sure to Delete This Food ?")
+
+            alert.setNegativeButton("No", DialogInterface.OnClickListener { dial, which ->
+                dial.dismiss()
+            })
+
+            alert.setPositiveButton("Yes", DialogInterface.OnClickListener { dial, which ->
+                GlobalScope.launch(Dispatchers.IO) {
+
+                    database.foodDao().deleteFood(food)
+
+                    withContext(Dispatchers.Main){
+                        mBinding.viewPager2.postDelayed({
+                            dial.dismiss()
+                            Toasty.success(requireContext(),"Food Deleted Successfully",Toasty.LENGTH_SHORT,true).show()
+                            mBinding.viewPager2.adapter = CategoryAdapter(requireContext(),categoryList, mBinding.searchEt,foodClickListener)
+                        },1000)
+                    }
+                }
+            })
+
+            alert.show()
         }
 
-        binding.yesBtn.setOnClickListener {
+        binding.editBtn.setOnClickListener {
             dialog.dismiss()
             val bundle = bundleOf("Food" to Gson().toJson(food))
             findNavController().navigate(R.id.homeFrag2foodFrag,bundle)
@@ -639,7 +678,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         win!!.setLayout((6*width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
         win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
-
 
 
 
@@ -664,6 +702,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             mBinding.cartRecycler.visibility = View.GONE
         }
     }
+
 
 
     // set CardRecycler on Cart Item Delete

@@ -13,7 +13,7 @@ import com.bdtask.restoraposlite.MainActivity
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.Room.Entity.Table
 import com.bdtask.restoraposlite.Util.Util
-import com.bdtask.restoraposlite.databinding.DialogEditFoodBinding
+import com.bdtask.restoraposlite.databinding.DialogFoodLongClickBinding
 import com.bdtask.restoraposlite.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposlite.databinding.VhEditDeleteBinding
 import es.dmoral.toasty.Toasty
@@ -88,14 +88,17 @@ class TableEditAdapter(private val context: Context, private val list: MutableLi
 
         holder.binding.itemDltBtn.setOnClickListener {
             val dialog = Dialog(context)
-            val dbinding = DialogEditFoodBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_edit_food,null))
+            val dbinding = DialogFoodLongClickBinding.bind(LayoutInflater.from(context).inflate(R.layout.dialog_food_long_click,null))
             dialog.setContentView(dbinding.root)
-            dbinding.noteEt.text = "Are you sure that you want to Delete this ?"
-            dbinding.noBtn.setOnClickListener {
+            dbinding.msgTv.text = "Are you sure that you want to Delete this ?"
+            dbinding.dltBtn.text = "No"
+            dbinding.editBtn.text = "Yes"
+
+            dbinding.dltBtn.setOnClickListener {
                 dialog.dismiss()
             }
 
-            dbinding.yesBtn.setOnClickListener {
+            dbinding.editBtn.setOnClickListener {
 
                 GlobalScope.launch(Dispatchers.IO) {
 

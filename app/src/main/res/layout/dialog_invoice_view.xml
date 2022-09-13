@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/helvetica_neue"
-                        android:text="Vat(%)"
+                        android:text="Vat/Tax"
                         android:textColor="#000"
                         android:textSize="12sp" />
 
@@ -537,14 +537,23 @@
 
                     </RelativeLayout>
 
-
                 </LinearLayout>
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tableLayout"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#989393" />
 
                 <TextView
                     android:id="@+id/thankyouTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tableLayout"
+                    android:layout_below="@id/view4"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/helvetica_neue"
@@ -553,28 +562,18 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/thankyouTv"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="#989393" />
-
                 <TextView
                     android:id="@+id/poweredBy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/view4"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/thankyouTv"
+                    android:layout_marginTop="6dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_horizontal"
                     android:text="Powered by ***Restora POS***\nrestorapos.com"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
             </RelativeLayout>
 
