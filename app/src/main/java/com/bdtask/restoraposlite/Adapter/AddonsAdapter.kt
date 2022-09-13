@@ -17,9 +17,7 @@ class AddonsAdapter(private val context: Context,
                     private val fcBinding: DialogFoodClickBinding,
                     private var adnsList: MutableList<Adns>): RecyclerView.Adapter<AddonsAdapter.VHFoodAddons>() {
 
-    inner class VHFoodAddons(binding: VhAddonsBinding): RecyclerView.ViewHolder(binding.root) {
-        var binding = binding
-    }
+    inner class VHFoodAddons(val binding: VhAddonsBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHFoodAddons {
         return VHFoodAddons(VhAddonsBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_addons,parent,false)))

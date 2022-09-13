@@ -44,4 +44,10 @@
 
         </menu>
     </item>
+    <group>
+        <item
+            android:id="@+id/premium"
+            android:icon="@drawable/ic_menu"
+            android:title="Restora POS Premium"/>
+    </group>
 </menu>

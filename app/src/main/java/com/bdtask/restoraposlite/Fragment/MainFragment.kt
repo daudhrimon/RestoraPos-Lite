@@ -98,7 +98,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         setCartRecyclerAdapter()
 
 
-
         // menu Button Click
         mBinding.menuBtn.setOnClickListener {
             drawerLayout.open()

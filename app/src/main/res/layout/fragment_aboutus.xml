@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Fragment.AboutUsFragment">
+
+    <RelativeLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/bottom_rounded_bg"
+        android:paddingVertical="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/selector_cross_btn"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"
+            app:tint="@color/back_btn_tint"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="7dp"
+            android:layout_toRightOf="@+id/back"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:gravity="center_vertical"
+            android:paddingBottom="2dp"
+            android:text="About Restora POS Premium"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/poslogo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_splitter_unselect"
+        android:layout_margin="13dp"
+        android:padding="13dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/helvetica_nueu_light"
+        android:textColor="@color/theme_color"
+        android:text="Features of Restora Pos\n\n * Restaurant POS Billing Service\n * Restaurant Inventory Tracking System\n * Recipe Management System\n * Restaurant Accounting System\n * Built-in Online Food Ordering System\n * Restaurant Reservation System\n * Dynamic Real-time KDS System\n\nExtraordinary Features Of Restora POS\n\n * Branded Website And App Integration\n * Online And Offline Order Management\n * Digital menu, contactless order taking\n     and payment system\n * Table Reservation System\n * Dynamic Business Decision Making\n     Dashboard\n * Well Ordered Human Resource\n * Waiter, Kitchen Mobile and Tablet Apps\n * Real-time Kitchen Monitoring System\n * Order Queue Monitoring System\n * No User restrictions"/>
+
+</LinearLayout>

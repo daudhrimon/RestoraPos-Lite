@@ -48,6 +48,13 @@
         <action
             android:id="@+id/homeFrag2canFrag"
             app:destination="@id/canceledFragment" />
+        <action
+            android:id="@+id/homeFrag2aboutUs"
+            app:destination="@id/aboutUsFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"/>
     </fragment>
     <fragment
         android:id="@+id/ongoingFragment"
@@ -88,4 +95,9 @@
         android:name="com.bdtask.restoraposlite.Fragment.CanceledFragment"
         android:label="fragment_canceled"
         tools:layout="@layout/fragment_canceled" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.AboutUsFragment"
+        android:label="fragment_aboutus"
+        tools:layout="@layout/fragment_aboutus" />
 </navigation>

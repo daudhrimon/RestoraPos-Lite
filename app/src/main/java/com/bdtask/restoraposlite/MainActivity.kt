@@ -152,6 +152,10 @@ class MainActivity: AppCompatActivity() {
                     win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
                     win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
+
+                R.id.premium -> {
+                    findNavController(R.id.navController).navigate(R.id.homeFrag2aboutUs)
+                }
             }
             return@setNavigationItemSelectedListener true
         }
