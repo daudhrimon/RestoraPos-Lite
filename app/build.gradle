@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.bdtask.restoraposroomdbtab"
+        applicationId "com.bdtask.restoraposlite"
         minSdk 21
         targetSdk 33
         versionCode 1

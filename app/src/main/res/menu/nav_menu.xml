@@ -9,7 +9,7 @@
 
             <item
                 android:id="@+id/addPayD"
-                android:icon="@drawable/ic_card_cash"
+                android:icon="@drawable/ic_pay"
                 android:title="Add Payment"/>
 
             <item
@@ -19,7 +19,7 @@
 
             <item
                 android:id="@+id/setCrgD"
-                android:icon="@drawable/ic_service_crg"
+                android:icon="@drawable/ic_crg"
                 android:title="Set Service Crg"/>
 
             <item
@@ -29,7 +29,7 @@
 
             <item
                 android:id="@+id/setInf"
-                android:icon="@drawable/ic_res_inf"
+                android:icon="@drawable/ic_info"
                 android:title="Set Restaurant Info"/>
 
             <item

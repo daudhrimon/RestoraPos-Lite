@@ -6,7 +6,7 @@
     app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.SplashFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.MainFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.MainFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_main">
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/ongoingFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.OngoingFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.OngoingFragment"
         android:label="fragment_ongoing"
         tools:layout="@layout/fragment_ongoing">
         <action
@@ -60,32 +60,32 @@
     </fragment>
     <fragment
         android:id="@+id/todayFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.TodayFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.TodayFragment"
         android:label="fragment_today"
         tools:layout="@layout/fragment_today">
 
     </fragment>
     <fragment
         android:id="@+id/orderInfoFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.OrderInfoFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.OrderInfoFragment"
         android:label="fragment_order_info"
         tools:layout="@layout/fragment_order_info">
 
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.FoodFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food">
 
     </fragment>
     <fragment
         android:id="@+id/completedFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.CompletedFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.CompletedFragment"
         android:label="CompletedFragment" />
     <fragment
         android:id="@+id/canceledFragment"
-        android:name="com.bdtask.restoraposroomdbtab.Fragment.CanceledFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.CanceledFragment"
         android:label="fragment_canceled"
         tools:layout="@layout/fragment_canceled" />
 </navigation>

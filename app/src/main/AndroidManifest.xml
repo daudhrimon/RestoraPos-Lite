@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bdtask.restoraposroomdbtab">
+    package="com.bdtask.restoraposlite">
 
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BhojonPOSLocalDB">
         <activity
-            android:name="com.bdtask.restoraposroomdbtab.MainActivity"
+            android:name="com.bdtask.restoraposlite.MainActivity"
             android:exported="true"
             android:hardwareAccelerated="true">
             <intent-filter>

@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/bottom_rounded_bg"
-        android:paddingVertical="@dimen/_4sdp">
+        android:paddingVertical="@dimen/_4sdp"
+        android:animateLayoutChanges="true">
 
         <ImageView
             android:id="@+id/back"
