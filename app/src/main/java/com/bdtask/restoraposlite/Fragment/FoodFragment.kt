@@ -134,7 +134,7 @@ class FoodFragment : Fragment() {
 
         fBinding.addImageBtn.setOnClickListener {
             ImagePicker.with(this)
-                .crop(1.4f,1f)
+                .crop(3f,2f)
                 .compress(240)         //Final image size will be less than 1 MB(Optional)
                 .maxResultSize(360, 240)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .createIntent { intent ->
@@ -405,9 +405,10 @@ class FoodFragment : Fragment() {
 
                         Toasty.success(requireContext(), "Updated Successfully", Toast.LENGTH_SHORT, true).show()
 
+                        food = null
+
                         findNavController().popBackStack()
 
-                        food = null
                     }
                 }
             }
@@ -415,8 +416,7 @@ class FoodFragment : Fragment() {
             GlobalScope.launch(Dispatchers.IO) {
 
                 database.foodDao().insertFood(
-
-                    Food(0, spinnerCategory, fBinding.foodTitleEt.text.toString(), tempVariantList, foodImage, tempAddonsList))
+                    Food(0,spinnerCategory,fBinding.foodTitleEt.text.toString(),tempVariantList,foodImage,tempAddonsList))
 
                 withContext(Dispatchers.Main) {
 

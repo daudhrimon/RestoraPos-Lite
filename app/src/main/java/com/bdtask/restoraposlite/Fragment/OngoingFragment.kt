@@ -155,7 +155,6 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         oBinding.duePosBtn.setOnClickListener {
             val operator = sharedPref.readOperator() ?: ""
             if (operator.isNotEmpty()){
-
                 sharedPref.writeOrder(ongList[oPos])
                 val dialog = InvoiceViewDialog(requireContext(),0)
                 dialog.show()
@@ -246,16 +245,22 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         }
 
 
-        /*oBinding.splitBtn.setOnClickListener {
-            sharedPref.writeSharedOrder(ongList[oPos])
+        oBinding.splitBtn.setOnClickListener {
+            Toasty.info(requireContext(),"Split Order Only Available\nin Restora POS\nPremium Version",Toasty.LENGTH_LONG,true).show()
+            /*sharedPref.writeOrder(ongList[oPos])
             val dialog = SplitOrderDialog(requireContext(), sharedPref, foodCount)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
             val height = resources.displayMetrics.heightPixels
             val win = dialog.window
             win!!.setLayout((14 * width)/15,(24 * height)/25)
-            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }*/
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))*/
+        }
+
+
+        oBinding.mergeBtn.setOnClickListener {
+            Toasty.info(requireContext(),"Merge Order Only Available\nin Restora POS\nPremium Version",Toasty.LENGTH_LONG,true).show()
+        }
 
 
 
@@ -279,7 +284,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 foodCount += ongList[position].cart[i].fQnty
             }
         } else {
-            ///oBinding.splitBtn.visibility = View.GONE
+            oBinding.splitBtn.visibility = View.GONE
         }
 
         //////////////////////////
@@ -299,12 +304,12 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
             1 -> {
                 if (foodCount > 1) {
-                    //oBinding.splitBtn.visibility = View.VISIBLE
+                    oBinding.splitBtn.visibility = View.VISIBLE
                 } else {
-                    //oBinding.splitBtn.visibility = View.GONE
+                    oBinding.splitBtn.visibility = View.GONE
                 }
                 oBinding.scrollView.visibility = View.VISIBLE
-                //oBinding.mergeBtn.visibility = View.GONE
+                oBinding.mergeBtn.visibility = View.GONE
                 oBinding.cancelBtn.visibility = View.VISIBLE
                 oBinding.duePosBtn.visibility = View.VISIBLE
                 oBinding.tokenBtn.visibility = View.VISIBLE
@@ -322,7 +327,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 oBinding.editBtn.visibility = View.GONE
                 oBinding.completeBtn.visibility = View.GONE
                 oBinding.cancelBtn.visibility = View.VISIBLE
-               // oBinding.mergeBtn.visibility = View.VISIBLE
+                oBinding.mergeBtn.visibility = View.VISIBLE
             }
         }
         oBinding.ongRecycler.adapter?.notifyDataSetChanged()

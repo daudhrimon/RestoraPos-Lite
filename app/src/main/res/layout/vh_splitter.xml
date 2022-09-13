@@ -66,9 +66,22 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/helvetica_nueu_light"
-                        android:text="0.00"
+                        android:text="0.0"
                         android:textColor="@color/theme_color"
                         android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/totalC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalAmountTv"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toEndOf="@+id/totalAmount"
+                        android:fontFamily="@font/helvetica_nueu_light"
+                        android:textColor="@color/theme_color"
+                        android:textSize="15dp" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -96,9 +109,22 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/helvetica_nueu_light"
-                        android:text="0.00"
+                        android:text="0.0"
                         android:textColor="@color/theme_color"
                         android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/vatC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vatSplit"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toEndOf="@+id/vat"
+                        android:fontFamily="@font/helvetica_nueu_light"
+                        android:textColor="@color/theme_color"
+                        android:textSize="15dp" />
+
                 </RelativeLayout>
 
             </LinearLayout>
@@ -134,9 +160,22 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/helvetica_nueu_light"
-                        android:text="0.00"
+                        android:text="0.0"
                         android:textColor="@color/theme_color"
                         android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/crgC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/serviceSplit"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toEndOf="@+id/serviceCharge"
+                        android:fontFamily="@font/helvetica_nueu_light"
+                        android:textColor="@color/theme_color"
+                        android:textSize="15dp" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -164,9 +203,22 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/helvetica_nueu_light"
-                        android:text="0.00"
+                        android:text="0.0"
                         android:textColor="@color/theme_color"
                         android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/grandC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/grandTotalSplit"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toEndOf="@+id/grandTotal"
+                        android:fontFamily="@font/helvetica_nueu_light"
+                        android:textColor="@color/theme_color"
+                        android:textSize="15dp" />
+
                 </RelativeLayout>
 
             </LinearLayout>
@@ -441,11 +493,11 @@
         android:layout_height="@dimen/_34sdp"
         android:layout_margin="10dp"
         android:background="@drawable/selector_ongoing"
-        android:gravity="center"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/helvetica_neue"
         android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="Pay Now"
         android:textAlignment="center"
         android:textColor="@color/white"

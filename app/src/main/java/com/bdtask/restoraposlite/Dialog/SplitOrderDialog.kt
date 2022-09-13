@@ -1,3 +1,4 @@
+/*
 package com.bdtask.restoraposlite.Dialog
 
 import android.annotation.SuppressLint
@@ -78,7 +79,9 @@ class SplitOrderDialog(context: Context,
 
                 setSplitterRecycler()
             }
-            override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
+            override fun onNothingSelected(p0: AdapterView<*>?) {*/
+/**//*
+}
         }
 
 
@@ -214,7 +217,9 @@ class SplitOrderDialog(context: Context,
     }
 
     override fun onPayNowClickListener() {
-        var spCount = this.splitterCount
+
+        */
+/*var spCount = this.splitterCount
         var spFoodCount = 0
         for (s in splitterList.indices){
             if (splitterList[s].cart.isNotEmpty()){
@@ -249,6 +254,7 @@ class SplitOrderDialog(context: Context,
             }
         } else {
             Toasty.warning(context, "You Have $spCount incomplete Split Left, Please Complete Them First",Toasty.LENGTH_LONG).show()
-        }
+        }*//*
+
     }
-}
+}*/

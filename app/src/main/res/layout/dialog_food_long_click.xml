@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/msgTv"
-            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_11sdp"
             android:layout_toStartOf="@id/editBtn"
             android:backgroundTint="#C60000"
             android:fontFamily="@font/helvetica_neue"

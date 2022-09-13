@@ -1,3 +1,4 @@
+/*
 package com.bdtask.restoraposlite.Adapter
 
 import android.content.Context
@@ -11,21 +12,28 @@ import com.bdtask.restoraposlite.Dialog.SplitOrderDialog.Companion.splitterIndex
 import com.bdtask.restoraposlite.Fragment.OngoingFragment.Companion.cusInfoList
 import com.bdtask.restoraposlite.Fragment.OngoingFragment.Companion.cusNameList
 import com.bdtask.restoraposlite.Interface.SplitterClickListener
+import com.bdtask.restoraposlite.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposlite.Model.CsInf
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.Room.Entity.Split
 import com.bdtask.restoraposlite.databinding.VhSplitterBinding
 
-class SplitterAdapter( private val context: Context,
-                       private val splitterList: MutableList<Split>,
-                       private val splitterClickListener: SplitterClickListener ): RecyclerView.Adapter<SplitterAdapter.VHSplitter>() {
+class SplitterAdapter(
+    private val context: Context,
+    private val splitterList: MutableList<Split>,
+    private val splitterClickListener: SplitterClickListener
+) : RecyclerView.Adapter<SplitterAdapter.VHSplitter>() {
 
-    inner class VHSplitter(binding: VhSplitterBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class VHSplitter(binding: VhSplitterBinding) : RecyclerView.ViewHolder(binding.root) {
         val binding = binding
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHSplitter {
-        return VHSplitter(VhSplitterBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_splitter,parent,false)))
+        return VHSplitter(
+            VhSplitterBinding.bind(
+                LayoutInflater.from(context).inflate(R.layout.vh_splitter, parent, false)
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: VHSplitter, position: Int) {
@@ -33,12 +41,12 @@ class SplitterAdapter( private val context: Context,
 
         holder.binding.orderId.text = "Order Id : " + splitterList[position].id
 
-        if (splitterIndex == position){
+        if (splitterIndex == position) {
             holder.binding.splitter.setBackgroundResource(R.drawable.shape_splitter_selected)
 
             var tPrc = 0.0
 
-            for (i in splitterList[splitterIndex].cart.indices){
+            for (i in splitterList[splitterIndex].cart.indices) {
                 tPrc += splitterList[splitterIndex].cart[i].tUPrc
             }
 
@@ -51,15 +59,20 @@ class SplitterAdapter( private val context: Context,
             holder.binding.serviceCharge.text = crg.toString()
             holder.binding.grandTotal.text = gTotal.toString()
 
+            setCurrencyTvs(holder)
+
         } else {
+
             holder.binding.splitter.setBackgroundResource(R.drawable.shape_splitter_unselect)
+
+            setCurrencyTvs(holder)
         }
 
         //holder.binding.grandTotal.text = splitterList[splitterIndex].cart[position].tUPrc + serviceCharge + vat
 
         // itemView onClick
         holder.binding.splitter.setOnClickListener {
-            if (splitterIndex == position){
+            if (splitterIndex == position) {
                 splitterIndex = -1
             } else {
                 splitterIndex = position
@@ -69,35 +82,58 @@ class SplitterAdapter( private val context: Context,
 
 
         // setting splitter details adapter
-        holder.binding.splitterDetRv.adapter = SplitterDetailsAdapter(context, splitterList[position].cart)
+        holder.binding.splitterDetRv.adapter =
+            SplitterDetailsAdapter(context, splitterList[position].cart)
 
 
         // setting Searchable Spinner
-        holder.binding.cusInfoSpnr.adapter = ArrayAdapter(context, R.layout.custom_spinner_layout, cusNameList)
+        holder.binding.cusInfoSpnr.adapter =
+            ArrayAdapter(context, R.layout.custom_spinner_layout, cusNameList)
 
 
         // Customer Spinner
-        holder.binding.cusInfoSpnr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spnrPos: Int, p3: Long) {
+        holder.binding.cusInfoSpnr.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    p0: AdapterView<*>?,
+                    p1: View?,
+                    spnrPos: Int,
+                    p3: Long
+                ) {
 
-                val selectedItem =  holder.binding.cusInfoSpnr.selectedItem.toString()
+                    val selectedItem = holder.binding.cusInfoSpnr.selectedItem.toString()
 
-                for (i in cusInfoList.indices){
-                    if (cusInfoList[i].csNm == selectedItem && cusNameList[spnrPos] == cusInfoList[spnrPos].csNm){
-                        splitterList[pos].csInf = CsInf(cusInfoList[i].csNm, cusInfoList[i].csAdrs, cusInfoList[i].mbl)
+                    for (i in cusInfoList.indices) {
+                        if (cusInfoList[i].csNm == selectedItem && cusNameList[spnrPos] == cusInfoList[spnrPos].csNm) {
+                            splitterList[pos].csInf = CsInf(
+                                cusInfoList[i].csNm,
+                                cusInfoList[i].csAdrs,
+                                cusInfoList[i].mbl
+                            )
+                        }
                     }
                 }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {*/
+/**//*
+
+                }
             }
-            override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
-        }
 
         holder.binding.splitPayNow.setOnClickListener {
             splitterClickListener.onPayNowClickListener()
         }
     }
 
+    private fun setCurrencyTvs(holder: SplitterAdapter.VHSplitter) {
+        holder.binding.totalC.text = appCurrency
+        holder.binding.vatC.text = appCurrency
+        holder.binding.crgC.text = appCurrency
+        holder.binding.grandC.text = appCurrency
+    }
+
 
     override fun getItemCount(): Int {
         return splitterList.size
     }
-}
+}*/

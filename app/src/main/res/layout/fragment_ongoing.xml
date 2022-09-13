@@ -193,12 +193,12 @@
                 android:textSize="13sp"
                 android:visibility="gone" />
 
-            <!--<TextView
+            <TextView
                 android:id="@+id/splitBtn"
                 android:layout_width="91dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="3dp"
-                android:background="@drawable/selector_place_order"
+                android:background="@drawable/selector_allorder"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/helvetica_neue"
@@ -206,8 +206,7 @@
                 android:gravity="center"
                 android:text="Split"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                 />-->
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/mergeBtn"
@@ -223,7 +222,7 @@
                 android:text="Merge"
                 android:textColor="@color/white"
                 android:textSize="13sp"
-                android:visibility="gone" />-->
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cancelBtn"

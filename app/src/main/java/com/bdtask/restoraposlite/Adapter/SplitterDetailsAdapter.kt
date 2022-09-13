@@ -1,3 +1,4 @@
+/*
 package com.bdtask.restoraposlite.Adapter
 
 import android.content.Context
@@ -51,4 +52,4 @@ class SplitterDetailsAdapter( private val context: Context,
     override fun getItemCount(): Int {
         return cart.size
     }
-}
+}*/

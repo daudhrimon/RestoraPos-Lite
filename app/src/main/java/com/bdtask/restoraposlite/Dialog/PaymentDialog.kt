@@ -144,6 +144,7 @@ class PaymentDialog (context: Context): Dialog(context) {
     }
 
     private fun printInvoice(){
+        dismiss()
         val dialog = InvoiceViewDialog(context,1)
         dialog.show()
         val width = context.resources.displayMetrics.widthPixels
@@ -151,7 +152,6 @@ class PaymentDialog (context: Context): Dialog(context) {
         val win = dialog.window
         win!!.setLayout((14 * width)/15,(24 * height)/25)
         win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dismiss()
     }
 
     private fun getTotalPrice() {
