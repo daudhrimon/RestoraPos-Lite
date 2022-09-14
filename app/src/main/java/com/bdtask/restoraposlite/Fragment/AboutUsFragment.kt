@@ -64,16 +64,23 @@ class AboutUsFragment : Fragment() {
 
 
         binding.webSite.setOnClickListener {
-            try {
-                val intent = Intent(Intent.ACTION_VIEW,Uri.parse("http://restorapos.com"))
-                requireActivity().startActivity(intent)
-            } catch (e: Exception){
-                Toasty.info(requireContext(),"No Browser App found in your device",Toasty.LENGTH_SHORT).show()
-            }
+            loadWebsite()
         }
 
 
+        binding.logo.setOnClickListener {
+            loadWebsite()
+        }
 
         return binding.root
+    }
+
+    private fun loadWebsite() {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW,Uri.parse("http://restorapos.com"))
+            requireActivity().startActivity(intent)
+        } catch (e: Exception){
+            Toasty.info(requireContext(),"No Browser App found in your device",Toasty.LENGTH_SHORT).show()
+        }
     }
 }

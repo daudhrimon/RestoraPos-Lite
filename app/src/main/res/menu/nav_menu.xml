@@ -41,15 +41,14 @@
                 android:id="@+id/setOp"
                 android:icon="@drawable/ic_person"
                 android:title="Set Operator's Name"/>
-
-            <item
-                android:id="@+id/SellRepo"
-                android:icon="@drawable/ic_person"
-                android:title="Sells Report"/>
-
         </menu>
     </item>
     <group>
+        <item
+            android:id="@+id/salesRepo"
+            android:icon="@drawable/ic_sales_repo"
+            android:title="Sales Report"/>
+
         <item
             android:id="@+id/premium"
             android:icon="@drawable/restora_logo"

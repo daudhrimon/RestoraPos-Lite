@@ -487,12 +487,14 @@
                 android:background="@color/gray_btn_bg_pressed_color" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/logo"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_69sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="3dp"
                 android:layout_weight="1.09"
                 app:cardBackgroundColor="@color/bg_color"
+                android:foreground="?attr/selectableItemBackground"
                 app:cardCornerRadius="5dp"
                 app:cardElevation=".5dp">
 

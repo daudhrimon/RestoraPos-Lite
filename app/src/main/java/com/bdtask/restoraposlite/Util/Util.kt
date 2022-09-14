@@ -28,7 +28,7 @@ object Util {
 
     @SuppressLint("SimpleDateFormat")
     fun getDate(): String?{
-        return SimpleDateFormat("dd-MM-yyyy").format(Date())
+        return SimpleDateFormat("dd-MM-yyyy").format(Date()).toString()
     }
 
     @SuppressLint("MissingPermission")

@@ -18,31 +18,31 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TodayFragment() : Fragment() {
-    private lateinit var tBinding: FragmentTodayBinding
-    private var todayList = mutableListOf<Order>()
+    private lateinit var binding: FragmentTodayBinding
+    private var orderList = mutableListOf<Order>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        tBinding = FragmentTodayBinding.inflate(inflater, container, false)
+        binding = FragmentTodayBinding.inflate(inflater, container, false)
 
 
-        tBinding.back.setOnClickListener {
+        binding.back.setOnClickListener {
             findNavController().popBackStack()
         }
 
 
-        tBinding.searchBtn.setOnClickListener {
-            if (tBinding.searchEt.visibility == View.GONE){
-                tBinding.header.visibility = View.GONE
-                tBinding.searchEt.visibility = View.VISIBLE
-                Util.showKeyboard(tBinding.searchEt)
-                tBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
+        binding.searchBtn.setOnClickListener {
+            if (binding.searchEt.visibility == View.GONE){
+                binding.header.visibility = View.GONE
+                binding.searchEt.visibility = View.VISIBLE
+                Util.showKeyboard(binding.searchEt)
+                binding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
             } else {
-                tBinding.searchEt.visibility = View.GONE
-                tBinding.header.visibility = View.VISIBLE
-                Util.hideSoftKeyBoard(requireContext(), tBinding.root)
-                tBinding.searchBtn.setImageResource(R.drawable.search_icon)
+                binding.searchEt.visibility = View.GONE
+                binding.header.visibility = View.VISIBLE
+                Util.hideSoftKeyBoard(requireContext(), binding.root)
+                binding.searchBtn.setImageResource(R.drawable.search_icon)
             }
         }
 
@@ -51,7 +51,7 @@ class TodayFragment() : Fragment() {
             .getTodayOrder(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString(),1)
             .observe(viewLifecycleOwner, Observer {
 
-                todayList = it
+                orderList = it
 
                 setRecyclerAdapter()
 
@@ -59,27 +59,27 @@ class TodayFragment() : Fragment() {
 
 
 
-        tBinding.searchEt.doOnTextChanged { text, start, before, count ->
+        binding.searchEt.doOnTextChanged { text, start, before, count ->
             val srsList = mutableListOf<Order>()
             if (text.toString() != "" && text.toString().isNotEmpty()){
                 srsList.clear()
-                for (i in todayList.indices){
-                    if (todayList[i].id.toString().contains(text.toString()) ||
-                        todayList[i].tkn.contains(text.toString()) ||
-                        todayList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
-                        todayList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
-                        todayList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
+                for (i in orderList.indices){
+                    if (orderList[i].id.toString().contains(text.toString()) ||
+                        orderList[i].tkn.contains(text.toString()) ||
+                        orderList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
+                        orderList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
+                        orderList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
 
-                        srsList.add(todayList[i])
+                        srsList.add(orderList[i])
                     }
                 }
                 if (srsList.isNotEmpty()){
-                    tBinding.emptyOrder.visibility = View.GONE
-                    tBinding.rvLay.visibility = View.VISIBLE
-                    tBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
+                    binding.emptyOrder.visibility = View.GONE
+                    binding.rvLay.visibility = View.VISIBLE
+                    binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
                 } else {
-                    tBinding.rvLay.visibility = View.GONE
-                    tBinding.emptyOrder.visibility = View.VISIBLE
+                    binding.rvLay.visibility = View.GONE
+                    binding.emptyOrder.visibility = View.VISIBLE
                 }
             } else {
 
@@ -88,18 +88,18 @@ class TodayFragment() : Fragment() {
             }
         }
 
-        return tBinding.root
+        return binding.root
     }
 
     private fun setRecyclerAdapter() {
-        if (todayList.isNotEmpty()){
+        if (orderList.isNotEmpty()){
 
-            tBinding.emptyOrder.visibility = View.GONE
-            tBinding.rvLay.visibility = View.VISIBLE
-            tBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),todayList)
+            binding.emptyOrder.visibility = View.GONE
+            binding.rvLay.visibility = View.VISIBLE
+            binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),orderList)
         } else {
-            tBinding.rvLay.visibility = View.GONE
-            tBinding.emptyOrder.visibility = View.VISIBLE
+            binding.rvLay.visibility = View.GONE
+            binding.emptyOrder.visibility = View.VISIBLE
         }
     }
 }

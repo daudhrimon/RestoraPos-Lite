@@ -58,105 +58,114 @@ class MainActivity: AppCompatActivity() {
 
             drawerLayout.closeDrawer(GravityCompat.START)
 
-            when(it.itemId){
+            drawerLayout.postDelayed({
 
-                R.id.addFoodD -> {
-                    findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
+                when(it.itemId){
+
+                    R.id.addFoodD -> {
+                        findNavController(R.id.navController).navigate(R.id.homeFrag2foodFrag)
+                    }
+
+                    R.id.addPayD -> {
+                        val dialog = AddPaymentDialog(this)
+                        dialog.show()
+                        val width = resources.displayMetrics.widthPixels
+                        val win = dialog.window
+                        win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
+                        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    }
+
+                    R.id.setVatD -> {
+                        val dialog = VatChargeDialog(
+                            this,
+                            0,
+                            "Add Global Vat in %",
+                            "Enter Vat in % here",
+                            supportFragmentManager
+                        )
+                        dialog.show()
+                        val width = resources.displayMetrics.widthPixels
+                        val win = dialog.window
+                        win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
+                        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    }
+
+                    R.id.setCrgD -> {
+                        val dialog = VatChargeDialog(
+                            this,
+                            1,
+                            "Add Global Service Charge in %",
+                            "Enter Service Charge in % here",
+                            supportFragmentManager
+                        )
+                        dialog.show()
+                        val width = resources.displayMetrics.widthPixels
+                        val win = dialog.window
+                        win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
+                        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    }
+
+                    R.id.setCurr -> {
+                        val dialog = VatChargeDialog(
+                            this,
+                            2,
+                            "Set Global Currency",
+                            "Selected Currency Will Appear Here",
+                            supportFragmentManager
+                        )
+                        dialog.show()
+                        val width = resources.displayMetrics.widthPixels
+                        val win = dialog.window
+                        win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
+                        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    }
+
+                    R.id.setInf -> {
+                        val dialog = AddCustomerDialog(this,1)
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                        dialog.show()
+                        val width = resources.displayMetrics.widthPixels
+                        val win = dialog.window
+                        win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
+                        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    }
+
+                    R.id.setLogo -> {
+                        ImagePicker.with(this)
+                            .crop(5f,2f)
+                            .compress(48)         //Final image size will be less than 1 MB(Optional)
+                            .maxResultSize(167, 65)  //Final image resolution will be less than 1080 x 1080(Optional)
+                            .createIntent { intent ->
+                                startForProfileImageResult.launch(intent)
+                            }
+                    }
+
+                    R.id.setOp -> {
+                        val dialog = VatChargeDialog(
+                            this,
+                            3,
+                            "Set Operator's Name",
+                            "Enter Name here",
+                            supportFragmentManager
+                        )
+                        dialog.show()
+                        val width = resources.displayMetrics.widthPixels
+                        val win = dialog.window
+                        win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
+                        win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    }
+
+                    R.id.salesRepo -> {
+                        findNavController(R.id.navController).navigate(R.id.homeFrag2repoFrag)
+                    }
+
+                    R.id.premium -> {
+                        findNavController(R.id.navController).navigate(R.id.homeFrag2aboutUs)
+                    }
                 }
 
-            R.id.addPayD -> {
-                    val dialog = AddPaymentDialog(this)
-                    dialog.show()
-                    val width = resources.displayMetrics.widthPixels
-                    val win = dialog.window
-                    win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
-                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
+            },191)
 
-                R.id.setVatD -> {
-                    val dialog = VatChargeDialog(
-                        this,
-                        0,
-                        "Add Global Vat in %",
-                        "Enter Vat in % here",
-                        supportFragmentManager
-                    )
-                    dialog.show()
-                    val width = resources.displayMetrics.widthPixels
-                    val win = dialog.window
-                    win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
-                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
-
-                R.id.setCrgD -> {
-                    val dialog = VatChargeDialog(
-                        this,
-                        1,
-                        "Add Global Service Charge in %",
-                        "Enter Service Charge in % here",
-                        supportFragmentManager
-                    )
-                    dialog.show()
-                    val width = resources.displayMetrics.widthPixels
-                    val win = dialog.window
-                    win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
-                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
-
-                R.id.setCurr -> {
-                    val dialog = VatChargeDialog(
-                        this,
-                        2,
-                        "Set Global Currency",
-                        "Selected Currency Will Appear Here",
-                        supportFragmentManager
-                    )
-                    dialog.show()
-                    val width = resources.displayMetrics.widthPixels
-                    val win = dialog.window
-                    win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
-                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
-
-                R.id.setInf -> {
-                    val dialog = AddCustomerDialog(this,1)
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                    dialog.show()
-                    val width = resources.displayMetrics.widthPixels
-                    val win = dialog.window
-                    win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
-                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
-
-                R.id.setLogo -> {
-                    ImagePicker.with(this)
-                        .crop(5f,2f)
-                        .compress(48)         //Final image size will be less than 1 MB(Optional)
-                        .maxResultSize(167, 65)  //Final image resolution will be less than 1080 x 1080(Optional)
-                        .createIntent { intent ->
-                            startForProfileImageResult.launch(intent)
-                        }
-                }
-
-                R.id.setOp -> {
-                    val dialog = VatChargeDialog(
-                        this,
-                        3,
-                        "Set Operator's Name",
-                        "Enter Name here",
-                        supportFragmentManager
-                    )
-                    dialog.show()
-                    val width = resources.displayMetrics.widthPixels
-                    val win = dialog.window
-                    win!!.setLayout((6 * width) / 7, WindowManager.LayoutParams.WRAP_CONTENT)
-                    win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                }
-
-                R.id.premium -> {
-                    findNavController(R.id.navController).navigate(R.id.homeFrag2aboutUs)
-                }
-            }
             return@setNavigationItemSelectedListener true
         }
     }

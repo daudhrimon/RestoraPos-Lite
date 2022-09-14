@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    tools:context=".Fragment.CompletedFragment">
+
+    <RelativeLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/bottom_rounded_bg"
+        android:paddingVertical="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/selector_cross_btn"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"
+            app:tint="@color/back_btn_tint"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="7dp"
+            android:layout_toRightOf="@+id/back"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:gravity="center_vertical"
+            android:paddingBottom="2dp"
+            android:text="Sales Report"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/searchEt"
+            style="@style/Widget.AppCompat.SearchView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginVertical="@dimen/_2sdp"
+            android:layout_toStartOf="@id/searchBtn"
+            android:layout_toEndOf="@id/back"
+            android:background="@drawable/border_et_bg"
+            android:drawableStart="@drawable/search_icon"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/helvetica_nueu_light"
+            android:gravity="center_vertical"
+            android:hint=" Search Order Here"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:textColorHint="@color/hintColor"
+            android:textSize="15sp"
+            android:visibility="gone"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="1dp"
+            android:clickable="true"
+            android:foreground="@drawable/selector_cross_btn"
+            android:padding="@dimen/_9sdp"
+            android:src="@drawable/search_icon"
+            app:tint="@color/back_btn_tint"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </RelativeLayout>
+
+    <!-- START FROM HERE -->
+
+    <LinearLayout
+        android:id="@+id/filterLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/dateLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text"
+            android:layout_alignParentStart="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_34sdp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.5"
+                android:hint="From Date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fromDateEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+                    android:focusable="false"
+                    android:onClick="pickDate"
+                    android:textColor="@color/theme_color"
+                    android:padding="0dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_34sdp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.5"
+                android:hint="To Date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/toDateEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+                    android:focusable="false"
+                    android:onClick="pickDate"
+                    android:textColor="@color/theme_color"
+                    android:padding="0dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--<Button
+            android:id="@+id/expenseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateLay"
+            android:layout_marginTop="15dp"
+            android:text="Expense"
+            android:textSize="16dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/btnBg"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/txtClr"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rvLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLay"
+        android:layout_below="@+id/filterLay"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/shape_splitter_selected"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Order ID"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/theme_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Customer"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/theme_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Type"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/theme_color"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Amount"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/theme_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/todayRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/emptyOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_remove_shopping_cart_black_24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_order"
+            android:textColor="@color/theme_color"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_34sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_color"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:fontFamily="@font/helvetica_neue"
+            android:gravity="center_vertical"
+            android:text="Total Sales"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/totalSalesTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:fontFamily="@font/helvetica_neue"
+            android:gravity="center_vertical"
+            android:text=" : 0.0"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
+
+</RelativeLayout>

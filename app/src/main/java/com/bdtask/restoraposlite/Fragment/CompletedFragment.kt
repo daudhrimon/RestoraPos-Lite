@@ -16,31 +16,31 @@ import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.FragmentCompletedBinding
 
 class CompletedFragment : Fragment() {
-    private lateinit var cBinding: FragmentCompletedBinding
-    private var comList = mutableListOf<Order>()
+    private lateinit var binding: FragmentCompletedBinding
+    private var orderList = mutableListOf<Order>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        cBinding = FragmentCompletedBinding.inflate(inflater, container, false)
+        binding = FragmentCompletedBinding.inflate(inflater, container, false)
 
 
-        cBinding.back.setOnClickListener {
+        binding.back.setOnClickListener {
             findNavController().popBackStack()
         }
 
 
-        cBinding.searchBtn.setOnClickListener {
-            if (cBinding.searchEt.visibility == View.GONE){
-                cBinding.header.visibility = View.GONE
-                cBinding.searchEt.visibility = View.VISIBLE
-                Util.showKeyboard(cBinding.searchEt)
-                cBinding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
+        binding.searchBtn.setOnClickListener {
+            if (binding.searchEt.visibility == View.GONE){
+                binding.header.visibility = View.GONE
+                binding.searchEt.visibility = View.VISIBLE
+                Util.showKeyboard(binding.searchEt)
+                binding.searchBtn.setImageResource(R.drawable.ic_baseline_close_24)
             } else {
-                cBinding.searchEt.visibility = View.GONE
-                cBinding.header.visibility = View.VISIBLE
-                Util.hideSoftKeyBoard(requireContext(), cBinding.root)
-                cBinding.searchBtn.setImageResource(R.drawable.search_icon)
+                binding.searchEt.visibility = View.GONE
+                binding.header.visibility = View.VISIBLE
+                Util.hideSoftKeyBoard(requireContext(), binding.root)
+                binding.searchBtn.setImageResource(R.drawable.search_icon)
             }
         }
 
@@ -48,7 +48,7 @@ class CompletedFragment : Fragment() {
 
         database.orderDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
 
-            comList = it.toMutableList()
+            orderList = it.toMutableList()
 
             setRecyclerAdapter()
 
@@ -57,27 +57,27 @@ class CompletedFragment : Fragment() {
 
 
 
-        cBinding.searchEt.doOnTextChanged { text, start, before, count ->
+        binding.searchEt.doOnTextChanged { text, start, before, count ->
             val srsList = mutableListOf<Order>()
             if (text.toString() != "" && text.toString().isNotEmpty()){
                 srsList.clear()
-                for (i in comList.indices){
-                    if (comList[i].id.toString().contains(text.toString()) ||
-                        comList[i].tkn.contains(text.toString()) ||
-                        comList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
-                        comList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
-                        comList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
+                for (i in orderList.indices){
+                    if (orderList[i].id.toString().contains(text.toString()) ||
+                        orderList[i].tkn.contains(text.toString()) ||
+                        orderList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
+                        orderList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
+                        orderList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
 
-                        srsList.add(comList[i])
+                        srsList.add(orderList[i])
                     }
                 }
                 if (srsList.isNotEmpty()){
-                    cBinding.emptyOrder.visibility = View.GONE
-                    cBinding.rvLay.visibility = View.VISIBLE
-                    cBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
+                    binding.emptyOrder.visibility = View.GONE
+                    binding.rvLay.visibility = View.VISIBLE
+                    binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
                 } else {
-                    cBinding.rvLay.visibility = View.GONE
-                    cBinding.emptyOrder.visibility = View.VISIBLE
+                    binding.rvLay.visibility = View.GONE
+                    binding.emptyOrder.visibility = View.VISIBLE
                 }
             } else {
 
@@ -87,18 +87,18 @@ class CompletedFragment : Fragment() {
         }
 
 
-        return cBinding.root
+        return binding.root
     }
 
     private fun setRecyclerAdapter() {
-        if (comList.isNotEmpty()){
+        if (orderList.isNotEmpty()){
 
-            cBinding.emptyOrder.visibility = View.GONE
-            cBinding.rvLay.visibility = View.VISIBLE
-            cBinding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),comList)
+            binding.emptyOrder.visibility = View.GONE
+            binding.rvLay.visibility = View.VISIBLE
+            binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),orderList)
         } else {
-            cBinding.rvLay.visibility = View.GONE
-            cBinding.emptyOrder.visibility = View.VISIBLE
+            binding.rvLay.visibility = View.GONE
+            binding.emptyOrder.visibility = View.VISIBLE
         }
     }
 }

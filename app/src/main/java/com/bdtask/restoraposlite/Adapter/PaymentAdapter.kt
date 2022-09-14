@@ -58,9 +58,11 @@ class PaymentAdapter( private val context: Context,
                     holder.binding.cardLay.visibility = View.VISIBLE
                     payList[adapterPos].typ = 1
                     setCardLayAdapter(holder, adapterPos)
+                    payList[adapterPos].pay = holder.binding.spinPayments.selectedItem.toString()
                 } else {
                     holder.binding.cardLay.visibility = View.GONE
                     payList[adapterPos].typ = 0
+                    payList[adapterPos].pay = holder.binding.spinPayments.selectedItem.toString()
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {/**/}
