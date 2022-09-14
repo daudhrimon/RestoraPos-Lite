@@ -19,7 +19,7 @@ class CategoryAdapter( private val context: Context,
                        private val searchEt: EditText,
                        private var foodClickListener: FoodClickListener): RecyclerView.Adapter<CategoryAdapter.CategoryVH>() {
 
-    private var tempFoList = listOf<Food>()
+    //private var tempFoList = listOf<Food>()
 
     inner class CategoryVH(val binding: VhFoodRecyclerBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
@@ -28,24 +28,21 @@ class CategoryAdapter( private val context: Context,
     }
 
     override fun onBindViewHolder(holder: CategoryVH, position: Int) {
-        tempFoList = foodList.toList()
-
+        val tempFoList = foodList.toMutableList()
         if (position == 0){
 
-            setFoodAdapter(holder)
+            setFoodAdapter(holder,tempFoList)
 
         } else {
-            tempFoList.toMutableList().clear()
+            tempFoList.clear()
             for (i in foodList.indices){
                 if (foodList[i].fCate == cateList[position]){
-                    tempFoList.toMutableList().add(foodList[i])
+                    tempFoList.add(foodList[i])
                 }
             }
 
-            setFoodAdapter(holder)
-
+            setFoodAdapter(holder, tempFoList)
         }
-
 
 
         searchEt.doOnTextChanged { text, start, before, count ->
@@ -71,12 +68,12 @@ class CategoryAdapter( private val context: Context,
             } else {
                 holder.itemView.setBackgroundColor(getColor(context,R.color.white))
 
-                setFoodAdapter(holder)
+                setFoodAdapter(holder, tempFoList)
             }
         }
     }
 
-    private fun setFoodAdapter(holder: CategoryVH) {
+    private fun setFoodAdapter(holder: CategoryVH, tempFoList: List<Food>) {
         if (tempFoList.isNotEmpty()){
             holder.binding.emptyBox.visibility = View.GONE
             holder.binding.foodRecycler.visibility = View.VISIBLE
