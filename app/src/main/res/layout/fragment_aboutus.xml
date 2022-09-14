@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_btn_bg_pressed_color"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".Fragment.AboutUsFragment">
 
@@ -46,10 +46,11 @@
     </RelativeLayout>
 
     <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:src="@drawable/texticon" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="88dp"
+        android:layout_marginVertical="19dp"
+        android:src="@drawable/restora_pos" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,10 +59,17 @@
         android:orientation="vertical"
         android:weightSum="10">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_baseline_arrow_drop_up_24"
+            android:layout_weight=".4"
+            android:background="@color/trans"/>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_weight="6.6"
             android:overScrollMode="never"
             android:scrollbars="none">
 
@@ -74,7 +82,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_vertical"
                     android:padding="8dp"
@@ -322,25 +329,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingHorizontal="22dp"
             android:layout_weight=".8"
-            android:paddingTop="4dp"
+            android:background="#9DCCAC"
             android:fontFamily="@font/helvetica_neue"
             android:gravity="center_vertical"
+            android:paddingHorizontal="22dp"
+            android:paddingTop="4dp"
             android:text="Contact Us"
-            android:background="#9DCCAC"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingHorizontal="9dp"
-            android:background="@color/bg_color"
             android:layout_weight="2.2"
+            android:background="@color/bg_color"
+            android:orientation="horizontal"
+            android:paddingHorizontal="9dp"
             android:paddingTop="4dp"
             android:paddingBottom="12dp"
-            android:orientation="horizontal"
             android:weightSum="4">
 
             <LinearLayout
@@ -492,7 +499,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_menu" />
+                    android:src="@drawable/restora_logo" />
 
             </androidx.cardview.widget.CardView>
 

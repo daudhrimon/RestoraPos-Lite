@@ -10,9 +10,9 @@
         android:translateY="28.62">
         <path
             android:pathData="M24.411,0L0,0v40.685h8.137L8.137,8.137h16.13a4.165,4.165 0,0 1,4.2 3.79,4.073 4.073,0 0,1 -4.059,4.347L20.344,16.274a8.137,8.137 0,0 0,-8.137 8.137h12.205a12.205,12.205 0,0 0,12.205 -12.205h0A12.205,12.205 0,0 0,24.411 0Z"
-            android:fillColor="@color/gray_btn_bg_pressed_color"/>
+            android:fillColor="@color/black"/>
         <path
             android:pathData="M36.616,40.685L24.411,40.685a12.205,12.205 0,0 1,-12.205 -12.205h11.919a8.136,8.136 0,0 1,6.77 3.623Z"
-            android:fillColor="#00973e"/>
+            android:fillColor="@color/theme_color"/>
     </group>
 </vector>

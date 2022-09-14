@@ -10,7 +10,7 @@
             <item
                 android:id="@+id/addPayD"
                 android:icon="@drawable/ic_pay"
-                android:title="Add Payment"/>
+                android:title="Add Payments"/>
 
             <item
                 android:id="@+id/setVatD"
@@ -42,12 +42,17 @@
                 android:icon="@drawable/ic_person"
                 android:title="Set Operator's Name"/>
 
+            <item
+                android:id="@+id/SellRepo"
+                android:icon="@drawable/ic_person"
+                android:title="Sells Report"/>
+
         </menu>
     </item>
     <group>
         <item
             android:id="@+id/premium"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/restora_logo"
             android:title="Restora POS Premium"/>
     </group>
 </menu>
