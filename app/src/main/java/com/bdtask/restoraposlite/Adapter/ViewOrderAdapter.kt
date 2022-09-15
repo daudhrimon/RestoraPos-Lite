@@ -114,7 +114,7 @@ class ViewOrderAdapter(private val context: Context,
 
             GlobalScope.launch(Dispatchers.IO) {
 
-                MainActivity.database.orderDao().updateOrder(orderList[position])
+                MainActivity.database.AppDao().updateOrder(orderList[position])
 
                 withContext(Dispatchers.Main){
 

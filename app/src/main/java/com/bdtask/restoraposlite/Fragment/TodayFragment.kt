@@ -47,7 +47,7 @@ class TodayFragment() : Fragment() {
         }
 
 
-        database.orderDao()
+        database.AppDao()
             .getTodayOrder(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString(),1)
             .observe(viewLifecycleOwner, Observer {
 

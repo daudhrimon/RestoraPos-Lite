@@ -49,7 +49,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         sharedPref.writeEMode(0)
 
 
-        database.orderDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
+        database.AppDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
             ongList.clear()
             ongList = it.asReversed().toMutableList()
             clickedList.clear()
@@ -193,7 +193,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.orderDao().updateOrder(order)
+                    database.AppDao().updateOrder(order)
 
                     withContext(Dispatchers.Main){
 
@@ -225,7 +225,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
                     GlobalScope.launch(Dispatchers.IO) {
 
-                        database.orderDao().updateOrder(order)
+                        database.AppDao().updateOrder(order)
 
                         withContext(Dispatchers.Main){
                             val items = clickedList.size

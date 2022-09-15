@@ -18,7 +18,7 @@ import com.bdtask.restoraposlite.Dialog.AddCustomerDialog
 import com.bdtask.restoraposlite.Dialog.AddPaymentDialog
 import com.bdtask.restoraposlite.Dialog.VatChargeDialog
 import com.bdtask.restoraposlite.Room.Entity.Food
-import com.bdtask.restoraposlite.Room.PosDatabase
+import com.bdtask.restoraposlite.Room.AppDatabase
 import com.bdtask.restoraposlite.Util.SharedPref
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.navigation.NavigationView
@@ -29,7 +29,7 @@ class MainActivity: AppCompatActivity() {
     companion object{
         lateinit var drawerLayout:DrawerLayout
         lateinit var navDrawer: NavigationView
-        lateinit var database: PosDatabase
+        lateinit var database: AppDatabase
         var foodList = listOf<Food>()
         var appCurrency = "$"
     }
@@ -45,10 +45,10 @@ class MainActivity: AppCompatActivity() {
 
 
         // getting instance of ROOM database
-        database = PosDatabase.getDatabaseInstance(this)
+        database = AppDatabase.getDatabaseInstance(this)
 
 
-        database.foodDao().getAllFood().observe(this, Observer{
+        database.AppDao().getAllFood().observe(this, Observer{
             foodList = it
         })
 

@@ -45,7 +45,7 @@ class CanceledFragment : Fragment() {
         }
 
 
-        database.orderDao().getCOrder(2).observe(viewLifecycleOwner, Observer {
+        database.AppDao().getCOrder(2).observe(viewLifecycleOwner, Observer {
 
             orderList = it.toMutableList()
 

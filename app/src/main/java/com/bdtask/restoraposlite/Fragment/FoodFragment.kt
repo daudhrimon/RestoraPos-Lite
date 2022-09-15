@@ -165,7 +165,7 @@ class FoodFragment : Fragment() {
 
     // getting category from database and setting them to Spinner
     private fun getCategoryLive() {
-        MainActivity.database.categoryDao().getAllCategory().observe(viewLifecycleOwner, Observer {
+        MainActivity.database.AppDao().getAllCategory().observe(viewLifecycleOwner, Observer {
             cateList.clear()
             fCategoryList.clear()
             cateList = it.toMutableList()
@@ -242,7 +242,7 @@ class FoodFragment : Fragment() {
 
             GlobalScope.launch(Dispatchers.IO) {
 
-                database.categoryDao().insertCategory(Catgry(0,dbinding.itemEt.text.toString().trim()))
+                database.AppDao().insertCategory(Catgry(0,dbinding.itemEt.text.toString().trim()))
 
                 withContext(Dispatchers.Main) {
                         Toasty.success(requireContext(), "Successful", Toast.LENGTH_SHORT, true).show()
@@ -399,7 +399,7 @@ class FoodFragment : Fragment() {
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.foodDao().updateFood(food!!)
+                    database.AppDao().updateFood(food!!)
 
                     withContext(Dispatchers.Main) {
 
@@ -415,7 +415,7 @@ class FoodFragment : Fragment() {
         } else {
             GlobalScope.launch(Dispatchers.IO) {
 
-                database.foodDao().insertFood(
+                database.AppDao().insertFood(
                     Food(0,spinnerCategory,fBinding.foodTitleEt.text.toString(),tempVariantList,foodImage,tempAddonsList))
 
                 withContext(Dispatchers.Main) {

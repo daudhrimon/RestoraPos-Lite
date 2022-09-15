@@ -69,7 +69,7 @@ class TableEditAdapter(private val context: Context, private val list: MutableLi
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    MainActivity.database.tableDao().updateTable(Table(list[position].id, binding.itemEt.text.toString()))
+                    MainActivity.database.AppDao().updateTable(Table(list[position].id, binding.itemEt.text.toString()))
 
                     withContext(Dispatchers.Main) {
                         Toasty.success(context, "Table Updated Successfully", Toast.LENGTH_SHORT, true).show()
@@ -102,7 +102,7 @@ class TableEditAdapter(private val context: Context, private val list: MutableLi
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    MainActivity.database.tableDao().deleteTable(list[position])
+                    MainActivity.database.AppDao().deleteTable(list[position])
 
                     withContext(Dispatchers.Main) {
                         Toasty.success(context, "Table Deleted Successfully", Toast.LENGTH_SHORT, true).show()

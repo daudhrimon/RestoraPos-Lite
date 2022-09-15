@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Adapter.SalesRepostAdapter
-import com.bdtask.restoraposlite.Adapter.ViewOrderAdapter
 import com.bdtask.restoraposlite.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposlite.MainActivity.Companion.database
 import com.bdtask.restoraposlite.R
@@ -43,7 +42,7 @@ class ReportFragment : Fragment() {
         }
 
 
-        database.orderDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
+        database.AppDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
 
             orderList = it.toMutableList()
 

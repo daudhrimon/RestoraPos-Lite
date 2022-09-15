@@ -72,7 +72,7 @@ class OrderInfoFragment : Fragment() {
 
 
         // getting  customer name live and setting to spinner live
-        database.customerDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
+        database.AppDao().getAllCustomer().observe(viewLifecycleOwner, Observer{
             customerList.clear()
             cusNameList.clear()
             cusInfoList.clear()
@@ -159,7 +159,7 @@ class OrderInfoFragment : Fragment() {
 
 
         //getting waiter Live and setting to Waiter spinner Live
-        database.waiterDao().getAllWaiter().observe(viewLifecycleOwner, Observer{
+        database.AppDao().getAllWaiter().observe(viewLifecycleOwner, Observer{
             waiterList.clear()
             waiterSpnrList.clear()
             waiterList = it.toMutableList()
@@ -205,7 +205,7 @@ class OrderInfoFragment : Fragment() {
 
 
         // getting and setting Table Spinner
-        database.tableDao().getAllTable().observe(viewLifecycleOwner, Observer{
+        database.AppDao().getAllTable().observe(viewLifecycleOwner, Observer{
             tableList.clear()
             tableList = it.toMutableList()
             tableSpnrList.clear()
@@ -249,7 +249,7 @@ class OrderInfoFragment : Fragment() {
 
 
         //getting delivery Company Live and setting to spinner live
-        database.deliveryCompanyDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
+        database.AppDao().getDeliveryCompany().observe(viewLifecycleOwner, Observer{
             deliveryCmpnyList.clear()
             deliveryCmpnyList.clear()
             deliveryCmpnyList = it.toMutableList()
@@ -444,7 +444,7 @@ class OrderInfoFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.tableDao().insertTable(Table(0,tBinding.itemEt.text.toString()))
+                MainActivity.database.AppDao().insertTable(Table(0,tBinding.itemEt.text.toString()))
             }
 
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
@@ -482,7 +482,7 @@ class OrderInfoFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.waiterDao().insertWaiter(Waiter(0,waBinding.itemEt.text.toString()))
+                MainActivity.database.AppDao().insertWaiter(Waiter(0,waBinding.itemEt.text.toString()))
             }
 
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
@@ -520,7 +520,7 @@ class OrderInfoFragment : Fragment() {
             }
 
             GlobalScope.launch {
-                MainActivity.database.deliveryCompanyDao().insertDeliveryCompany(Cmpny(0,ctaBinding.itemEt.text.toString()))
+                MainActivity.database.AppDao().insertDeliveryCompany(Cmpny(0,ctaBinding.itemEt.text.toString()))
             }
 
             Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()

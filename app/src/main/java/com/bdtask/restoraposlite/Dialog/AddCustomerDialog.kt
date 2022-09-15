@@ -67,7 +67,7 @@ class AddCustomerDialog(context: Context,
 
             if (state == 0) {
                 GlobalScope.launch(Dispatchers.IO) {
-                    MainActivity.database.customerDao().insertCustomer(
+                    MainActivity.database.AppDao().insertCustomer(
                         Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
                             binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString()))
 

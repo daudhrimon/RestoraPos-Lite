@@ -46,7 +46,7 @@ class CompletedFragment : Fragment() {
 
 
 
-        database.orderDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
+        database.AppDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
 
             orderList = it.toMutableList()
 

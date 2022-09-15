@@ -103,7 +103,7 @@ class PaymentDialog (context: Context): Dialog(context) {
 
                     GlobalScope.launch(Dispatchers.IO) {
 
-                        MainActivity.database.orderDao().updateOrder(order)
+                        MainActivity.database.AppDao().updateOrder(order)
 
                         withContext(Dispatchers.Main){
 
@@ -118,7 +118,7 @@ class PaymentDialog (context: Context): Dialog(context) {
 
                     GlobalScope.launch(Dispatchers.IO){
 
-                        val orderId = MainActivity.database.orderDao().insertOrder(order)
+                        val orderId = MainActivity.database.AppDao().insertOrder(order)
 
                         withContext(Dispatchers.Main){
                             if (orderId != null && orderId.toString().isNotEmpty()) {

@@ -71,7 +71,7 @@ class CompanyEditAdapter(private val context: Context, private val list : Mutabl
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.deliveryCompanyDao().updateCompany(Cmpny(list[position].id, binding.itemEt.text.toString()))
+                    database.AppDao().updateCompany(Cmpny(list[position].id, binding.itemEt.text.toString()))
 
                     withContext(Dispatchers.Main) {
                         Toasty.success(context, "Company Updated Successfully", Toast.LENGTH_SHORT, true).show()
@@ -104,7 +104,7 @@ class CompanyEditAdapter(private val context: Context, private val list : Mutabl
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.deliveryCompanyDao().deleteCompany(list[position])
+                    database.AppDao().deleteCompany(list[position])
 
                     withContext(Dispatchers.Main) {
                         Toasty.success(context, "Company Deleted Successfully", Toast.LENGTH_SHORT, true).show()

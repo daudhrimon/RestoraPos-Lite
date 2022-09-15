@@ -69,7 +69,7 @@ class WaiterEditAdapter(private val context: Context, private val list: MutableL
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.waiterDao().updateWaiter(Waiter(list[position].id, binding.itemEt.text.toString()))
+                    database.AppDao().updateWaiter(Waiter(list[position].id, binding.itemEt.text.toString()))
 
                     withContext(Dispatchers.Main) {
                         Toasty.success(context, "Waiter Updated Successfully", Toast.LENGTH_SHORT, true).show()
@@ -102,7 +102,7 @@ class WaiterEditAdapter(private val context: Context, private val list: MutableL
 
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.waiterDao().deleteWaiter(list[position])
+                    database.AppDao().deleteWaiter(list[position])
 
                     withContext(Dispatchers.Main) {
                         Toasty.success(context, "Waiter Deleted Successfully", Toast.LENGTH_SHORT, true).show()

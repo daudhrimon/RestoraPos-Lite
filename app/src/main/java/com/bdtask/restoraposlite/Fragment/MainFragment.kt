@@ -72,7 +72,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
 
         // getting and setting category Recycler
-        database.categoryDao().getCategories().observe(viewLifecycleOwner, Observer{
+        database.AppDao().getCategories().observe(viewLifecycleOwner, Observer{
             categoryList.clear()
             categoryList = it.toMutableList()
 
@@ -335,7 +335,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                             GlobalScope.launch(Dispatchers.IO) {
 
-                                val orderId = database.orderDao().insertOrder(order)
+                                val orderId = database.AppDao().insertOrder(order)
 
                                 withContext(Dispatchers.Main) {
 
@@ -370,7 +370,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                             GlobalScope.launch(Dispatchers.IO) {
 
-                                database.orderDao().updateOrder(orderUp!!)
+                                database.AppDao().updateOrder(orderUp!!)
 
                                 withContext(Dispatchers.Main) {
 
@@ -650,7 +650,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             alert.setPositiveButton("Yes", DialogInterface.OnClickListener { dial, which ->
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    database.foodDao().deleteFood(food)
+                    database.AppDao().deleteFood(food)
 
                     withContext(Dispatchers.Main){
                         mBinding.viewPager2.postDelayed({

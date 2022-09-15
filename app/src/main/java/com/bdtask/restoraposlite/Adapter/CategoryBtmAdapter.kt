@@ -88,13 +88,13 @@ class CategoryBtmAdapter(private val context: Context,
 
                         try {
                             GlobalScope.launch(Dispatchers.IO) {
-                                database.foodDao().updateFood(foodList[i])
+                                database.AppDao().updateFood(foodList[i])
 
                                 withContext(Dispatchers.Main) {
                                     if (i == foodList.size - 1) {
 
                                         GlobalScope.launch(Dispatchers.IO) {
-                                            database.categoryDao().updateCategory(
+                                            database.AppDao().updateCategory(
                                                 Catgry(
                                                     list[position].id,
                                                     binding.itemEt.text.toString()
@@ -119,7 +119,7 @@ class CategoryBtmAdapter(private val context: Context,
                 }
             } else {
                 GlobalScope.launch(Dispatchers.IO) {
-                    database.categoryDao().updateCategory(
+                    database.AppDao().updateCategory(
                         Catgry(
                             list[position].id,
                             binding.itemEt.text.toString()
