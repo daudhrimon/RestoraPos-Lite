@@ -38,20 +38,16 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         drawerLayout = findViewById(R.id.drawerLayout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         navDrawer = findViewById(R.id.navDrawer)
 
-
         // getting instance of ROOM database
         database = AppDatabase.getDatabaseInstance(this)
-
 
         database.AppDao().getAllFood().observe(this, Observer{
             foodList = it
         })
-
 
         // Nav Drawer Controller
         navDrawer.setNavigationItemSelectedListener {
