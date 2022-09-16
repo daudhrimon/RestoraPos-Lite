@@ -58,26 +58,30 @@ class OnboardFragment : Fragment() {
 
     private fun addDots(position: Int) {
 
-        binding.dot1.setImageResource(R.drawable.dot_unselected)
-        binding.dot2.setImageResource(R.drawable.dot_unselected)
-        binding.dot3.setImageResource(R.drawable.dot_unselected)
-
         when (position) {
 
             0 -> {
                 binding.dot1.setImageResource(R.drawable.dot_selected)
+                binding.dot2.setImageResource(R.drawable.dot_unselected)
+                binding.dot3.setImageResource(R.drawable.dot_unselected)
                 binding.skipBtn.text = "SKIP"
             }
 
             1 -> {
                 binding.dot2.setImageResource(R.drawable.dot_selected)
+                binding.dot1.setImageResource(R.drawable.dot_unselected)
+                binding.dot3.setImageResource(R.drawable.dot_unselected)
                 binding.skipBtn.text = "SKIP"
             }
 
             2 -> {
                 binding.dot3.setImageResource(R.drawable.dot_selected)
+                binding.dot1.setImageResource(R.drawable.dot_unselected)
+                binding.dot2.setImageResource(R.drawable.dot_unselected)
                 binding.skipBtn.text = "DONE"
             }
         }
     }
+
+
 }
