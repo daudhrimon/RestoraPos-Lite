@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/white"
-    tools:context=".Fragment.CompletedFragment">
+    tools:context=".Fragment.CompletedFragment"
+    android:animationCache="true">
 
     <RelativeLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:animateLayoutChanges="true"
+        android:animationCache="true"
         android:background="@drawable/bottom_rounded_bg"
         android:paddingVertical="@dimen/_4sdp">
 
