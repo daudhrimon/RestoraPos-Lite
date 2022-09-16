@@ -22,7 +22,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CompanyEditAdapter(private val context: Context, private val list : MutableList<Cmpny>): RecyclerView.Adapter<CompanyEditAdapter.VHCompanyEdit>() {
+class CompanyEditAdapter(private val context: Context,
+                         private val list : MutableList<Cmpny>
+                         ): RecyclerView.Adapter<CompanyEditAdapter.VHCompanyEdit>() {
 
     inner class VHCompanyEdit(val binding: VhEditDeleteBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 

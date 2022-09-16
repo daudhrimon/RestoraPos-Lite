@@ -40,7 +40,8 @@ import es.dmoral.toasty.Toasty
 class InvoicePrintDialog(context: Context,
                          private var order: Order,
                          private val posLogo: String,
-                         private val resInf: Cstmr?) : SweetAlertDialog(context, SUCCESS_TYPE) {
+                         private val resInf: Cstmr?
+                         ) : SweetAlertDialog(context, SUCCESS_TYPE) {
 
     private lateinit var printHelper: SunmiPrintHelper
     private var vat = 0.0

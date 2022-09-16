@@ -11,6 +11,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object Util {
+
+
+
     fun hideSoftKeyBoard(context: Context, view: View) {
         try {
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -20,16 +23,22 @@ object Util {
         }
     }
 
+
+
     fun showKeyboard(editText: EditText) {
         editText.requestFocus()
         val imm = editText.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editText, 0)
     }
 
+
+
     @SuppressLint("SimpleDateFormat")
     fun getDate(): String?{
         return SimpleDateFormat("dd-MM-yyyy").format(Date()).toString()
     }
+
+
 
     @SuppressLint("MissingPermission")
     fun getPrinterDevice(bluetoothAdapter: BluetoothAdapter): Boolean? {
@@ -46,6 +55,8 @@ object Util {
         return false
     }
 
+
+
     fun getToken(sharedPref: SharedPref): String {
 
         val lToken = sharedPref.getSharedToken() ?: 1
@@ -58,4 +69,7 @@ object Util {
             lToken.toString()
         }
     }
+
+
+
 }

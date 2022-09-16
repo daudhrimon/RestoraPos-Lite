@@ -12,11 +12,10 @@ import com.bdtask.restoraposlite.databinding.VhFoodItemBinding
 
 class FoodAdepter(private val context: Context,
                   private var foodList: List<Food>,
-                  private var foodClickListener: FoodClickListener) : RecyclerView.Adapter<FoodAdepter.FoodVHH>() {
+                  private var foodClickListener: FoodClickListener
+                  ) : RecyclerView.Adapter<FoodAdepter.FoodVHH>() {
 
-    inner class FoodVHH(binding: VhFoodItemBinding): RecyclerView.ViewHolder(binding.root) {
-        var binding = binding
-    }
+    inner class FoodVHH(val binding: VhFoodItemBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodVHH {
         return FoodVHH(VhFoodItemBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_food_item, parent, false)))

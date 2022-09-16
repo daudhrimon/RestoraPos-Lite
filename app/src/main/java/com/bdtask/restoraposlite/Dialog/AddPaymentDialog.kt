@@ -15,6 +15,7 @@ import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
 
 class AddPaymentDialog(context: Context): Dialog(context) {
+
     private lateinit var binding: DialogAddPaymentBinding
     private val payType = arrayOf("Simple Payment","Card Payment")
     private var pos = 0

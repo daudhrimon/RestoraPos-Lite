@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.OnboardLayoutBinding
 
-class OnboardAdapter(private var context: Context, private val images: IntArray):
-    RecyclerView.Adapter<OnboardAdapter.OnBoardingVH>() {
+class OnboardAdapter(private var context: Context,
+                     private val images: IntArray
+                     ): RecyclerView.Adapter<OnboardAdapter.OnBoardingVH>() {
 
     inner class OnBoardingVH(val binding: OnboardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {/**/}
 

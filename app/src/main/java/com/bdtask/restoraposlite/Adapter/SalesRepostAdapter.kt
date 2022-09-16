@@ -19,9 +19,9 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.VhSalesReportBinding
 import com.bdtask.restoraposlite.databinding.VhViewOrderBinding
 
-class SalesRepostAdapter(
-    private val context: Context,
-    private val orderList: MutableList<Order>): RecyclerView.Adapter<SalesRepostAdapter.VHSalesRepo>() {
+class SalesRepostAdapter(private val context: Context,
+                         private val orderList: MutableList<Order>
+                         ): RecyclerView.Adapter<SalesRepostAdapter.VHSalesRepo>() {
 
     private var index = -1
 

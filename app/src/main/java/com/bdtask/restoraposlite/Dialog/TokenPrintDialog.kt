@@ -29,7 +29,8 @@ class TokenPrintDialog(context: Context,
                        private val orderId: Long?,
                        private val cartList: MutableList<Cart>,
                        private val odrInf: OdrInf,
-                       private val tokenClickListener: TokenClickListener ): SweetAlertDialog(context, SUCCESS_TYPE) {
+                       private val tokenClickListener: TokenClickListener
+                       ): SweetAlertDialog(context, SUCCESS_TYPE) {
 
     private lateinit var printHelper: SunmiPrintHelper
 

@@ -11,6 +11,7 @@ import javax.script.ScriptEngineManager
 import javax.script.ScriptException
 
 class CalculatorDialog(context: Context) : Dialog(context) {
+
     private lateinit var binding: DialogCalculatorBinding
     var workings = ""
     var formula = ""

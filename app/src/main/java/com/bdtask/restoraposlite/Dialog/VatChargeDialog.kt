@@ -21,7 +21,8 @@ class VatChargeDialog( context: Context,
                        private val status: Int,
                        private val header: String,
                        private val hint: String,
-                       private val supportFragmentManager: FragmentManager ): Dialog(context) {
+                       private val supportFragmentManager: FragmentManager
+                       ): Dialog(context) {
 
     private lateinit var binding: DialogSingleItemetBinding
     private val sharedPref = SharedPref

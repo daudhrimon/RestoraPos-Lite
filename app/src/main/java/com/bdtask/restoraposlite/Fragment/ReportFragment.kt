@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ReportFragment : Fragment() {
+
     private lateinit var binding: FragmentReportBinding
     private var orderList = mutableListOf<Order>()
     private var filteredList = mutableListOf<Order>()

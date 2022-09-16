@@ -15,13 +15,12 @@ import com.bdtask.restoraposlite.databinding.VhCartItemBinding
 
 class CartAdapter(private val context: Context,
                   private var cartList: MutableList<Cart>,
-                  private val cartClickListener: CartClickListener): RecyclerView.Adapter<CartAdapter.CartVH>() {
+                  private val cartClickListener: CartClickListener
+                  ): RecyclerView.Adapter<CartAdapter.CartVH>() {
 
     var grandTotal = 0.0
 
-    inner class CartVH(binding: VhCartItemBinding): RecyclerView.ViewHolder(binding.root) {
-        var binding = binding
-    }
+    inner class CartVH(val binding: VhCartItemBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartVH {
         return CartVH(VhCartItemBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_cart_item, parent, false)))

@@ -15,6 +15,7 @@ import com.bdtask.restoraposlite.databinding.DialogViewOrderBinding
 import com.bumptech.glide.Glide
 
 class ViewOrderDialog(context: Context, private val order: Order): Dialog(context) {
+
     private var _binding: DialogViewOrderBinding? = null
     private val binding get() = _binding!!
     private val sharedPref = SharedPref

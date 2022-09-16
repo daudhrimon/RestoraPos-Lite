@@ -8,12 +8,11 @@ import com.bdtask.restoraposlite.Model.Cart
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhViewOrderItemBinding
 
-class ViewOrderItemAdapter(val context: Context,
-                           private val cart:MutableList<Cart>): RecyclerView.Adapter<ViewOrderItemAdapter.VHViewOrderItem>() {
+class ViewOrderItemAdapter(private val context: Context,
+                           private val cart:MutableList<Cart>
+                           ): RecyclerView.Adapter<ViewOrderItemAdapter.VHViewOrderItem>() {
 
-    inner class VHViewOrderItem(_binding: VhViewOrderItemBinding):RecyclerView.ViewHolder(_binding.root) {
-        val binding = _binding
-    }
+    inner class VHViewOrderItem(val binding: VhViewOrderItemBinding):RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHViewOrderItem {
         return VHViewOrderItem(VhViewOrderItemBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_view_order_item,parent,false)))

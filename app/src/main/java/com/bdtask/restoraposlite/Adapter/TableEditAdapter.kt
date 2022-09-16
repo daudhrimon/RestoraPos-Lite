@@ -22,7 +22,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TableEditAdapter(private val context: Context, private val list: MutableList<Table>): RecyclerView.Adapter<TableEditAdapter.VHTableEdit>() {
+class TableEditAdapter(private val context: Context,
+                       private val list: MutableList<Table>
+                       ): RecyclerView.Adapter<TableEditAdapter.VHTableEdit>() {
 
     inner class VHTableEdit(val binding: VhEditDeleteBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 

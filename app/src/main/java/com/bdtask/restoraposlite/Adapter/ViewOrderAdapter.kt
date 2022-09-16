@@ -22,12 +22,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ViewOrderAdapter(private val context: Context,
-                       private val orderList: MutableList<Order>): RecyclerView.Adapter<ViewOrderAdapter.VHViewOrder>() {
+                       private val orderList: MutableList<Order>
+                       ): RecyclerView.Adapter<ViewOrderAdapter.VHViewOrder>() {
     var index = -1
 
-    inner class VHViewOrder(_binding: VhViewOrderBinding): RecyclerView.ViewHolder(_binding.root) {
-        val binding = _binding
-    }
+    inner class VHViewOrder(val binding: VhViewOrderBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHViewOrder {
         return VHViewOrder(VhViewOrderBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_view_order,parent,false)))

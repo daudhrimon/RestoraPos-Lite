@@ -9,11 +9,10 @@ import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhViewOrderAddonBinding
 
 class ViewOrderAddonAdapter(private val context: Context,
-                            private val addons: MutableList<Adns>): RecyclerView.Adapter<ViewOrderAddonAdapter.VHViewOrderAddon>() {
+                            private val addons: MutableList<Adns>
+                            ): RecyclerView.Adapter<ViewOrderAddonAdapter.VHViewOrderAddon>() {
 
-    class VHViewOrderAddon(_binding: VhViewOrderAddonBinding): RecyclerView.ViewHolder(_binding.root) {
-        val binding = _binding
-    }
+    class VHViewOrderAddon(val binding: VhViewOrderAddonBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHViewOrderAddon {
         return VHViewOrderAddon(VhViewOrderAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_view_order_addon,parent,false)))

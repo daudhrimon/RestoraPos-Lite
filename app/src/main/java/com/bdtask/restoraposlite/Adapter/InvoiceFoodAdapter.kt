@@ -10,11 +10,10 @@ import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhInvoiceFoodBinding
 
 class InvoiceFoodAdapter(private val context: Context,
-                         private val cart: MutableList<Cart>): RecyclerView.Adapter<InvoiceFoodAdapter.VHInvoiceFood>() {
+                         private val cart: MutableList<Cart>
+                         ): RecyclerView.Adapter<InvoiceFoodAdapter.VHInvoiceFood>() {
 
-    inner class VHInvoiceFood(binding: VhInvoiceFoodBinding): RecyclerView.ViewHolder(binding.root) {
-        val binding = binding
-    }
+    inner class VHInvoiceFood(val binding: VhInvoiceFoodBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHInvoiceFood {
         return VHInvoiceFood(VhInvoiceFoodBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_invoice_food,parent,false)))

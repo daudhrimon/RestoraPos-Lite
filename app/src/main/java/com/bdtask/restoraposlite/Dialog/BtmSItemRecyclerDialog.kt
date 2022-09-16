@@ -16,7 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class BtmSItemRecyclerDialog(context: Context,
                              private val waiterList: MutableList<Waiter>,
                              private val dcList: MutableList<Cmpny>,
-                             private val tbList: MutableList<Table> ): BottomSheetDialog(context) {
+                             private val tbList: MutableList<Table>
+                             ): BottomSheetDialog(context) {
 
     private lateinit var btmBinding: BtmsheetItemEditDeleteBinding
 

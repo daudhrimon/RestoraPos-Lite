@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TodayFragment() : Fragment() {
+
     private lateinit var binding: FragmentTodayBinding
     private var orderList = mutableListOf<Order>()
 

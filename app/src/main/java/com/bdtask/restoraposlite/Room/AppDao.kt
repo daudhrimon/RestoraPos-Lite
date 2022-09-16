@@ -7,8 +7,9 @@ import com.bdtask.restoraposlite.Room.Entity.*
 @Dao
 interface AppDao {
 
-    //Category Dao
 
+
+    //Category Dao
     @Insert
     suspend fun insertCategory(catgry: Catgry)
 
@@ -22,8 +23,10 @@ interface AppDao {
     fun getCategories(): LiveData<List<String>>
 
 
-    //Food Dao
 
+
+
+    //Food Dao
     @Insert
     suspend fun insertFood(food: Food)
 
@@ -36,8 +39,11 @@ interface AppDao {
     @Delete
     suspend fun deleteFood(food: Food)
 
-    //Order Dao
 
+
+
+
+    //Order Dao
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOrder(order: Order): Long
 
@@ -59,8 +65,11 @@ interface AppDao {
     @Delete
     suspend fun deleteOnGoing(order: Order)
 
-    //Customer Dao
 
+
+
+
+    //Customer Dao
     @Insert()
     suspend fun insertCustomer(cstmr: Cstmr)
 
@@ -73,8 +82,11 @@ interface AppDao {
     @Delete
     suspend fun deleteCustomer(cstmr: Cstmr)
 
-    // Waiter Dao
 
+
+
+
+    // Waiter Dao
     @Insert
     suspend fun insertWaiter(waiter: Waiter)
 
@@ -87,8 +99,11 @@ interface AppDao {
     @Delete
     suspend fun deleteWaiter(waiter: Waiter)
 
-    //Table Dao
 
+
+
+
+    //Table Dao
     @Insert
     suspend fun insertTable(table: Table)
 
@@ -101,8 +116,11 @@ interface AppDao {
     @Delete
     suspend fun deleteTable(table: Table)
 
-    //Company Dao
 
+
+
+
+    //Company Dao
     @Insert
     suspend fun insertDeliveryCompany(deliveryCmpny: Cmpny)
 
@@ -114,6 +132,5 @@ interface AppDao {
 
     @Delete
     suspend fun deleteCompany(cmpny: Cmpny)
-
 
 }

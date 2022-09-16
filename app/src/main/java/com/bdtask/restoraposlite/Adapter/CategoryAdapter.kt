@@ -14,10 +14,11 @@ import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.Room.Entity.Food
 import com.bdtask.restoraposlite.databinding.VhFoodRecyclerBinding
 
-class CategoryAdapter( private val context: Context,
-                       private var cateList: MutableList<String>,
-                       private val searchEt: EditText,
-                       private var foodClickListener: FoodClickListener): RecyclerView.Adapter<CategoryAdapter.CategoryVH>() {
+class CategoryAdapter(private val context: Context,
+                      private var cateList: MutableList<String>,
+                      private val searchEt: EditText,
+                      private var foodClickListener: FoodClickListener
+                      ) : RecyclerView.Adapter<CategoryAdapter.CategoryVH>() {
 
     //private var tempFoList = listOf<Food>()
 

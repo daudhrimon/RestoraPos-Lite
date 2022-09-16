@@ -15,7 +15,8 @@ import com.bdtask.restoraposlite.databinding.VhAddonsBinding
 class AddonsAdapter(private val context: Context,
                     private var addonsList: List<Adn>,
                     private val fcBinding: DialogFoodClickBinding,
-                    private var adnsList: MutableList<Adns>): RecyclerView.Adapter<AddonsAdapter.VHFoodAddons>() {
+                    private var adnsList: MutableList<Adns>
+                    ): RecyclerView.Adapter<AddonsAdapter.VHFoodAddons>() {
 
     inner class VHFoodAddons(val binding: VhAddonsBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 

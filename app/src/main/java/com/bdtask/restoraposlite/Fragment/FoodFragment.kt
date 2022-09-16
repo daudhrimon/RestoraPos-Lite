@@ -41,6 +41,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FoodFragment : Fragment() {
+
     private lateinit var fBinding: FragmentFoodBinding
     private var btmBinding: BtmsheetItemEditDeleteBinding? = null
     private var cateList = mutableListOf<Catgry>()

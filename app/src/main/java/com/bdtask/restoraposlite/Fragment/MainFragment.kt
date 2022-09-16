@@ -44,6 +44,7 @@ import java.lang.Exception
 
 @SuppressLint("StaticFieldLeak")
 class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClickListener {
+
     companion object { lateinit var mBinding: FragmentMainBinding}
     private var categoryList = mutableListOf<String>()
     private var variantNameList = mutableListOf<String>()

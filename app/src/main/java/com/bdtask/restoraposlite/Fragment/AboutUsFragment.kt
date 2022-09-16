@@ -18,6 +18,7 @@ import java.lang.Exception
 
 
 class AboutUsFragment : Fragment() {
+
     private lateinit var binding: FragmentAboutusBinding
 
     override fun onCreateView(

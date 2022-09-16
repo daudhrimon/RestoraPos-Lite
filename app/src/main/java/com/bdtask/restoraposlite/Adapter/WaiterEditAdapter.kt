@@ -22,7 +22,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class WaiterEditAdapter(private val context: Context, private val list: MutableList<Waiter>): RecyclerView.Adapter<WaiterEditAdapter.VhWaiterEdit>() {
+class WaiterEditAdapter(private val context: Context,
+                        private val list: MutableList<Waiter>
+                        ): RecyclerView.Adapter<WaiterEditAdapter.VhWaiterEdit>() {
 
     inner class VhWaiterEdit(val binding: VhEditDeleteBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 

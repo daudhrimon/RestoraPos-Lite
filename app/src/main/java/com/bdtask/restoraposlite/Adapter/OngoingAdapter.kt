@@ -13,16 +13,14 @@ import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.Room.Entity.Order
 import com.bdtask.restoraposlite.databinding.VhOngoingBinding
 
-class OngoingAdapter(
-    private val context: Context,
-    private var ongList: MutableList<Order>,
-    private val ongoingClickListener: OngoingClickListener ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
+class OngoingAdapter(private val context: Context,
+                     private var ongList: MutableList<Order>,
+                     private val ongoingClickListener: OngoingClickListener
+                     ): RecyclerView.Adapter<OngoingAdapter.VHOngoing>() {
 
     var index = -1
 
-    inner class VHOngoing(binding: VhOngoingBinding): RecyclerView.ViewHolder(binding.root) {
-        var binding = binding
-    }
+    inner class VHOngoing(val binding: VhOngoingBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHOngoing {
         return VHOngoing(VhOngoingBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_ongoing, parent, false)))

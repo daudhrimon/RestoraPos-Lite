@@ -13,6 +13,7 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.FragmentOnboardBinding
 
 class OnboardFragment : Fragment() {
+
     private lateinit var binding: FragmentOnboardBinding
     private var pos: Int = 0
 
@@ -25,9 +26,7 @@ class OnboardFragment : Fragment() {
 
         val images = intArrayOf(R.drawable.onb_one, R.drawable.onb_two, R.drawable.onb_three)
 
-
         binding.onbViewPager2.adapter = OnboardAdapter(requireContext(),images)
-
 
         addDots(0)
 

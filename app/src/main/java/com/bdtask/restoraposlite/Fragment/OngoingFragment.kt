@@ -28,6 +28,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 
 class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
+
     private lateinit var oBinding: FragmentOngoingBinding
     private val sharedPref = SharedPref
     private var oPos = -1

@@ -10,11 +10,10 @@ import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhInvoiceAddonBinding
 
 class InvoiceAddonAdapter(private val context: Context,
-                          private val addons: MutableList<Adns>): RecyclerView.Adapter<InvoiceAddonAdapter.VHInvoiceAddon>() {
+                          private val addons: MutableList<Adns>
+                          ): RecyclerView.Adapter<InvoiceAddonAdapter.VHInvoiceAddon>() {
 
-    inner class VHInvoiceAddon(binding: VhInvoiceAddonBinding): RecyclerView.ViewHolder(binding.root) {
-        val binding = binding
-    }
+    inner class VHInvoiceAddon(val binding: VhInvoiceAddonBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHInvoiceAddon {
         return VHInvoiceAddon(VhInvoiceAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_invoice_addon,parent,false)))

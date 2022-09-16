@@ -21,4 +21,4 @@ data class Mrg (
     val odrInf: OdrInf,
     val cart: MutableList<Cart>,
     val pay: MutableList<Pay>
-        )
+    )

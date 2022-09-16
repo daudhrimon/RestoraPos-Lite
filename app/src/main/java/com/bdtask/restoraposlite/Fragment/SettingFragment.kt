@@ -9,6 +9,7 @@ import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
+
     private lateinit var binding: FragmentSettingBinding
 
     override fun onCreateView(
@@ -16,6 +17,8 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSettingBinding.inflate(inflater, container, false)
+
+
 
 
 

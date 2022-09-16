@@ -17,17 +17,16 @@ import com.bdtask.restoraposlite.databinding.VhTempVarAddonBinding
 import es.dmoral.toasty.Toasty
 
 class TempVariantAdapter(private val context: Context,
-                         private var list: MutableList<Variant>): RecyclerView.Adapter<TempVariantAdapter.VHtempVA>() {
+                         private var list: MutableList<Variant>
+                         ): RecyclerView.Adapter<TempVariantAdapter.VhTempVA>() {
 
-    inner class VHtempVA(binding: VhTempVarAddonBinding): RecyclerView.ViewHolder(binding.root) {
-        var binding = binding
+    inner class VhTempVA(var binding: VhTempVarAddonBinding): RecyclerView.ViewHolder(binding.root) {/**/}
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VhTempVA {
+        return VhTempVA(VhTempVarAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_temp_var_addon,parent,false)))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHtempVA {
-        return VHtempVA(VhTempVarAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_temp_var_addon,parent,false)))
-    }
-
-    override fun onBindViewHolder(holder: VHtempVA, position: Int) {
+    override fun onBindViewHolder(holder: VhTempVA, position: Int) {
         holder.binding.itemNameTv.text = "Variant : " + list[position]?.vari
         holder.binding.itemPriceTv.text = "Price : " + list[position]?.fPrc.toString()
 

@@ -24,7 +24,8 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 class CategoryBtmAdapter(private val context: Context,
-                         private var list: MutableList<Catgry>): RecyclerView.Adapter<CategoryBtmAdapter.CategoryBtmVH>() {
+                         private var list: MutableList<Catgry>
+                         ): RecyclerView.Adapter<CategoryBtmAdapter.CategoryBtmVH>() {
 
     inner class CategoryBtmVH(val binding: VhItemEditBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 

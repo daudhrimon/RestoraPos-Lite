@@ -20,6 +20,7 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
+
     private val sharedPref = SharedPref
 
     override fun onCreateView(

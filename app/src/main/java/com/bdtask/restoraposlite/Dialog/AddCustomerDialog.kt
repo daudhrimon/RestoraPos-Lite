@@ -17,7 +17,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class AddCustomerDialog(context: Context,
-                        val state: Int): Dialog(context) {
+                        val state: Int
+                        ): Dialog(context) {
 
     private lateinit var binding: DialogAddNewCustomerBinding
 

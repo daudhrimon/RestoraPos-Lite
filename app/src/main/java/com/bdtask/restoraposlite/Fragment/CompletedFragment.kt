@@ -16,6 +16,7 @@ import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.FragmentCompletedBinding
 
 class CompletedFragment : Fragment() {
+
     private lateinit var binding: FragmentCompletedBinding
     private var orderList = mutableListOf<Order>()
 

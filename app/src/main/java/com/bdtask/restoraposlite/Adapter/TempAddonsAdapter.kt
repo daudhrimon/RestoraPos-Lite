@@ -17,11 +17,10 @@ import com.bdtask.restoraposlite.databinding.VhTempVarAddonBinding
 import es.dmoral.toasty.Toasty
 
 class TempAddonsAdapter(private val context: Context,
-                        private var list: MutableList<Adn>): RecyclerView.Adapter<TempAddonsAdapter.AddonsVh>() {
+                        private var list: MutableList<Adn>
+                        ): RecyclerView.Adapter<TempAddonsAdapter.AddonsVh>() {
 
-    inner class AddonsVh(binding: VhTempVarAddonBinding): RecyclerView.ViewHolder(binding.root) {
-        val binding = binding
-    }
+    inner class AddonsVh(val binding: VhTempVarAddonBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddonsVh {
         return AddonsVh(VhTempVarAddonBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_temp_var_addon,parent,false)))

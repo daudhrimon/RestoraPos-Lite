@@ -14,19 +14,18 @@ import com.bdtask.restoraposlite.Model.Pay
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhPaymentBinding
 
-class PaymentAdapter( private val context: Context,
-                      private val payList: MutableList<Pay>,
-                      private val Payments: MutableList<String>,
-                      private val terminals: MutableList<String>,
-                      private val banks: MutableList<String>,
-                      private val dTotalDue: TextView,
-                      private val dPayableAmount: TextView,
-                      private val dChangeDue: TextView,
-                      private val dAnotherPay: TextView ): RecyclerView.Adapter<PaymentAdapter.VHPay>() {
+class PaymentAdapter(private val context: Context,
+                     private val payList: MutableList<Pay>,
+                     private val Payments: MutableList<String>,
+                     private val terminals: MutableList<String>,
+                     private val banks: MutableList<String>,
+                     private val dTotalDue: TextView,
+                     private val dPayableAmount: TextView,
+                     private val dChangeDue: TextView,
+                     private val dAnotherPay: TextView
+                     ): RecyclerView.Adapter<PaymentAdapter.VHPay>() {
 
-    inner class VHPay(binding: VhPaymentBinding): RecyclerView.ViewHolder(binding.root){
-        val binding = binding
-    }
+    inner class VHPay(val binding: VhPaymentBinding): RecyclerView.ViewHolder(binding.root) {/**/}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHPay {
         return VHPay(VhPaymentBinding.bind(LayoutInflater.from(context).inflate(R.layout.vh_payment, parent, false)))

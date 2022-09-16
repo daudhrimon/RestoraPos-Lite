@@ -31,6 +31,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class OrderInfoFragment : Fragment() {
+
     private lateinit var oBinding: FragmentOrderInfoBinding
     private var cusNameList = mutableListOf<String>()
     private var cusInfoList = mutableListOf<CsInf>()
