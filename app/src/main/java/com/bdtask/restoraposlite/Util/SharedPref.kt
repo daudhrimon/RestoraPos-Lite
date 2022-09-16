@@ -168,4 +168,14 @@ object SharedPref {
     fun readPosLogo(): String? {
         return mSharedPref!!.getString("logo", "") ?: ""
     }
+
+    fun writeWelcome(value: Int){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("wel",value.toString())
+        prefsEditor.apply()
+    }
+
+    fun readWelcome(): Int? {
+        return mSharedPref!!.getString("wel", "0")?.toInt()
+    }
 }

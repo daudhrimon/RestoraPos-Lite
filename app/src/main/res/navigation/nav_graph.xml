@@ -16,6 +16,13 @@
             app:popUpToInclusive="true"
             app:enterAnim="@anim/enter"
             app:exitAnim="@anim/exit" />
+        <action
+            android:id="@+id/splashFrag2onboardFrag"
+            app:destination="@id/onboardFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -111,4 +118,30 @@
         android:id="@+id/reportFragment"
         android:name="com.bdtask.restoraposlite.Fragment.ReportFragment"
         android:label="ReportFragment" />
+    <fragment
+        android:id="@+id/onboardFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.OnboardFragment"
+        android:label="fragment_onboard"
+        tools:layout="@layout/fragment_onboard" >
+        <action
+            android:id="@+id/onboardFrag2settingFrag"
+            app:destination="@id/settingFragment"
+            app:popUpTo="@id/onboardFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.bdtask.restoraposlite.Fragment.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/settingFrag2homeFrag"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/settingFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit" />
+    </fragment>
 </navigation>

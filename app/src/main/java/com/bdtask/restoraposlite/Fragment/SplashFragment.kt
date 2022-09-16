@@ -28,19 +28,26 @@ class SplashFragment : Fragment() {
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
 
-        if (ContextCompat.checkSelfPermission(requireContext().applicationContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+
+
+        if (ContextCompat.checkSelfPermission(requireContext().applicationContext,
+                Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+
                 requestPermission.launch(Manifest.permission.BLUETOOTH_CONNECT)
+
             } else {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    findNavController().navigate(R.id.splashFrag2homeFrag)
-                }, 3000)
+
+                navigateToHome()
             }
+
         } else {
-            Handler(Looper.getMainLooper()).postDelayed({
-                findNavController().navigate(R.id.splashFrag2homeFrag)
-            }, 3000)
+
+            navigateToHome()
         }
+
+
 
         if (sharedPref.readPayList() == null){
             val payList = arrayOf("Cash Payment","Card Payment")
@@ -49,8 +56,30 @@ class SplashFragment : Fragment() {
 
         appCurrency = sharedPref.readCurrency() ?: "$"
 
+
+
         return binding.root
     }
+
+
+
+    private fun navigateToHome(){
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            if ((sharedPref.readWelcome() ?: 0) == 0){
+
+                findNavController().navigate(R.id.splashFrag2onboardFrag)
+
+            } else {
+
+                findNavController().navigate(R.id.splashFrag2homeFrag)
+            }
+
+        }, 3000)
+    }
+
+
 
     private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
         if (isGranted) {

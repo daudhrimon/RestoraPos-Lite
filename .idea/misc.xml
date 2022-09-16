@@ -46,14 +46,19 @@
         <entry key="..\:/RestoraPos-Offline/app/src/main/res/menu/nav_menu.xml" value="0.371875" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable-v24/add_white.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/box_shape.xml" value="0.147" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/dot_selected.xml" value="0.122" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/dot_unselected.xml" value="0.122" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_stars_24.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/shape_top_rounded.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/shape_top_start_bottom_end.xml" value="0.147" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/activity_main.xml" value="0.22984244670991658" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_aboutus.xml" value="0.259375" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_aboutus.xml" value="0.2" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_onboard.xml" value="0.176" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_setting.xml" value="0.176" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/lay_onboarding.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/nav_header.xml" value="0.259375" />
+        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/onboard_layout.xml" value="0.2" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_calculator.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_close_alert.xml" value="0.259375" />
         <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_edit_food.xml" value="0.25833333333333336" />

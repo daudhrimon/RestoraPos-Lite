@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:background="@color/bg_color">
+
+    <ImageView
+        android:id="@+id/onbImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/onbHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_15sdp"
+            android:text="Restora Pos Premium"
+            android:textColor="@color/theme_color"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/onbText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_39sdp"
+            android:gravity="center"
+            android:textColor="@color/theme_color"
+            android:text="Abcdefghijklmnopqrstuvwxyz\nAbcdefghijklmnopqrst\nAbcdefghijklmnopqrstuvwxyz"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
