@@ -72,7 +72,9 @@ class FoodFragment : Fragment() {
             tempAddonsList = addons.toMutableList()
 
             foodImage = food!!.fImg
-            fBinding.addImageBtn.setImageURI(foodImage.toUri())
+            if (foodImage.isNotEmpty()){
+                fBinding.addImageBtn.setImageURI(foodImage.toUri())
+            }
 
             fBinding.variantRecycler.adapter = TempVariantAdapter(requireContext(), tempVariantList)
             fBinding.addonsRecycler.adapter = TempAddonsAdapter(requireContext(),tempAddonsList)
@@ -250,7 +252,6 @@ class FoodFragment : Fragment() {
                 }
             }
 
-
             dialog.dismiss()
         }
         dialog.show()
@@ -368,10 +369,10 @@ class FoodFragment : Fragment() {
             return
         }
 
-        if (foodImage.isEmpty()){
+        /*if (foodImage.isEmpty()){
             Toasty.error(requireContext(),"Add a FoodImage", Toast.LENGTH_SHORT, true).show()
             return
-        }
+        }*/
 
         for (i in foodList.indices){
             if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == fBinding.foodTitleEt.text.toString() && food == null){

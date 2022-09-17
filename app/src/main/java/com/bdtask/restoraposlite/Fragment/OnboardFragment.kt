@@ -46,7 +46,6 @@ class OnboardFragment : Fragment() {
             } else {
                 val sharedPref = SharedPref
                 sharedPref.init(requireContext())
-                //sharedPref.writeWelcome(1)
                 findNavController().navigate(R.id.onboardFrag2settingFrag)
             }
         }

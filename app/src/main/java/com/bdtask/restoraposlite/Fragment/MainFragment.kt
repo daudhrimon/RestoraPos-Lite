@@ -704,9 +704,17 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     }
 
 
-
     // set CardRecycler on Cart Item Delete
     override fun onCartReload() {
         setCartRecyclerAdapter()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        if ((sharedPref.readWelcome() ?: 0) == 0){
+            findNavController().navigate(R.id.homeFrag2foodFrag)
+            sharedPref.writeWelcome(1)
+        }
     }
 }

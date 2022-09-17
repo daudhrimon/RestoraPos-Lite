@@ -1,57 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Lite Admin Panel">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item tools:ignore="MenuTitle">
+
         <menu>
+
             <item
                 android:id="@+id/addFoodD"
                 android:icon="@drawable/ic_food_bar"
                 android:title="Add Foods"/>
 
             <item
-                android:id="@+id/addPayD"
-                android:icon="@drawable/ic_pay"
-                android:title="Add Payments"/>
-
-            <item
-                android:id="@+id/setVatD"
-                android:icon="@drawable/ic_vat"
-                android:title="Set Vat / Tax"/>
-
-            <item
-                android:id="@+id/setCrgD"
-                android:icon="@drawable/ic_crg"
-                android:title="Set Service Crg"/>
-
-            <item
-                android:id="@+id/setCurr"
-                android:icon="@drawable/ic_currency"
-                android:title="Set Currency"/>
-
-            <item
-                android:id="@+id/setInf"
-                android:icon="@drawable/ic_info"
-                android:title="Set Restaurant Info"/>
-
-            <item
-                android:id="@+id/setLogo"
-                android:icon="@drawable/ic_add_logo"
-                android:title="Set POS Logo"/>
-
-            <item
-                android:id="@+id/setOp"
+                android:id="@+id/adminPanel"
                 android:icon="@drawable/ic_person"
-                android:title="Set Operator's Name"/>
+                android:title="Admin Panel"/>
+
+            <item
+                android:id="@+id/salesRepo"
+                android:icon="@drawable/ic_sales_repo"
+                android:title="Sales Report"/>
+
         </menu>
+
     </item>
+
     <group>
-        <item
-            android:id="@+id/salesRepo"
-            android:icon="@drawable/ic_sales_repo"
-            android:title="Sales Report"/>
 
         <item
+
             android:id="@+id/premium"
             android:icon="@drawable/restora_logo"
             android:title="Restora POS Premium"/>
+
     </group>
+
 </menu>

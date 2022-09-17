@@ -45,10 +45,10 @@
         <action
             android:id="@+id/homeFrag2foodFrag"
             app:destination="@id/foodFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"/>
         <action
             android:id="@+id/homeFrag2comFrag"
             app:destination="@id/completedFragment" />
@@ -58,17 +58,27 @@
         <action
             android:id="@+id/homeFrag2aboutUs"
             app:destination="@id/aboutUsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"/>
         <action
             android:id="@+id/homeFrag2repoFrag"
             app:destination="@id/reportFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"/>
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/homeFrag2settingFrag"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"/>
     </fragment>
     <fragment
         android:id="@+id/ongoingFragment"
@@ -98,7 +108,6 @@
         android:name="com.bdtask.restoraposlite.Fragment.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food">
-
     </fragment>
     <fragment
         android:id="@+id/completedFragment"

@@ -9,6 +9,7 @@ import com.bdtask.restoraposlite.Interface.FoodClickListener
 import com.bdtask.restoraposlite.Room.Entity.Food
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhFoodItemBinding
+import com.bumptech.glide.Glide
 
 class FoodAdepter(private val context: Context,
                   private var foodList: List<Food>,
@@ -23,7 +24,12 @@ class FoodAdepter(private val context: Context,
 
     override fun onBindViewHolder(holder: FoodVHH, position: Int) {
 
-        holder.binding.foodImage.setImageURI(foodList[position].fImg.toUri())
+        Glide.with(context).load(foodList[position].fImg)
+            .placeholder(R.drawable.restora_logo).into(holder.binding.foodImage)
+
+        if (foodList[position].fImg.isEmpty()){
+            holder.binding.foodImage.imageAlpha = 96
+        }
 
         holder.binding.foodTile.text = foodList[position].fTitle
 
