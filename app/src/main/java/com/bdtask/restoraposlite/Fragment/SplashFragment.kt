@@ -17,16 +17,18 @@ import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.Util.SharedPref
+import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.FragmentSplashBinding
+import es.dmoral.toasty.Toasty
 
 class SplashFragment : Fragment() {
-
+    private lateinit var binding: FragmentSplashBinding
     private val sharedPref = SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentSplashBinding.inflate(inflater, container, false)
+        binding = FragmentSplashBinding.inflate(inflater, container, false)
         sharedPref.init(requireContext())
 
 
@@ -39,15 +41,11 @@ class SplashFragment : Fragment() {
                 requestPermission.launch(Manifest.permission.BLUETOOTH_CONNECT)
 
             } else {
-
                 navigateToHome()
             }
-
         } else {
-
             navigateToHome()
         }
-
 
 
         if (sharedPref.readPayList() == null){
@@ -55,7 +53,36 @@ class SplashFragment : Fragment() {
             sharedPref.writePayList(payList.toMutableList())
         }
 
+
+
         appCurrency = sharedPref.readCurrency() ?: "$"
+
+
+
+        binding.signInBtn.setOnClickListener {
+            Util.hideSoftKeyBoard(requireContext(),binding.root)
+
+            if (binding.signInEt.text.toString().isEmpty()){
+                Toasty.error(requireContext(),"Enter PIN First",Toasty.LENGTH_SHORT,true).show()
+                return@setOnClickListener
+            }
+
+            if (binding.signInEt.text.toString().length < 5){
+                Toasty.error(requireContext(),"PIN is too Short",Toasty.LENGTH_SHORT,true).show()
+                return@setOnClickListener
+            }
+
+            if ((sharedPref.readPIN() ?: "").isNotEmpty() &&
+                sharedPref.readPIN() == binding.signInEt.text.toString()){
+
+                Toasty.success(requireContext(),"Verified PIN Successfully",Toasty.LENGTH_SHORT,true).show()
+
+                findNavController().navigate(R.id.splashFrag2homeFrag)
+
+            } else {
+                Toasty.error(requireContext(),"PIN Verification Failed, Please try again",Toasty.LENGTH_SHORT,true).show()
+            }
+        }
 
 
 
@@ -74,7 +101,11 @@ class SplashFragment : Fragment() {
 
             } else {
 
-                findNavController().navigate(R.id.splashFrag2homeFrag)
+                if (sharedPref.readSignIn() == "OK") {
+                    findNavController().navigate(R.id.splashFrag2homeFrag)
+                } else {
+                    binding.signInLay.visibility = View.VISIBLE
+                }
             }
 
         }, 3000)

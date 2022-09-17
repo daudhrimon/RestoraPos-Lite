@@ -22,6 +22,30 @@ object SharedPref {
     }
 
 
+    fun writeSignIn(sign: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("sign",sign)
+        prefsEditor.apply()
+    }
+
+
+    fun readSignIn(): String? {
+        return mSharedPref!!.getString("sign", "") ?: ""
+    }
+
+
+    fun writePIN(pin: String){
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString("pin",pin)
+        prefsEditor.apply()
+    }
+
+
+    fun readPIN(): String? {
+        return mSharedPref!!.getString("pin", "") ?: ""
+    }
+
+
 
     fun writeEMode(eMode: Int){
         val prefsEditor = mSharedPref!!.edit()
@@ -238,7 +262,6 @@ object SharedPref {
     fun readWelcome(): Int? {
         return mSharedPref!!.getString("wel", "0")?.toInt()
     }
-
 
 
 }

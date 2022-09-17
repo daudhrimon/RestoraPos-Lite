@@ -28,7 +28,7 @@ class FoodAdepter(private val context: Context,
             .placeholder(R.drawable.restora_logo).into(holder.binding.foodImage)
 
         if (foodList[position].fImg.isEmpty()){
-            holder.binding.foodImage.imageAlpha = 96
+            holder.binding.foodImage.imageAlpha = 123
         }
 
         holder.binding.foodTile.text = foodList[position].fTitle
