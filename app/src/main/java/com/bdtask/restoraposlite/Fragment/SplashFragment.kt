@@ -89,7 +89,9 @@ class SplashFragment : Fragment() {
 
 
         binding.forgotPass.setOnClickListener {
-            Toasty.info(requireContext(),"PIN Hint : ${sharedPref.readPIN()}",Toasty.LENGTH_SHORT,true).show()
+            val pin = sharedPref.readPIN() ?: "     "
+            val hint = pin.removeRange(0,2)
+            Toasty.info(requireContext(),"Last 3 digit of your Pin is: $hint",Toasty.LENGTH_SHORT,true).show()
         }
 
         return binding.root

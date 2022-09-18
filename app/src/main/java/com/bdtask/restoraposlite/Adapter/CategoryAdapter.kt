@@ -47,7 +47,9 @@ class CategoryAdapter(private val context: Context,
 
 
         searchEt.doOnTextChanged { text, start, before, count ->
+
             val srsList = mutableListOf<Food>()
+
             if (text.toString() != "" && text.toString().isNotEmpty()){
                 srsList.clear()
 
@@ -56,15 +58,15 @@ class CategoryAdapter(private val context: Context,
                         srsList.add(tempFoList[i])
                     }
                 }
+
+                holder.itemView.setBackgroundColor(getColor(context,R.color.disableColor))
                 if (srsList.isNotEmpty()){
                     holder.binding.emptyBox.visibility = View.GONE
                     holder.binding.foodRecycler.visibility = View.VISIBLE
-                    holder.itemView.setBackgroundColor(getColor(context,R.color.disableColor))
                     holder.binding.foodRecycler.adapter = FoodAdepter(context,srsList,foodClickListener)
                 } else {
                     holder.binding.foodRecycler.visibility = View.GONE
                     holder.binding.emptyBox.visibility = View.VISIBLE
-                    holder.itemView.setBackgroundColor(getColor(context,R.color.disableColor))
                 }
             } else {
                 holder.itemView.setBackgroundColor(getColor(context,R.color.white))

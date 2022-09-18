@@ -58,9 +58,13 @@ class CanceledFragment : Fragment() {
 
 
         binding.searchEt.doOnTextChanged { text, start, before, count ->
+
             val srsList = mutableListOf<Order>()
+
             if (text.toString() != "" && text.toString().isNotEmpty()){
+
                 srsList.clear()
+
                 for (i in orderList.indices){
                     if (orderList[i].id.toString().contains(text.toString()) ||
                         orderList[i].tkn.contains(text.toString()) ||
@@ -71,6 +75,7 @@ class CanceledFragment : Fragment() {
                         srsList.add(orderList[i])
                     }
                 }
+
                 if (srsList.isNotEmpty()){
                     binding.emptyOrder.visibility = View.GONE
                     binding.rvLay.visibility = View.VISIBLE

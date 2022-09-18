@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -59,9 +60,13 @@ class CompletedFragment : Fragment() {
 
 
         binding.searchEt.doOnTextChanged { text, start, before, count ->
+
             val srsList = mutableListOf<Order>()
+
             if (text.toString() != "" && text.toString().isNotEmpty()){
+
                 srsList.clear()
+
                 for (i in orderList.indices){
                     if (orderList[i].id.toString().contains(text.toString()) ||
                         orderList[i].tkn.contains(text.toString()) ||
@@ -72,6 +77,7 @@ class CompletedFragment : Fragment() {
                         srsList.add(orderList[i])
                     }
                 }
+
                 if (srsList.isNotEmpty()){
                     binding.emptyOrder.visibility = View.GONE
                     binding.rvLay.visibility = View.VISIBLE
@@ -80,10 +86,10 @@ class CompletedFragment : Fragment() {
                     binding.rvLay.visibility = View.GONE
                     binding.emptyOrder.visibility = View.VISIBLE
                 }
+
             } else {
 
                 setRecyclerAdapter()
-
             }
         }
 

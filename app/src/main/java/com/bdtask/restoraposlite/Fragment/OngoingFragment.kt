@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ScrollView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -59,14 +62,8 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             oBinding.header.text = "Ongoing Order"
             oBinding.searchBtn.visibility = View.VISIBLE
 
-            if (ongList.isNotEmpty()){
-                oBinding.emptyOrder.visibility = View.GONE
-                oBinding.ongRecycler.visibility = View.VISIBLE
-                oBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), ongList,this)
-            } else {
-                oBinding.ongRecycler.visibility = View.GONE
-                oBinding.emptyOrder.visibility = View.VISIBLE
-            }
+            setOnGoingAdapter()
+
             Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
 
@@ -98,6 +95,39 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         }
 
 
+        oBinding.searchEt.doOnTextChanged { text, start, before, count ->
+
+            val srsList = mutableListOf<Order>()
+
+            if (text.toString().isNotEmpty()) {
+
+                srsList.clear()
+
+                for (i in ongList.indices){
+
+                    if (ongList[i].id.toString().contains(text.toString()) ||
+                        ongList[i].tkn.contains(text.toString()) ||
+                        ongList[i].odrInf.wtr.lowercase().contains(text.toString().lowercase()) ||
+                        ongList[i].odrInf.tbl.lowercase().contains(text.toString().lowercase()) ||
+                        ongList[i].odrInf.csInf.csNm.lowercase().contains(text.toString().lowercase())){
+
+                        srsList.add(ongList[i])
+                    }
+
+                    if (srsList.isNotEmpty()){
+                        oBinding.emptyOrder.visibility = View.GONE
+                        oBinding.ongRecycler.visibility = View.VISIBLE
+                        oBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), srsList,this)
+                    } else {
+                        oBinding.ongRecycler.visibility = View.GONE
+                        oBinding.emptyOrder.visibility = View.VISIBLE
+                    }
+                }
+            } else {
+
+                setOnGoingAdapter()
+            }
+        }
 
         oBinding.root.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK && multiSelect) {
@@ -254,6 +284,17 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
 
         return oBinding.root
+    }
+
+    private fun setOnGoingAdapter(){
+        if (ongList.isNotEmpty()){
+            oBinding.emptyOrder.visibility = View.GONE
+            oBinding.ongRecycler.visibility = View.VISIBLE
+            oBinding.ongRecycler.adapter = OngoingAdapter(requireContext(), ongList,this)
+        } else {
+            oBinding.ongRecycler.visibility = View.GONE
+            oBinding.emptyOrder.visibility = View.VISIBLE
+        }
     }
 
     override fun onTokenButtonsClick(tokenPrintDialog: TokenPrintDialog) {

@@ -30,6 +30,7 @@ class PasswordDialog(context: Context,
         if (welcome == 0) {
             binding.closeBtn.visibility = View.INVISIBLE
             binding.currentLay.visibility = View.GONE
+            binding.changePinBtn.text = "Set PIN"
         }
 
         binding.closeBtn.setOnClickListener {

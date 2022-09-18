@@ -28,6 +28,7 @@ import com.bdtask.restoraposlite.MainActivity.Companion.database
 import com.bdtask.restoraposlite.MainActivity.Companion.drawerLayout
 import com.bdtask.restoraposlite.Model.*
 import com.bdtask.restoraposlite.R
+import com.bdtask.restoraposlite.Room.Entity.Cstmr
 import com.bdtask.restoraposlite.Room.Entity.Food
 import com.bdtask.restoraposlite.Room.Entity.Order
 import com.bdtask.restoraposlite.Util.SharedPref
@@ -704,6 +705,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         if ((sharedPref.readWelcome() ?: 0) == 0){
             findNavController().navigate(R.id.homeFrag2foodFrag)
             sharedPref.writeWelcome(1)
+            GlobalScope.launch(Dispatchers.IO) {
+                database.AppDao().insertCustomer(Cstmr(-1,"Walk-In","","",""))
+            }
         }
     }
 }

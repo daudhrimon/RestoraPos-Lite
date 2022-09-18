@@ -73,7 +73,9 @@ class ReportFragment : Fragment() {
 
 
         binding.searchEt.doOnTextChanged { text, start, before, count ->
+
             val srsList = mutableListOf<Order>()
+
             if (text.toString() != "" && text.toString().isNotEmpty()){
                 srsList.clear()
                 for (i in filteredList.indices){
@@ -86,6 +88,7 @@ class ReportFragment : Fragment() {
                         srsList.add(filteredList[i])
                     }
                 }
+
                 if (srsList.isNotEmpty()){
                     binding.emptyOrder.visibility = View.GONE
                     binding.rvLay.visibility = View.VISIBLE
@@ -97,7 +100,6 @@ class ReportFragment : Fragment() {
             } else {
 
                 setRecyclerAdapter()
-
             }
         }
 
