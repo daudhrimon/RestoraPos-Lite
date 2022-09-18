@@ -1,6 +1,8 @@
 package com.bdtask.restoraposlite.Fragment
 
 import android.app.Activity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.BidiFormatter
 import android.text.TextDirectionHeuristics
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -17,6 +20,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.bdtask.restoraposlite.Dialog.PasswordDialog
 import com.bdtask.restoraposlite.MainActivity
 import com.bdtask.restoraposlite.Room.Entity.Cstmr
 import com.bdtask.restoraposlite.Util.SharedPref
@@ -286,7 +290,12 @@ class SettingFragment : Fragment() {
 
         if (welcome == 0) {
             binding.operatorLay.visibility = View.GONE
-            findNavController().navigate(R.id.settingFrag2homeFrag)
+            val dialog = PasswordDialog(requireContext(),parentFragment)
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val win = dialog.window
+            win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
 
