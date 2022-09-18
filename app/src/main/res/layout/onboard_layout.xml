@@ -18,26 +18,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
 
         <TextView
             android:id="@+id/onbHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_15sdp"
-            android:text="Restora Pos Premium"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:text="Restora POS Premium"
             android:textColor="@color/theme_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/onbText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_39sdp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_30sdp"
             android:gravity="center"
-            android:text="Abcdefghijklmnopqrstuvwxyz\nAbcdefghijklmnopqrst\nAbcdefghijklmnopqrstuvwxyz"
-            android:textColor="@color/theme_color"
+            android:textColor="#3E3F43"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -3,12 +3,14 @@ package com.bdtask.restoraposlite.Adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.OnboardLayoutBinding
 
 class OnboardAdapter(private var context: Context,
-                     private val images: IntArray
+                     private val images: IntArray,
+                     private val texts: IntArray
                      ): RecyclerView.Adapter<OnboardAdapter.OnBoardingVH>() {
 
     inner class OnBoardingVH(val binding: OnboardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {/**/}
@@ -19,6 +21,7 @@ class OnboardAdapter(private var context: Context,
 
     override fun onBindViewHolder(holder: OnBoardingVH, position: Int) {
         holder.binding.onbImage.setImageResource(images[position])
+        holder.binding.onbText.text = context.getString(texts[position])
     }
 
     override fun getItemCount(): Int {

@@ -15,4 +15,7 @@
     <string name="toast_12">Please set the printer to label mode!</string>
     <string name="bluetooth_per">App is Closing.....\nRestart this App or clear app data and Allow Bluetooth Permission</string>
     <string name="no_order">No Orders Available</string>
+    <string name="onb_one"> We have a full solution to operate your restaurant business smoothly using a single platform. Turn to RetoraPOS premium service and avail of all solutions.</string>
+    <string name="onb_two">RestoraPOS offers cross-platform to operate restaurant business. so, you can turn your business into fully mobile app-based automation using our waiter, kitchen, customer and POS App.</string>
+    <string name="onb_three">We offer an online ordering website, restaurant self-branding website and reservation system, and our full solution.</string>
 </resources>

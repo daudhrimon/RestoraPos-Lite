@@ -35,7 +35,7 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
         posLogo = sharedPref.readPosLogo() ?: ""
         resInf = sharedPref.readResInf()
 
-        Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
+        Glide.with(context).asBitmap().load(posLogo).into(binding.logo)
 
 
         binding.addressTv.text = "${resInf?.nm}\n${resInf?.adrs}\n${resInf?.eml}\n${resInf?.mbl}"

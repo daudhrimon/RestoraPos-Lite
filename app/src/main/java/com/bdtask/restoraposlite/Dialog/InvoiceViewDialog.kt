@@ -40,7 +40,7 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         posLogo = sharedPref.readPosLogo() ?: ""
         resInf = sharedPref.readResInf()
 
-        Glide.with(context).asBitmap().placeholder(R.drawable.poslogo).load(posLogo).into(binding.logo)
+        Glide.with(context).asBitmap().load(posLogo).into(binding.logo)
 
         binding.address.text = "${resInf?.nm}\n${resInf?.adrs}\n${resInf?.eml}\n${resInf?.mbl}"
 
@@ -61,8 +61,6 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         ///////////// get address from sharedPref
 
         binding.foodRecycler.adapter = InvoiceFoodAdapter(context,order.cart)
-
-        binding.logo.setImageResource(R.drawable.poslogo)
 
         binding.date.text = Util.getDate().toString()
 

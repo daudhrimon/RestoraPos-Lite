@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/addFoodD"
         android:icon="@drawable/ic_food_bar"
@@ -13,18 +12,12 @@
         android:id="@+id/adminPanel"
         android:icon="@drawable/ic_person"
         android:title="Admin Panel" />
-
-    <group>
-        <item
-            android:id="@+id/premium"
-            android:icon="@drawable/restora_logo"
-            android:title="Restora POS Premium" />
-    </group>
-
-    <group>
-        <item
-            android:id="@+id/signOut"
-            android:icon="@drawable/ic_signout"
-            android:title="SignOut" />
-    </group>
+    <item
+        android:id="@+id/premium"
+        android:icon="@drawable/restora_logo"
+        android:title="Restora POS Premium" />
+    <item
+        android:id="@+id/signOut"
+        android:icon="@drawable/ic_signout"
+        android:title="SignOut" />
 </menu>

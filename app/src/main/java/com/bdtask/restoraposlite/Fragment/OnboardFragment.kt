@@ -24,8 +24,9 @@ class OnboardFragment : Fragment() {
         binding = FragmentOnboardBinding.inflate(inflater, container, false)
 
         val images = intArrayOf(R.drawable.onb_one, R.drawable.onb_two, R.drawable.onb_three)
+        val texts = intArrayOf(R.string.onb_one,R.string.onb_two,R.string.onb_three)
 
-        binding.onbViewPager2.adapter = OnboardAdapter(requireContext(),images)
+        binding.onbViewPager2.adapter = OnboardAdapter(requireContext(),images,texts)
 
         addDots(0)
 
