@@ -77,6 +77,8 @@ class SplashFragment : Fragment() {
 
                 Toasty.success(requireContext(),"Verified PIN Successfully",Toasty.LENGTH_SHORT,true).show()
 
+                sharedPref.writeSignIn("OK")
+
                 findNavController().navigate(R.id.splashFrag2homeFrag)
 
             } else {
@@ -85,6 +87,10 @@ class SplashFragment : Fragment() {
         }
 
 
+
+        binding.forgotPass.setOnClickListener {
+            Toasty.info(requireContext(),"PIN Hint : ${sharedPref.readPIN()}",Toasty.LENGTH_SHORT,true).show()
+        }
 
         return binding.root
     }

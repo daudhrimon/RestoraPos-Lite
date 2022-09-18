@@ -8,13 +8,13 @@
                 android:icon="@drawable/ic_food_bar"
                 android:title="Add Foods" />
             <item
-                android:id="@+id/adminPanel"
-                android:icon="@drawable/ic_person"
-                android:title="Admin Panel" />
-            <item
                 android:id="@+id/salesRepo"
                 android:icon="@drawable/ic_sales_repo"
                 android:title="Sales Report" />
+            <item
+                android:id="@+id/adminPanel"
+                android:icon="@drawable/ic_person"
+                android:title="Admin Panel" />
         </menu>
     </item>
     <group>
@@ -22,5 +22,11 @@
             android:id="@+id/premium"
             android:icon="@drawable/restora_logo"
             android:title="Restora POS Premium" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/signOut"
+            android:icon="@drawable/ic_signout"
+            android:title="SignOut" />
     </group>
 </menu>
