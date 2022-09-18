@@ -17,6 +17,7 @@ import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Adapter.*
 import com.bdtask.restoraposlite.Dialog.*
@@ -328,7 +329,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                     )
 
                     try {
-                        GlobalScope.launch(Dispatchers.IO) {
+                        lifecycleScope.launch(Dispatchers.IO) {
 
                             val orderId = database.AppDao().insertOrder(order)
 
@@ -358,8 +359,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                         orderUp!!.crg = sharedPref.readCharge() ?: 0.0
 
                         try {
-
-                            GlobalScope.launch(Dispatchers.IO) {
+                            lifecycleScope.launch(Dispatchers.IO) {
 
                                 database.AppDao().updateOrder(orderUp!!)
 
@@ -639,7 +639,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             })
 
             alert.setPositiveButton("Yes", DialogInterface.OnClickListener { dial, which ->
-                GlobalScope.launch(Dispatchers.IO) {
+
+                lifecycleScope.launch(Dispatchers.IO) {
 
                     database.AppDao().deleteFood(food)
 
@@ -705,7 +706,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         if ((sharedPref.readWelcome() ?: 0) == 0){
             findNavController().navigate(R.id.homeFrag2foodFrag)
             sharedPref.writeWelcome(1)
-            GlobalScope.launch(Dispatchers.IO) {
+
+            lifecycleScope.launch(Dispatchers.IO) {
                 database.AppDao().insertCustomer(Cstmr(-1,"Walk-In","","",""))
             }
         }

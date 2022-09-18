@@ -17,10 +17,7 @@ import com.bdtask.restoraposlite.databinding.DialogFoodLongClickBinding
 import com.bdtask.restoraposlite.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposlite.databinding.VhEditDeleteBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class TableEditAdapter(private val context: Context,
                        private val list: MutableList<Table>
@@ -69,7 +66,7 @@ class TableEditAdapter(private val context: Context,
                 }
 
 
-                GlobalScope.launch(Dispatchers.IO) {
+                CoroutineScope(Dispatchers.IO).launch() {
 
                     MainActivity.database.AppDao().updateTable(Table(list[position].id, binding.itemEt.text.toString()))
 
@@ -102,7 +99,7 @@ class TableEditAdapter(private val context: Context,
 
             dbinding.editBtn.setOnClickListener {
 
-                GlobalScope.launch(Dispatchers.IO) {
+                CoroutineScope(Dispatchers.IO).launch() {
 
                     MainActivity.database.AppDao().deleteTable(list[position])
 

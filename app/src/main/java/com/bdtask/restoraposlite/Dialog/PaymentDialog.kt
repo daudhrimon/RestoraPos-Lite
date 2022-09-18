@@ -22,10 +22,7 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogPaymentBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class PaymentDialog (context: Context): Dialog(context) {
 
@@ -101,7 +98,7 @@ class PaymentDialog (context: Context): Dialog(context) {
                 if (order.sts == 0){
                     order.sts = 1
 
-                    GlobalScope.launch(Dispatchers.IO) {
+                    CoroutineScope(Dispatchers.IO).launch() {
 
                         MainActivity.database.AppDao().updateOrder(order)
 
@@ -116,7 +113,7 @@ class PaymentDialog (context: Context): Dialog(context) {
                     }
                 } else {
 
-                    GlobalScope.launch(Dispatchers.IO){
+                    CoroutineScope(Dispatchers.IO).launch(){
 
                         val orderId = MainActivity.database.AppDao().insertOrder(order)
 

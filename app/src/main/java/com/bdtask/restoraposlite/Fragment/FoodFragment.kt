@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.MainActivity
 import com.bdtask.restoraposlite.MainActivity.Companion.foodList
@@ -35,10 +36,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class FoodFragment : Fragment() {
 
@@ -243,7 +241,7 @@ class FoodFragment : Fragment() {
             }
 
 
-            GlobalScope.launch(Dispatchers.IO) {
+            lifecycleScope.launch(Dispatchers.IO) {
 
                 database.AppDao().insertCategory(Catgry(0,dbinding.itemEt.text.toString().trim()))
 
@@ -399,7 +397,7 @@ class FoodFragment : Fragment() {
                 food!!.fImg = foodImage
                 food!!.fAdns = tempAddonsList
 
-                GlobalScope.launch(Dispatchers.IO) {
+                lifecycleScope.launch(Dispatchers.IO) {
 
                     database.AppDao().updateFood(food!!)
 
@@ -415,7 +413,7 @@ class FoodFragment : Fragment() {
                 }
             }
         } else {
-            GlobalScope.launch(Dispatchers.IO) {
+            lifecycleScope.launch(Dispatchers.IO) {
 
                 database.AppDao().insertFood(
                     Food(0,spinnerCategory,fBinding.foodTitleEt.text.toString(),tempVariantList,foodImage,tempAddonsList))

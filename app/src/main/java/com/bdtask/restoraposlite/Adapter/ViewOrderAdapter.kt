@@ -16,10 +16,7 @@ import com.bdtask.restoraposlite.Room.Entity.Order
 import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.VhViewOrderBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class ViewOrderAdapter(private val context: Context,
                        private val orderList: MutableList<Order>
@@ -111,7 +108,7 @@ class ViewOrderAdapter(private val context: Context,
 
             orderList[position].sts = 0
 
-            GlobalScope.launch(Dispatchers.IO) {
+            CoroutineScope(Dispatchers.IO).launch() {
 
                 MainActivity.database.AppDao().updateOrder(orderList[position])
 

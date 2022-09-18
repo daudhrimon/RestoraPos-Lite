@@ -17,10 +17,7 @@ import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposlite.databinding.VhItemEditBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 class CategoryBtmAdapter(private val context: Context,
@@ -88,13 +85,13 @@ class CategoryBtmAdapter(private val context: Context,
                         foodList[i].fCate = binding.itemEt.text.toString()
 
                         try {
-                            GlobalScope.launch(Dispatchers.IO) {
+                            CoroutineScope(Dispatchers.IO).launch() {
                                 database.AppDao().updateFood(foodList[i])
 
                                 withContext(Dispatchers.Main) {
                                     if (i == foodList.size - 1) {
 
-                                        GlobalScope.launch(Dispatchers.IO) {
+                                        CoroutineScope(Dispatchers.IO).launch() {
                                             database.AppDao().updateCategory(
                                                 Catgry(
                                                     list[position].id,
@@ -114,7 +111,7 @@ class CategoryBtmAdapter(private val context: Context,
                     }
                 }
             } else {
-                GlobalScope.launch(Dispatchers.IO) {
+                CoroutineScope(Dispatchers.IO).launch() {
                     database.AppDao().updateCategory(
                         Catgry(
                             list[position].id,

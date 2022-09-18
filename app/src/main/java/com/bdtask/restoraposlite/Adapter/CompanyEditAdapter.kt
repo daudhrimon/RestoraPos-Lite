@@ -17,10 +17,7 @@ import com.bdtask.restoraposlite.databinding.DialogFoodLongClickBinding
 import com.bdtask.restoraposlite.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposlite.databinding.VhEditDeleteBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class CompanyEditAdapter(private val context: Context,
                          private val list : MutableList<Cmpny>
@@ -71,7 +68,7 @@ class CompanyEditAdapter(private val context: Context,
                 }
 
 
-                GlobalScope.launch(Dispatchers.IO) {
+                CoroutineScope(Dispatchers.IO).launch() {
 
                     database.AppDao().updateCompany(Cmpny(list[position].id, binding.itemEt.text.toString()))
 
@@ -104,7 +101,7 @@ class CompanyEditAdapter(private val context: Context,
 
             dbinding.editBtn.setOnClickListener {
 
-                GlobalScope.launch(Dispatchers.IO) {
+                CoroutineScope(Dispatchers.IO).launch() {
 
                     database.AppDao().deleteCompany(list[position])
 

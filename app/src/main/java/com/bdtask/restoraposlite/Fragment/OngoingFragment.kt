@@ -7,11 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ScrollView
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Adapter.OngoingAdapter
 import com.bdtask.restoraposlite.Dialog.PaymentDialog
@@ -210,7 +209,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
             if (selectedItem == 1){
                 clickedList.clear()
 
-                GlobalScope.launch(Dispatchers.IO) {
+                lifecycleScope.launch(Dispatchers.IO) {
 
                     database.AppDao().updateOrder(order)
 
@@ -242,7 +241,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                         emptyList<Pay>().toMutableList()
                     )
 
-                    GlobalScope.launch(Dispatchers.IO) {
+                    lifecycleScope.launch(Dispatchers.IO) {
 
                         database.AppDao().updateOrder(order)
 

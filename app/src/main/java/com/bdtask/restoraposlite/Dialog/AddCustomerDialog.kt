@@ -11,10 +11,7 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogAddNewCustomerBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class AddCustomerDialog(context: Context,
                         val state: Int
@@ -67,7 +64,7 @@ class AddCustomerDialog(context: Context,
             }
 
             if (state == 0) {
-                GlobalScope.launch(Dispatchers.IO) {
+                CoroutineScope(Dispatchers.IO).launch() {
                     MainActivity.database.AppDao().insertCustomer(
                         Cstmr(0,binding.cusNameEt.text.toString(),binding.cusEmailEt.text.toString(),
                             binding.cusMobileEt.text.toString(),binding.cusAddEt.text.toString()))

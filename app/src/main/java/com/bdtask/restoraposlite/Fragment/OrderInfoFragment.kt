@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Dialog.AddCustomerDialog
 import com.bdtask.restoraposlite.Dialog.BtmSItemRecyclerDialog
@@ -27,8 +28,7 @@ import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogSingleItemetBinding
 import com.bdtask.restoraposlite.databinding.FragmentOrderInfoBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class OrderInfoFragment : Fragment() {
 
@@ -444,11 +444,15 @@ class OrderInfoFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            GlobalScope.launch {
-                MainActivity.database.AppDao().insertTable(Table(0,tBinding.itemEt.text.toString()))
+            lifecycleScope.launch(Dispatchers.IO){
+
+                database.AppDao().insertTable(Table(0,tBinding.itemEt.text.toString()))
+
+                withContext(Dispatchers.Main){
+                    Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
+                }
             }
 
-            Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
         }
         dialog.show()
@@ -482,11 +486,15 @@ class OrderInfoFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            GlobalScope.launch {
-                MainActivity.database.AppDao().insertWaiter(Waiter(0,waBinding.itemEt.text.toString()))
+            lifecycleScope.launch(Dispatchers.IO) {
+
+                database.AppDao().insertWaiter(Waiter(0,waBinding.itemEt.text.toString()))
+
+                withContext(Dispatchers.Main){
+                    Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
+                }
             }
 
-            Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
         }
         dialog.show()
@@ -520,11 +528,15 @@ class OrderInfoFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            GlobalScope.launch {
-                MainActivity.database.AppDao().insertDeliveryCompany(Cmpny(0,ctaBinding.itemEt.text.toString()))
+            lifecycleScope.launch(Dispatchers.IO) {
+
+                database.AppDao().insertDeliveryCompany(Cmpny(0,ctaBinding.itemEt.text.toString()))
+
+                withContext(Dispatchers.Main){
+                    Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
+                }
             }
 
-            Toasty.success(requireContext(),"Successful", Toast.LENGTH_SHORT, true).show()
             dialog.dismiss()
         }
         dialog.show()
