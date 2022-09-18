@@ -62,12 +62,12 @@ class PasswordDialog(context: Context,
 
     private fun checkNewPins() {
         if (binding.newPin1Et.text.toString().trim().length < 5){
-            binding.newPin1Et.error = "Pin is too Short"
+            binding.newPin1Et.error = "Pin must be in 5 character"
             binding.newPin1Et.requestFocus()
             return
         }
         if (binding.newPin2Et.text.toString().trim().length < 5){
-            binding.newPin2Et.error = "Pin is too Short"
+            binding.newPin2Et.error = "Pin must be in 5 character"
             binding.newPin2Et.requestFocus()
             return
         }
