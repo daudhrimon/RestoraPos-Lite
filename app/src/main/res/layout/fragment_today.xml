@@ -12,9 +12,9 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:animateLayoutChanges="true"
         android:background="@drawable/bottom_rounded_bg"
-        android:paddingVertical="@dimen/_4sdp"
-        android:animateLayoutChanges="true">
+        android:paddingVertical="@dimen/_4sdp">
 
         <ImageView
             android:id="@+id/back"

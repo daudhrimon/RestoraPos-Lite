@@ -112,7 +112,8 @@
     <fragment
         android:id="@+id/completedFragment"
         android:name="com.bdtask.restoraposlite.Fragment.CompletedFragment"
-        android:label="CompletedFragment" />
+        android:label="CompletedFragment"
+        tools:layout="@layout/fragment_completed"/>
     <fragment
         android:id="@+id/canceledFragment"
         android:name="com.bdtask.restoraposlite.Fragment.CanceledFragment"
@@ -126,7 +127,8 @@
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.bdtask.restoraposlite.Fragment.ReportFragment"
-        android:label="ReportFragment" />
+        android:label="ReportFragment"
+        tools:layout="@layout/fragment_report"/>
     <fragment
         android:id="@+id/onboardFragment"
         android:name="com.bdtask.restoraposlite.Fragment.OnboardFragment"

@@ -35,7 +35,6 @@ import com.dantsu.escposprinter.exceptions.EscPosEncodingException
 import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.dantsu.escposprinter.textparser.PrinterTextParserImg
 import com.sunmi.peripheral.printer.SunmiPrinterService
-import es.dmoral.toasty.Toasty
 
 class InvoicePrintDialog(context: Context,
                          private var order: Order,
@@ -91,7 +90,7 @@ class InvoicePrintDialog(context: Context,
                             //text print
                             sunmiPrinterService?.setAlignment(1, null)
                             sunmiPrinterService?.printTextWithFont(
-                                "${resInf?.nm ?: "Restora POS Lite"}\n${resInf?.adrs ?: "MannanPlaza,Khilkhet,Dhaka"}\n${resInf?.eml ?: "Email: bdtask@gmail.com"}\n${resInf?.mbl  ?: "Mobile: 0123456789"}\n\n",
+                                "${resInf?.nm}\n${resInf?.adrs}\n${resInf?.eml}\n${resInf?.mbl}\n\n",
                                 "",
                                 25f,
                                 null
@@ -275,10 +274,10 @@ class InvoicePrintDialog(context: Context,
                                     printer!!.printFormattedTextAndCut(
                                         "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer,resource)
                                                 + "</img>\n" +
-                                                "[C]${resInf?.nm ?: "Restora POS Lite"}\n" +
-                                                "[C]${resInf?.adrs ?: "MannanPlaza,Khilkhet,Dhaka"}\n" +
-                                                "[C]Email: ${resInf?.eml ?: "bdtask@gmail.com"}\n" +
-                                                "[C]Mobile: ${resInf?.mbl ?: "0123456789"}\n" +
+                                                "[C]${resInf?.nm}\n" +
+                                                "[C]${resInf?.adrs}\n" +
+                                                "[C]Email: ${resInf?.eml}\n" +
+                                                "[C]Mobile: ${resInf?.mbl}\n" +
                                                 "[L]\n" +
                                                 "[C]${order.dat}\n" +
                                                 "[L]Order: ${order.id}" + "[R]Table: ${order.odrInf.tbl}\n" +

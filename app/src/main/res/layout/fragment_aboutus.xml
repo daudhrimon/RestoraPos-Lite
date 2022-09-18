@@ -62,9 +62,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_arrow_drop_up_24"
             android:layout_weight=".4"
-            android:background="@color/trans"/>
+            android:background="@color/trans"
+            android:src="@drawable/ic_baseline_arrow_drop_up_24" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -493,8 +493,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="3dp"
                 android:layout_weight="1.09"
-                app:cardBackgroundColor="@color/bg_color"
                 android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/bg_color"
                 app:cardCornerRadius="5dp"
                 app:cardElevation=".5dp">
 

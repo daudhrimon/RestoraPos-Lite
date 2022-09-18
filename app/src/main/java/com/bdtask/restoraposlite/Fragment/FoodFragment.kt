@@ -151,7 +151,7 @@ class FoodFragment : Fragment() {
             if (cateList.size > 0) {
                 addAddonsButtonClick()
             } else {
-                Toasty.warning(requireContext(),"No Category Available to Edit",Toasty.LENGTH_SHORT).show()
+                Toasty.warning(requireContext(),"No Category Available to Edit",Toasty.LENGTH_SHORT,true).show()
             }
             fBinding.foodTitleEt.clearFocus()
         }

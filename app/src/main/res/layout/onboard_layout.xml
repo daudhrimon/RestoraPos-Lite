@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_color"
     android:orientation="vertical"
-    android:weightSum="4"
-    android:background="@color/bg_color">
+    android:weightSum="4">
 
     <ImageView
         android:id="@+id/onbImage"
@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/onbHeader"
@@ -35,8 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_39sdp"
             android:gravity="center"
-            android:textColor="@color/theme_color"
             android:text="Abcdefghijklmnopqrstuvwxyz\nAbcdefghijklmnopqrst\nAbcdefghijklmnopqrstuvwxyz"
+            android:textColor="@color/theme_color"
             android:textSize="14sp" />
 
     </LinearLayout>

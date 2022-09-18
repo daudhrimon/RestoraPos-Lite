@@ -13,7 +13,6 @@
     <color name="color_red">#D90407</color>
     <color name="back_btn_tint">#DCDCDC</color>
     <color name="disableColor">#99C4C4C4</color>
-
     <color name="dot_unselected_clr">#707070</color>
     <color name="selector_clr">#D81D4C</color>
 </resources>

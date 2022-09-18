@@ -26,7 +26,7 @@
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:text="Select Payment Method"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"/>
+                android:textSize="@dimen/_15sdp" />
 
             <ImageView
                 android:id="@+id/closeBtn"
@@ -53,9 +53,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 android:background="#fff"
-                android:orientation="vertical"
-                android:animateLayoutChanges="true">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/mergeLayout"
@@ -252,9 +252,9 @@
                                     android:id="@+id/totalDueCr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_toEndOf="@+id/totalDue"
                                     android:layout_below="@+id/totalDueHeader"
                                     android:layout_marginBottom="10dp"
+                                    android:layout_toEndOf="@+id/totalDue"
                                     android:fontFamily="@font/helvetica_nueu_light"
                                     android:text=" $"
                                     android:textColor="@color/theme_color"
@@ -526,18 +526,18 @@
                     android:id="@+id/addAnotherPay"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_34sdp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginHorizontal="12dp"
+                    android:layout_marginVertical="20dp"
                     android:background="@drawable/selector_ongoing"
-                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_light"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="Add Another Payment"
                     android:textColor="#fff"
                     android:textSize="17sp"
-                    android:visibility="gone"
-                    android:focusable="true" />
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -556,16 +556,16 @@
                 android:layout_height="@dimen/_34sdp"
                 android:layout_margin="12dp"
                 android:background="@drawable/selector_today"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
                 android:gravity="center"
                 android:text="Pay &amp; Print"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:focusable="true"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 

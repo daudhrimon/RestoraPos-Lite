@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="@dimen/_4sdp">
+    android:layout_marginBottom="@dimen/_4sdp"
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_135sdp"
+        android:background="#E11A1A1A"
         android:scaleType="centerCrop"
-        android:src="@drawable/splash_img"
-        android:background="#E11A1A1A"/>
+        android:src="@drawable/splash_img" />
 
     <ImageView
         android:layout_width="match_parent"

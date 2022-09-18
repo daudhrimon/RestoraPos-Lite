@@ -286,15 +286,16 @@ class SettingFragment : Fragment() {
         }
 
         sharedPref.writeOperator(binding.operatorEt.text.toString())
-        Toasty.success(requireContext(),"Assign ${binding.operatorEt.text.toString()} as Current Operator Successfully",Toasty.LENGTH_SHORT,true).show()
+        Toasty.success(requireContext(),"Assign ${binding.operatorEt.text} as Current Operator Successfully",Toasty.LENGTH_SHORT,true).show()
 
         if (welcome == 0) {
             binding.operatorLay.visibility = View.GONE
             val dialog = PasswordDialog(requireContext(),parentFragment)
             dialog.show()
+            dialog.setCancelable(false)
             val width = resources.displayMetrics.widthPixels
             val win = dialog.window
-            win!!.setLayout((6 * width)/7,WindowManager.LayoutParams.WRAP_CONTENT)
+            win!!.setLayout((6 * width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
             win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }

@@ -20,33 +20,34 @@
             android:id="@+id/table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
             android:layout_marginBottom="5dp"
+            android:scaleType="fitXY"
             android:src="@drawable/unselected_ongoing" />
 
         <TextView
             android:id="@+id/cusName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:layout_gravity="center_vertical"
             android:paddingLeft="5dp"
-            android:layout_margin="5dp"
-            android:textColor="@color/black"
             android:text="Walkin "
+            android:textColor="@color/black"
             android:textSize="12dp" />
+
         <TextView
             android:id="@+id/orderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:layout_gravity="center_vertical"
             android:paddingLeft="5dp"
-            android:layout_margin="5dp"
             android:text="105 "
             android:textColor="@color/black"
             android:textSize="12dp" />
@@ -55,31 +56,31 @@
             android:id="@+id/waiterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
             android:paddingLeft="5dp"
-            android:layout_margin="5dp"
             android:text="Ainal"
             android:textColor="@color/black"
-            android:layout_gravity="center_vertical"
             android:textSize="12dp"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/tableName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
+            android:background="@color/theme_color"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:layout_marginTop="5dp"
             android:padding="5dp"
             android:text="Table No : 01 "
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:layout_gravity="bottom"
-            android:background="@color/theme_color"
             android:textSize="15dp"
             tools:ignore="RtlCompat" />
 

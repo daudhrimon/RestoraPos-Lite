@@ -22,7 +22,6 @@ import com.dantsu.escposprinter.exceptions.EscPosConnectionException
 import com.dantsu.escposprinter.exceptions.EscPosEncodingException
 import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.sunmi.peripheral.printer.SunmiPrinterService
-import es.dmoral.toasty.Toasty
 
 class TokenPrintDialog(context: Context,
                        private val token: String,

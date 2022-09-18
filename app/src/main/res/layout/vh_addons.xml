@@ -16,26 +16,26 @@
         android:layout_weight="0.5"
         android:background="@drawable/selector_checkbox"
         android:clickable="true"
-        android:padding="7dp"
+        android:focusable="true"
         android:gravity="center"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-        android:focusable="true">
+        android:padding="7dp"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
         <ImageView
             android:id="@+id/checkedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_check_box_24"
             android:clickable="false"
-            tools:ignore="TouchTargetSizeCheck"
-            android:visibility="gone"/>
+            android:src="@drawable/ic_baseline_check_box_24"
+            android:visibility="gone"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageView
             android:id="@+id/unCheckedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_check_box_outline_blank_24"
             android:clickable="false"
+            android:src="@drawable/ic_baseline_check_box_outline_blank_24"
             tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
@@ -46,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1.4"
         android:fontFamily="@font/helvetica_nueu_light"
-        android:text="Add on Name"
         android:paddingStart="4dp"
+        android:text="Add on Name"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -79,9 +79,9 @@
             android:layout_weight="1"
             android:background="@drawable/selector_plus"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_plus_button"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-            android:focusable="true" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/addonQuantity"
@@ -102,9 +102,9 @@
             android:layout_weight="1"
             android:background="@drawable/selector_plus"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_minus_button"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-            android:focusable="true" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </LinearLayout>
 

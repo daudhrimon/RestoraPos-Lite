@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/grandTotalCV"
-        android:orientation="vertical"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,10 +41,10 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/selector_plus"
                         android:clickable="true"
+                        android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:orientation="horizontal"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                        android:focusable="true">
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -145,8 +145,8 @@
             android:layout_height="@dimen/_134sdp"
             android:layout_marginHorizontal="9dp"
             android:layout_marginTop="2dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -171,11 +171,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/selector_plus"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:orientation="horizontal"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                    android:focusable="true">
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -204,8 +204,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/orderInfCard"
                 android:layout_marginTop=".6dp"
+                android:layout_toStartOf="@+id/orderInfCard"
                 android:background="@color/bg_color"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/_2sdp"
@@ -219,16 +219,16 @@
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_ongoing"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_neue"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="Ongoing"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="13sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
-                    android:focusable="true" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/todayTv"
@@ -238,16 +238,16 @@
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_today"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_neue"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="Today's"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="13sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
-                    android:focusable="true" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/completedTv"
@@ -257,35 +257,35 @@
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_allorder"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_neue"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="Completed"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="13sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
-                    android:focusable="true" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/canceledTv"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_31sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
+                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_close"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_neue"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="Canceled"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="13sp"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck"
-                    android:focusable="true" />
+                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
             </LinearLayout>
 
@@ -374,13 +374,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true"
         android:background="@color/splash_bg"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
         android:paddingTop="17dp"
         android:paddingBottom="2dp"
-        android:weightSum="8"
-        android:animateLayoutChanges="true">
+        android:weightSum="8">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -394,10 +394,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_today"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                android:focusable="true">
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -422,10 +422,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_close"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                android:focusable="true">
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -449,10 +449,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_ongoing"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                tools:ignore="TouchTargetSizeCheck"
-                android:focusable="true">
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
                     android:id="@+id/quickTv"
@@ -480,10 +480,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_place_order"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                tools:ignore="TouchTargetSizeCheck"
-                android:focusable="true">
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:ignore="TouchTargetSizeCheck">
 
                 <TextView
                     android:id="@+id/placeTv"

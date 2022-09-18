@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dialog.CalculatorDialog"
-    app:cardCornerRadius="@dimen/_10sdp">
+    app:cardCornerRadius="@dimen/_10sdp"
+    tools:context=".Dialog.CalculatorDialog">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -37,10 +37,10 @@
                 android:layout_marginRight="14dp"
                 android:background="@drawable/selector_cross_btn"
                 android:clickable="true"
+                android:focusable="true"
                 android:padding="3dp"
                 android:src="@drawable/ic_close_white"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                android:focusable="true" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </RelativeLayout>
 
@@ -107,13 +107,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="C"
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/bracketsOnClick"
@@ -126,13 +126,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="()"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/powerOfOnClick"
@@ -145,13 +145,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="^"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/divisionOnClick"
@@ -164,13 +164,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button02"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="/"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
             </LinearLayout>
 
@@ -191,13 +191,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="7"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/eightOnClick"
@@ -210,13 +210,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="8"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/nineOnClick"
@@ -229,13 +229,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="9"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/timesOnClick"
@@ -248,13 +248,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button02"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="X"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
             </LinearLayout>
 
@@ -275,13 +275,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="4"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/fiveOnClick"
@@ -294,13 +294,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="5"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/sixOnClick"
@@ -310,13 +310,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="6"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/minusOnClick"
@@ -329,13 +329,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button02"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="-"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
             </LinearLayout>
 
@@ -356,13 +356,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="1"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/twoOnClick"
@@ -375,13 +375,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="2"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/threeOnClick"
@@ -394,13 +394,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="3"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/plusOnClick"
@@ -410,13 +410,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button02"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="+"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
             </LinearLayout>
 
@@ -438,14 +438,14 @@
                     android:layout_weight="2"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="0"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="25dp"
-                    tools:ignore="OnClick"
-                    android:focusable="true" />
+                    tools:ignore="OnClick" />
 
                 <TextView
                     android:id="@+id/decimalOnClick"
@@ -458,13 +458,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button01"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="."
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
-                    android:focusable="true" />
+                    android:textSize="25dp" />
 
 
                 <TextView
@@ -478,14 +478,14 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_calculator_button02"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_thin"
                     android:gravity="center"
                     android:text="="
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="25dp"
-                    tools:ignore="UsingOnClickInXml"
-                    android:focusable="true" />
+                    tools:ignore="UsingOnClickInXml" />
 
             </LinearLayout>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_10sdp">
 
     <ScrollView
@@ -74,8 +74,8 @@
                     android:layout_below="@+id/dcFoodName"
                     android:layout_marginStart="15dp"
                     android:background="@drawable/no_radius_background"
-                    android:paddingHorizontal="4dp"
                     android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp"
                     android:popupBackground="@color/white" />
 
                 <LinearLayout
@@ -84,8 +84,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:layout_marginVertical="18dp"
                     android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="18dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:weightSum="3">
@@ -98,16 +98,16 @@
                         android:layout_weight="1"
                         android:background="@drawable/selector_plus"
                         android:clickable="true"
+                        android:focusable="true"
                         android:src="@drawable/ic_plus_button"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                        android:focusable="true" />
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/dcQuantity"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginHorizontal="3dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/helvetica_nueu_light"
                         android:gravity="center"
                         android:text="1"
@@ -123,9 +123,9 @@
                         android:layout_weight="1"
                         android:background="@drawable/selector_plus"
                         android:clickable="true"
+                        android:focusable="true"
                         android:src="@drawable/ic_minus_button"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                        android:focusable="true" />
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 </LinearLayout>
 
@@ -156,22 +156,22 @@
                 android:text="Add-ons  information"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15sdp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/addonsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/vh_addons"
-                android:visibility="gone"/>
+                tools:listitem="@layout/vh_addons" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
+                android:orientation="horizontal"
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="10dp"
                 android:weightSum="2">
@@ -183,10 +183,10 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_today"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_light"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:paddingBottom="2dp"
                     android:text="Add multiple"
@@ -201,10 +201,10 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_ongoing"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="@font/helvetica_nueu_light"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:paddingBottom="2dp"
                     android:text="Add to Cart"

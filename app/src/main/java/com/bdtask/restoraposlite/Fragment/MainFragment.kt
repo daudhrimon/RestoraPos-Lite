@@ -170,12 +170,9 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
         // quick order Click Handler
         mBinding.quickOrder.setOnClickListener {
             if (eMode == 0){
-                val operator = sharedPref.readOperator() ?: ""
-                if (operator.isNotEmpty()){
-                    quickOrderClick()
-                } else {
-                    Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
-                }
+
+                quickOrderClick()
+
             } else {
                 eMode = 0
                 checkEditMode()
@@ -310,51 +307,43 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                 if (eMode == 0) {
 
-                    val operator = sharedPref.readOperator() ?: ""
+                    token = Util.getToken(sharedPref)
 
-                    if (operator.isNotEmpty()) {
+                    val order = Order(
+                        0,
+                        0,
+                        0,
+                        0,
+                        Util.getDate().toString(),
+                        token,
+                        0.0,
+                        sharedPref.readVat() ?: 0.0,
+                        sharedPref.readCharge() ?: 0.0,
+                        0.0,
+                        sharedPref.readOperator() ?: "",
+                        odrInf,
+                        tempCartList,
+                        emptyList<Pay>().toMutableList()
+                    )
 
-                        token = Util.getToken(sharedPref)
+                    try {
+                        GlobalScope.launch(Dispatchers.IO) {
 
-                        val order = Order(
-                            0,
-                            0,
-                            0,
-                            0,
-                            Util.getDate().toString(),
-                            token,
-                            0.0,
-                            sharedPref.readVat() ?: 0.0,
-                            sharedPref.readCharge() ?: 0.0,
-                            0.0,
-                            sharedPref.readOperator() ?: "",
-                            odrInf,
-                            tempCartList,
-                            emptyList<Pay>().toMutableList())
+                            val orderId = database.AppDao().insertOrder(order)
 
-                        try {
+                            withContext(Dispatchers.Main) {
 
-                            GlobalScope.launch(Dispatchers.IO) {
+                                if (orderId != null && orderId.toString().isNotEmpty()) {
 
-                                val orderId = database.AppDao().insertOrder(order)
+                                    Toasty.success(requireContext(), "Placed Order $orderId Successfully", Toast.LENGTH_SHORT, true).show()
 
-                                withContext(Dispatchers.Main) {
-
-                                    if (orderId != null && orderId.toString().isNotEmpty()) {
-
-                                        Toasty.success(requireContext(),"Placed Order $orderId Successfully",Toast.LENGTH_SHORT,true).show()
-
-                                        // asking for print token
-                                        printToken(orderId)
-                                    }
+                                    // asking for print token
+                                    printToken(orderId)
                                 }
                             }
-                        } catch (e: Exception) {
-                            Toasty.success(requireContext(),e.message.toString(),Toast.LENGTH_SHORT,true).show()
                         }
-
-                    } else {
-                        Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
+                    } catch (e: Exception) {
+                        Toasty.success(requireContext(), e.message.toString(), Toast.LENGTH_SHORT, true).show()
                     }
 
                 } else {

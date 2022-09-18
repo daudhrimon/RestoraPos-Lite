@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/_10sdp">
 
     <RelativeLayout
@@ -44,9 +44,9 @@
                     android:id="@+id/dateLay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_below="@+id/address"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -601,9 +601,9 @@
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_gravity="end"
-            android:layout_toStartOf="@id/closeBtn"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/closeBtn"
             android:background="@drawable/selector_print_icon"
             android:clickable="true"
             android:focusable="true"

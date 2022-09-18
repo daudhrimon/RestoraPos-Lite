@@ -109,7 +109,7 @@ class PaymentDialog (context: Context): Dialog(context) {
 
                             sharedPref.writeOrder(order)
 
-                            Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT).show()
+                            Toasty.success(context,"Order Completed",Toasty.LENGTH_SHORT,true).show()
 
                             printInvoice()
                         }
@@ -135,7 +135,7 @@ class PaymentDialog (context: Context): Dialog(context) {
                     }
                 }
             } else {
-                Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT).show()
+                Toasty.info(context,"Please Complete Payment, Amount Left to Pay ${totalAmount-payable}",Toasty.LENGTH_SHORT,true).show()
             }
         }
 

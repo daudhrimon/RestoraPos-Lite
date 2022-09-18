@@ -11,7 +11,10 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.DialogPasswordBinding
 import es.dmoral.toasty.Toasty
 
-class PasswordDialog(context: Context, val parentFragment: Fragment?): Dialog(context) {
+class PasswordDialog(context: Context,
+                     private val parentFragment: Fragment?
+                     ): Dialog(context) {
+
     private lateinit var binding: DialogPasswordBinding
     private val sharedPref = SharedPref
     private var welcome = 0
@@ -19,10 +22,15 @@ class PasswordDialog(context: Context, val parentFragment: Fragment?): Dialog(co
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DialogPasswordBinding.bind(layoutInflater.inflate(R.layout.dialog_password,null))
+        setContentView(binding.root)
+
         sharedPref.init(context)
         welcome = sharedPref.readWelcome() ?: 0
 
-        if (welcome==0){binding.closeBtn.visibility=View.GONE}
+        if (welcome == 0) {
+            binding.closeBtn.visibility = View.INVISIBLE
+            binding.currentLay.visibility = View.GONE
+        }
 
         binding.closeBtn.setOnClickListener {
             dismiss()
@@ -69,7 +77,7 @@ class PasswordDialog(context: Context, val parentFragment: Fragment?): Dialog(co
             return
         }
         sharedPref.writePIN(binding.newPin1Et.text.toString().trim())
-        var toast = if (welcome==0){
+        val toast = if (welcome==0) {
             "Pin Set Successfully"
         }else{
             "Password Changed Successfully"
@@ -77,7 +85,6 @@ class PasswordDialog(context: Context, val parentFragment: Fragment?): Dialog(co
         Toasty.success(context,toast,Toasty.LENGTH_SHORT,true).show()
         dismiss()
         parentFragment?.findNavController()?.navigate(R.id.settingFrag2homeFrag)
-        sharedPref.writeWelcome(1)
     }
 
 }

@@ -1,10 +1,6 @@
 package com.bdtask.restoraposlite
 
-import android.app.Activity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -12,10 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.bdtask.restoraposlite.Room.Entity.Food
 import com.bdtask.restoraposlite.Room.AppDatabase
-import com.bdtask.restoraposlite.Util.SharedPref
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.navigation.NavigationView
-import es.dmoral.toasty.Toasty
 
 class MainActivity: AppCompatActivity() {
 

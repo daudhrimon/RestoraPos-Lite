@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_10sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -73,15 +73,15 @@
             android:layout_marginVertical="@dimen/_24sdp"
             android:background="@drawable/selector_ongoing"
             android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/helvetica_nueu_light"
+            android:gravity="center"
             android:padding="@dimen/_8sdp"
             android:text="Add"
-            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
-            tools:ignore="RtlCompat,TouchTargetSizeCheck"
-            android:focusable="true" />
+            tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
     </LinearLayout>
 

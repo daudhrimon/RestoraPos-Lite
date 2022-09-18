@@ -5,17 +5,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:elevation="@dimen/_9sdp"
-    app:cardCornerRadius="10dp"
-    android:foreground="@drawable/selector_food"
     android:clickable="true"
-    android:focusable="true">
+    android:elevation="@dimen/_9sdp"
+    android:focusable="true"
+    android:foreground="@drawable/selector_food"
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/foodImage"

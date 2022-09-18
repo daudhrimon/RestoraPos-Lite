@@ -117,22 +117,15 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         oBinding.completeBtn.setOnClickListener {
-            val operator = sharedPref.readOperator() ?: ""
-            if (operator.isNotEmpty()){
-
-                sharedPref.writeOrder(ongList[oPos])
-                val dialog = PaymentDialog(requireContext())
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                dialog.show()
-                val width = resources.displayMetrics.widthPixels
-                val height = resources.displayMetrics.heightPixels
-                val win = dialog.window
-                win!!.setLayout((9 * width)/10,(14 * height)/15)
-                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            } else {
-                Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
-            }
-
+            sharedPref.writeOrder(ongList[oPos])
+            val dialog = PaymentDialog(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
+            val win = dialog.window
+            win!!.setLayout((9 * width)/10,(14 * height)/15)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
 
@@ -154,19 +147,14 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
 
         oBinding.duePosBtn.setOnClickListener {
-            val operator = sharedPref.readOperator() ?: ""
-            if (operator.isNotEmpty()){
-                sharedPref.writeOrder(ongList[oPos])
-                val dialog = InvoiceViewDialog(requireContext(),0)
-                dialog.show()
-                val width = resources.displayMetrics.widthPixels
-                val height = resources.displayMetrics.heightPixels
-                val win = dialog.window
-                win!!.setLayout((14 * width)/15,(24 * height)/25)
-                win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            } else {
-                Toasty.warning(requireContext(),"Set Operator's Name First",Toasty.LENGTH_SHORT,true).show()
-            }
+            sharedPref.writeOrder(ongList[oPos])
+            val dialog = InvoiceViewDialog(requireContext(),0)
+            dialog.show()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
+            val win = dialog.window
+            win!!.setLayout((14 * width)/15,(24 * height)/25)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
 

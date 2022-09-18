@@ -12,9 +12,9 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:animateLayoutChanges="true"
         android:background="@drawable/bottom_rounded_bg"
-        android:paddingVertical="@dimen/_4sdp"
-        android:animateLayoutChanges="true">
+        android:paddingVertical="@dimen/_4sdp">
 
         <ImageView
             android:id="@+id/back"
@@ -102,13 +102,13 @@
         android:id="@+id/ong_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar"
         android:layout_above="@+id/scroll_view"
+        android:layout_below="@id/appbar"
         android:layout_marginHorizontal="6dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
-        tools:listitem="@layout/vh_ongoing"
-        android:visibility="gone"/>
+        tools:listitem="@layout/vh_ongoing" />
 
 
     <HorizontalScrollView

@@ -103,12 +103,7 @@ class CategoryBtmAdapter(private val context: Context,
                                             )
 
                                             withContext(Dispatchers.Main) {
-                                                Toasty.success(
-                                                    context,
-                                                    "Successful",
-                                                    Toast.LENGTH_SHORT,
-                                                    true
-                                                ).show()
+                                                Toasty.success(context, "Successful", Toast.LENGTH_SHORT, true).show()
                                             }
                                         }
                                     }
@@ -128,12 +123,7 @@ class CategoryBtmAdapter(private val context: Context,
                     )
 
                     withContext(Dispatchers.Main) {
-                        Toasty.success(
-                            context,
-                            "Successful",
-                            Toast.LENGTH_SHORT,
-                            true
-                        ).show()
+                        Toasty.success(context, "Successful", Toast.LENGTH_SHORT, true).show()
                     }
                 }
             }

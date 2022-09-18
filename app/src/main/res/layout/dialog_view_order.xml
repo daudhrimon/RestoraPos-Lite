@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     app:cardCornerRadius="@dimen/_10sdp">
 
@@ -34,10 +34,10 @@
                         <ImageView
                             android:id="@+id/logo"
                             android:layout_width="@dimen/_100sdp"
-                            android:layout_marginTop="10dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/poslogo"
-                            android:layout_marginLeft="10dp"/>
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/poslogo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -56,8 +56,8 @@
                             android:id="@+id/addressTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
                             android:fontFamily="@font/helvetica_neue"
                             android:paddingLeft="5dp"
                             android:textColor="#6D7990" />
@@ -112,8 +112,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
-                            android:weightSum="2"
-                            android:visibility="gone">
+                            android:visibility="gone"
+                            android:weightSum="2">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -195,8 +195,8 @@
                             android:id="@+id/cusName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/helvetica_neue"
                             android:layout_marginTop="3dp"
+                            android:fontFamily="@font/helvetica_neue"
                             android:padding="5dp"
                             android:text="H"
                             android:textColor="#3C4767"
@@ -263,8 +263,8 @@
                             android:id="@+id/opName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/helvetica_neue"
                             android:layout_marginTop="3dp"
+                            android:fontFamily="@font/helvetica_neue"
                             android:padding="5dp"
                             android:text="H"
                             android:textColor="#3C4767"
@@ -323,8 +323,8 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Item"
-                                        android:textSize="10sp"
                                         android:textColor="#262626"
+                                        android:textSize="10sp"
                                         android:textStyle="bold" />
 
                                 </LinearLayout>
@@ -361,8 +361,8 @@
                                     android:gravity="center"
                                     android:padding="10dp"
                                     android:text="Size"
-                                    android:textSize="10sp"
                                     android:textColor="#262626"
+                                    android:textSize="10sp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -395,8 +395,8 @@
                                     android:gravity="center"
                                     android:padding="10dp"
                                     android:text="Unit Price"
-                                    android:textSize="10sp"
                                     android:textColor="#262626"
+                                    android:textSize="10sp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -429,8 +429,8 @@
                                     android:gravity="center"
                                     android:padding="10dp"
                                     android:text="Qty"
-                                    android:textSize="10sp"
                                     android:textColor="#262626"
+                                    android:textSize="10sp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -463,8 +463,8 @@
                                     android:gravity="center"
                                     android:padding="10dp"
                                     android:text="Total Price"
-                                    android:textSize="10sp"
                                     android:textColor="#262626"
+                                    android:textSize="10sp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -487,7 +487,7 @@
                             android:layout_marginRight="10dp"
                             android:overScrollMode="never"
                             android:scrollbars="none"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

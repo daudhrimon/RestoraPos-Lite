@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:animationCache="true"
     android:background="@color/white"
-    tools:context=".Fragment.CompletedFragment"
-    android:animationCache="true">
+    tools:context=".Fragment.CompletedFragment">
 
     <RelativeLayout
         android:id="@+id/appbar"
@@ -119,8 +119,8 @@
                     android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
                     android:focusable="false"
                     android:onClick="pickDate"
-                    android:textColor="@color/theme_color"
                     android:padding="0dp"
+                    android:textColor="@color/theme_color"
                     android:textSize="14sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -141,8 +141,8 @@
                     android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
                     android:focusable="false"
                     android:onClick="pickDate"
-                    android:textColor="@color/theme_color"
                     android:padding="0dp"
+                    android:textColor="@color/theme_color"
                     android:textSize="14sp"
                     tools:ignore="TouchTargetSizeCheck" />
 

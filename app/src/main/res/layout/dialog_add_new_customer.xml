@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_10sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -196,8 +196,8 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:background="@drawable/selector_today"
-                        android:foreground="?attr/selectableItemBackground"
                         android:fontFamily="@font/helvetica_nueu_light"
+                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="Close"
                         android:textColor="@color/white"
@@ -211,8 +211,8 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:background="@drawable/selector_ongoing"
-                        android:foreground="?attr/selectableItemBackground"
                         android:fontFamily="@font/helvetica_nueu_light"
+                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="Submit"
                         android:textColor="@color/white"
