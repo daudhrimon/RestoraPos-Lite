@@ -48,7 +48,7 @@ class CanceledFragment : Fragment() {
 
         database.AppDao().getCOrder(2).observe(viewLifecycleOwner, Observer {
 
-            orderList = it.toMutableList()
+            orderList = it.asReversed().toMutableList()
 
             setRecyclerAdapter()
 

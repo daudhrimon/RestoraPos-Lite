@@ -35,6 +35,8 @@ import com.dantsu.escposprinter.exceptions.EscPosEncodingException
 import com.dantsu.escposprinter.exceptions.EscPosParserException
 import com.dantsu.escposprinter.textparser.PrinterTextParserImg
 import com.sunmi.peripheral.printer.SunmiPrinterService
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class InvoicePrintDialog(context: Context,
                          private var order: Order,
@@ -53,6 +55,7 @@ class InvoicePrintDialog(context: Context,
         titleText = "Do You Want To Print Invoice ?"
         cancelText = "No"
         confirmText = "Yes"
+        setCancelable(false)
 
         initPrinter()
 
@@ -154,8 +157,8 @@ class InvoicePrintDialog(context: Context,
                                 null
                             )
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Subtotal: "
-                            txts[1] = "${order.tPrc} $appCurrency"
+                            txts[0] = "Subtotal:"
+                            txts[1] = "${roundOfDecimal(order.tPrc)} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
                                 width,
@@ -164,7 +167,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Vat/Tax (${order.vat}%): "
+                            txts[0] = "Vat/Tax (${order.vat}%):"
                             txts[1] = "${order.vat} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -174,7 +177,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Service Charge (${order.crg}%): "
+                            txts[0] = "Service Crg (${order.crg}%):"
                             txts[1] = "${order.crg} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -184,7 +187,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Discount: "
+                            txts[0] = "Discount:"
                             txts[1] = "${order.dis} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -199,8 +202,8 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Grand Total: "
-                            txts[1] = "$grandTotal $appCurrency"
+                            txts[0] = "Grand Total:"
+                            txts[1] = "${roundOfDecimal(grandTotal)} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
                                 width,
@@ -226,8 +229,8 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Customer Paid: "
-                            txts[1] = "$customerPay $appCurrency"
+                            txts[0] = "Customer Paid:"
+                            txts[1] = "${roundOfDecimal(customerPay)} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
                                 width,
@@ -284,15 +287,15 @@ class InvoicePrintDialog(context: Context,
                                                 "[C]================================\n" +
                                                 loopData(order.cart)+
                                                 "[C]================================\n" +
-                                                "[L]Subtotal: " + "[R]${order.tPrc} $appCurrency\n" +
-                                                "[L]Vat/Tax (${order.vat}%): " + "[R]$vat $appCurrency\n" +
-                                                "[L]Service Charge (${order.crg}%): " + "[R]$crg $appCurrency\n" +
+                                                "[L]Subtotal: " + "[R]${roundOfDecimal(order.tPrc)} $appCurrency\n" +
+                                                "[L]Vat/Tax (${order.vat}%):" + "[R]$vat $appCurrency\n" +
+                                                "[L]Service Crg (${order.crg}%):" + "[R]$crg $appCurrency\n" +
                                                 "[L]Discount: " + "[R]${order.dis} $appCurrency\n" +
                                                 "[C]================================\n" +
-                                                "[L]Grand Total: " + "[R]$grandTotal $appCurrency\n" +
+                                                "[L]Grand Total: " + "[R]${roundOfDecimal(grandTotal)} $appCurrency\n" +
                                                 "[L]Total Due: " + "[R]${getTotalDue()} $appCurrency\n" +
                                                 "[L]Change Due: " + "[R]${getChangeDue()} $appCurrency\n" +
-                                                "[L]Customer Paid: " + "[R]$customerPay $appCurrency\n" +
+                                                "[L]Customer Paid: " + "[R]${roundOfDecimal(customerPay)} $appCurrency\n" +
                                                 "[C]================================\n" +
                                                 "[C] <b> Thank you very much </b>\n" +
                                                 "[C] <b>Powered by ***Restora POS***</b>\n" + "\n\n")
@@ -371,5 +374,12 @@ class InvoicePrintDialog(context: Context,
             }
         }
         return items
+    }
+
+
+    private fun roundOfDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
     }
 }

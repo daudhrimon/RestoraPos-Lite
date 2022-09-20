@@ -23,6 +23,8 @@ import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogPaymentBinding
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class PaymentDialog (context: Context): Dialog(context) {
 
@@ -158,7 +160,7 @@ class PaymentDialog (context: Context): Dialog(context) {
         }
         val vat = (order.tPrc * order.vat) / 100
         val crg = (order.tPrc * order.crg) / 100
-        totalAmount = order.tPrc + vat + crg
+        totalAmount = (roundOfDecimal(order.tPrc) ?: 0.0) + vat + crg
         dBinding.totalAmount.text = totalAmount.toString()
 
         dBinding.totalAmountCr.text = " $appCurrency"
@@ -214,5 +216,11 @@ class PaymentDialog (context: Context): Dialog(context) {
             printHelper = SunmiPrintHelper.getInstance()
             printHelper.initSunmiPrinterService(context)
         }
+    }
+
+    private fun roundOfDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
     }
 }

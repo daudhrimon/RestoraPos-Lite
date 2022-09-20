@@ -17,6 +17,8 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.VhViewOrderBinding
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class ViewOrderAdapter(private val context: Context,
                        private val orderList: MutableList<Order>
@@ -61,7 +63,7 @@ class ViewOrderAdapter(private val context: Context,
                 for (i in orderList[position].pay.indices){
                     payAmo += orderList[position].pay[i].amo
                 }
-                holder.binding.amountTv.text = "$payAmo $appCurrency"
+                holder.binding.amountTv.text = "${roundOfDecimal(payAmo)} $appCurrency"
             }
         } else {
             holder.binding.expandLay.visibility = View.GONE
@@ -123,5 +125,11 @@ class ViewOrderAdapter(private val context: Context,
 
     override fun getItemCount(): Int {
         return orderList.size
+    }
+
+    private fun roundOfDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
     }
 }

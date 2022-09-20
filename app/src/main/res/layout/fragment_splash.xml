@@ -18,8 +18,8 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_56sdp"
         android:layout_centerInParent="true"
+        android:layout_marginHorizontal="@dimen/_69sdp"
         android:src="@drawable/texticon" />
 
 
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/helvetica_nueu_light"
-                android:text="SignIn With PIN"
+                android:text="Sign in with PIN"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="21sp" />
@@ -62,7 +62,7 @@
                 android:background="@drawable/no_radius_background"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:gravity="center"
-                android:hint=" Enter PIN Here"
+                android:hint=" Enter PIN here"
                 android:inputType="numberPassword"
                 android:maxLength="5"
                 android:paddingHorizontal="10dp"
@@ -99,7 +99,7 @@
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:text="SignIn"
+                android:text="Sign in"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"

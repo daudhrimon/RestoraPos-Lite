@@ -38,6 +38,7 @@ class TokenPrintDialog(context: Context,
         titleText = "Do you want to print Token ?"
         confirmText = "Yes"
         cancelText = "No"
+        setCancelable(false)
 
         initPrinter()
 

@@ -13,6 +13,8 @@ import com.bdtask.restoraposlite.Room.Entity.Order
 import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.databinding.DialogViewOrderBinding
 import com.bumptech.glide.Glide
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class ViewOrderDialog(context: Context, private val order: Order): Dialog(context) {
 
@@ -65,24 +67,26 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
 
         binding.opName.text = order.opr
 
+        binding.subTotaltv.text = "${roundOfDecimal(order.tPrc)} $appCurrency"
+
         vat = (order.tPrc * order.vat) / 100
         binding.vatTxTv.text = "Vat/Tax (${order.vat}%)"
         binding.vat.text = "$vat $appCurrency"
 
         crg = (order.tPrc * order.crg) / 100
-        binding.sCrgTv.text = "Service Charge (${order.crg}%)"
+        binding.sCrgTv.text = "Service Crg (${order.crg}%)"
         binding.serviceCharge.text = "$crg $appCurrency"
 
         binding.discount.text = "${order.dis} $appCurrency"
 
         grandTotal = (order.tPrc + vat + crg)-order.dis
-        binding.grandTotal.text = "$grandTotal $appCurrency"
+        binding.grandTotal.text = "${roundOfDecimal(grandTotal)} $appCurrency"
 
         binding.totalDue.text = "${getTotalDue()} $appCurrency"
 
         binding.changeDue.text = "${getChangeDue()} $appCurrency"
 
-        binding.customerPay.text = "$customerPay $appCurrency"
+        binding.customerPay.text = "${roundOfDecimal(customerPay)} $appCurrency"
     }
 
     private fun getCustomerPay(pay: MutableList<Pay>) {
@@ -116,5 +120,11 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
         } else {
             cngDue.toString()
         }
+    }
+
+    private fun roundOfDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
     }
 }

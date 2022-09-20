@@ -52,7 +52,7 @@ class TodayFragment() : Fragment() {
             .getTodayOrder(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString(),1)
             .observe(viewLifecycleOwner, Observer {
 
-                orderList = it
+                orderList = it.asReversed().toMutableList()
 
                 setRecyclerAdapter()
 

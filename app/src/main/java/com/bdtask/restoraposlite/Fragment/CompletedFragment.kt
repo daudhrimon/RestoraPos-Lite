@@ -50,7 +50,7 @@ class CompletedFragment : Fragment() {
 
         database.AppDao().getCOrder(1).observe(viewLifecycleOwner, Observer {
 
-            orderList = it.toMutableList()
+            orderList = it.asReversed().toMutableList()
 
             setRecyclerAdapter()
 

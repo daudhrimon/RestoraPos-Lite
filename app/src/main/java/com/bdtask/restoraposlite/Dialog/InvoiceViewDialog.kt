@@ -15,6 +15,8 @@ import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.DialogInvoiceViewBinding
 import com.bumptech.glide.Glide
 import es.dmoral.toasty.Toasty
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class InvoiceViewDialog(context: Context, private val state: Int): Dialog(context) {
 
@@ -68,26 +70,26 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
 
         binding.oprName.text = order.opr
 
-        binding.subTotal.text = "${order.tPrc} $appCurrency"
+        binding.subTotal.text = "${roundOfDecimal(order.tPrc)} $appCurrency"
 
         vat = (order.tPrc * order.vat)/100
         binding.vatTxTv.text = "Vat/Tax (${order.vat}%)"
         binding.vatTv.text = "$vat $appCurrency"
 
         crg = (order.tPrc * order.crg)/100
-        binding.sCrgTv.text = "Service Charge (${order.crg}%)"
+        binding.sCrgTv.text = "Service Crg (${order.crg}%)"
         binding.chargeTv.text = "$crg $appCurrency"
 
         binding.discountTv.text = "${order.dis} $appCurrency"
 
         grandTotal = (order.tPrc + vat + crg)-order.dis
-        binding.grandtotalTV.text = "$grandTotal $appCurrency"
+        binding.grandtotalTV.text = "${roundOfDecimal(grandTotal)} $appCurrency"
 
         binding.totalDue.text = "${getTotalDue()} $appCurrency"
 
         binding.changeDue.text = "${getChangeDue()} $appCurrency"
 
-        binding.customerPaid.text = "$customerPay $appCurrency"
+        binding.customerPaid.text = "${roundOfDecimal(customerPay)} $appCurrency"
 
         binding.tableNo.text = order.odrInf.tbl
 
@@ -136,5 +138,11 @@ class InvoiceViewDialog(context: Context, private val state: Int): Dialog(contex
         } else {
             cngDue.toString()
         }
+    }
+
+    private fun roundOfDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
     }
 }

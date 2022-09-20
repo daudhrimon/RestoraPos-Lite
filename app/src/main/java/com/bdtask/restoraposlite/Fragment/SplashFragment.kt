@@ -63,12 +63,12 @@ class SplashFragment : Fragment() {
             Util.hideSoftKeyBoard(requireContext(),binding.root)
 
             if (binding.signInEt.text.toString().isEmpty()){
-                Toasty.error(requireContext(),"Enter PIN First",Toasty.LENGTH_SHORT,true).show()
+                Toasty.error(requireContext(),"Enter PIN first",Toasty.LENGTH_SHORT,true).show()
                 return@setOnClickListener
             }
 
             if (binding.signInEt.text.toString().length < 5){
-                Toasty.error(requireContext(),"PIN is too Short",Toasty.LENGTH_SHORT,true).show()
+                Toasty.error(requireContext(),"PIN is too short",Toasty.LENGTH_SHORT,true).show()
                 return@setOnClickListener
             }
 
@@ -91,7 +91,7 @@ class SplashFragment : Fragment() {
         binding.forgotPass.setOnClickListener {
             val pin = sharedPref.readPIN() ?: "     "
             val hint = pin.removeRange(0,2)
-            Toasty.info(requireContext(),"Last 3 digit of your Pin is: $hint",Toasty.LENGTH_SHORT,true).show()
+            Toasty.info(requireContext(),"Last 3 digit of your PIN is: $hint",Toasty.LENGTH_SHORT,true).show()
         }
 
         return binding.root
