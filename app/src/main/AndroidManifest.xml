@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bdtask.restoraposlite">
 
     <uses-permission android:name="android.permission.BLUETOOTH"/>
@@ -13,7 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BhojonPOSLocalDB">
+        android:theme="@style/Theme.BhojonPOSLocalDB"
+        tools:targetApi="m">
         <activity
             android:name="com.bdtask.restoraposlite.MainActivity"
             android:exported="true"

@@ -23,14 +23,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_9sdp"
-                android:paddingVertical="@dimen/_6sdp">
+                android:paddingVertical="@dimen/_5sdp">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/_33sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_marginEnd="@dimen/_6sdp"
                     app:cardCornerRadius="7dp"
                     app:cardElevation=".7dp">
@@ -60,7 +60,7 @@
                 <EditText
                     android:id="@+id/searchEt"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_marginStart=".6dp"
                     android:background="@drawable/bordr_bg_home_et"
                     android:drawableRight="@drawable/search_icon"
@@ -158,7 +158,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/orderInfCard"
                 android:layout_width="@dimen/_34sdp"
-                android:layout_height="@dimen/_34sdp"
+                android:layout_height="@dimen/_33sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_2sdp"
@@ -214,7 +214,7 @@
                 <TextView
                     android:id="@+id/ongoingTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_31sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
@@ -233,7 +233,7 @@
                 <TextView
                     android:id="@+id/todayTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_31sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
@@ -252,7 +252,7 @@
                 <TextView
                     android:id="@+id/completedTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_31sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
@@ -271,7 +271,7 @@
                 <TextView
                     android:id="@+id/canceledTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_31sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"

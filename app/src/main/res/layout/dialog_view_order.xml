@@ -604,6 +604,7 @@
                                     android:padding="10dp">
 
                                     <TextView
+                                        android:id="@+id/vatTxTv"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
@@ -693,7 +694,7 @@
                                     android:padding="10dp">
 
                                     <TextView
-                                        android:id="@+id/scTv"
+                                        android:id="@+id/sCrgTv"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"

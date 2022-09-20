@@ -11,15 +11,15 @@
     <RelativeLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:background="@drawable/bottom_rounded_bg"
-        android:paddingVertical="@dimen/_4sdp">
+        android:paddingVertical="@dimen/_5sdp">
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="6dp"
             android:clickable="true"
@@ -33,7 +33,8 @@
         <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_centerVertical="true"
             android:layout_marginStart="7dp"
             android:layout_toRightOf="@+id/back"
             android:fontFamily="@font/helvetica_nueu_light"
@@ -41,7 +42,7 @@
             android:paddingBottom="2dp"
             android:text="About Restora POS Premium"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/_14sdp" />
 
     </RelativeLayout>
 

@@ -154,7 +154,7 @@ class InvoicePrintDialog(context: Context,
                                 null
                             )
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Subtotal:"
+                            txts[0] = "Subtotal: "
                             txts[1] = "${order.tPrc} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -164,7 +164,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Vat/Tax:"
+                            txts[0] = "Vat/Tax (${order.vat}%): "
                             txts[1] = "${order.vat} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -174,7 +174,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Service Charge:"
+                            txts[0] = "Service Charge (${order.crg}%): "
                             txts[1] = "${order.crg} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -184,7 +184,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Discount:"
+                            txts[0] = "Discount: "
                             txts[1] = "${order.dis} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -199,7 +199,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Grand Total:"
+                            txts[0] = "Grand Total: "
                             txts[1] = "$grandTotal $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -208,7 +208,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Total Due:"
+                            txts[0] = "Total Due: "
                             txts[1] = "${getTotalDue()} $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -226,7 +226,7 @@ class InvoicePrintDialog(context: Context,
                             )
 
                             sunmiPrinterService?.setFontSize(23f, null)
-                            txts[0] = "Customer Paid:"
+                            txts[0] = "Customer Paid: "
                             txts[1] = "$customerPay $appCurrency"
                             sunmiPrinterService?.printColumnsString(
                                 txts,
@@ -285,8 +285,8 @@ class InvoicePrintDialog(context: Context,
                                                 loopData(order.cart)+
                                                 "[C]================================\n" +
                                                 "[L]Subtotal: " + "[R]${order.tPrc} $appCurrency\n" +
-                                                "[L]Vat/Tax: " + "[R]$vat $appCurrency\n" +
-                                                "[L]Service Charge: " + "[R]$crg $appCurrency\n" +
+                                                "[L]Vat/Tax (${order.vat}%): " + "[R]$vat $appCurrency\n" +
+                                                "[L]Service Charge (${order.crg}%): " + "[R]$crg $appCurrency\n" +
                                                 "[L]Discount: " + "[R]${order.dis} $appCurrency\n" +
                                                 "[C]================================\n" +
                                                 "[L]Grand Total: " + "[R]$grandTotal $appCurrency\n" +

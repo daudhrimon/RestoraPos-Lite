@@ -66,9 +66,11 @@ class ViewOrderDialog(context: Context, private val order: Order): Dialog(contex
         binding.opName.text = order.opr
 
         vat = (order.tPrc * order.vat) / 100
+        binding.vatTxTv.text = "Vat/Tax (${order.vat}%)"
         binding.vat.text = "$vat $appCurrency"
 
         crg = (order.tPrc * order.crg) / 100
+        binding.sCrgTv.text = "Service Charge (${order.crg}%)"
         binding.serviceCharge.text = "$crg $appCurrency"
 
         binding.discount.text = "${order.dis} $appCurrency"

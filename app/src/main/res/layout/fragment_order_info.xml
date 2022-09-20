@@ -11,15 +11,16 @@
     <!--TOOLBAR -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@drawable/bottom_rounded_bg"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_5sdp">
 
         <ImageView
             android:id="@+id/ocfBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_centerVertical="true"
             android:layout_marginStart="6dp"
             android:background="@drawable/selector_cross_btn"
@@ -31,9 +32,10 @@
         <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_32sdp"
             android:layout_marginStart="7dp"
             android:layout_toRightOf="@+id/ocfBack"
+            android:layout_centerVertical="true"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="center_vertical"
             android:paddingBottom="2dp"

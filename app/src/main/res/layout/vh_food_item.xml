@@ -8,7 +8,7 @@
     android:clickable="true"
     android:elevation="@dimen/_9sdp"
     android:focusable="true"
-    app:cardBackgroundColor="@color/bg_color"
+    app:cardBackgroundColor="@color/white"
     android:foreground="@drawable/selector_food"
     app:cardCornerRadius="10dp">
 

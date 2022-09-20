@@ -433,7 +433,6 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
     // show alert Dialog BasedOn Food Item Click
     override fun onFoodClick(foodId: Long?, foodTitle: String?, variantList: List<Variant>, adnList: List<Adn> ) {
         val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val fdBinding = DialogFoodClickBinding.bind(LayoutInflater.from(requireContext()).inflate(R.layout.dialog_food_click,null))
         dialog.setContentView(fdBinding.root)
 
@@ -610,8 +609,8 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             setCartRecyclerAdapter()
         }
 
-        dialog.setCancelable(false)
         dialog.show()
+        dialog.setCancelable(false)
         val width = resources.displayMetrics.widthPixels
         val win = dialog.window
         win!!.setLayout((6*width)/7, WindowManager.LayoutParams.WRAP_CONTENT)
