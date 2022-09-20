@@ -149,7 +149,7 @@ class FoodFragment : Fragment() {
             if (cateList.size > 0) {
                 addAddonsButtonClick()
             } else {
-                Toasty.warning(requireContext(),"No Category Available to Edit",Toasty.LENGTH_SHORT,true).show()
+                Toasty.warning(requireContext(),"No category is available to Edit",Toasty.LENGTH_SHORT,true).show()
             }
             fBinding.foodTitleEt.clearFocus()
         }
@@ -181,7 +181,7 @@ class FoodFragment : Fragment() {
 
             // setting BottomSheet Recycler
             if (btmBinding != null){
-                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), cateList)
+                btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(), cateList,lifecycleScope)
             }
 
             if (food != null){
@@ -208,7 +208,7 @@ class FoodFragment : Fragment() {
             btmSheet?.dismiss()
         }
 
-        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),cateList)
+        btmBinding?.btmRecycler?.adapter = CategoryBtmAdapter(requireContext(),cateList,lifecycleScope)
     }
 
 
@@ -363,7 +363,7 @@ class FoodFragment : Fragment() {
         }
 
         if (tempVariantList.size < 1){
-            Toasty.error(requireContext(),"Variant Empty", Toast.LENGTH_SHORT, true).show()
+            Toasty.error(requireContext(),"Variant is Empty", Toast.LENGTH_SHORT, true).show()
             return
         }
 
@@ -374,7 +374,7 @@ class FoodFragment : Fragment() {
 
         for (i in foodList.indices){
             if (foodList[i].fCate == spinnerCategory && foodList[i].fTitle == fBinding.foodTitleEt.text.toString() && food == null){
-                Toasty.error(requireContext(),"This Food already Available", Toast.LENGTH_SHORT, true).show()
+                Toasty.error(requireContext(),"This Food is already Available", Toast.LENGTH_SHORT, true).show()
                 return
             }
         }

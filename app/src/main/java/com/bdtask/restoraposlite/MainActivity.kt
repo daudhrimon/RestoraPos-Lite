@@ -2,6 +2,7 @@ package com.bdtask.restoraposlite
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -14,7 +15,6 @@ import com.bdtask.restoraposlite.Util.SharedPref
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity: AppCompatActivity() {
-
     companion object{
         lateinit var drawerLayout:DrawerLayout
         lateinit var navDrawer: NavigationView

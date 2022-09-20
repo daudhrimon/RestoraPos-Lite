@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.lifecycle.LifecycleCoroutineScope
 import com.bdtask.restoraposlite.Adapter.PaymentAdapter
 import com.bdtask.restoraposlite.MainActivity
 import com.bdtask.restoraposlite.MainActivity.Companion.appCurrency
@@ -26,7 +27,9 @@ import kotlinx.coroutines.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class PaymentDialog (context: Context): Dialog(context) {
+class PaymentDialog(context: Context,
+                    private val lifecycleScope: LifecycleCoroutineScope
+                    ): Dialog(context) {
 
     private lateinit var dBinding: DialogPaymentBinding
     private lateinit var order: Order
@@ -37,7 +40,6 @@ class PaymentDialog (context: Context): Dialog(context) {
     private var banks = mutableListOf<String>()
     private var totalAmount = 0.0
     private var disType = 0
-    private lateinit var printHelper: SunmiPrintHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPref.init(context)
@@ -100,7 +102,8 @@ class PaymentDialog (context: Context): Dialog(context) {
                 if (order.sts == 0){
                     order.sts = 1
 
-                    CoroutineScope(Dispatchers.IO).launch() {
+
+                    lifecycleScope.launch(Dispatchers.IO) {
 
                         MainActivity.database.AppDao().updateOrder(order)
 
@@ -115,7 +118,8 @@ class PaymentDialog (context: Context): Dialog(context) {
                     }
                 } else {
 
-                    CoroutineScope(Dispatchers.IO).launch(){
+
+                    lifecycleScope.launch(Dispatchers.IO){
 
                         val orderId = MainActivity.database.AppDao().insertOrder(order)
 
@@ -160,8 +164,8 @@ class PaymentDialog (context: Context): Dialog(context) {
         }
         val vat = (order.tPrc * order.vat) / 100
         val crg = (order.tPrc * order.crg) / 100
-        totalAmount = (roundOfDecimal(order.tPrc) ?: 0.0) + vat + crg
-        dBinding.totalAmount.text = totalAmount.toString()
+        totalAmount = order.tPrc + vat + crg
+        dBinding.totalAmount.text = roundOfDecimal(totalAmount).toString()
 
         dBinding.totalAmountCr.text = " $appCurrency"
         dBinding.totalDueCr.text = " $appCurrency"
@@ -190,8 +194,8 @@ class PaymentDialog (context: Context): Dialog(context) {
             totalDue = totalAmount - discount
         }
 
-        dBinding.totalDue.text = totalDue.toString()
-        dBinding.payableAmount.text = totalDue.toString()
+        dBinding.totalDue.text = roundOfDecimal(totalDue).toString()
+        dBinding.payableAmount.text = roundOfDecimal(totalDue).toString()
     }
 
     private fun setPaymentAdapter() {
@@ -209,14 +213,6 @@ class PaymentDialog (context: Context): Dialog(context) {
             dBinding.totalDue,dBinding.payableAmount,dBinding.changeDue,dBinding.addAnotherPay)
     }
 
-    // init Printer
-    private fun initPrinter() {
-        if (Util.getPrinterDevice(BluetoothAdapter.getDefaultAdapter()) == true) {
-            SunmiPrintHelper.getInstance().initSunmiPrinterService(context)
-            printHelper = SunmiPrintHelper.getInstance()
-            printHelper.initSunmiPrinterService(context)
-        }
-    }
 
     private fun roundOfDecimal(number: Double): Double? {
         val df = DecimalFormat("#.##")

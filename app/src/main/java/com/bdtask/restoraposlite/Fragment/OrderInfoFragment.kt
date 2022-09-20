@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Dialog.AddCustomerDialog
 import com.bdtask.restoraposlite.Dialog.BtmSItemRecyclerDialog
-import com.bdtask.restoraposlite.MainActivity
 import com.bdtask.restoraposlite.MainActivity.Companion.database
 import com.bdtask.restoraposlite.Model.CsInf
 import com.bdtask.restoraposlite.Model.OdrInf
@@ -173,7 +172,7 @@ class OrderInfoFragment : Fragment() {
                 if (btmDialog!!.isShowing && state == "wtr"){
                     btmDialog?.dismiss()
                     btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList, emptyList<Cmpny>().toMutableList(),
-                        emptyList<Table>().toMutableList())
+                        emptyList<Table>().toMutableList(),lifecycleScope)
                     btmDialog?.show()
                 }
             }
@@ -219,7 +218,7 @@ class OrderInfoFragment : Fragment() {
             if (btmDialog != null){
                 if (btmDialog!!.isShowing && state == "tbl"){
                     btmDialog?.dismiss()
-                    btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),emptyList<Cmpny>().toMutableList(),tableList)
+                    btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),emptyList<Cmpny>().toMutableList(),tableList,lifecycleScope)
                     btmDialog?.show()
                 }
             }
@@ -262,7 +261,7 @@ class OrderInfoFragment : Fragment() {
             if (btmDialog != null){
                 if (btmDialog!!.isShowing && state == "dc"){
                     btmDialog?.dismiss()
-                    btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList, emptyList<Cmpny>().toMutableList(),emptyList<Table>().toMutableList())
+                    btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList, emptyList<Cmpny>().toMutableList(),emptyList<Table>().toMutableList(),lifecycleScope)
                     btmDialog?.show()
                 }
             }
@@ -296,7 +295,7 @@ class OrderInfoFragment : Fragment() {
         oBinding.root.setOnClickListener { Util.hideSoftKeyBoard(requireContext(), oBinding.root) }
 
         oBinding.cusAddBtn.setOnClickListener {
-            val dialog = AddCustomerDialog(requireContext(),0)
+            val dialog = AddCustomerDialog(requireContext(),lifecycleScope)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -311,7 +310,7 @@ class OrderInfoFragment : Fragment() {
 
         oBinding.deliveryCmpnyAddBtn.setOnLongClickListener {
             state = "dc"
-            btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),deliveryCmpnyList,emptyList<Table>().toMutableList())
+            btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),deliveryCmpnyList,emptyList<Table>().toMutableList(),lifecycleScope)
             btmDialog?.show()
             return@setOnLongClickListener true
         }
@@ -322,7 +321,7 @@ class OrderInfoFragment : Fragment() {
 
         oBinding.waiterAddBtn.setOnLongClickListener {
             state = "wtr"
-            btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList,emptyList<Cmpny>().toMutableList(),emptyList<Table>().toMutableList())
+            btmDialog = BtmSItemRecyclerDialog(requireContext(),waiterList,emptyList<Cmpny>().toMutableList(),emptyList<Table>().toMutableList(),lifecycleScope)
             btmDialog?.show()
             return@setOnLongClickListener true
         }
@@ -333,7 +332,7 @@ class OrderInfoFragment : Fragment() {
 
         oBinding.tableAddBtn.setOnLongClickListener {
             state = "tbl"
-            btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),emptyList<Cmpny>().toMutableList(),tableList)
+            btmDialog = BtmSItemRecyclerDialog(requireContext(),emptyList<Waiter>().toMutableList(),emptyList<Cmpny>().toMutableList(),tableList,lifecycleScope)
             btmDialog?.show()
             return@setOnLongClickListener true
         }
@@ -351,23 +350,23 @@ class OrderInfoFragment : Fragment() {
 
     private fun doneButtonClickHandler() {
         if (cusInfoList.size == 0) {
-            Toasty.error(requireContext(),"Customer Name is Empty", Toast.LENGTH_SHORT, true).show()
+            Toasty.error(requireContext(),"Customer's Name is empty", Toast.LENGTH_SHORT, true).show()
             return
         }
 
         if (selectedCustomerType.isEmpty()) {
-            Toasty.error(requireContext(),"Customer Type is Empty", Toast.LENGTH_SHORT, true).show()
+            Toasty.error(requireContext(),"Customer Type is empty", Toast.LENGTH_SHORT, true).show()
             return
         }
 
         if (selectedCustomerType.equals("Walk In")) {
             if (selectedWaiter.isEmpty()) {
-                Toasty.error(requireContext(),"Waiter is Empty", Toast.LENGTH_SHORT, true).show()
+                Toasty.error(requireContext(),"Waiter is empty", Toast.LENGTH_SHORT, true).show()
                 return
             }
 
             if (selectedTable.isEmpty()) {
-                Toasty.error(requireContext(),"Table is Empty", Toast.LENGTH_SHORT, true).show()
+                Toasty.error(requireContext(),"Table is empty", Toast.LENGTH_SHORT, true).show()
                 return
             }
 
@@ -381,7 +380,7 @@ class OrderInfoFragment : Fragment() {
                 )
         } else if (selectedCustomerType.equals("Online Customer") || selectedCustomerType.equals("Take Way")) {
             if (selectedWaiter.isEmpty()) {
-                Toasty.error(requireContext(),"Waiter is Empty", Toast.LENGTH_SHORT, true).show()
+                Toasty.error(requireContext(),"Waiter is empty", Toast.LENGTH_SHORT, true).show()
                 return
             }
 
@@ -395,7 +394,7 @@ class OrderInfoFragment : Fragment() {
                 )
         } else {
             if (selectedDeliveryCompany.isEmpty()) {
-                Toasty.error(requireContext(),"Delivery Company is Empty", Toast.LENGTH_SHORT, true).show()
+                Toasty.error(requireContext(),"Delivery Company is empty", Toast.LENGTH_SHORT, true).show()
                 return
             }
 
@@ -427,7 +426,7 @@ class OrderInfoFragment : Fragment() {
         dialog.setContentView(tBinding.root)
 
         tBinding.itemTv.text = "Add Table"
-        tBinding.itemEt.hint = "Enter Table Name"
+        tBinding.itemEt.hint = "Enter Table name"
 
         tBinding.root.setOnClickListener {
             context?.let { it1 -> Util.hideSoftKeyBoard(it1,tBinding.root) }
@@ -439,7 +438,7 @@ class OrderInfoFragment : Fragment() {
 
         tBinding.itemBtn.setOnClickListener {
             if (tBinding.itemEt.text.toString().isEmpty()){
-                tBinding.itemEt.setError("Table Name Empty")
+                tBinding.itemEt.setError("Table name empty")
                 tBinding.itemEt.requestFocus()
                 return@setOnClickListener
             }
@@ -469,7 +468,7 @@ class OrderInfoFragment : Fragment() {
         dialog.setContentView(waBinding.root)
 
         waBinding.itemTv.text = "Add Waiter"
-        waBinding.itemEt.hint = "Enter Waiter Name"
+        waBinding.itemEt.hint = "Enter Waiter name"
 
         waBinding.root.setOnClickListener {
             Util.hideSoftKeyBoard(requireContext(),waBinding.root)
@@ -481,7 +480,7 @@ class OrderInfoFragment : Fragment() {
 
         waBinding.itemBtn.setOnClickListener {
             if (waBinding.itemEt.text.toString().isEmpty()){
-                waBinding.itemEt.setError("Waiter Name Empty")
+                waBinding.itemEt.setError("Waiter name is empty")
                 waBinding.itemEt.requestFocus()
                 return@setOnClickListener
             }
@@ -511,7 +510,7 @@ class OrderInfoFragment : Fragment() {
         dialog.setContentView(ctaBinding.root)
 
         ctaBinding.itemTv.text = "Add Delivery Company"
-        ctaBinding.itemEt.hint = "Enter Company Name"
+        ctaBinding.itemEt.hint = "Enter Company name"
 
         ctaBinding.root.setOnClickListener {
             context?.let { it1 -> Util.hideSoftKeyBoard(it1,ctaBinding.root) }
@@ -523,7 +522,7 @@ class OrderInfoFragment : Fragment() {
 
         ctaBinding.itemBtn.setOnClickListener {
             if (ctaBinding.itemEt.text.toString().isEmpty()){
-                ctaBinding.itemEt.setError("Company Name Empty")
+                ctaBinding.itemEt.setError("Company name is empty")
                 ctaBinding.itemEt.requestFocus()
                 return@setOnClickListener
             }

@@ -14,7 +14,8 @@ import com.bdtask.restoraposlite.Room.Entity.*
     Table::class,
     Order::class,
     Split::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 
 @TypeConverters(Converters::class)

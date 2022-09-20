@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bdtask.restoraposlite.Adapter.ViewOrderAdapter
 import com.bdtask.restoraposlite.MainActivity.Companion.database
@@ -79,7 +80,7 @@ class CanceledFragment : Fragment() {
                 if (srsList.isNotEmpty()){
                     binding.emptyOrder.visibility = View.GONE
                     binding.rvLay.visibility = View.VISIBLE
-                    binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList)
+                    binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),srsList,lifecycleScope)
                 } else {
                     binding.rvLay.visibility = View.GONE
                     binding.emptyOrder.visibility = View.VISIBLE
@@ -99,7 +100,7 @@ class CanceledFragment : Fragment() {
 
             binding.emptyOrder.visibility = View.GONE
             binding.rvLay.visibility = View.VISIBLE
-            binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),orderList)
+            binding.todayRecycler.adapter = ViewOrderAdapter(requireContext(),orderList,lifecycleScope)
         } else {
             binding.rvLay.visibility = View.GONE
             binding.emptyOrder.visibility = View.VISIBLE

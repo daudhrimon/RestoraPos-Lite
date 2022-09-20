@@ -41,7 +41,7 @@ class AboutUsFragment : Fragment() {
             if (intent.resolveActivity(requireActivity().packageManager) != null) {
                 requireActivity().startActivity(intent)
             } else {
-                Toasty.info(requireContext(),"No Email Sender App found in your device",Toasty.LENGTH_SHORT,true).show()
+                Toasty.info(requireContext(),"No app found to send an Email",Toasty.LENGTH_SHORT,true).show()
             }
         }
 
@@ -57,7 +57,7 @@ class AboutUsFragment : Fragment() {
                     ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CALL_PHONE), 2)
                 }
             } catch (e: Exception){
-                Toasty.info(requireContext(),"No Phone App found in your device",Toasty.LENGTH_SHORT,true).show()
+                Toasty.info(requireContext(),"No app found to perform a Phone Call",Toasty.LENGTH_SHORT,true).show()
             }
 
         }
@@ -81,7 +81,7 @@ class AboutUsFragment : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW,Uri.parse("http://restorapos.com"))
             requireActivity().startActivity(intent)
         } catch (e: Exception){
-            Toasty.info(requireContext(),"No Browser App found in your device",Toasty.LENGTH_SHORT,true).show()
+            Toasty.info(requireContext(),"No app found to open URL",Toasty.LENGTH_SHORT,true).show()
         }
     }
 }

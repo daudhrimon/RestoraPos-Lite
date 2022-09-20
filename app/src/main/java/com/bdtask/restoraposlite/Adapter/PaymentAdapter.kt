@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.Model.Pay
 import com.bdtask.restoraposlite.R
 import com.bdtask.restoraposlite.databinding.VhPaymentBinding
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class PaymentAdapter(private val context: Context,
                      private val payList: MutableList<Pay>,
@@ -93,8 +95,8 @@ class PaymentAdapter(private val context: Context,
                     payableAmount = totalDue - adAmount
                 }
 
-                dPayableAmount.text = payableAmount.toString()
-                dChangeDue.text = changeDue.toString()
+                dPayableAmount.text = roundOfDecimal(payableAmount).toString()
+                dChangeDue.text = roundOfDecimal(changeDue).toString()
 
                 if (payableAmount > 0) {
                     dAnotherPay.visibility = View.VISIBLE
@@ -110,6 +112,14 @@ class PaymentAdapter(private val context: Context,
             notifyDataSetChanged()
         }
     }
+
+
+    private fun roundOfDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
+    }
+
 
     private fun setCardLayAdapter(holder: VHPay, adapterPos: Int) {
         holder.binding.spinTerminal.adapter = ArrayAdapter(context, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item, terminals)

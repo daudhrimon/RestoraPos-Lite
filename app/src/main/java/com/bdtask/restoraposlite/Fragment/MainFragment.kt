@@ -267,7 +267,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
                 setCartRecyclerAdapter()
 
                 // InVoice View Dialog
-                val dialog = PaymentDialog(requireContext())
+                val dialog = PaymentDialog(requireContext(), lifecycleScope)
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 dialog.show()
                 val width = resources.displayMetrics.widthPixels
@@ -598,12 +598,14 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             if (sharedPref.readCart() != null){
                 tempCartList = sharedPref.readCart()!!.toMutableList()
             }
+
             //val tempAddonList = mutableListOf<String>()
             if (addonsList.size > 0){
                 for (i in addonsList.indices){
                     addonsPrice += addonsList[i].adnPrc
                 }
             }
+
             tempCartList.add(Cart(foodTitle!!, foodVariant, variantPrice, foodQuantity, foodPrice, totalUnitPrice, addonsPrice, addonsList,""))
             sharedPref.writeCart(tempCartList)
             setCartRecyclerAdapter()
@@ -631,7 +633,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
             dialog.dismiss()
             val alert = AlertDialog.Builder(requireContext())
             alert.setTitle("Food Delete Alert !")
-            alert.setMessage("Are you sure to Delete This Food ?")
+            alert.setMessage("Are you sure ? You want to Delete this Food ?")
 
             alert.setNegativeButton("No", DialogInterface.OnClickListener { dial, which ->
                 dial.dismiss()
@@ -702,12 +704,19 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
     override fun onResume() {
         super.onResume()
+
         if ((sharedPref.readWelcome() ?: 0) == 0){
-            findNavController().navigate(R.id.homeFrag2foodFrag)
+
             sharedPref.writeWelcome(1)
 
             lifecycleScope.launch(Dispatchers.IO) {
+
                 database.AppDao().insertCustomer(Cstmr(-1,"Walk-In","","",""))
+
+                withContext(Dispatchers.Main){
+
+                    findNavController().navigate(R.id.homeFrag2foodFrag)
+                }
             }
         }
     }

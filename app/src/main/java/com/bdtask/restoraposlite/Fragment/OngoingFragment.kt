@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ScrollView
 import androidx.core.widget.doOnTextChanged
@@ -63,10 +62,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
             setOnGoingAdapter()
 
-            Log.wtf("A bodda iam alive","But aske amar mon valo nei : "+ ongList.size)
         })
-
-
 
 
         oBinding.back.setOnClickListener {
@@ -76,7 +72,6 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
                 findNavController().popBackStack()
             }
         }
-
 
 
         oBinding.searchBtn.setOnClickListener {
@@ -147,7 +142,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
         oBinding.completeBtn.setOnClickListener {
             sharedPref.writeOrder(ongList[oPos])
-            val dialog = PaymentDialog(requireContext())
+            val dialog = PaymentDialog(requireContext(),lifecycleScope)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.show()
             val width = resources.displayMetrics.widthPixels
@@ -264,7 +259,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
 
         oBinding.splitBtn.setOnClickListener {
-            Toasty.info(requireContext(),"Split Order Only Available\nin Restora POS\nPremium Version",Toasty.LENGTH_LONG,true).show()
+            Toasty.info(requireContext(),"Split Order is only available\nin Restora POS\nPremium Version",Toasty.LENGTH_LONG,true).show()
             /*sharedPref.writeOrder(ongList[oPos])
             val dialog = SplitOrderDialog(requireContext(), sharedPref, foodCount)
             dialog.show()
@@ -277,7 +272,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
 
         oBinding.mergeBtn.setOnClickListener {
-            Toasty.info(requireContext(),"Merge Order Only Available\nin Restora POS\nPremium Version",Toasty.LENGTH_LONG,true).show()
+            Toasty.info(requireContext(),"Merge Order is only available\nin Restora POS\nPremium Version",Toasty.LENGTH_LONG,true).show()
         }
 
 

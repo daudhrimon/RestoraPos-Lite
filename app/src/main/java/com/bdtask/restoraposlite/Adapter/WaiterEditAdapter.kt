@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.MainActivity.Companion.database
 import com.bdtask.restoraposlite.R
@@ -20,7 +21,8 @@ import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
 
 class WaiterEditAdapter(private val context: Context,
-                        private val list: MutableList<Waiter>
+                        private val list: MutableList<Waiter>,
+                        private val lifecycleScope: LifecycleCoroutineScope
                         ): RecyclerView.Adapter<WaiterEditAdapter.VhWaiterEdit>() {
 
     inner class VhWaiterEdit(val binding: VhEditDeleteBinding): RecyclerView.ViewHolder(binding.root) {/**/}
@@ -66,7 +68,7 @@ class WaiterEditAdapter(private val context: Context,
                 }
 
 
-                CoroutineScope(Dispatchers.IO).launch() {
+                lifecycleScope.launch(Dispatchers.IO) {
 
                     database.AppDao().updateWaiter(Waiter(list[position].id, binding.itemEt.text.toString()))
 
@@ -99,7 +101,7 @@ class WaiterEditAdapter(private val context: Context,
 
             dbinding.editBtn.setOnClickListener {
 
-                CoroutineScope(Dispatchers.IO).launch() {
+                lifecycleScope.launch(Dispatchers.IO) {
 
                     database.AppDao().deleteWaiter(list[position])
 

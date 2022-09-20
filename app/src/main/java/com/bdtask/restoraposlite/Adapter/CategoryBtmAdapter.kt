@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.MainActivity.Companion.database
 import com.bdtask.restoraposlite.MainActivity.Companion.foodList
@@ -21,7 +22,8 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 class CategoryBtmAdapter(private val context: Context,
-                         private var list: MutableList<Catgry>
+                         private var list: MutableList<Catgry>,
+                         private val lifecycleScope: LifecycleCoroutineScope
                          ): RecyclerView.Adapter<CategoryBtmAdapter.CategoryBtmVH>() {
 
     inner class CategoryBtmVH(val binding: VhItemEditBinding): RecyclerView.ViewHolder(binding.root) {/**/}
@@ -79,39 +81,41 @@ class CategoryBtmAdapter(private val context: Context,
                 }
             }
 
-            if (foodList.size > 0) {
+            if (foodList.isNotEmpty()) {
                 for (i in foodList.indices) {
                     if (foodList[i].fCate == list[position].fCat) {
                         foodList[i].fCate = binding.itemEt.text.toString()
 
                         try {
-                            CoroutineScope(Dispatchers.IO).launch() {
+
+                            lifecycleScope.launch(Dispatchers.IO) {
+
                                 database.AppDao().updateFood(foodList[i])
 
-                                withContext(Dispatchers.Main) {
+                                //withContext(Dispatchers.Main) {
                                     if (i == foodList.size - 1) {
 
-                                        CoroutineScope(Dispatchers.IO).launch() {
+                                        lifecycleScope.launch(Dispatchers.IO) {
                                             database.AppDao().updateCategory(
                                                 Catgry(
                                                     list[position].id,
-                                                    binding.itemEt.text.toString()
-                                                )
-                                            )
+                                                    binding.itemEt.text.toString()))
 
                                             withContext(Dispatchers.Main) {
                                                 Toasty.success(context, "Successful", Toast.LENGTH_SHORT, true).show()
                                             }
                                         }
                                     }
-                                }
+                                //}
                             }
                         } catch (e: Exception) {/**/
                         }
                     }
                 }
+
             } else {
-                CoroutineScope(Dispatchers.IO).launch() {
+
+                lifecycleScope.launch(Dispatchers.IO) {
                     database.AppDao().updateCategory(
                         Catgry(
                             list[position].id,

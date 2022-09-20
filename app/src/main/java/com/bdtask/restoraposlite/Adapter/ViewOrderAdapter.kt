@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.restoraposlite.Dialog.InvoiceViewDialog
 import com.bdtask.restoraposlite.Dialog.ViewOrderDialog
@@ -21,7 +22,8 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class ViewOrderAdapter(private val context: Context,
-                       private val orderList: MutableList<Order>
+                       private val orderList: MutableList<Order>,
+                       private val lifecycleScope: LifecycleCoroutineScope
                        ): RecyclerView.Adapter<ViewOrderAdapter.VHViewOrder>() {
     var index = -1
 
@@ -110,7 +112,8 @@ class ViewOrderAdapter(private val context: Context,
 
             orderList[position].sts = 0
 
-            CoroutineScope(Dispatchers.IO).launch() {
+
+            lifecycleScope.launch(Dispatchers.IO) {
 
                 MainActivity.database.AppDao().updateOrder(orderList[position])
 

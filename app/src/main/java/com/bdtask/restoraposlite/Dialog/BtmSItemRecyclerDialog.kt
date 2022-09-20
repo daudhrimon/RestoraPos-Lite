@@ -2,6 +2,7 @@ package com.bdtask.restoraposlite.Dialog
 
 import android.content.Context
 import android.os.Bundle
+import androidx.lifecycle.LifecycleCoroutineScope
 import com.bdtask.restoraposlite.Adapter.CompanyEditAdapter
 import com.bdtask.restoraposlite.Adapter.TableEditAdapter
 import com.bdtask.restoraposlite.Adapter.WaiterEditAdapter
@@ -16,7 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class BtmSItemRecyclerDialog(context: Context,
                              private val waiterList: MutableList<Waiter>,
                              private val dcList: MutableList<Cmpny>,
-                             private val tbList: MutableList<Table>
+                             private val tbList: MutableList<Table>,
+                             private val lifecycleScope: LifecycleCoroutineScope
                              ): BottomSheetDialog(context) {
 
     private lateinit var btmBinding: BtmsheetItemEditDeleteBinding
@@ -32,15 +34,15 @@ class BtmSItemRecyclerDialog(context: Context,
 
         when(state){
             "wtr" -> {
-                btmBinding.btmRecycler.adapter = WaiterEditAdapter(context,waiterList)
+                btmBinding.btmRecycler.adapter = WaiterEditAdapter(context,waiterList,lifecycleScope)
             }
 
             "dc" -> {
-                btmBinding.btmRecycler.adapter = CompanyEditAdapter(context,dcList)
+                btmBinding.btmRecycler.adapter = CompanyEditAdapter(context,dcList,lifecycleScope)
             }
 
             "tbl" -> {
-                btmBinding.btmRecycler.adapter = TableEditAdapter(context,tbList)
+                btmBinding.btmRecycler.adapter = TableEditAdapter(context,tbList,lifecycleScope)
             }
         }
 
