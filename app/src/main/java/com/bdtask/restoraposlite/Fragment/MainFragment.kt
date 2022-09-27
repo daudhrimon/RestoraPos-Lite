@@ -266,6 +266,23 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                 setCartRecyclerAdapter()
 
+                try {
+                    lifecycleScope.launch(Dispatchers.IO) {
+
+                        val orderId = database.AppDao().insertOrder(order)
+
+                        withContext(Dispatchers.Main) {
+
+                            if (orderId != null && orderId.toString().isNotEmpty()) {
+
+                                Toasty.success(requireContext(), "Order Placed $orderId Successfully", Toast.LENGTH_SHORT, true).show()
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    Toasty.success(requireContext(), e.message.toString(), Toast.LENGTH_SHORT, true).show()
+                }
+
                 // InVoice View Dialog
                 val dialog = PaymentDialog(requireContext(), lifecycleScope)
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -337,7 +354,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
                                 if (orderId != null && orderId.toString().isNotEmpty()) {
 
-                                    Toasty.success(requireContext(), "Placed Order $orderId Successfully", Toast.LENGTH_SHORT, true).show()
+                                    Toasty.success(requireContext(), "Order Placed $orderId Successfully", Toast.LENGTH_SHORT, true).show()
 
                                     // asking for print token
                                     printToken(orderId)
@@ -709,15 +726,7 @@ class MainFragment : Fragment(), FoodClickListener, CartClickListener, TokenClic
 
             sharedPref.writeWelcome(1)
 
-            lifecycleScope.launch(Dispatchers.IO) {
-
-                database.AppDao().insertCustomer(Cstmr(-1,"Walk-In","","",""))
-
-                withContext(Dispatchers.Main){
-
-                    findNavController().navigate(R.id.homeFrag2foodFrag)
-                }
-            }
+            findNavController().navigate(R.id.homeFrag2foodFrag)
         }
     }
 }

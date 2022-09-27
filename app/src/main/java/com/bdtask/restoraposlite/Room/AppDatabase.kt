@@ -34,6 +34,8 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(this) {
                     INSTANCE = Room
                         .databaseBuilder(context, AppDatabase::class.java, "restorapos.db")
+                        /*.createFromAsset("database/demo.db")
+                        .fallbackToDestructiveMigration()*/
                         .build()
                 }
             }

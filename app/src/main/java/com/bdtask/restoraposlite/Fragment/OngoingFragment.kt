@@ -53,7 +53,7 @@ class OngoingFragment : Fragment(), OngoingClickListener, TokenClickListener {
 
         database.AppDao().getOngoing(0).observe(viewLifecycleOwner, Observer {
             ongList.clear()
-            ongList = it.asReversed().toMutableList()
+            ongList = it.toMutableList()
             clickedList.clear()
             oBinding.scrollView.visibility = View.GONE
             oBinding.tickBtn.visibility = View.GONE

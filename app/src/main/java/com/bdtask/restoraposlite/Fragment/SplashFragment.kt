@@ -13,13 +13,19 @@ import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bdtask.restoraposlite.MainActivity
 import com.bdtask.restoraposlite.MainActivity.Companion.appCurrency
 import com.bdtask.restoraposlite.R
+import com.bdtask.restoraposlite.Room.Entity.Cstmr
 import com.bdtask.restoraposlite.Util.SharedPref
 import com.bdtask.restoraposlite.Util.Util
 import com.bdtask.restoraposlite.databinding.FragmentSplashBinding
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding

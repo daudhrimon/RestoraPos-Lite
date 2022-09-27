@@ -80,10 +80,13 @@ class PasswordDialog(context: Context,
         sharedPref.writePIN(binding.newPin1Et.text.toString().trim())
         val toast = if (welcome==0) {
             "Pin Set Successfully"
-        }else{
+            }else{
             "Password Changed Successfully"
         }
         Toasty.success(context,toast,Toasty.LENGTH_SHORT,true).show()
+        /*if (welcome==0){
+            sharedPref.writeWelcome(1)
+        }*/
         dismiss()
         parentFragment?.findNavController()?.navigate(R.id.settingFrag2homeFrag)
     }
