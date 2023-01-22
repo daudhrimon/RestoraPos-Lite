@@ -247,42 +247,35 @@ class AdminFragment : Fragment() {
             hideKeyboard()
         }
 
-
-
         binding.exportBtn.setOnClickListener {
-
-            roomBackup!!.database(AppDatabase.getDatabaseInstance(requireContext().applicationContext))
-                .enableLogDebug(true)
-                .backupIsEncrypted(false)
-                .customEncryptPassword(encryptionPassword)
-                .backupLocation(RoomBackup.BACKUP_FILE_LOCATION_CUSTOM_DIALOG)
-                .maxFileCount(1)
-                .apply {
+            roomBackup?.database(AppDatabase.getDatabaseInstance(requireContext().applicationContext))
+                ?.enableLogDebug(true)
+                ?.backupIsEncrypted(true)
+                ?.customEncryptPassword(encryptionPassword)
+                ?.backupLocation(RoomBackup.BACKUP_FILE_LOCATION_CUSTOM_DIALOG)
+                ?.maxFileCount(1)
+                ?.apply {
                     onCompleteListener { success, message, exitCode ->
                         if (success) {
                             restartApp(Intent(requireContext().applicationContext, MainActivity::class.java))
                         }
                     }
-                }.backup()
+                }?.backup()
         }
 
-
-
-
         binding.importBtn.setOnClickListener {
-
-            roomBackup!!.database(AppDatabase.getDatabaseInstance(requireContext().applicationContext))
-                .enableLogDebug(true)
-                .backupIsEncrypted(false)
-                .customEncryptPassword(encryptionPassword)
-                .backupLocation(RoomBackup.BACKUP_FILE_LOCATION_CUSTOM_DIALOG)
-                .apply {
+            roomBackup?.database(AppDatabase.getDatabaseInstance(requireContext().applicationContext))
+                ?.enableLogDebug(true)
+                ?.backupIsEncrypted(true)
+                ?.customEncryptPassword(encryptionPassword)
+                ?.backupLocation(RoomBackup.BACKUP_FILE_LOCATION_CUSTOM_DIALOG)
+                ?.apply {
                     onCompleteListener { success, message, exitCode ->
                         if (success) {
                             restartApp(Intent(requireContext().applicationContext, MainActivity::class.java))
                         }
                     }
-                }.restore()
+                }?.restore()
         }
 
 
