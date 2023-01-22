@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/foodImage"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="@dimen/_63sdp"
             android:elevation="3dp"
             tools:ignore="MissingConstraints" />
 
@@ -37,7 +37,7 @@
             android:text="Chicken Special \nTanduri Egg"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="13sp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
 
@@ -50,7 +50,7 @@
             android:text="Small"
             android:textAlignment="textStart"
             android:textColor="#7E7C7C"
-            android:textSize="12sp"
+            android:textSize="@dimen/_10sdp"
             tools:ignore="RtlCompat" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:text="225.00"
             android:textAlignment="textStart"
             android:textColor="#0A5F00"
-            android:textSize="14sp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
 

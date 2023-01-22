@@ -40,7 +40,7 @@
                     android:gravity="center"
                     android:text="pasta"
                     android:textColor="#262626"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/_9sdp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -76,7 +76,7 @@
                 android:padding="10dp"
                 android:text="1:1"
                 android:textColor="#262626"
-                android:textSize="10sp" />
+                android:textSize="@dimen/_9sdp" />
 
             <View
                 android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                 android:padding="10dp"
                 android:text="0"
                 android:textColor="#262626"
-                android:textSize="10sp" />
+                android:textSize="@dimen/_9sdp" />
 
             <View
                 android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                 android:padding="10dp"
                 android:text="0"
                 android:textColor="#262626"
-                android:textSize="10sp" />
+                android:textSize="@dimen/_9sdp" />
 
             <View
                 android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                 android:padding="10dp"
                 android:text="0"
                 android:textColor="#262626"
-                android:textSize="10sp"
+                android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
 
             <View

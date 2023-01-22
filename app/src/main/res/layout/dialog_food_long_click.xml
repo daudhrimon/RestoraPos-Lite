@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/crossBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -38,12 +38,12 @@
             android:padding="@dimen/_10sdp"
             android:text="Do you want to edit or change food information ?"
             android:textColor="@color/color_red"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_12sdp" />
 
         <Button
             android:id="@+id/editBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_69sdp"
+            android:layout_height="@dimen/_36sdp"
             android:layout_below="@+id/msgTv"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -51,20 +51,24 @@
             android:fontFamily="@font/helvetica_neue"
             android:text="Edit"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/dltBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_69sdp"
+            android:layout_height="@dimen/_36sdp"
             android:layout_below="@+id/msgTv"
-            android:layout_marginEnd="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_toStartOf="@id/editBtn"
             android:backgroundTint="#C60000"
             android:fontFamily="@font/helvetica_neue"
             android:text="Delete"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </RelativeLayout>
 

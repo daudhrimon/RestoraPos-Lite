@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_33sdp"
     android:layout_margin="7dp"
     android:background="@color/white"
     android:gravity="center_vertical"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/checkBox"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="0.5"
         android:background="@drawable/selector_checkbox"
         android:clickable="true"
@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/checkedBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:clickable="false"
             android:src="@drawable/ic_baseline_check_box_24"
             android:visibility="gone"
@@ -33,7 +33,7 @@
         <ImageView
             android:id="@+id/unCheckedBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:clickable="false"
             android:src="@drawable/ic_baseline_check_box_outline_blank_24"
             tools:ignore="TouchTargetSizeCheck" />
@@ -50,7 +50,7 @@
         android:text="Add on Name"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/_11sdp"
         tools:ignore="RtlCompat" />
 
     <TextView
@@ -61,7 +61,7 @@
         android:fontFamily="@font/helvetica_nueu_light"
         android:text="Price "
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_11sdp" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -92,7 +92,7 @@
             android:text="1"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_11sdp" />
 
         <ImageView
             android:id="@+id/addonMinusBtn"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -14,7 +15,7 @@
         <EditText
             android:id="@+id/noteEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_34sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -25,12 +26,13 @@
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"
             android:textColorHint="#D8D5D5"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_12sdp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/addNoteBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_36sdp"
             android:layout_below="@+id/noteEt"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -38,12 +40,13 @@
             android:fontFamily="@font/helvetica_neue"
             android:text="Add Note"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/cancelBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_36sdp"
             android:layout_below="@+id/noteEt"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_toStartOf="@id/addNoteBtn"
@@ -51,7 +54,8 @@
             android:fontFamily="@font/helvetica_neue"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </RelativeLayout>
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/white"
-    tools:context=".Fragment.OngoingFragment">
+    tools:context=".fragments.OngoingFragment">
 
     <RelativeLayout
         android:id="@+id/appbar"
@@ -25,7 +25,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/selector_cross_btn"
-            android:padding="@dimen/_4sdp"
+            android:padding="@dimen/_5sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -60,7 +60,7 @@
             android:padding="10dp"
             android:textColor="#000"
             android:textColorHint="@color/hintColor"
-            android:textSize="15sp"
+            android:textSize="@dimen/_11sdp"
             android:visibility="gone"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -112,7 +112,7 @@
     <HorizontalScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="@dimen/_40sdp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:background="@color/splash_bg"
@@ -124,14 +124,13 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="9dp">
+            android:padding="@dimen/_6sdp">
 
             <TextView
                 android:id="@+id/completeBtn"
-                android:layout_width="91dp"
+                android:layout_width="@dimen/_69sdp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
                 android:background="@drawable/selector_ongoing"
                 android:clickable="true"
                 android:focusable="true"
@@ -140,14 +139,14 @@
                 android:gravity="center"
                 android:text="Complete"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="@dimen/_11sdp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tokenBtn"
-                android:layout_width="91dp"
+                android:layout_width="@dimen/_69sdp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
                 android:background="@drawable/selector_today"
                 android:clickable="true"
                 android:focusable="true"
@@ -156,30 +155,14 @@
                 android:gravity="center"
                 android:text="Token"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/duePosBtn"
-                android:layout_width="91dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
-                android:background="@drawable/selector_allorder"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/helvetica_neue"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:text="Due POS"
-                android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="@dimen/_11sdp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/editBtn"
-                android:layout_width="91dp"
+                android:layout_width="@dimen/_69sdp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
                 android:background="@drawable/selector_place_order"
                 android:clickable="true"
                 android:focusable="true"
@@ -188,14 +171,14 @@
                 android:gravity="center"
                 android:text="Edit"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="@dimen/_11sdp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/splitBtn"
-                android:layout_width="91dp"
+                android:layout_width="@dimen/_69sdp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
                 android:background="@drawable/selector_allorder"
                 android:clickable="true"
                 android:focusable="true"
@@ -204,13 +187,13 @@
                 android:gravity="center"
                 android:text="Split"
                 android:textColor="@color/white"
-                android:textSize="13sp" />
+                android:textSize="@dimen/_11sdp" />
 
             <TextView
                 android:id="@+id/mergeBtn"
-                android:layout_width="91dp"
+                android:layout_width="@dimen/_69sdp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
                 android:background="@drawable/selector_ongoing"
                 android:clickable="true"
                 android:focusable="true"
@@ -219,14 +202,13 @@
                 android:gravity="center"
                 android:text="Merge"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                android:visibility="gone" />
+                android:textSize="@dimen/_11sdp" />
 
             <TextView
                 android:id="@+id/cancelBtn"
-                android:layout_width="91dp"
+                android:layout_width="@dimen/_69sdp"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
                 android:background="@drawable/selector_close"
                 android:clickable="true"
                 android:focusable="true"
@@ -235,7 +217,7 @@
                 android:gravity="center"
                 android:text="Cancel"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="@dimen/_11sdp"
                 android:visibility="gone" />
 
         </LinearLayout>
@@ -251,8 +233,8 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
             android:src="@drawable/ic_remove_shopping_cart_black_24dp" />
 
@@ -262,7 +244,7 @@
             android:gravity="center"
             android:text="@string/no_order"
             android:textColor="@color/theme_color"
-            android:textSize="20sp" />
+            android:textSize="@dimen/_13sdp" />
     </LinearLayout>
 
 </RelativeLayout>

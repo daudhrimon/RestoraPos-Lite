@@ -14,11 +14,11 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_49sdp"
+        android:layout_height="@dimen/_48sdp"
         android:background="#C41A1A1A"
         android:padding="@dimen/_10sdp"
         android:scaleType="fitStart"
-        android:src="@drawable/texticon" />
+        android:src="@drawable/logo" />
 
 </LinearLayout>
 

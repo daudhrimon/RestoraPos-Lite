@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="@dimen/_39sdp"
             android:background="@color/theme_color">
 
             <TextView
@@ -26,12 +26,12 @@
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:text="Item"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/_15sdp" />
 
             <ImageView
                 android:id="@+id/itemCross"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
@@ -54,13 +54,13 @@
             <EditText
                 android:id="@+id/itemEt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_36sdp"
+                android:layout_height="@dimen/_34sdp"
                 android:background="@drawable/et_round_bg_outline"
                 android:fontFamily="@font/helvetica_neue"
                 android:inputType="textCapWords"
                 android:paddingHorizontal="10dp"
                 android:textDirection="locale"
-                android:textSize="13sp"
+                android:textSize="@dimen/_12sdp"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </LinearLayout>
@@ -68,7 +68,7 @@
         <TextView
             android:id="@+id/itemBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_34sdp"
             android:layout_marginHorizontal="@dimen/_14sdp"
             android:layout_marginVertical="@dimen/_24sdp"
             android:background="@drawable/selector_ongoing"
@@ -76,7 +76,6 @@
             android:focusable="true"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="center"
-            android:padding="@dimen/_8sdp"
             android:text="Add"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"

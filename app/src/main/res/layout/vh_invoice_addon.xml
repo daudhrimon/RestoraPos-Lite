@@ -33,7 +33,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
 
 
@@ -44,7 +44,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -63,7 +63,7 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/helvetica_neue"
                 android:textColor="@color/black"
-                android:textSize="13sp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

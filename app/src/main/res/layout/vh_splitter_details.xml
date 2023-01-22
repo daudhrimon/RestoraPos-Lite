@@ -38,7 +38,7 @@
                     android:gravity="center"
                     android:text="pasta"
                     android:textColor="#262626"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:padding="10dp"
                 android:text="1:1"
                 android:textColor="#262626"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10sdp" />
 
             <View
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                 android:padding="10dp"
                 android:text="500.0"
                 android:textColor="#262626"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10sdp" />
 
             <View
                 android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                 android:padding="10dp"
                 android:text="1"
                 android:textColor="#262626"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10sdp" />
 
             <View
                 android:layout_width="match_parent"
@@ -163,7 +163,7 @@
                 android:padding="10dp"
                 android:text="250.0"
                 android:textColor="#262626"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10sdp" />
 
             <View
                 android:layout_width="match_parent"

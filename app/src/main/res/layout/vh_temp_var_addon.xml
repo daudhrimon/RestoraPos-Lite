@@ -59,7 +59,7 @@
             android:fontFamily="@font/helvetica_nueu_light"
             android:paddingHorizontal="2dp"
             android:text="Name"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_11sdp" />
 
         <TextView
             android:id="@+id/itemPriceTv"
@@ -68,7 +68,7 @@
             android:fontFamily="@font/helvetica_nueu_light"
             android:paddingHorizontal="2dp"
             android:text="Price"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_11sdp" />
 
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.bdtask.restoraposlite.Printer.PrinterUtil;
+package com.bdtask.restoraposlite.printer.PrinterUtil;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -6,13 +6,16 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.widget.Toast;
+
 import com.bdtask.restoraposlite.R;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
+
 /**
- *  Simple package for connecting a sunmi printer via Bluetooth
+ * Simple package for connecting a sunmi printer via Bluetooth
  */
 public class BluetoothUtil {
 
@@ -43,15 +46,16 @@ public class BluetoothUtil {
         BluetoothSocket socket;
         socket = device.createRfcommSocketToServiceRecord(PRINTER_UUID);
         socket.connect();
-        return  socket;
+        return socket;
     }
+
     /**
      * connect bluetooth
      */
     public static boolean connectBlueTooth(Context context) {
         if (bluetoothSocket == null) {
             if (getBTAdapter() == null) {
-                Toast.makeText(context,  R.string.toast_3, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_3, Toast.LENGTH_SHORT).show();
                 return false;
             }
             if (!getBTAdapter().isEnabled()) {
@@ -73,6 +77,7 @@ public class BluetoothUtil {
         }
         return true;
     }
+
     /**
      * disconnect bluethooth
      */
@@ -88,8 +93,9 @@ public class BluetoothUtil {
             }
         }
     }
+
     /**
-     *  send esc cmd
+     * send esc cmd
      */
     public static void sendData(byte[] bytes) {
         if (bluetoothSocket != null) {

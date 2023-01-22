@@ -20,6 +20,7 @@
         android:layout_weight="1.3"
         android:text="Chicken Putin"
         android:textAlignment="center"
+        android:textSize="@dimen/_11sdp"
         android:textColor="@color/black" />
 
     <TextView
@@ -29,6 +30,7 @@
         android:layout_weight=".7"
         android:maxLines="2"
         android:text="1"
+        android:textSize="@dimen/_11sdp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold" />

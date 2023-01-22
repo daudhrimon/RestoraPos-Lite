@@ -1,4 +1,4 @@
-package com.bdtask.restoraposlite.Room.Entity
+package com.bdtask.restoraposlite.room.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Table(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val tNm: String
+    val name: String
 )

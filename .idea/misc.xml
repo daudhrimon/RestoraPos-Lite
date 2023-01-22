@@ -1,77 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable-v24/ic_close_white.xml" value="0.1775" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_arrow_drop_up_24.xml" value="0.2" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.2" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.2" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/ic_close.xml" value="0.1775" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/ic_menu.xml" value="0.2" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/drawable/shape_splitter_unselect.xml" value="0.187" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/activity_main.xml" value="0.36770833333333336" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_add_payment.xml" value="0.36770833333333336" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_edit_food.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_food_click.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_food_long_click.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_invoice_view.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_split_order.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/dialog_view_order.xml" value="0.2861111111111111" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_aboutus.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_canceled.xml" value="0.36770833333333336" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_completed.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_main.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_ongoing.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_report.xml" value="0.36770833333333336" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/fragment_setting.xml" value="0.3509259259259259" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/nav_header.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/vh_sales_report.xml" value="0.36666666666666664" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/vh_splitter.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/layout/vh_view_order.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Lite/app/src/main/res/menu/nav_menu.xml" value="0.36770833333333336" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_invoice_view.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_payment.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/dialog_view_order.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_canceled.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_completed.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_main.xml" value="0.2861111111111111" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_ongoing.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/fragment_today.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_edit_delete.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_food_recycler.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_item_edit.xml" value="0.33" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_view_order.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/layout/vh_view_order_item.xml" value="0.371875" />
-        <entry key="..\:/RestoraPos-Offline/app/src/main/res/menu/nav_menu.xml" value="0.371875" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable-v24/add_white.xml" value="0.147" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/box_shape.xml" value="0.147" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/dot_selected.xml" value="0.122" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/dot_unselected.xml" value="0.122" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.147" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/ic_baseline_stars_24.xml" value="0.147" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/shape_top_rounded.xml" value="0.147" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/drawable/shape_top_start_bottom_end.xml" value="0.147" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/activity_main.xml" value="0.22984244670991658" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/dialog_add_payment.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/dialog_payment.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_aboutus.xml" value="0.2" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_onboard.xml" value="0.176" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_report.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/fragment_setting.xml" value="0.264" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/lay_onboarding.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/nav_header.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Lite/app/src/main/res/layout/onboard_layout.xml" value="0.2" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_calculator.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_close_alert.xml" value="0.259375" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_edit_food.xml" value="0.25833333333333336" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_invoice_view.xml" value="0.24814814814814815" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/dialog_note.xml" value="0.24814814814814815" />
-        <entry key="..\:/WORK-SPACE/RestoraPos-Offline/app/src/main/res/layout/fragment_food.xml" value="0.24814814814814815" />
-      </map>
-    </option>
-  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>

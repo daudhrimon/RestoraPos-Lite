@@ -7,7 +7,7 @@
     android:animateLayoutChanges="true"
     android:animationCache="true"
     android:background="@color/splash_bg"
-    tools:context=".Fragment.SplashFragment">
+    tools:context=".fragments.SplashFragment">
 
     <ImageView
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="@dimen/_69sdp"
-        android:src="@drawable/texticon" />
+        android:src="@drawable/logo" />
 
 
     <androidx.cardview.widget.CardView
@@ -51,7 +51,7 @@
                 android:text="Sign in with PIN"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="21sp" />
+                android:textSize="@dimen/_14sdp" />
 
             <EditText
                 android:id="@+id/signInEt"
@@ -68,7 +68,7 @@
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/_12sdp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:text="Forget Password "
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="@dimen/_11sdp"
                 tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -102,7 +102,7 @@
                 android:text="Sign in"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/_13sdp"
                 tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>

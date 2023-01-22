@@ -29,7 +29,7 @@
                 android:text="Chicken Tanduri Fry"
                 android:textAlignment="viewStart"
                 android:textColor="@color/overlay_dark"
-                android:textSize="12sp"
+                android:textSize="@dimen/_10sdp"
                 tools:ignore="RtlCompat" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:text="Small"
                 android:textColor="@color/overlay_dark"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10sdp" />
 
             <TextView
                 android:id="@+id/totalUnitPrice"
@@ -54,7 +54,7 @@
                 android:gravity="center"
                 android:text="100"
                 android:textColor="@color/overlay_dark"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10sdp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -88,7 +88,7 @@
                     android:text="02"
                     android:textAlignment="center"
                     android:textColor="@color/overlay_dark"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/_11sdp" />
 
                 <ImageView
                     android:id="@+id/minusBtnC"
@@ -109,10 +109,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="18dp"
-                android:layout_marginVertical="5.5dp"
+                android:layout_marginVertical="@dimen/_3sdp"
                 android:background="@drawable/selector_plus"
                 android:clickable="true"
-                android:paddingHorizontal="9dp"
+                android:padding="@dimen/_4sdp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_delete_red"
                 android:textColor="@color/overlay_dark"

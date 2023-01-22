@@ -27,7 +27,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/helvetica_neue"
                 android:textColor="@color/black"
-                android:textSize="13sp"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
 
@@ -38,7 +38,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -67,7 +67,7 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/helvetica_neue"
                 android:textColor="@color/black"
-                android:textSize="13sp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold" />
 
 
@@ -79,8 +79,7 @@
         android:id="@+id/addonsRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/vh_invoice_addon" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <ImageView
         android:id="@+id/view1"

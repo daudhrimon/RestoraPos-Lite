@@ -17,7 +17,7 @@
         android:layout_toStartOf="@id/itemEditBtn"
         android:fontFamily="@font/helvetica_nueu_light"
         android:text="Item"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_12sdp" />
 
     <ImageView
         android:id="@+id/itemEditBtn"

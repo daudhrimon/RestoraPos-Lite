@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Restora POS Lite</string>
+    <string name="app_name">RestoraPOS Lite</string>
     <!--instruction-->
     <string name="toast_1">Transaction print,use the AIDL mode!</string>
     <string name="toast_2">The service has been disconnected!</string>

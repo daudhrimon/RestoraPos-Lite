@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F0F0"
-    tools:context=".Fragment.MainFragment">
+    tools:context=".fragments.MainFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,8 +47,8 @@
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_menu" />
@@ -70,7 +70,7 @@
                     android:paddingHorizontal="@dimen/_7sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/hintColor"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/_11sdp"
                     tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
@@ -93,7 +93,7 @@
                     android:gravity="center"
                     android:text="Item"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:text="Variant"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -113,7 +113,7 @@
                     android:gravity="center"
                     android:text="Price"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -123,7 +123,7 @@
                     android:gravity="center"
                     android:text="Qty"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -133,7 +133,7 @@
                     android:gravity="center"
                     android:text="Action"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
             </LinearLayout>
 
@@ -150,19 +150,19 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_33sdp"
             android:layout_marginHorizontal="@dimen/_4sdp"
-            android:layout_marginTop=".6dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="2dp"
             android:animateLayoutChanges="true">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/orderInfCard"
                 android:layout_width="@dimen/_34sdp"
-                android:layout_height="@dimen/_33sdp"
+                android:layout_height="@dimen/_32sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="@dimen/_2sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_centerVertical="true"
                 app:cardCornerRadius="7dp"
                 app:cardElevation="1dp">
 
@@ -178,8 +178,9 @@
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_5sdp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_add" />
 
@@ -202,21 +203,19 @@
             <LinearLayout
                 android:id="@+id/topBtnLay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_29sdp"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop=".6dp"
                 android:layout_toStartOf="@+id/orderInfCard"
+                android:layout_centerVertical="true"
                 android:background="@color/bg_color"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/_2sdp"
                 android:weightSum="4">
 
                 <TextView
                     android:id="@+id/ongoingTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_2sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_ongoing"
                     android:clickable="true"
@@ -227,15 +226,14 @@
                     android:text="Ongoing"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10sdp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/todayTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_2sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_today"
                     android:clickable="true"
@@ -246,15 +244,14 @@
                     android:text="Today's"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10sdp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/completedTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_2sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_allorder"
                     android:clickable="true"
@@ -265,15 +262,14 @@
                     android:text="Completed"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10sdp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/canceledTv"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_2sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_close"
                     android:clickable="true"
@@ -284,7 +280,7 @@
                     android:text="Canceled"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10sdp"
                     tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
             </LinearLayout>
@@ -294,16 +290,15 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_39sdp"
             android:animationCache="true"
             android:overScrollMode="always"
-            android:paddingHorizontal="7dp"
-            android:paddingVertical="5dp"
+            android:padding="@dimen/_3sdp"
             app:tabIndicator="@drawable/shape_tabindecator_bg"
             app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_2"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorGravity="center"
-            app:tabIndicatorHeight="@dimen/_33sdp"
+            app:tabIndicatorHeight="@dimen/_31sdp"
             app:tabMode="scrollable"
             app:tabRippleColor="@color/theme_color"
             app:tabSelectedTextColor="@color/white"
@@ -325,10 +320,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/grandTotalCV"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_25sdp"
+        android:layout_height="@dimen/_24sdp"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="14dp"
-        android:layout_marginBottom="@dimen/_38sdp"
+        android:layout_marginBottom="@dimen/_37sdp"
         android:layout_weight="1"
         app:cardCornerRadius="7dp">
 
@@ -346,10 +341,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/helvetica_neue"
                 android:gravity="center_vertical"
-                android:text="Grand Total"
+                android:text="Grand Total "
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="@dimen/_11sdp"
                 tools:ignore="RtlCompat" />
 
             <TextView
@@ -360,10 +355,11 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/helvetica_neue"
                 android:gravity="center_vertical"
-                android:text=" : 0.0"
+                android:text=": 0.0"
                 android:textAlignment="textStart"
+                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="@dimen/_11sdp"
                 tools:ignore="RtlCompat" />
         </LinearLayout>
 
@@ -400,8 +396,9 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_4sdp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_calculator" />
 
@@ -428,8 +425,9 @@
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_4sdp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_delete" />
 
@@ -462,7 +460,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Quick Order"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_11sdp" />
 
             </RelativeLayout>
 
@@ -493,7 +491,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Place Order"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_11sdp" />
 
             </RelativeLayout>
 

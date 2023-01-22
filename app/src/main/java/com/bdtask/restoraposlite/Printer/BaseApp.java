@@ -1,7 +1,8 @@
-package com.bdtask.restoraposlite.Printer;
+package com.bdtask.restoraposlite.printer;
 
 import android.app.Application;
-import com.bdtask.restoraposlite.Printer.PrinterUtil.SunmiPrintHelper;
+
+import com.bdtask.restoraposlite.printer.PrinterUtil.SunmiPrintHelper;
 
 public class BaseApp extends Application {
     @Override
@@ -9,6 +10,7 @@ public class BaseApp extends Application {
         super.onCreate();
         init();
     }
+
     /**
      * Connect print service through interface library
      */

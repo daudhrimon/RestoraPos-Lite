@@ -11,9 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/disableColor"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_6sdp">
+
+            <ImageView
+                android:id="@+id/closeBtn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:background="@drawable/selector_print_icon"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="1dp"
+                android:src="@drawable/ic_close_white"
+                app:tint="@color/theme_color"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/topBar">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,20 +59,21 @@
 
                         <ImageView
                             android:id="@+id/logo"
-                            android:layout_width="@dimen/_100sdp"
+                            android:layout_width="@dimen/_103sdp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp" />
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/shape_border"
                             android:fontFamily="@font/helvetica_neue"
                             android:padding="5dp"
                             android:text="Billing From"
+                            android:textSize="@dimen/_11sdp"
                             android:textColor="#4CC40C"
                             android:textStyle="bold" />
 
@@ -55,7 +82,8 @@
                             android:id="@+id/addressTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/helvetica_neue"
                             android:paddingLeft="5dp"
@@ -66,7 +94,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginHorizontal="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -77,6 +105,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:padding="5dp"
                             android:text="Invoice"
+                            android:textSize="@dimen/_11sdp"
                             android:textColor="#4CC40C"
                             android:textStyle="bold" />
 
@@ -93,6 +122,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:text="Invoice: "
+                                android:textSize="@dimen/_10sdp"
                                 android:textColor="#6D7990" />
 
                             <TextView
@@ -102,6 +132,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:text="0"
+                                android:textSize="@dimen/_10sdp"
                                 android:textColor="#6D7990" />
 
                         </LinearLayout>
@@ -142,6 +173,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/helvetica_neue"
+                                android:textSize="@dimen/_10sdp"
                                 android:text="Status: "
                                 android:textColor="#6D7990" />
 
@@ -150,6 +182,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textSize="@dimen/_10sdp"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:textColor="#6D7990" />
 
@@ -166,6 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/helvetica_neue"
                                 android:text="Date: "
+                                android:textSize="@dimen/_10sdp"
                                 android:textColor="#6D7990" />
 
                             <TextView
@@ -179,95 +213,115 @@
 
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_border"
-                            android:fontFamily="@font/helvetica_neue"
-                            android:padding="5dp"
-                            android:text="Billing TO"
-                            android:textColor="#4CC40C"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/cusName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/helvetica_neue"
-                            android:padding="5dp"
-                            android:text="H"
-                            android:textColor="#3C4767"
-                            android:textStyle="bold" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:weightSum="2">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:textSize="@dimen/_11sdp"
+                                android:background="@drawable/shape_border"
                                 android:fontFamily="@font/helvetica_neue"
-                                android:text="Address: "
-                                android:textColor="#6D7990" />
+                                android:padding="5dp"
+                                android:text="Billing TO"
+                                android:textColor="#4CC40C"
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/address"
-                                android:layout_width="0dp"
+                                android:id="@+id/cusName"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_marginTop="3dp"
                                 android:fontFamily="@font/helvetica_neue"
-                                android:textColor="#6D7990" />
+                                android:padding="5dp"
+                                android:text="H"
+                                android:textSize="@dimen/_11sdp"
+                                android:textColor="#3C4767"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:weightSum="2">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/helvetica_neue"
+                                    android:text="Address: "
+                                    android:textSize="@dimen/_10sdp"
+                                    android:textColor="#6D7990" />
+
+                                <TextView
+                                    android:id="@+id/address"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="@dimen/_10sdp"
+                                    android:fontFamily="@font/helvetica_neue"
+                                    android:textColor="#6D7990" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:weightSum="2">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/helvetica_neue"
+                                    android:text="Mobile: "
+                                    android:textColor="#6D7990" />
+
+                                <TextView
+                                    android:id="@+id/mobile"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/helvetica_neue"
+                                    android:textColor="#6D7990" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:weightSum="2">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_border"
                                 android:fontFamily="@font/helvetica_neue"
-                                android:text="Mobile: "
-                                android:textColor="#6D7990" />
+                                android:padding="5dp"
+                                android:text="Billing By"
+                                android:textSize="@dimen/_11sdp"
+                                android:textColor="#4CC40C"
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/mobile"
-                                android:layout_width="0dp"
+                                android:id="@+id/opName"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_marginTop="3dp"
                                 android:fontFamily="@font/helvetica_neue"
-                                android:textColor="#6D7990" />
+                                android:padding="5dp"
+                                android:text="H"
+                                android:textSize="@dimen/_11sdp"
+                                android:textColor="#3C4767"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_border"
-                            android:fontFamily="@font/helvetica_neue"
-                            android:padding="5dp"
-                            android:text="Billing By"
-                            android:textColor="#4CC40C"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/opName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/helvetica_neue"
-                            android:padding="5dp"
-                            android:text="H"
-                            android:textColor="#3C4767"
-                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -323,7 +377,7 @@
                                         android:gravity="center"
                                         android:text="Item"
                                         android:textColor="#262626"
-                                        android:textSize="10sp"
+                                        android:textSize="@dimen/_9sdp"
                                         android:textStyle="bold" />
 
                                 </LinearLayout>
@@ -361,7 +415,7 @@
                                     android:padding="10dp"
                                     android:text="Size"
                                     android:textColor="#262626"
-                                    android:textSize="10sp"
+                                    android:textSize="@dimen/_9sdp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -395,7 +449,7 @@
                                     android:padding="10dp"
                                     android:text="Unit Price"
                                     android:textColor="#262626"
-                                    android:textSize="10sp"
+                                    android:textSize="@dimen/_9sdp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -429,7 +483,7 @@
                                     android:padding="10dp"
                                     android:text="Qty"
                                     android:textColor="#262626"
-                                    android:textSize="10sp"
+                                    android:textSize="@dimen/_9sdp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -463,7 +517,7 @@
                                     android:padding="10dp"
                                     android:text="Total Price"
                                     android:textColor="#262626"
-                                    android:textSize="10sp"
+                                    android:textSize="@dimen/_9sdp"
                                     android:textStyle="bold" />
 
                                 <View
@@ -520,6 +574,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Subtotal"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -558,6 +613,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -610,6 +666,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Vat/Tax"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -648,6 +705,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -700,6 +758,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Service Charge (%)"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -738,6 +797,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -797,6 +857,7 @@
                                             android:layout_gravity="center"
                                             android:gravity="center"
                                             android:text="Discount"
+                                            android:textSize="@dimen/_10sdp"
                                             android:textColor="#262626"
                                             android:textStyle="bold" />
 
@@ -835,6 +896,7 @@
                                             android:layout_gravity="center"
                                             android:gravity="center"
                                             android:text="0"
+                                            android:textSize="@dimen/_10sdp"
                                             android:textColor="#262626"
                                             android:textStyle="bold" />
 
@@ -888,6 +950,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Grand Total"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -926,6 +989,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -978,6 +1042,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Total due	"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626" />
 
                                 </LinearLayout>
@@ -1015,6 +1080,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -1067,6 +1133,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Change due"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626" />
 
                                 </LinearLayout>
@@ -1104,6 +1171,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -1156,6 +1224,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="Customer Paid"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626" />
 
                                 </LinearLayout>
@@ -1193,6 +1262,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="0"
+                                        android:textSize="@dimen/_10sdp"
                                         android:textColor="#262626"
                                         android:textStyle="bold" />
 
@@ -1219,23 +1289,6 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-        <ImageView
-            android:id="@+id/closeBtn"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/selector_print_icon"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="1dp"
-            android:src="@drawable/ic_close_white"
-            app:tint="@color/theme_color"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     </RelativeLayout>
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
-    tools:context=".Fragment.OnboardFragment">
+    tools:context=".fragments.OnboardFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onbViewPager2"

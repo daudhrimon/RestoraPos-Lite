@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F0F0F0"
     android:orientation="vertical"
-    tools:context=".Fragment.OrderInfoFragment">
+    tools:context=".fragments.OrderInfoFragment">
 
     <!--TOOLBAR -->
     <RelativeLayout
@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="6dp"
             android:background="@drawable/selector_cross_btn"
-            android:padding="7dp"
+            android:padding="@dimen/_5sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -38,10 +38,9 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="center_vertical"
-            android:paddingBottom="2dp"
             android:text="Set Order Info"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/_14sdp" />
 
     </RelativeLayout>
 
@@ -139,6 +138,7 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:paddingStart="5dp"
+                    android:textSize="@dimen/_12sdp"
                     android:theme="@style/spinnerTheme"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -376,7 +376,6 @@
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:padding="@dimen/_8sdp"
                 android:text="Done"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"

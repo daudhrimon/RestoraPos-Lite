@@ -1,26 +1,29 @@
-package com.bdtask.restoraposlite.Room.Entity
+package com.bdtask.restoraposlite.room.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.bdtask.restoraposlite.Model.Cart
-import com.bdtask.restoraposlite.Model.OdrInf
-import com.bdtask.restoraposlite.Model.Pay
+import com.bdtask.restoraposlite.models.Cart
+import com.bdtask.restoraposlite.models.OrderInfo
+import com.bdtask.restoraposlite.models.Payments
 
 @Entity(tableName = "order_tbl")
 data class Order(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
-    var sts: Int,
-    val spl: Int,
-    val mrg: Int,
-    var dat: String,
-    val tkn: String,
-    var dis: Double,
+    var status: Int,
+    val split: Int,
+    val merge: Int,
+    var date: String,
+    val token: String,
+    var discount: Double,
     var vat: Double,
-    var crg: Double,
-    var tPrc: Double,
-    val opr: String,
-    var odrInf: OdrInf,
+    var vatTotal: Double,
+    var charge: Double,
+    var chargeTotal: Double,
+    var subTotal: Double,
+    var grandTotal: Double,
+    val operator: String,
+    var orderInfo: OrderInfo,
     var cart: MutableList<Cart>,
-    val pay: MutableList<Pay>
-    )
+    val payments: MutableList<Payments>
+)

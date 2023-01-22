@@ -6,7 +6,7 @@
     app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.SplashFragment"
+        android:name="com.bdtask.restoraposlite.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.MainFragment"
+        android:name="com.bdtask.restoraposlite.fragments.MainFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_main">
         <action
@@ -71,10 +71,10 @@
             app:popExitAnim="@anim/pop_exit"/>
         <action
             android:id="@+id/action_homeFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
+            app:destination="@id/adminFragment" />
         <action
-            android:id="@+id/homeFrag2settingFrag"
-            app:destination="@id/settingFragment"
+            android:id="@+id/homeFrag2adminFrag"
+            app:destination="@id/adminFragment"
             app:enterAnim="@anim/enter"
             app:exitAnim="@anim/exit"
             app:popEnterAnim="@anim/pop_enter"
@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/ongoingFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.OngoingFragment"
+        android:name="com.bdtask.restoraposlite.fragments.OngoingFragment"
         android:label="fragment_ongoing"
         tools:layout="@layout/fragment_ongoing">
         <action
@@ -94,66 +94,66 @@
     </fragment>
     <fragment
         android:id="@+id/todayFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.TodayFragment"
+        android:name="com.bdtask.restoraposlite.fragments.TodayFragment"
         android:label="fragment_today"
         tools:layout="@layout/fragment_today">
 
     </fragment>
     <fragment
         android:id="@+id/orderInfoFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.OrderInfoFragment"
+        android:name="com.bdtask.restoraposlite.fragments.OrderInfoFragment"
         android:label="fragment_order_info"
         tools:layout="@layout/fragment_order_info">
 
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.FoodFragment"
+        android:name="com.bdtask.restoraposlite.fragments.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food">
     </fragment>
     <fragment
         android:id="@+id/completedFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.CompletedFragment"
+        android:name="com.bdtask.restoraposlite.fragments.CompletedFragment"
         android:label="CompletedFragment"
         tools:layout="@layout/fragment_completed"/>
     <fragment
         android:id="@+id/canceledFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.CanceledFragment"
+        android:name="com.bdtask.restoraposlite.fragments.CanceledFragment"
         android:label="fragment_canceled"
         tools:layout="@layout/fragment_canceled" />
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.AboutUsFragment"
+        android:name="com.bdtask.restoraposlite.fragments.AboutUsFragment"
         android:label="fragment_aboutus"
         tools:layout="@layout/fragment_aboutus" />
     <fragment
         android:id="@+id/reportFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.ReportFragment"
+        android:name="com.bdtask.restoraposlite.fragments.ReportFragment"
         android:label="ReportFragment"
         tools:layout="@layout/fragment_report"/>
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.OnboardFragment"
+        android:name="com.bdtask.restoraposlite.fragments.OnboardFragment"
         android:label="fragment_onboard"
         tools:layout="@layout/fragment_onboard" >
         <action
             android:id="@+id/onboardFrag2settingFrag"
-            app:destination="@id/settingFragment"
+            app:destination="@id/adminFragment"
             app:popUpTo="@id/onboardFragment"
             app:popUpToInclusive="true"
             app:enterAnim="@anim/enter"
             app:exitAnim="@anim/exit" />
     </fragment>
     <fragment
-        android:id="@+id/settingFragment"
-        android:name="com.bdtask.restoraposlite.Fragment.SettingFragment"
+        android:id="@+id/adminFragment"
+        android:name="com.bdtask.restoraposlite.fragments.AdminFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" >
+        tools:layout="@layout/fragment_admin" >
         <action
-            android:id="@+id/settingFrag2homeFrag"
+            android:id="@+id/adminFrag2homeFrag"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/settingFragment"
+            app:popUpTo="@id/adminFragment"
             app:popUpToInclusive="true"
             app:enterAnim="@anim/enter"
             app:exitAnim="@anim/exit" />

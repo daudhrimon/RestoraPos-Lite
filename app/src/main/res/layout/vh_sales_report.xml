@@ -17,8 +17,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E3E3E3"
+        android:background="#F3F3F3"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EAEAEA"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingVertical="9dp"
+                android:text="Order"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingVertical="9dp"
+                android:text="Customer"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingVertical="9dp"
+                android:text="Type"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_horizontal"
+                android:paddingVertical="9dp"
+                android:text="Grand Total"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp" />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout1"
@@ -37,9 +101,10 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textAlignment="center"
+                android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_9sdp" />
 
             <TextView
                 android:id="@+id/cusName"
@@ -50,10 +115,11 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:textStyle="bold"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_9sdp" />
 
 
             <TextView
@@ -65,10 +131,11 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:textStyle="bold"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_9sdp" />
 
 
             <TextView
@@ -80,31 +147,25 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:textStyle="bold"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_9sdp" />
 
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/arrowIv"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_12sdp"
-            android:src="@drawable/ic_down_arrow" />
 
         <LinearLayout
             android:id="@+id/expandLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#B7B4B4"
+                android:background="#EAEAEA"
                 android:orientation="horizontal"
                 android:weightSum="8">
 
@@ -112,55 +173,55 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_horizontal"
                     android:paddingVertical="9dp"
                     android:text="Waiter"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_horizontal"
                     android:paddingVertical="9dp"
                     android:text="Table No"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_horizontal"
                     android:paddingVertical="9dp"
                     android:text="Date"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_horizontal"
                     android:paddingVertical="9dp"
                     android:text="Payment"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
 
             </LinearLayout>
@@ -170,6 +231,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingVertical="10dp"
+                android:background="#F3F3F3"
                 android:weightSum="8">
 
                 <TextView
@@ -180,9 +242,10 @@
                     android:fontFamily="@font/helvetica_nueu_light"
                     android:gravity="center"
                     android:textAlignment="center"
+                    android:textStyle="bold"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <TextView
                     android:id="@+id/tableNo"
@@ -192,9 +255,10 @@
                     android:fontFamily="@font/helvetica_nueu_light"
                     android:gravity="center"
                     android:textAlignment="center"
+                    android:textStyle="bold"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
 
                 <TextView
@@ -206,8 +270,9 @@
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textAllCaps="false"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
 
 
                 <TextView
@@ -218,9 +283,81 @@
                     android:fontFamily="@font/helvetica_nueu_light"
                     android:gravity="center"
                     android:textAlignment="center"
+                    android:textStyle="bold"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_9sdp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EAEAEA"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_neue"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="9dp"
+                    android:text="Vat/Tax"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_neue"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="9dp"
+                    android:text="Service Charge"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_neue"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="9dp"
+                    android:text="Discount"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_neue"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="9dp"
+                    android:text="SubTotal"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
 
 
             </LinearLayout>
@@ -228,61 +365,64 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#313631"
-                android:gravity="center">
+                android:orientation="horizontal"
+                android:paddingVertical="10dp"
+                android:background="#2568C685"
+                android:weightSum="8">
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/vatTv"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layoutDirection="rtl">
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#313631"
-                        android:gravity="center">
+                <TextView
+                    android:id="@+id/crgTv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginHorizontal="3dp"
-                            android:background="#313631"
-                            android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/printBtn"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="4dp"
-                                android:backgroundTint="#02B1BF"
-                                android:fontFamily="@font/helvetica_neue"
-                                android:text="Print"
-                                android:textAlignment="center"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="12sp"
-                                tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/discountTv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
 
-                            <Button
-                                android:id="@+id/viewBtn"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="4dp"
-                                android:backgroundTint="#FFBC00"
-                                android:fontFamily="@font/helvetica_neue"
-                                android:text="View"
-                                android:textAlignment="center"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="12sp"
-                                tools:ignore="RtlCompat" />
 
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
+                <TextView
+                    android:id="@+id/subTotalTv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/helvetica_nueu_light"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp" />
 
             </LinearLayout>
 

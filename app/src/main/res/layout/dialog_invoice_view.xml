@@ -10,9 +10,62 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/disableColor"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_6sdp">
+
+            <ImageView
+                android:id="@+id/shareBtn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:background="@drawable/selector_print_icon"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_share_24"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/printBtn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:background="@drawable/selector_print_icon"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_print_24"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/closeBtn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:background="@drawable/selector_print_icon"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="1dp"
+                android:src="@drawable/ic_close_white"
+                app:tint="@color/theme_color"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topBar"
             android:scrollbars="vertical">
 
             <RelativeLayout
@@ -23,10 +76,10 @@
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="@dimen/_130sdp"
+                    android:layout_width="@dimen/_103sdp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_39sdp" />
+                    android:layout_marginTop="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/address"
@@ -38,7 +91,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center"
                     android:textColor="#000"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_11sdp" />
 
                 <LinearLayout
                     android:id="@+id/dateLay"
@@ -54,7 +107,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="Date : "
                         android:textColor="#000"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/date"
@@ -64,7 +117,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="15/6/2021 "
                         android:textColor="#000"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
 
@@ -86,7 +139,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="Item"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
 
 
@@ -99,7 +152,7 @@
                         android:gravity="end"
                         android:text="Total"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -133,7 +186,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Subtotal"
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/subTotal"
@@ -145,7 +198,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
                 <RelativeLayout
@@ -163,7 +216,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="Vat/Tax"
                         android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/vatTv"
@@ -174,7 +227,7 @@
                         android:layout_marginEnd="10dp"
                         android:fontFamily="@font/helvetica_neue"
                         android:textColor="#000"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -185,7 +238,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="GST"
                         android:textColor="#000"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_10sdp"
                         android:visibility="gone" />
 
                     <TextView
@@ -198,7 +251,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="$ 50"
                         android:textColor="#000"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold"
                         android:visibility="gone" />
 
@@ -211,7 +264,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="SGST"
                         android:textColor="#000"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_10sdp"
                         android:visibility="gone" />
 
                     <TextView
@@ -225,7 +278,7 @@
                         android:fontFamily="@font/helvetica_neue"
                         android:text="$ 50"
                         android:textColor="#000"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold"
                         android:visibility="gone" />
 
@@ -243,7 +296,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Service Charge "
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/chargeTv"
@@ -255,7 +308,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -267,7 +320,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Discount"
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/discountTv"
@@ -279,7 +332,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
                 <View
@@ -301,7 +354,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Grand Total"
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/grandtotalTV"
@@ -313,7 +366,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -326,7 +379,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Total Due"
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/totalDue"
@@ -338,7 +391,7 @@
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -350,7 +403,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Change Due"
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/changeDue"
@@ -362,7 +415,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -374,7 +427,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Customer Paid"
                     android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/customerPaid"
@@ -386,7 +439,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
 
@@ -412,7 +465,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Billing to:  "
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <TextView
                             android:id="@+id/customerName"
@@ -424,7 +477,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Customer"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/_10sdp" />
 
                     </RelativeLayout>
 
@@ -443,7 +496,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Billing By:  "
                             android:textColor="#000"
-                            android:textSize="12sp"
+                            android:textSize="@dimen/_10sdp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -456,7 +509,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Daud"
                             android:textColor="#000"
-                            android:textSize="12sp"
+                            android:textSize="@dimen/_10sdp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
@@ -487,7 +540,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Table :  "
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <TextView
                             android:id="@+id/tableNo"
@@ -498,7 +551,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="2"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/_10sdp" />
 
                     </RelativeLayout>
 
@@ -522,7 +575,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="Order : "
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <TextView
                             android:id="@+id/orderId"
@@ -533,7 +586,7 @@
                             android:fontFamily="@font/helvetica_neue"
                             android:text="300"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/_10sdp" />
 
                     </RelativeLayout>
 
@@ -559,7 +612,7 @@
                     android:fontFamily="@font/helvetica_neue"
                     android:text="Thank you very much"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -571,46 +624,13 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/helvetica_neue"
                     android:gravity="center_horizontal"
-                    android:text="Powered by ***Restora POS***\nrestorapos.com"
+                    android:text="Powered by Restora POS\nrestorapos.com"
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/_10sdp" />
 
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-        <ImageView
-            android:id="@+id/closeBtn"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/selector_print_icon"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="1dp"
-            android:src="@drawable/ic_close_white"
-            app:tint="@color/theme_color"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageView
-            android:id="@+id/printBtn"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@id/closeBtn"
-            android:background="@drawable/selector_print_icon"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="5dp"
-            android:src="@drawable/ic_baseline_print_24"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     </RelativeLayout>
 

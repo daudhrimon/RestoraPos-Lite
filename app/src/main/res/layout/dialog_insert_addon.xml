@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="@dimen/_39sdp"
             android:background="@color/theme_color">
 
             <TextView
@@ -26,12 +26,12 @@
                 android:fontFamily="@font/helvetica_nueu_light"
                 android:text="Add Addon"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/_15sdp" />
 
             <ImageView
                 android:id="@+id/addonCrossBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
@@ -53,13 +53,13 @@
             <EditText
                 android:id="@+id/addonNameEt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_36sdp"
+                android:layout_height="@dimen/_34sdp"
                 android:background="@drawable/et_round_bg_outline"
                 android:fontFamily="@font/helvetica_neue"
                 android:hint="Enter Addon Name"
                 android:inputType="textCapWords"
                 android:paddingHorizontal="10dp"
-                android:textSize="13sp"
+                android:textSize="@dimen/_12sdp"
                 tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
@@ -75,13 +75,13 @@
             <EditText
                 android:id="@+id/addonPriceEt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_36sdp"
+                android:layout_height="@dimen/_34sdp"
                 android:background="@drawable/et_round_bg_outline"
                 android:fontFamily="@font/helvetica_neue"
                 android:hint="Default Price 0.00"
                 android:inputType="numberDecimal"
                 android:paddingHorizontal="10dp"
-                android:textSize="13sp"
+                android:textSize="@dimen/_12sdp"
                 tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
@@ -89,7 +89,7 @@
         <TextView
             android:id="@+id/addonAddBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_34sdp"
             android:layout_marginHorizontal="@dimen/_14sdp"
             android:layout_marginVertical="@dimen/_15sdp"
             android:background="@drawable/selector_ongoing"
@@ -97,7 +97,6 @@
             android:focusable="true"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="center"
-            android:padding="@dimen/_8sdp"
             android:text="Add"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"

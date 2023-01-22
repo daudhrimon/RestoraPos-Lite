@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:text="Restora POS Premium"
+            android:text="RestoraPOS Premium"
             android:textColor="@color/theme_color"
-            android:textSize="20sp"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold"/>
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:gravity="center"
             android:textColor="#3E3F43"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_11sdp" />
 
     </LinearLayout>
 

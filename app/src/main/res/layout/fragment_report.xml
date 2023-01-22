@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:animationCache="true"
     android:background="@color/white"
-    tools:context=".Fragment.CompletedFragment">
+    android:orientation="vertical"
+    tools:context=".fragments.ReportFragment">
 
     <RelativeLayout
-        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
@@ -26,7 +24,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/selector_cross_btn"
-            android:padding="@dimen/_4sdp"
+            android:padding="@dimen/_5sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -61,9 +59,22 @@
             android:padding="10dp"
             android:textColor="#000"
             android:textColorHint="@color/hintColor"
-            android:textSize="15sp"
+            android:textSize="@dimen/_11sdp"
             android:visibility="gone"
             tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/shareBtn"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/searchBtn"
+            android:clickable="true"
+            android:foreground="@drawable/selector_cross_btn"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_baseline_share_24"
+            app:tint="@color/back_btn_tint"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageView
             android:id="@+id/searchBtn"
@@ -71,7 +82,7 @@
             android:layout_height="@dimen/_32sdp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginHorizontal="6dp"
+            android:layout_marginEnd="6dp"
             android:clickable="true"
             android:foreground="@drawable/selector_cross_btn"
             android:padding="@dimen/_9sdp"
@@ -83,233 +94,160 @@
 
     <!-- START FROM HERE -->
 
-    <LinearLayout
-        android:id="@+id/filterLay"
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appbar"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/dateLay"
+            android:id="@+id/filterLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text"
-            android:layout_alignParentStart="true"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="15dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
+                android:id="@+id/dateLay"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_34sdp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="0.5"
-                android:hint="From Date">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fromDateEt"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
-                    android:focusable="false"
-                    android:onClick="pickDate"
-                    android:padding="0dp"
-                    android:textColor="@color/theme_color"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_height="@dimen/_34sdp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="0.5"
+                    android:hint="From Date">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fromDateEt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+                        android:focusable="false"
+                        android:onClick="pickDate"
+                        android:padding="0dp"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="TouchTargetSizeCheck" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_34sdp"
-                android:layout_marginStart="5dp"
-                android:layout_weight="0.5"
-                android:hint="To Date">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/toDateEt"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
-                    android:focusable="false"
-                    android:onClick="pickDate"
-                    android:padding="0dp"
-                    android:textColor="@color/theme_color"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_height="@dimen/_34sdp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="0.5"
+                    android:hint="To Date">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/toDateEt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+                        android:focusable="false"
+                        android:onClick="pickDate"
+                        android:padding="0dp"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <!--<Button
-            android:id="@+id/expenseBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dateLay"
-            android:layout_marginTop="15dp"
-            android:text="Expense"
-            android:textSize="16dp"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/btnBg"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/txtClr"/>-->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rvLay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomLay"
-        android:layout_below="@+id/filterLay"
-        android:orientation="vertical"
-        android:visibility="gone">
 
         <LinearLayout
+            android:id="@+id/rvLay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/shape_splitter_selected"
-            android:orientation="horizontal"
-            android:weightSum="8">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/filterLay"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/helvetica_neue"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Order ID"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/theme_color"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/helvetica_neue"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Customer"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/theme_color"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/helvetica_neue"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Type"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/theme_color"
-                android:textSize="12sp" />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/helvetica_neue"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Amount"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/theme_color"
-                android:textSize="12sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reportRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/todayRecycler"
+        <LinearLayout
+            android:id="@+id/bottomLay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/theme_color"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_vertical"
+                android:text="Total Sales "
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                tools:ignore="RtlCompat" />
 
+            <TextView
+                android:id="@+id/totalSalesTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:fontFamily="@font/helvetica_neue"
+                android:gravity="center_vertical"
+                android:text=": 0.0"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                tools:ignore="RtlCompat" />
 
-    <LinearLayout
-        android:id="@+id/emptyOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:visibility="gone">
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_remove_shopping_cart_black_24dp" />
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/emptyOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/no_order"
-            android:textColor="@color/theme_color"
-            android:textSize="20sp" />
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_remove_shopping_cart_black_24dp" />
 
-    <LinearLayout
-        android:id="@+id/bottomLay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_34sdp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/theme_color"
-        android:orientation="horizontal"
-        android:weightSum="2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/no_order"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/_13sdp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:layout_weight="1"
-            android:fontFamily="@font/helvetica_neue"
-            android:gravity="center_vertical"
-            android:text="Total Sales"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            tools:ignore="RtlCompat" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/totalSalesTv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:layout_weight="1"
-            android:fontFamily="@font/helvetica_neue"
-            android:gravity="center_vertical"
-            android:text=" : 0.0"
-            android:textAlignment="textStart"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            tools:ignore="RtlCompat" />
-    </LinearLayout>
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

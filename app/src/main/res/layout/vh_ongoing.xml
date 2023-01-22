@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_6sdp"
+    android:layout_margin="@dimen/_5sdp"
     android:background="@color/white"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="7dp">
@@ -19,8 +19,8 @@
         <ImageView
             android:id="@+id/table"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_height="@dimen/_69sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:scaleType="fitXY"
             android:src="@drawable/unselected_ongoing" />
 
@@ -29,42 +29,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_4sdp"
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:paddingLeft="5dp"
-            android:text="Walkin "
+            android:paddingLeft="@dimen/_3sdp"
             android:textColor="@color/black"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_9sdp" />
 
         <TextView
             android:id="@+id/orderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_4sdp"
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:paddingLeft="5dp"
-            android:text="105 "
+            android:paddingLeft="@dimen/_3sdp"
             android:textColor="@color/black"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_9sdp" />
 
         <TextView
             android:id="@+id/waiterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_4sdp"
             android:layout_weight="1"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:paddingLeft="5dp"
+            android:paddingLeft="@dimen/_3sdp"
             android:text="Ainal"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="@dimen/_9sdp"
             android:visibility="invisible" />
 
         <TextView
@@ -72,16 +70,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:layout_weight="1"
             android:background="@color/theme_color"
             android:fontFamily="@font/helvetica_nueu_light"
             android:gravity="start"
-            android:padding="5dp"
-            android:text="Table No : 01 "
+            android:padding="@dimen/_3sdp"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="@dimen/_11sdp"
             tools:ignore="RtlCompat" />
 
     </LinearLayout>

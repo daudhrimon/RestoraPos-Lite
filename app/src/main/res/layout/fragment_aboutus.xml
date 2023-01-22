@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".Fragment.AboutUsFragment">
+    tools:context=".fragments.AboutUsFragment">
 
     <RelativeLayout
         android:id="@+id/appbar"
@@ -25,7 +25,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/selector_cross_btn"
-            android:padding="@dimen/_4sdp"
+            android:padding="@dimen/_5sdp"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             app:tint="@color/back_btn_tint"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -88,7 +88,7 @@
                     android:padding="8dp"
                     android:text="Features Of Restora POS"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Restaurant POS Billing Service"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -113,7 +113,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Restaurant Inventory Tracking System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -126,7 +126,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Recipe Management System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -139,7 +139,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Restaurant Accounting System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold"
                     tools:ignore="RtlSymmetry" />
 
@@ -153,7 +153,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Built-in Online Food Ordering System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -166,7 +166,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Restaurant Reservation System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -179,7 +179,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Dynamic Real-time KDS System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -191,7 +191,7 @@
                     android:padding="8dp"
                     android:text="Extraordinary Features Of Restora POS"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -203,7 +203,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Branded Website And App Integration"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -216,7 +216,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Online And Offline Order Management"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -229,7 +229,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Digital menu, contactless order taking and payment system"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -242,7 +242,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Table Reservation System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -255,7 +255,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Dynamic Business Decision Making Dashboard"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -268,7 +268,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Well Ordered Human Resource"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -281,7 +281,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Waiter, Kitchen Mobile and Tablet Apps"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -294,7 +294,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Real-time Kitchen Monitoring System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -307,7 +307,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="Order Queue Monitoring System"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -320,7 +320,7 @@
                     android:paddingVertical="4dp"
                     android:paddingStart="8dp"
                     android:text="No User restrictions"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_11sdp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -338,7 +338,7 @@
             android:paddingTop="4dp"
             android:text="Contact Us"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="@dimen/_14sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -392,7 +392,7 @@
                             android:gravity="center_vertical"
                             android:text="info@restorapos.com"
                             android:textColor="@color/theme_color"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/_11sdp" />
 
                     </LinearLayout>
 
@@ -432,7 +432,7 @@
                             android:gravity="center_vertical"
                             android:text="+880 1531-987110"
                             android:textColor="@color/theme_color"
-                            android:textSize="15sp" />
+                            android:textSize="@dimen/_11sdp" />
 
                     </LinearLayout>
 
@@ -471,7 +471,7 @@
                             android:gravity="center_vertical"
                             android:text="restorapos.com"
                             android:textColor="@color/theme_color"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/_11sdp" />
 
                     </LinearLayout>
 
