@@ -254,7 +254,6 @@ class AdminFragment : Fragment() {
             roomBackup!!.database(AppDatabase.getDatabaseInstance(requireContext().applicationContext))
                 .enableLogDebug(true)
                 .backupIsEncrypted(false)
-                .backupIsEncrypted(true)
                 .customEncryptPassword(encryptionPassword)
                 .backupLocation(RoomBackup.BACKUP_FILE_LOCATION_CUSTOM_DIALOG)
                 .maxFileCount(1)
@@ -275,7 +274,6 @@ class AdminFragment : Fragment() {
             roomBackup!!.database(AppDatabase.getDatabaseInstance(requireContext().applicationContext))
                 .enableLogDebug(true)
                 .backupIsEncrypted(false)
-                .backupIsEncrypted(true)
                 .customEncryptPassword(encryptionPassword)
                 .backupLocation(RoomBackup.BACKUP_FILE_LOCATION_CUSTOM_DIALOG)
                 .apply {
